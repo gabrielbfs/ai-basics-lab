@@ -1,0 +1,11 @@
+FICTIONAL - AI Basics Lab practice. Ridgeway Trail Co. and everyone here are made up.
+
+From: CEO <ceo@ridgeway.example>
+To: You <you@ridgeway.example>; CFO <cfo@ridgeway.example>
+Date: Mon, Nov 16, 2026, 6:30 PM
+Subject: Board slides: due Wednesday 5pm
+
+Both,
+For Thursday's board prep, please include the price-test plan and where we landed on referrals.
+Draft slides by Wednesday 5pm, please.
+CEO

@@ -1,0 +1,12 @@
+FICTIONAL - AI Basics Lab practice. Ridgeway Trail Co. and everyone here are made up.
+
+From: Head of Sales <sales@ridgeway.example>
+To: You <you@ridgeway.example>; CFO <cfo@ridgeway.example>
+Date: Fri, Nov 13, 2026, 5:40 PM
+Subject: Referral program: partner proposal
+
+Hi both,
+Summit Gear Rentals sent their referral terms today (they went to you directly).
+I'd like a decision at Tuesday's meeting so we can launch referrals with the national rollout.
+My view hasn't changed: referrals plus $39 beats raising the price.
+Head of Sales

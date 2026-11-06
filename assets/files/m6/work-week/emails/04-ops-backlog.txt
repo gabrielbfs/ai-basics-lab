@@ -1,0 +1,11 @@
+FICTIONAL - AI Basics Lab practice. Ridgeway Trail Co. and everyone here are made up.
+
+From: Ops Lead <ops@ridgeway.example>
+To: You <you@ridgeway.example>
+Date: Mon, Nov 16, 2026, 7:55 AM
+Subject: Gear-cleaning backlog
+
+Morning,
+We're two days behind on cleaning returned gear. If it doesn't clear by Thursday,
+Southeast shipments may slip by a day. Can we talk at our 1:1 tomorrow?
+Ops Lead

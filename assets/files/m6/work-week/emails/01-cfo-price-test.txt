@@ -1,0 +1,13 @@
+FICTIONAL - AI Basics Lab practice. Ridgeway Trail Co. and everyone here are made up.
+
+From: CFO <cfo@ridgeway.example>
+To: You <you@ridgeway.example>
+Date: Fri, Nov 13, 2026, 4:12 PM
+Subject: Price test: regions and metric
+
+Hi,
+For Monday's kickoff I'd like to propose testing $49 in the Southeast and Midwest for three months,
+with monthly churn as the success metric. Everywhere else stays at $39 as the comparison.
+Could you bring pilot churn by region to the meeting? I'd like a baseline before we start.
+Thanks,
+CFO

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acceptance checks · Trail Club unit economics</title>
+<style>
+  body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color: #1f2933; background: #fff; }
+  main { max-width: 760px; margin: 0 auto; padding: 20px 16px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  p { color: #52606d; margin: 0 0 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #d9dee3; vertical-align: top; }
+  .pass { color: #0b6e4f; font-weight: 700; } .fail { color: #b42318; font-weight: 700; }
+  #summary { font-weight: 700; margin-top: 16px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Acceptance checks</h1>
+  <p>Open this page in a browser to check the calculations against the spec (docs/spec.md). Nothing to install.</p>
+  <table><thead><tr><th>Check</th><th>Expected</th><th>Got</th><th>Result</th></tr></thead><tbody id="rows"></tbody></table>
+  <div id="summary"></div>
+</main>
+<script src="app.js"></script>
+<script>
+  const { calculate, format } = window.TrailClub;
+  const base = { price: "49", margin: "72", churn: "3", cac: "239" };
+  const run = changes => calculate(Object.assign({}, base, changes));
+  const checks = [
+    ["Defaults: gross profit", "$35.28", () => format.cents(run({}).grossProfit)],
+    ["Defaults: LTV", "$1,176", () => format.dollars(run({}).ltv)],
+    ["Defaults: LTV/CAC", "4.9", () => format.ratio(run({}).ratio)],
+    ["Defaults: months to pay back", "6.8", () => format.months(run({}).payback)],
+    ["Defaults: no warning", "false", () => String(run({}).low)],
+    ["Churn 5%: LTV/CAC", "2.9", () => format.ratio(run({ churn: "5" }).ratio)],
+    ["Churn 5%: warning shows", "true", () => String(run({ churn: "5" }).low)],
+    ["Churn 0: message", "Churn must be above 0 to estimate lifetime value.", () => run({ churn: "0" }).problems.join(" ")],
+    ["CAC 0: message", "CAC must be above 0.", () => run({ cac: "0" }).problems.join(" ")],
+    ["Blank price: message", "Price must be above 0.", () => run({ price: "" }).problems.join(" ")]
+  ];
+  let passed = 0;
+  const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  document.getElementById("rows").innerHTML = checks.map(([name, want, fn]) => {
+    let got; try { got = fn(); } catch (e) { got = "error: " + e.message; }
+    const ok = got === want; if (ok) passed++;
+    return "<tr><td>" + esc(name) + "</td><td>" + esc(want) + "</td><td>" + esc(got) + "</td><td class=\"" + (ok ? "pass" : "fail") + "\">" + (ok ? "Pass" : "Fail") + "</td></tr>";
+  }).join("");
+  const s = document.getElementById("summary");
+  s.textContent = passed + " of " + checks.length + " checks pass";
+  s.className = passed === checks.length ? "pass" : "fail";
+</script>
+</body>
+</html>

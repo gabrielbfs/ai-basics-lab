@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trail Club unit economics</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <span class="tag">Example data · made up</span>
+  <h1>Trail Club unit economics</h1>
+  <p class="how"><strong>How to use this:</strong> change any input and the results update. Numbers start from the example assumptions table (fictional company).</p>
+
+  <div class="grid">
+    <label>Monthly price ($)<small>What one member pays each month</small><input id="price" type="number" min="0" step="1" value="49"></label>
+    <label>Gross margin (%)<small>Share of the price left after the cost to serve</small><input id="margin" type="number" min="0" max="100" step="0.5" value="72"></label>
+    <label>Monthly churn (%)<small>Share of members who cancel each month</small><input id="churn" type="number" min="0" max="100" step="0.1" value="3"></label>
+    <label>Acquisition cost, CAC ($)<small>What it costs to win one member</small><input id="cac" type="number" min="0" step="1" value="239"></label>
+  </div>
+
+  <div class="results" aria-live="polite">
+    <div class="card"><div class="k">Gross profit per member per month</div><div class="v" id="gp">–</div><div class="e">Price × gross margin.</div></div>
+    <div class="card"><div class="k">Lifetime value (LTV)</div><div class="v" id="ltv">–</div><div class="e">Gross profit per month ÷ monthly churn.</div></div>
+    <div class="card" id="ratioCard"><div class="k">LTV / CAC</div><div class="v" id="ratio">–</div><div class="e">How many times a member pays back what it cost to win them. 3 or more is a common target.</div></div>
+    <div class="card"><div class="k">Months to pay back CAC</div><div class="v" id="payback">–</div><div class="e">CAC ÷ gross profit per month.</div></div>
+  </div>
+
+  <div class="alert" id="warn" role="status">LTV/CAC is below 3: each new member doesn't earn back enough of what it cost to win them.</div>
+  <div class="alert" id="err" role="status"></div>
+
+  <footer>Trail Club unit economics · AI Basics Lab example app. Not financial advice; all figures are made up.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
