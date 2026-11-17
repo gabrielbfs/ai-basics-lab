@@ -36,13 +36,13 @@ window.AIB_COURSE = {
   // blurb = the few-word description on the overview card; output = what the student leaves with.
   modules: [
     { id: "m1", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear briefs and check what Claude gives back.", output: "a 3-sentence project idea" },
-    { id: "m2", title: "Research & analysis",                 short: "Research & analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "an assumptions table and sample data, checked" },
-    { id: "m3", title: "Asking vs. delegating",              short: "Ask vs. delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief" },
-    { id: "m4", title: "Projects & artifacts",                short: "Projects & artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool" },
+    { id: "m2", title: "Research & analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "an assumptions table and sample data, checked" },
+    { id: "m3", title: "Asking vs. delegating",              short: "Ask vs. Delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief" },
+    { id: "m4", title: "Projects & artifacts",                short: "Projects & Artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool" },
     { id: "m5", title: "Skills",                              short: "Skills",               track: "nocode", blurb: "Teach Claude a task once and reuse it whenever you need it.", output: "a spec-writer skill and your build spec" },
     { id: "m6", title: "Connectors & automation",             short: "Connectors",           track: "nocode", blurb: "Link your email, calendar or files and schedule a weekly task.", output: "one scheduled automation for your work" },
     { id: "m7", title: "Claude Code",                         short: "Claude Code",          track: "build",  blurb: "Turn your prototype into a real app on your computer.", output: "a real app in a folder on your computer" },
-    { id: "m8", title: "Save & ship",                         short: "Save & ship",          track: "build",  blurb: "Put your app on GitHub and share a live link.", output: "a GitHub repo and a live link" }
+    { id: "m8", title: "Save & ship",                         short: "Save & Ship",          track: "build",  blurb: "Put your app on GitHub and share a live link.", output: "a GitHub repo and a live link" }
   ],
 
   // Not shown on the overview yet; kept for when the elective pages are written.

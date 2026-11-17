@@ -100,7 +100,7 @@
     const nav = document.getElementById("nav");
     nav.innerHTML =
       '<li><a href="' + href("overview") + '"' + (cur === "overview" ? ' aria-current="page"' : "") +
-      '><span class="n">00</span><span>Course overview</span><span></span></a></li>' +
+      '><span class="n">00</span><span>Course Overview</span><span></span></a></li>' +
       LIST.map((m, i) => {
         const s = cached(m.id);
         return '<li><a href="' + href(m.id) + '"' + (cur === m.id ? ' aria-current="page"' : "") +
