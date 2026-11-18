@@ -223,6 +223,7 @@ mark.hl{color:inherit;border-radius:3px;padding:0 2px;box-decoration-break:clone
 .fw-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
 .fw-card li{display:flex;flex-direction:column;font-size:14.5px;line-height:1.35}
 .fw-card li b{font-family:var(--ui);font-size:14.5px}
+.fw-card .fw-ic{width:15px;height:15px;vertical-align:-2px;margin-right:7px;color:var(--accent)}
 .fw-card li span{color:var(--muted)}
 .fw-good{margin:auto 0 0;padding-top:8px;border-top:1px dashed var(--line);font-size:13.5px}
 .fw-good span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -306,6 +307,8 @@ ol.steps ul.pts li::marker{color:var(--accent)}
 .reveal summary{cursor:pointer;padding:10px 14px;font-family:var(--ui);font-weight:600;font-size:15px;color:var(--navy)}
 .reveal[open] summary{border-bottom:1px dashed var(--navy)}
 .reveal-body{padding:12px 14px;font-size:15px;white-space:pre-line;max-width:72ch}
+.reveal-shot{padding:12px 14px 0}
+.reveal-shot .shot{max-width:680px;margin:0}
 
 /* responsible use */
 .resp{display:flex;flex-direction:column;gap:6px;padding:16px 18px;border-radius:10px;background:var(--accent-soft);border-left:4px solid var(--accent)}
@@ -495,7 +498,7 @@ window.AIB_COURSE = {
   // the single-file build. Add ?preview to a page address to see unpublished modules while you edit them.
   modules: [
     { id: "m1", page: "m01-briefing-claude.html", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear prompts and check what Claude gives back.", output: "a 3-sentence project idea", setup: "A", published: true  },
-    { id: "m2", page: "m02-research-analysis.html", title: "Research & Analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "a checked assumptions table and sample data", setup: "A", published: false },
+    { id: "m2", page: "m02-research-analysis.html", title: "Research & Analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "a checked assumptions table and sample data", setup: "A", published: true },
     { id: "m3", page: "m03-asking-vs-delegating.html", title: "Asking vs. Delegating",              short: "Ask vs. Delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief", setup: "A", published: false },
     { id: "m4", page: "m04-projects-artifacts.html", title: "Projects & Artifacts",                short: "Projects & Artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool", setup: "A", published: false },
     { id: "m5", page: "m05-skills.html", title: "Skills",                              short: "Skills",               track: "nocode", blurb: "Teach Claude a task once and reuse it whenever you need it.", output: "a spec-writer skill and your build spec", setup: "A", published: false },
@@ -826,6 +829,240 @@ window.AIB_MODULES["m1"] = {
       label: "Guidance for the use of generative AI", url: "https://ist.mit.edu/ai-guidance" },
     { group: "MIT guidance", source: "MIT Sloan TLT", type: "Resource hub",
       label: "Generative AI resource hub", url: "https://mitsloanedtech.mit.edu/ai/" }
+  ]
+};
+
+;
+/* ==========================================================================
+   Module 2 · Research & analysis
+   Spec: AI_Basics_Lab_Revision_Plan.md, "Module 2 · Research & analysis with your data"
+   Downloads: assets/files/m2/, made by tools/make-m2-files.js (the numbers in
+   Exercise A's "Check your answer" come from that script's answer key).
+   Status: revised Nov 3, 2026 (household practice data, no demo, templates only)
+   ========================================================================== */
+window.AIB_MODULES = window.AIB_MODULES || {};
+window.AIB_MODULES["m2"] = {
+  id: "m2",
+  title: "Research & Analysis",
+  level: "Builds on Module 1",
+
+  goal: "Learn to research with sources and analyze a spreadsheet, then check Claude's work.",
+  outcomes: ["Get a sourced answer", "Turn data into a chart", "Spot a weak assumption", "List your tool's numbers"],
+
+  budget: { read: 5, do: 23, check: 2 },
+
+  before: {
+    needs: [
+      { text: "Your 3-sentence project idea from Module 1.",
+        ifNot: "No idea yet? Do [Module 1, Exercise B](m01-briefing-claude.html#s-exercise) first (8 min)." },
+      { text: "The practice file, downloaded (CSV or Excel): a fictional household's 2025 card spending, one row per transaction, with date, month, quarter, card, merchant, category, amount and transaction ID.",
+        files: [
+          { label: "Practice file (.csv)", url: "assets/files/m2/household-spending-2025.csv" },
+          { label: "Practice file (.xlsx)", url: "assets/files/m2/household-spending-2025.xlsx" }
+        ] },
+      "Claude open in a new chat. If the Excel file won't upload, use the CSV.",
+      "Excel, Google Sheets or Numbers open, to recompute one number yourself."
+    ]
+  },
+
+  breakdown: {
+    key: "Garbage in, garbage out: check the sources and the rows before you trust the answer.",
+    figure: { top: true, image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3OTAgMTA0IiB3aWR0aD0iNzkwIiBoZWlnaHQ9IjEwNCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJEaWFncmFtOiAxIFNvdXJjZXMsIGNoZWNrIHRoZW0geW91cnNlbGY7IHRoZW4gMiBNZXRob2QsIGJlZm9yZSB0aGUgbWF0aDsgdGhlbiAzIENoYXJ0LCBmaXRzIHRoZSBxdWVzdGlvbjsgdGhlbiA0IFJlY29tcHV0ZSwgb25lIG51bWJlciB5b3Vyc2VsZi4iPgogIDwhLS0gTW9kdWxlIDIgZmxvdyBkaWFncmFtLCBkcmF3biBmb3IgQUkgQmFzaWNzIExhYi4gU2FtZSBzdHlsZSBhcyBtMS1wcm9tcHQtbG9vcC5zdmcuIC0tPgogIDxzdHlsZT4KICAgIC5ie2ZpbGw6I2ZmZmZmZjtzdHJva2U6I2Q5ZDZjZjtzdHJva2Utd2lkdGg6MS41fQogICAgLmt7ZmlsbDojZjhlOWVjO3N0cm9rZTojQTMxRjM0O3N0cm9rZS13aWR0aDoxLjV9CiAgICAubntmb250LWZhbWlseToiSm9zdCIsLWFwcGxlLXN5c3RlbSwiU2Vnb2UgVUkiLFJvYm90byxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMnB4O2ZvbnQtd2VpZ2h0OjcwMDtmaWxsOiNBMzFGMzR9CiAgICAudHtmb250LWZhbWlseToiSm9zdCIsLWFwcGxlLXN5c3RlbSwiU2Vnb2UgVUkiLFJvYm90byxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxNnB4O2ZvbnQtd2VpZ2h0OjYwMDtmaWxsOiMxZjIzMjh9CiAgICAuc3tmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLCJTZWdvZSBVSSIsUm9ib3RvLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEyLjVweDtmaWxsOiM1ZjYzNjh9CiAgICAuYXtmaWxsOm5vbmU7c3Ryb2tlOiM4YThmOTg7c3Ryb2tlLXdpZHRoOjI7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kfQogIDwvc3R5bGU+CiAgPHJlY3QgY2xhc3M9ImIiIHg9IjEwIiAgeT0iMTQiIHdpZHRoPSIxNjgiIGhlaWdodD0iNzYiIHJ4PSIxMCIvPgogIDxyZWN0IGNsYXNzPSJiIiB4PSIyMTQiIHk9IjE0IiB3aWR0aD0iMTY4IiBoZWlnaHQ9Ijc2IiByeD0iMTAiLz4KICA8cmVjdCBjbGFzcz0iYiIgeD0iNDE4IiB5PSIxNCIgd2lkdGg9IjE2OCIgaGVpZ2h0PSI3NiIgcng9IjEwIi8+CiAgPHJlY3QgY2xhc3M9ImsiIHg9IjYyMiIgeT0iMTQiIHdpZHRoPSIxNTgiIGhlaWdodD0iNzYiIHJ4PSIxMCIvPgogIDx0ZXh0IGNsYXNzPSJuIiB4PSIyNCIgIHk9IjM2Ij4xPC90ZXh0Pjx0ZXh0IGNsYXNzPSJ0IiB4PSIyNCIgIHk9IjU4Ij5Tb3VyY2VzPC90ZXh0Pjx0ZXh0IGNsYXNzPSJzIiB4PSIyNCIgIHk9Ijc4Ij5jaGVjayB0aGVtIHlvdXJzZWxmPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJuIiB4PSIyMjgiIHk9IjM2Ij4yPC90ZXh0Pjx0ZXh0IGNsYXNzPSJ0IiB4PSIyMjgiIHk9IjU4Ij5NZXRob2Q8L3RleHQ+PHRleHQgY2xhc3M9InMiIHg9IjIyOCIgeT0iNzgiPmJlZm9yZSB0aGUgbWF0aDwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibiIgeD0iNDMyIiB5PSIzNiI+MzwvdGV4dD48dGV4dCBjbGFzcz0idCIgeD0iNDMyIiB5PSI1OCI+Q2hhcnQ8L3RleHQ+PHRleHQgY2xhc3M9InMiIHg9IjQzMiIgeT0iNzgiPmZpdHMgdGhlIHF1ZXN0aW9uPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJuIiB4PSI2MzYiIHk9IjM2Ij40PC90ZXh0Pjx0ZXh0IGNsYXNzPSJ0IiB4PSI2MzYiIHk9IjU4Ij5SZWNvbXB1dGU8L3RleHQ+PHRleHQgY2xhc3M9InMiIHg9IjYzNiIgeT0iNzgiPm9uZSBudW1iZXIgeW91cnNlbGY8L3RleHQ+CiAgPHBhdGggY2xhc3M9ImEiIGQ9Ik0xODIgNTJoMjhNMjA0IDQ2bDYgNi02IDYiLz4KICA8cGF0aCBjbGFzcz0iYSIgZD0iTTM4NiA1MmgyOE00MDggNDZsNiA2LTYgNiIvPgogIDxwYXRoIGNsYXNzPSJhIiBkPSJNNTkwIDUyaDI4TTYxMiA0Nmw2IDYtNiA2Ii8+Cjwvc3ZnPgo=",
+              alt: "Diagram of four steps in a row: 1 Sources (check them yourself), 2 Method (before the math), 3 Chart (fits the question), 4 Recompute (one number yourself)." },
+    // text can be one paragraph or a list of short bullets (same style as Module 1)
+    concepts: [
+      { title: "Check the sources",
+        text: ["Ask for sources you can open", "Open them yourself", "Same year, place and definition?"] },
+      { title: "Method before math",
+        text: ["Upload the file", "Ask Claude to describe its method first", "A wrong approach is easier to catch before it runs"] },
+      { title: "Ask for the chart you need",
+        text: ["Name the comparison", "✗ \"Make a chart\"", "✓ \"Spending by category, Q2 vs. Q3\""] },
+      { title: "Recompute one number",
+        text: ["Redo one figure in Excel or Sheets", "Count the rows too", "Ask what the data *can't* tell you"] }
+    ]
+  },
+
+  // Student tools, same card format as Module 1's prompt frameworks. SIFT and CRAAP check sources;
+  // the other four shape the analysis and how it's presented. The data-quality list is in Exercise A's
+  // "Check your answer" instead, because it names the planted problem (duplicates).
+  frameworks: {
+    title: "Research & analysis frameworks",
+    intro: "There are many frameworks for checking sources and structuring an analysis. None is required. **SIFT** and **CRAAP** help you check sources; the other four help you ask for an analysis and present it. Pick the ones you'll remember.",
+    cards: [
+      { name: "SIFT", goodFor: "A number or claim Claude cites",
+        parts: [["Stop", "don't use it yet"], ["Investigate the source", "who published it, and why"],
+                ["Find better coverage", "do other sources agree?"], ["Trace to the original", "the first study or table: its year, place and definition"]] },
+      { name: "CRAAP", goodFor: "Judging a whole page or report",
+        parts: [["Currency", "how recent is it?"], ["Relevance", "does it fit your case?"], ["Authority", "who wrote it?"],
+                ["Accuracy", "does it show its data and method?"], ["Purpose", "informing or selling?"]] },
+      { name: "Chart chooser", goodFor: "Asking for the chart you need",
+        parts: [["Comparison", "bar chart", "bar"], ["Change over time", "line chart", "line"], ["Parts of a whole", "stacked bar", "stacked"],
+                ["Distribution", "histogram", "hist"], ["Relationship", "scatter plot", "scatter"]] },
+      { name: "Issue tree (MECE)", goodFor: "Breaking down an analysis",
+        parts: [["Question", "the one thing you want to know"], ["Branches", "split it into parts"],
+                ["No overlaps", "each item fits one branch only"], ["No gaps", "together, the branches cover everything"]] },
+      { name: "Pyramid Principle", goodFor: "Presenting results",
+        parts: [["Answer", "first, in one sentence"], ["Supporting points", "about 3 reasons"], ["Detail", "data and caveats last"]] },
+      { name: "5 Whys", goodFor: "Following up a surprising result",
+        parts: [["Ask why", "why did this happen?"], ["Ask again", "why did that happen?"], ["Repeat", "up to 5 times"],
+                ["Stop", "at a cause you can check or fix"]] }
+    ],
+    sample: {
+      title: "See one case in each framework",
+      task: "**Made-up example** · Your tool needs a gross-margin assumption. Claude says a typical SaaS gross margin is about 75%, citing a software vendor's blog. Another source you found says about 63%.",
+      tryIt: "Each prompt applies one framework to the same case. Copy one into Claude and compare what you get.",
+      items: [
+        { name: "SIFT",
+          prompt: "**Stop:** Don't treat the 75% as settled yet.\n**Investigate:** Who published the source you cited, and what do they sell?\n**Find:** Give me two other sources I can open that report SaaS gross margins.\n**Trace:** For each, link the original study or table, and say which companies and which year it covers." },
+        { name: "CRAAP",
+          prompt: "Rate the source you cited for the 75% gross margin:\n**Currency:** When was it published or last updated?\n**Relevance:** Does it cover companies like mine (size, stage, region)?\n**Authority:** Who wrote it, and what's their expertise?\n**Accuracy:** Does it show its data or method?\n**Purpose:** Is it informing, or selling something?" },
+        { name: "Chart chooser",
+          prompt: "**Question:** How does my margin assumption compare with what the sources report?\n**Type:** That's a comparison, so use a bar chart.\n**Ask:** Make a bar chart with one bar per source (75% and 63%) and one for my assumption. Label each bar with its source and year." },
+        { name: "Issue tree (MECE)",
+          prompt: "Break down \"Why do the sources disagree: 75% vs. 63%?\" into branches with no overlaps and no gaps:\n**Who:** which kinds of companies each source covers\n**When:** which year each figure is from\n**How:** how each source defines gross margin\nOne line per branch, then say which branch explains most of the gap." },
+        { name: "Pyramid Principle",
+          prompt: "Recommend the gross-margin assumption for my tool.\n**Answer first:** the value to use, in one sentence.\n**Supporting points:** up to 3 reasons, one per source.\n**Detail last:** a table with each source, its year, what it covers, and one caveat." },
+        { name: "5 Whys",
+          prompt: "The sources disagree: 75% vs. 63%. Ask \"why?\" up to 5 times to find the root cause, one line per answer. Stop when you reach something I can check myself, and tell me how to check it." }
+      ]
+    }
+  },
+
+  // Same format as Module 1: one example per key idea, in the same order.
+  // [[Tag::words]] colors those words in the strong prompt and shows a matching tag.
+  examplesIntro: "Read each weak prompt and guess what's missing. Then open **What changed?** to check.",
+  examplesGuess: true,
+  examples: [
+    { title: "Researching a number", idea: "Check the sources",
+      weak: "what's the market size for X",
+      strong: "[[Task::Estimate the US market size for X]] [[Method::top-down and bottom-up.]] [[Sources::List every assumption with a source I can open,]] [[Self-check::and flag the shakiest one.]]",
+      gets: { weak: "One confident number, with no way to check it.",
+              strong: "Two estimates that should roughly agree, sources to open, and the weakest link." },
+      why: "Two methods that should roughly agree, sources you can check, and a pointer to the weakest link." },
+    { title: "Analyzing a file", idea: "Method before math",
+      weak: "analyze this data",
+      strong: "[[Context::This is a year of my team's expense reports, one row per expense.]] [[Question::Which category grew most in Q3?]] [[Method first::Show me your method first,]] [[Format::then one chart and one caveat.]]",
+      gets: { weak: "A long summary of everything in the file.",
+              strong: "The method to approve, then one answer, one chart and one caveat." },
+      why: "A specific question, the method before the answer, and a limit on what comes back." },
+    { title: "Asking for a chart", idea: "Ask for the chart you need",
+      weak: "make a chart",
+      strong: "[[Chart type::Make a bar chart]] [[Comparison::of spending by category, Q2 next to Q3,]] [[Order::sorted by the change.]] [[Labels::Label each bar with its dollar amount.]]",
+      gets: { weak: "Whatever chart Claude picks, often a pie of the whole year.",
+              strong: "One chart that answers the question at a glance." },
+      why: "It names the comparison, so Claude picks the right chart type (see the **Chart chooser** above), and it says how to sort and label it." },
+    { title: "Checking the result", idea: "Recompute one number",
+      weak: "are these numbers right?",
+      strong: "[[One number::For Travel in Q3, give me the total and the number of rows,]] [[Method::and the exact filter you used,]] [[Purpose::so I can recompute it myself.]]",
+      gets: { weak: "\"Yes, the numbers are correct.\"",
+              strong: "A total, a row count and a filter you can repeat in Excel or Sheets." },
+      why: "\"Are these right?\" usually gets a yes. Asking for the total, the row count and the filter gives you something to check." }
+  ],
+
+  // {group: "..."} = an unnumbered heading row; keep its minutes in line with the exercises below
+  steps: [
+    { group: "Exercise A · ~10 min" },
+    { title: "Upload the practice file", text: "Attach it from **Before you start** to a new chat.",
+      shot: { image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NjAgMjMwIiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjIzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJJbGx1c3RyYXRpb24gb2YgdGhlIENsYXVkZSBjaGF0IGJveDogdGhlICsgYnV0dG9uIGF0IHRoZSBib3R0b20gbGVmdCBpcyBoaWdobGlnaHRlZCwgYW5kIGl0cyBtZW51IHNob3dzIEFkZCBmaWxlcyBvciBwaG90b3MsIGFsc28gaGlnaGxpZ2h0ZWQiPgogIDwhLS0gSWxsdXN0cmF0aW9uIG9mIGF0dGFjaGluZyBhIGZpbGUgaW4gQ2xhdWRlIChsaWdodCBtb2RlKSwgZHJhd24gZm9yIEFJIEJhc2ljcyBMYWIuIE5vdCBhIHNjcmVlbnNob3QuIC0tPgogIDxzdHlsZT4KICAgIC50e2ZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sIlNlZ29lIFVJIixSb2JvdG8sQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTRweDtmaWxsOiMyZjJmMmN9CiAgICAuaWN7ZmlsbDpub25lO3N0cm9rZTojM2QzZDNhO3N0cm9rZS13aWR0aDoxLjY7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kfQogIDwvc3R5bGU+CiAgPHJlY3Qgd2lkdGg9IjU2MCIgaGVpZ2h0PSIyMzAiIGZpbGw9IiNmYWY5ZjUiLz4KICA8IS0tIG1lbnUgb3BlbmVkIGZyb20gKyAtLT4KICA8cmVjdCB4PSIyNCIgeT0iMTQiIHdpZHRoPSIyMzAiIGhlaWdodD0iOTYiIHJ4PSIxMCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZTNlMWRhIi8+CiAgPHJlY3QgeD0iMzIiIHk9IjIyIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjM0IiByeD0iNyIgZmlsbD0iI2YwZWVlNiIvPgogIDxnIGNsYXNzPSJpYyI+PHBhdGggZD0iTTQ2IDQ2bDktOWE0IDQgMCAwIDEgNiA2bC0xMSAxMWEyLjUgMi41IDAgMCAxLTMuNS0zLjVsOS05Ii8+PC9nPgogIDx0ZXh0IHg9IjcwIiB5PSI0NCIgY2xhc3M9InQiIHN0eWxlPSJmb250LXdlaWdodDo2MDAiPkFkZCBmaWxlcyBvciBwaG90b3M8L3RleHQ+CiAgPGcgY2xhc3M9ImljIj48cmVjdCB4PSI0MyIgeT0iNjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxMiIgcng9IjIiLz48Y2lyY2xlIGN4PSI1MSIgY3k9Ijc0IiByPSIzIi8+PC9nPgogIDx0ZXh0IHg9IjcwIiB5PSI4MCIgY2xhc3M9InQiIHN0eWxlPSJmaWxsOiM2YjZhNjQiPlRha2UgYSBzY3JlZW5zaG90PC90ZXh0PgogIDxyZWN0IHg9IjI4IiB5PSIxOCIgd2lkdGg9IjIyMiIgaGVpZ2h0PSI0MiIgcng9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0EzMUYzNCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHJlY3QgeD0iMjY4IiB5PSIyOCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyNCIgcng9IjUiIGZpbGw9IiNBMzFGMzQiLz4KICA8dGV4dCB4PSIzNDgiIHk9IjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0iZm9udC1mYW1pbHk6LWFwcGxlLXN5c3RlbSwnU2Vnb2UgVUknLFJvYm90byxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxM3B4O2ZvbnQtd2VpZ2h0OjcwMDtmaWxsOiNmZmZmZmYiPjIgwrcgQWRkIGZpbGVzIG9yIHBob3RvczwvdGV4dD4KICA8IS0tIGNoYXQgYm94IC0tPgogIDxyZWN0IHg9IjE2IiB5PSIxMjQiIHdpZHRoPSI1MjgiIGhlaWdodD0iOTIiIHJ4PSIxNiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZGNkOWQwIi8+CiAgPHRleHQgeD0iMzYiIHk9IjE1NCIgY2xhc3M9InQiIHN0eWxlPSJmaWxsOiM5YTk4OGYiPkhvdyBjYW4gSSBoZWxwIHlvdSB0b2RheT88L3RleHQ+CiAgPHJlY3QgeD0iMzAiIHk9IjE3MiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZGNkOWQwIi8+CiAgPGcgY2xhc3M9ImljIj48cGF0aCBkPSJNNDYgMTgxdjE0TTM5IDE4OGgxNCIvPjwvZz4KICA8cmVjdCB4PSIyNSIgeT0iMTY3IiB3aWR0aD0iNDIiIGhlaWdodD0iNDIiIHJ4PSIxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTMxRjM0IiBzdHJva2Utd2lkdGg9IjMiLz4KICA8cmVjdCB4PSI3NiIgeT0iMTc3IiB3aWR0aD0iOTYiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjQTMxRjM0Ii8+CiAgPHRleHQgeD0iMTI0IiB5PSIxOTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHN0eWxlPSJmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLCdTZWdvZSBVSScsUm9ib3RvLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEzcHg7Zm9udC13ZWlnaHQ6NzAwO2ZpbGw6I2ZmZmZmZiI+MSDCtyBDbGljayArPC90ZXh0PgogIDxyZWN0IHg9IjUwMCIgeT0iMTcyIiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHJ4PSI4IiBmaWxsPSIjZDk3NzU3Ii8+CiAgPHBhdGggZD0iTTUxNiAxOTZ2LTE0TTUxMCAxODhsNi02IDYgNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K", caption: "Illustration. Your screen may look slightly different. You can also drag the file into the chat box.",
+              alt: "Illustration of the Claude chat box. Step 1: the + button at the bottom left is highlighted. Step 2: its menu is open, and Add files or photos is highlighted." } },
+    { title: "Send the prompt, approve the method", text: "Copy Exercise A's prompt. Say OK to the method before Claude calculates." },
+    { title: "Recompute one number", text: "Dining out in Q3: add it up in Excel or Sheets, and count the rows." },
+    { title: "Compare", text: "Do your numbers match Claude's? If not, find out why." },
+    { group: "Exercise B · ~13 min" },
+    { title: "List your assumptions", text: "Send Exercise B's prompt with your project idea." },
+    { title: "Check the sources", text: "Open each one and fill in the `checked` column." },
+    { title: "Save two files", text: "**assumptions** and **sample-data** in your **ai-basics** folder. Module 3 reads them." }
+  ],
+  tip: "Numbers don't match? Ask Claude to list the exact rows it added up. The difference is usually which rows were included, not the math.",
+  transfer: "The same checks apply to Copilot in Excel, Gemini in Google Sheets and ChatGPT's file analysis.",
+
+  exercises: [
+    {
+      title: "A · Check Claude's analysis",
+      where: "Claude chat + file upload",
+      minutes: 10,
+      intro: {"text":"The practice file is a year of card spending for a **made-up household**, one row per transaction. Test one claim and catch what's wrong.","points":["Attach the file (from **Before you start**) to a new chat and send the prompt","Approve Claude's method","Recompute **Dining out in Q3** (July–September) yourself, with its row count","Compare with Claude's numbers"]},
+      help: { title: "How to recompute one number (filter or formula)",
+        shot: { image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMzAwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjMwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJJbGx1c3RyYXRpb24gb2YgYSBzcHJlYWRzaGVldCBmaWx0ZXJlZCB0byBHcm9jZXJpZXMgaW4gUTIsIHdpdGggdGhlIGFtb3VudCBjZWxscyBzZWxlY3RlZCBhbmQgdGhlIHN0YXR1cyBiYXIgc2hvd2luZyBDb3VudCAxNSBhbmQgU3VtICQxLDYyOS43MiBoaWdobGlnaHRlZCI+CiAgPCEtLSBTcHJlYWRzaGVldCBpbGx1c3RyYXRpb24sIGRyYXduIGZvciBBSSBCYXNpY3MgTGFiLiBOb3QgYSBzY3JlZW5zaG90LiBFeGFtcGxlIHZhbHVlcyBhcmUgR3JvY2VyaWVzIGluIFEyCiAgICAgICBmcm9tIHRoZSBwcmFjdGljZSBmaWxlIChub3QgdGhlIERpbmluZyBvdXQgUTMgYW5zd2VyIHN0dWRlbnRzIGNvbXB1dGUgdGhlbXNlbHZlcykuIC0tPgogIDxzdHlsZT4KICAgIC50e2ZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sIlNlZ29lIFVJIixSb2JvdG8sQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTNweDtmaWxsOiMxZjIzMjh9CiAgICAuaHtmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLCJTZWdvZSBVSSIsUm9ib3RvLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEyLjVweDtmb250LXdlaWdodDo3MDA7ZmlsbDojMWYyMzI4fQogICAgLm17ZmlsbDojNWY2MzY4fQogICAgLmd7c3Ryb2tlOiNkYWRjZTA7c3Ryb2tlLXdpZHRoOjF9CiAgPC9zdHlsZT4KICA8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2ZmZmZmZiIvPgogIDwhLS0gaGVhZGVyIHJvdyAtLT4KICA8cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSI2MjAiIGhlaWdodD0iMzAiIGZpbGw9IiNmMWYzZjQiLz4KICA8dGV4dCBjbGFzcz0iaCIgeD0iMjAiICB5PSIzMCI+ZGF0ZTwvdGV4dD4KICA8dGV4dCBjbGFzcz0iaCIgeD0iMTIwIiB5PSIzMCI+cXVhcnRlcjwvdGV4dD4KICA8dGV4dCBjbGFzcz0iaCIgeD0iMjIwIiB5PSIzMCI+bWVyY2hhbnQ8L3RleHQ+CiAgPHRleHQgY2xhc3M9ImgiIHg9IjM5MCIgeT0iMzAiPmNhdGVnb3J5PC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJoIiB4PSI1MjAiIHk9IjMwIj5hbW91bnRfdXNkPC90ZXh0PgogIDwhLS0gYWN0aXZlIGZpbHRlciBidXR0b25zIChmdW5uZWwpIG9uIHF1YXJ0ZXIgYW5kIGNhdGVnb3J5IC0tPgogIDxnIGZpbGw9IiMxYTczZTgiPgogICAgPHJlY3QgeD0iMTgyIiB5PSIxNyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2U4ZjBmZSIgc3Ryb2tlPSIjMWE3M2U4Ii8+CiAgICA8cGF0aCBkPSJNMTg2IDIxaDEwbC00IDQuNXY0bC0yIDF2LTV6Ii8+CiAgICA8cmVjdCB4PSI0ODIiIHk9IjE3IiB3aWR0aD0iMTgiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjZThmMGZlIiBzdHJva2U9IiMxYTczZTgiLz4KICAgIDxwYXRoIGQ9Ik00ODYgMjFoMTBsLTQgNC41djRsLTIgMXYtNXoiLz4KICA8L2c+CiAgPCEtLSBmaWx0ZXIgbGFiZWxzIC0tPgogIDxyZWN0IHg9IjEyMCIgeT0iNDQiIHdpZHRoPSI5MCIgaGVpZ2h0PSIyMCIgcng9IjQiIGZpbGw9IiNlOGYwZmUiLz4KICA8dGV4dCB4PSIxMjgiIHk9IjU4IiBzdHlsZT0iZm9udC1mYW1pbHk6LWFwcGxlLXN5c3RlbSwnU2Vnb2UgVUknLFJvYm90byxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMS41cHg7Zm9udC13ZWlnaHQ6NjAwO2ZpbGw6IzFhNzNlOCI+cXVhcnRlciA9IFEyPC90ZXh0PgogIDxyZWN0IHg9IjM5MCIgeT0iNDQiIHdpZHRoPSIxMjIiIGhlaWdodD0iMjAiIHJ4PSI0IiBmaWxsPSIjZThmMGZlIi8+CiAgPHRleHQgeD0iMzk4IiB5PSI1OCIgc3R5bGU9ImZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sJ1NlZ29lIFVJJyxSb2JvdG8sQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTEuNXB4O2ZvbnQtd2VpZ2h0OjYwMDtmaWxsOiMxYTczZTgiPmNhdGVnb3J5ID0gR3JvY2VyaWVzPC90ZXh0PgogIDwhLS0gcm93cyAtLT4KICA8ZyBjbGFzcz0idCI+CiAgICA8dGV4dCB4PSIyMCIgeT0iOTAiPjIwMjUtMDQtMDM8L3RleHQ+PHRleHQgeD0iMTIwIiB5PSI5MCI+UTI8L3RleHQ+PHRleHQgeD0iMjIwIiB5PSI5MCI+Q29ybmVyIE1hcmtldDwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjkwIj5Hcm9jZXJpZXM8L3RleHQ+CiAgICA8dGV4dCB4PSIyMCIgeT0iMTE2Ij4yMDI1LTA0LTA1PC90ZXh0Pjx0ZXh0IHg9IjEyMCIgeT0iMTE2Ij5RMjwvdGV4dD48dGV4dCB4PSIyMjAiIHk9IjExNiI+R3JlZW4gQmFza2V0IE1hcmtldDwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjExNiI+R3JvY2VyaWVzPC90ZXh0PgogICAgPHRleHQgeD0iMjAiIHk9IjE0MiI+MjAyNS0wNC0wNzwvdGV4dD48dGV4dCB4PSIxMjAiIHk9IjE0MiI+UTI8L3RleHQ+PHRleHQgeD0iMjIwIiB5PSIxNDIiPkNvcm5lciBNYXJrZXQ8L3RleHQ+PHRleHQgeD0iMzkwIiB5PSIxNDIiPkdyb2NlcmllczwvdGV4dD4KICAgIDx0ZXh0IHg9IjIwIiB5PSIxNjgiPjIwMjUtMDQtMTQ8L3RleHQ+PHRleHQgeD0iMTIwIiB5PSIxNjgiPlEyPC90ZXh0Pjx0ZXh0IHg9IjIyMCIgeT0iMTY4Ij5GcmVzaENvIEdyb2Nlcnk8L3RleHQ+PHRleHQgeD0iMzkwIiB5PSIxNjgiPkdyb2NlcmllczwvdGV4dD4KICAgIDx0ZXh0IHg9IjIwIiB5PSIxOTQiPjIwMjUtMDQtMjE8L3RleHQ+PHRleHQgeD0iMTIwIiB5PSIxOTQiPlEyPC90ZXh0Pjx0ZXh0IHg9IjIyMCIgeT0iMTk0Ij5Db3JuZXIgTWFya2V0PC90ZXh0Pjx0ZXh0IHg9IjM5MCIgeT0iMTk0Ij5Hcm9jZXJpZXM8L3RleHQ+CiAgPC9nPgogIDx0ZXh0IGNsYXNzPSJ0IG0iIHg9IjIwIiB5PSIyMjAiPuKApiAxMCBtb3JlIHJvd3M8L3RleHQ+CiAgPCEtLSBzZWxlY3RlZCBhbW91bnQgY2VsbHMgLS0+CiAgPHJlY3QgeD0iNTEyIiB5PSI3MiIgd2lkdGg9IjExOCIgaGVpZ2h0PSIxNTYiIGZpbGw9IiNlNmY0ZWEiIHN0cm9rZT0iIzE4ODAzOCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPGcgY2xhc3M9InQiPgogICAgPHRleHQgeD0iNjEwIiB5PSI5MCIgIHRleHQtYW5jaG9yPSJlbmQiPiQxMjcuNzI8L3RleHQ+CiAgICA8dGV4dCB4PSI2MTAiIHk9IjExNiIgdGV4dC1hbmNob3I9ImVuZCI+JDU4LjIxPC90ZXh0PgogICAgPHRleHQgeD0iNjEwIiB5PSIxNDIiIHRleHQtYW5jaG9yPSJlbmQiPiQ1OC42ODwvdGV4dD4KICAgIDx0ZXh0IHg9IjYxMCIgeT0iMTY4IiB0ZXh0LWFuY2hvcj0iZW5kIj4kMTA5LjE5PC90ZXh0PgogICAgPHRleHQgeD0iNjEwIiB5PSIxOTQiIHRleHQtYW5jaG9yPSJlbmQiPiQxMjAuODU8L3RleHQ+CiAgICA8dGV4dCB4PSI2MTAiIHk9IjIyMCIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9Im0iPuKApjwvdGV4dD4KICA8L2c+CiAgPGcgY2xhc3M9ImciPjxwYXRoIGQ9Ik0xMCA3Mmg2MjBNMTAgOThoNjIwTTEwIDEyNGg2MjBNMTAgMTUwaDYyME0xMCAxNzZoNjIwTTEwIDIwMmg2MjBNMTAgMjI4aDYyMCIvPjwvZz4KICA8IS0tIHN0YXR1cyBiYXIgLS0+CiAgPHJlY3QgeD0iMTAiIHk9IjI1MiIgd2lkdGg9IjYyMCIgaGVpZ2h0PSIzNCIgZmlsbD0iI2YxZjNmNCIvPgogIDx0ZXh0IGNsYXNzPSJ0IG0iIHg9IjMwMCIgeT0iMjc0Ij5BdmVyYWdlOiAkMTA4LjY1PC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJ0IiB4PSI0MzAiIHk9IjI3NCIgc3R5bGU9ImZvbnQtd2VpZ2h0OjYwMCI+Q291bnQ6IDE1PC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJ0IiB4PSI1MTAiIHk9IjI3NCIgc3R5bGU9ImZvbnQtd2VpZ2h0OjYwMCI+U3VtOiAkMSw2MjkuNzI8L3RleHQ+CiAgPHJlY3QgeD0iNDIyIiB5PSIyNTYiIHdpZHRoPSIyMDQiIGhlaWdodD0iMjYiIHJ4PSI2IiBmaWxsPSJub25lIiBzdHJva2U9IiNBMzFGMzQiIHN0cm9rZS13aWR0aD0iMyIvPgogIDxyZWN0IHg9IjIwIiB5PSIyNTgiIHdpZHRoPSIxOTYiIGhlaWdodD0iMjIiIHJ4PSI1IiBmaWxsPSIjQTMxRjM0Ii8+CiAgPHRleHQgeD0iMTE4IiB5PSIyNzMuNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgc3R5bGU9ImZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sJ1NlZ29lIFVJJyxSb2JvdG8sQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTIuNXB4O2ZvbnQtd2VpZ2h0OjcwMDtmaWxsOiNmZmZmZmYiPlNlbGVjdCB0aGUgYW1vdW50cywgcmVhZCBoZXJlIOKGkjwvdGV4dD4KPC9zdmc+Cg==",
+                caption: "Illustration, using **Groceries in Q2** as the example. Do the same for Dining out in Q3. Google Sheets shows the sum at the bottom right.",
+                alt: "Illustration of a spreadsheet filtered to quarter Q2 and category Groceries. The amount cells are selected, and the status bar at the bottom shows Average $108.65, Count 15 and Sum $1,629.72, with Count and Sum highlighted." },
+        text: "**Option 1: filter.** In the Excel file, the filter arrows are already on. In the CSV or Google Sheets, click the header row and turn them on (Excel: **Data → Filter**; Google Sheets: **Data → Create a filter**). Set `category` to *Dining out* and `quarter` to *Q3*. Select the `amount_usd` cells: Excel shows the sum and count in the status bar at the bottom; Google Sheets shows the sum in the bottom-right corner (click it to see the count).\n\n**Option 2: formula.** In an empty cell, type:\n`=SUMIFS(G:G, F:F, \"Dining out\", C:C, \"Q3\")`\nand to count the rows:\n`=COUNTIFS(F:F, \"Dining out\", C:C, \"Q3\")`\n(Column C is `quarter`, F is `category`, G is `amount_usd`.)" },
+      promptLabel: "Copy this prompt",
+      prompt: "[[Context::This file is a year of our household's card spending (made up): one row per transaction.]]\n[[Question::My partner says our spending jumped this summer (July–September, compared with April–June) because we ate out more. Is that right?]]\n[[Method first::First describe your method and wait for my OK.]]\n[[Format::Then give the answer, one chart that fits the question, one caveat, and what this data can't tell me.]]",
+      deliverable: {"text":"Save in your **ai-basics** folder:","points":["Claude's answer and chart","Your Dining out Q3 total and row count","One sentence: did they agree? If not, why not?"]},
+      stretch: ["Ask Claude to redo the analysis without the problem you found, and compare the two charts.","**Have your own file?** Run the same steps on any made-up or public spreadsheet."],
+      reveal: { shot: { image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2ODAgMjUwIiB3aWR0aD0iNjgwIiBoZWlnaHQ9IjI1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJUd28gYmFyIGNoYXJ0cyBvZiB0aGUgY2hhbmdlIGluIHNwZW5kaW5nIGZyb20gUTIgdG8gUTMuIFdpdGggdGhlIGR1cGxpY2F0ZXM6IERpbmluZyBvdXQgKyQ4NjcsIFRyYXZlbCArJDUzMywgR3JvY2VyaWVzICskNzMsIFV0aWxpdGllcyArJDU0LCBzbyBEaW5pbmcgb3V0IGxvb2tzIGxpa2UgdGhlIGRyaXZlci4gV2l0aG91dCB0aGVtOiBUcmF2ZWwgKyQ1MzMsIEdyb2NlcmllcyArJDczLCBVdGlsaXRpZXMgKyQ1NCwgRGluaW5nIG91dCArJDI5LCBzbyBUcmF2ZWwgaXMgdGhlIHJlYWwgZHJpdmVyLiI+CiAgPCEtLSBCZWZvcmUvYWZ0ZXIgY2hhcnQgZm9yIE1vZHVsZSAyLCBFeGVyY2lzZSBBIGFuc3dlci4gTnVtYmVycyBmcm9tIHRvb2xzL21ha2UtbTItZmlsZXMuanMgYW5zd2VyIGtleS4gU2NhbGU6IDAuMyBweCBwZXIgZG9sbGFyLiAtLT4KICA8c3R5bGU+CiAgICAudHtmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLCJTZWdvZSBVSSIsUm9ib3RvLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEzcHg7ZmlsbDojMWYyMzI4fQogICAgLnZ7Zm9udC1mYW1pbHk6LWFwcGxlLXN5c3RlbSwiU2Vnb2UgVUkiLFJvYm90byxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMi41cHg7ZmlsbDojNWY2MzY4fQogICAgLmhke2ZvbnQtZmFtaWx5OnVpLW1vbm9zcGFjZSwiU0ZNb25vLVJlZ3VsYXIiLENvbnNvbGFzLG1vbm9zcGFjZTtmb250LXNpemU6MTFweDtsZXR0ZXItc3BhY2luZzouMDhlbTtmb250LXdlaWdodDo2MDB9CiAgPC9zdHlsZT4KICA8cmVjdCB3aWR0aD0iNjgwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iI2ZmZmZmZiIvPgogIDx0ZXh0IHg9IjEwIiB5PSIxOCIgY2xhc3M9InQiIHN0eWxlPSJmb250LXdlaWdodDo3MDAiPkNoYW5nZSBpbiBzcGVuZGluZywgUTIg4oaSIFEzICh0b3AgNCBjYXRlZ29yaWVzKTwvdGV4dD4KCiAgPCEtLSBsZWZ0OiB3aXRoIGR1cGxpY2F0ZXMgLS0+CiAgPHRleHQgeD0iMTAiIHk9IjQ4IiBjbGFzcz0iaGQiIGZpbGw9IiNBMzFGMzQiPldJVEggVEhFIERVUExJQ0FURVM8L3RleHQ+CiAgPGcgY2xhc3M9InQiPgogICAgPHRleHQgeD0iODgiIHk9IjgwIiAgdGV4dC1hbmNob3I9ImVuZCIgc3R5bGU9ImZvbnQtd2VpZ2h0OjcwMCI+RGluaW5nIG91dDwvdGV4dD4KICAgIDx0ZXh0IHg9Ijg4IiB5PSIxMTIiIHRleHQtYW5jaG9yPSJlbmQiPlRyYXZlbDwvdGV4dD4KICAgIDx0ZXh0IHg9Ijg4IiB5PSIxNDQiIHRleHQtYW5jaG9yPSJlbmQiPkdyb2NlcmllczwvdGV4dD4KICAgIDx0ZXh0IHg9Ijg4IiB5PSIxNzYiIHRleHQtYW5jaG9yPSJlbmQiPlV0aWxpdGllczwvdGV4dD4KICA8L2c+CiAgPHJlY3QgeD0iOTYiIHk9IjY2IiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI0EzMUYzNCIvPgogIDxyZWN0IHg9Ijk2IiB5PSI5OCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNjOWNjZDEiLz4KICA8cmVjdCB4PSI5NiIgeT0iMTMwIiB3aWR0aD0iMjIiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjYzljY2QxIi8+CiAgPHJlY3QgeD0iOTYiIHk9IjE2MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2M5Y2NkMSIvPgogIDxnIGNsYXNzPSJ2Ij4KICAgIDx0ZXh0IHg9IjI2MiIgeT0iODEiIHN0eWxlPSJmaWxsOiNmZmZmZmY7Zm9udC13ZWlnaHQ6NzAwIj4rJDg2NzwvdGV4dD4KICAgIDx0ZXh0IHg9IjI2MiIgeT0iMTEzIj4rJDUzMzwvdGV4dD4KICAgIDx0ZXh0IHg9IjEyNCIgeT0iMTQ1Ij4rJDczPC90ZXh0PgogICAgPHRleHQgeD0iMTE4IiB5PSIxNzciPiskNTQ8L3RleHQ+CiAgPC9nPgogIDx0ZXh0IHg9IjEwIiB5PSIyMTIiIGNsYXNzPSJ2Ij5Mb29rcyBsaWtlIGVhdGluZyBvdXQgZHJvdmUgdGhlIGp1bXAuPC90ZXh0PgoKICA8IS0tIGRpdmlkZXIgLS0+CiAgPHBhdGggZD0iTTM3MiA0MHYxOTAiIHN0cm9rZT0iI2UzZTFkYSIvPgoKICA8IS0tIHJpZ2h0OiB3aXRob3V0IC0tPgogIDx0ZXh0IHg9IjM4OCIgeT0iNDgiIGNsYXNzPSJoZCIgZmlsbD0iIzJFNkIyQSI+V0lUSE9VVCBUSEVNPC90ZXh0PgogIDxnIGNsYXNzPSJ0Ij4KICAgIDx0ZXh0IHg9IjQ2NiIgeT0iODAiICB0ZXh0LWFuY2hvcj0iZW5kIiBzdHlsZT0iZm9udC13ZWlnaHQ6NzAwIj5UcmF2ZWw8L3RleHQ+CiAgICA8dGV4dCB4PSI0NjYiIHk9IjExMiIgdGV4dC1hbmNob3I9ImVuZCI+R3JvY2VyaWVzPC90ZXh0PgogICAgPHRleHQgeD0iNDY2IiB5PSIxNDQiIHRleHQtYW5jaG9yPSJlbmQiPlV0aWxpdGllczwvdGV4dD4KICAgIDx0ZXh0IHg9IjQ2NiIgeT0iMTc2IiB0ZXh0LWFuY2hvcj0iZW5kIj5EaW5pbmcgb3V0PC90ZXh0PgogIDwvZz4KICA8cmVjdCB4PSI0NzQiIHk9IjY2IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iIzJFNkIyQSIvPgogIDxyZWN0IHg9IjQ3NCIgeT0iOTgiIHdpZHRoPSIyMiIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNjOWNjZDEiLz4KICA8cmVjdCB4PSI0NzQiIHk9IjEzMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjIwIiByeD0iMyIgZmlsbD0iI2M5Y2NkMSIvPgogIDxyZWN0IHg9IjQ3NCIgeT0iMTYyIiB3aWR0aD0iOSIgaGVpZ2h0PSIyMCIgcng9IjMiIGZpbGw9IiNjOWNjZDEiLz4KICA8ZyBjbGFzcz0idiI+CiAgICA8dGV4dCB4PSI1ODYiIHk9IjgxIiBzdHlsZT0iZmlsbDojZmZmZmZmO2ZvbnQtd2VpZ2h0OjcwMCI+KyQ1MzM8L3RleHQ+CiAgICA8dGV4dCB4PSI1MDIiIHk9IjExMyI+KyQ3MzwvdGV4dD4KICAgIDx0ZXh0IHg9IjQ5NiIgeT0iMTQ1Ij4rJDU0PC90ZXh0PgogICAgPHRleHQgeD0iNDg5IiB5PSIxNzciPiskMjk8L3RleHQ+CiAgPC9nPgogIDx0ZXh0IHg9IjM4OCIgeT0iMjEyIiBjbGFzcz0idiI+VGhlIHRyaXAgaW4gSnVseSBpcyB0aGUgcmVhbCBkcml2ZXIuPC90ZXh0Pgo8L3N2Zz4K",
+                alt: "Two bar charts of the change in spending from Q2 to Q3. With the duplicates: Dining out +$867, Travel +$533, Groceries +$73, Utilities +$54, so Dining out looks like the driver. Without them: Travel +$533, Groceries +$73, Utilities +$54, Dining out +$29, so Travel is the real driver." },
+      text: "**What's wrong:** 17 rows appear twice. The Amex transactions for August and September (15 Dining out, 2 Entertainment) were added again at the bottom of the file, as if those two statements had been imported twice. Each copy has the same `transaction_id` as the original, which proves it is a duplicate, not a second purchase. Dining out in Q3 should have 21 rows; the file has 36.\n\n**With the duplicates:** Dining out in Q3 is $2,106.90, up $867.34 from Q2 ($1,239.56). Eating out looks like the cause, and total spending looks up $1,330.14.\n\n**Without them:** Dining out in Q3 is $1,268.75, up only $29.19. The real driver is **Travel**: $186.00 in Q2 vs. $718.50 in Q3 (flights and a hotel in July), up $532.50. Total spending rose $346.47, not $1,330.14.\n\nSo the claim was wrong twice: spending rose much less than it looked, and eating out wasn't the reason.\n\nIf Claude caught the duplicates on its own, good. The habit still holds: recompute one number before you rely on an answer.\n\n**What this data can't tell you:** whether the trip was a one-off, or what next quarter will look like. And it covers only two cards: cash, bank transfers and other cards aren't in it.\n\n**Next time, check the data for:** blanks · duplicates (the same `transaction_id` twice) · wrong types (numbers stored as text) · inconsistent labels (\"Dining\" vs. \"Dining out\") · rows outside the period you're asking about." }
+    },
+    {
+      title: "B · The assumptions your tool needs",
+      where: "Claude chat",
+      minutes: 13,
+      intro: {"text":"Your tool will need numbers: prices, rates, times. Collect them now and check where they come from.","points":["Send the prompt with your project idea","Open each source and fill in the `checked` column: *yes* (the page says it), *partly* (close, but a different year, place or definition) or *no*","No outside numbers (a habit tracker, say)? Use your own estimates, with *my estimate* as the source","Save both tables (.xlsx or .csv)"]},
+      files: [
+        { label: "Template (.xlsx)", url: "assets/files/m2/assumptions-template.xlsx" },
+        { label: "Template (.csv)", url: "assets/files/m2/assumptions-template.csv" }
+      ],
+      prompt: "[[Context::My project: [paste your 3-sentence idea from Module 1].]]\n[[Assumptions::1) List the 3–5 inputs and assumptions this tool needs. For each, give a typical value and a range, with a source I can open. If a value is my own choice or estimate, say so instead of citing a source.]] [[Format::Use a table with these columns: input, unit, typical_value, range, source, checked, note. Leave 'checked' empty; I'll fill it in.]]\n[[Self-check::2) Tell me which assumption you're least sure of, and why.]]\n[[Sample data::3) Make a small sample dataset (10–20 rows) for the tool, with clearly made-up values, as a table I can paste into a spreadsheet.]]",
+      deliverable: {"text":"Save in your **ai-basics** folder (Module 3 reads both):","points":["**assumptions**: every source checked, or marked *my estimate*","**sample-data**: 10–20 made-up rows"]},
+      stretch: "Ask Claude: \"Argue against your top assumption.\" Did the range change? If so, update your table.",
+      goodLooksLike: { text: "**A work project (pricing tool)**\n**Input:** Gross margin · **Unit:** % of revenue · **Typical:** 72 · **Range:** 63–72\n**Source:** Damodaran, NYU Stern (Jan 2026) · **Checked:** yes\n**Note:** System and application software averages 71.7%, internet software 62.6%. These are large public companies, not startups.\n\n**A personal project (savings goal planner)**\n**Input:** Amount I can save each month · **Unit:** USD · **Typical:** 400 · **Range:** 250–600\n**Source:** my estimate, from my last 3 months of spending · **Checked:** n/a\n**Note:** My own number, not research. I'll update it as my budget changes." }
+    }
+  ],
+
+  responsibleUse: {
+    title: "What you upload, Claude reads",
+    // "made-up or public data only" is in the course rules box shown right below, so it isn't repeated here
+    text: "**Uploading a file shares all of it.** Before you upload, check for:",
+    points: ["Hidden columns and rows", "Other sheets", "Comments and notes",
+             "File properties (author, company)", "Real names or account numbers in the data"],
+    after: ["**A cited source is a lead, not proof.** Open it before a number goes into your tool."],
+    tip: "Copy only the columns you need into a new file, and upload that."
+  },
+
+  // In the order students meet them: setup, Exercise A, then Exercise B
+  stuck: [
+    { problem: "Claude says it can't search the web",
+      fix: "Web search may be off for your account. An Owner turns it on; then **Web search** appears in the chat's **+** menu. Meanwhile, ask for sources by name and look them up yourself." },
+    { problem: "The Excel file won't upload, or Claude can't read it",
+      fix: "Use the CSV version. Excel uploads need code execution and file creation turned on for your account." },
+    { problem: "Claude calculated before I approved the method",
+      fix: "Stop it, and reply: \"Describe your method first and wait for my OK.\"" },
+    { problem: "My number doesn't match Claude's",
+      fix: "Check that your filter has both category and quarter set. Then ask Claude to list the rows it added up." },
+    { problem: "Claude can't give me a file to download",
+      fix: "Ask for the table in the chat, then paste it into the template." },
+    { problem: "The source is paywalled, or the link is broken",
+      fix: "Ask for a free source you can open. No luck? Mark it *partly* or *no*." },
+    { problem: "I can't find a source for an assumption",
+      fix: "Write *my estimate* as the source and explain it in the note. An honest estimate beats an invented source." }
+  ],
+
+  // Go deeper: source and type show in their own columns; group adds a divider row (same table as Module 1)
+  resources: [
+    { group: "Start here", source: "Claude Help Center", type: "Help article",
+      label: "Use research on Claude", url: "https://support.claude.com/en/articles/11088861-using-research-on-claude-ai" },
+    { group: "Claude how-to", source: "Claude Help Center", type: "Help article",
+      label: "Enable and use web search", url: "https://support.claude.com/en/articles/10684626-enable-and-use-web-search" },
+    { group: "Claude how-to", source: "Claude Help Center", type: "Help article",
+      label: "Upload files to Claude", url: "https://support.claude.com/en/articles/8241126-upload-files-to-claude" },
+    { group: "Claude how-to", source: "Claude Help Center", type: "Help article",
+      label: "Create and edit files with Claude", url: "https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude" },
+    { group: "The frameworks", source: "Mike Caulfield", type: "Article",
+      label: "SIFT (the four moves)", url: "https://hapgood.us/2019/06/19/sift-the-four-moves/" },
+    { group: "The frameworks", source: "Meriam Library, CSU Chico", type: "Checklist (PDF)",
+      label: "The CRAAP test", url: "https://library.csuchico.edu/sites/default/files/craap-test.pdf" },
+    { group: "The frameworks", source: "Financial Times", type: "Chart guide",
+      label: "Visual Vocabulary: which chart to use", url: "https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary" },
+    { group: "Public data", source: "US government", type: "Data portal",
+      label: "Data.gov", url: "https://data.gov/" },
+    { group: "Public data", source: "US Census Bureau", type: "Data portal",
+      label: "Census data", url: "https://www.census.gov/data.html" },
+    { group: "Public data", source: "Our World in Data", type: "Data portal",
+      label: "Our World in Data", url: "https://ourworldindata.org/" },
+    { group: "Public data", source: "NYU Stern (Damodaran)", type: "Dataset",
+      label: "Industry data: margins, multiples, cost of capital", url: "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datacurrent.html" }
   ]
 };
 
@@ -1174,12 +1411,22 @@ window.AIBW = (function () {
       (f && !f.top ? fig : "") + cmp;
   }
 
-  // frameworks: {intro, cards:[{name, goodFor, parts:[[term, meaning]]}], table, note, sample:{title, task, items:[{name, prompt}]}}
+  // Small chart icons for framework cards: parts: [term, meaning, icon] with icon = bar | line | stacked | hist | scatter
+  const ICON = {
+    bar: '<path d="M3 14V8M8 14V3M13 14V10" stroke-width="3"/>',
+    line: '<path d="M2 12l4-5 4 2 4-6" stroke-width="2"/>',
+    stacked: '<path d="M4 14V10M8 14V9M12 14V11" stroke-width="3" stroke-opacity=".45"/><path d="M4 10V5M8 9V2M12 11V7" stroke-width="3"/>',
+    hist: '<path d="M2.5 14V11M5.5 14V6M8.5 14V3M11.5 14V7M14.5 14V12" stroke-width="2.6"/>',
+    scatter: '<g fill="currentColor" stroke="none"><circle cx="3" cy="12" r="1.6"/><circle cx="6" cy="9" r="1.6"/><circle cx="8" cy="10.5" r="1.6"/><circle cx="10.5" cy="6" r="1.6"/><circle cx="13" cy="4" r="1.6"/></g>'
+  };
+  const icon = k => ICON[k] ? '<svg class="fw-ic" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round">' + ICON[k] + "</svg>" : "";
+
+  // frameworks: {intro, cards:[{name, goodFor, parts:[[term, meaning, icon?]]}], table, note, sample:{title, task, items:[{name, prompt}]}}
   function frameworksHTML(f) {
     const s = f.sample;
     return (f.intro ? '<p class="para">' + md(f.intro) + "</p>" : "") +
       (f.cards ? '<div class="fw-cards">' + f.cards.map(c => '<div class="fw-card"><b class="fw-name">' + esc(c.name) + "</b>" +
-        "<ul>" + c.parts.map(p => "<li><b>" + esc(p[0]) + "</b><span>" + md(p[1]) + "</span></li>").join("") + "</ul>" +
+        "<ul>" + c.parts.map(p => "<li><b>" + icon(p[2]) + esc(p[0]) + "</b><span>" + md(p[1]) + "</span></li>").join("") + "</ul>" +
         (c.goodFor ? '<p class="fw-good"><span>Good for</span> ' + md(c.goodFor) + "</p>" : "") + "</div>").join("") + "</div>" : "") +
       (f.table ? table(f.table) : "") +
       // note: one sentence, or {label, points} for a highlighted tip box with bullets
@@ -1256,7 +1503,7 @@ window.AIBW = (function () {
     // a step can be {title, text}, or {group: "Exercise A · ~10 min"} for an unnumbered heading row; numbering continues across groups
     return '<ol class="steps">' + m.steps.map(x => x.group
       ? '<li class="grp">' + esc(x.group) + "</li>"
-      : "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol>" +
+      : "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span>" + (x.shot ? shotHTML(x.shot) : "") + "</div></li>").join("") + "</ol>" +   // shot: optional illustration under a step
       (m.tip ? '<div class="tip"><b>Tip</b><span>' + md(m.tip) + "</span></div>" : "") +
       // tipShot: an illustration under the tip, same format as setup shots ({image, alt, caption})
       (m.tipShot ? shotHTML(m.tipShot) : "") +
@@ -1294,13 +1541,15 @@ window.AIBW = (function () {
           '<ol class="xsteps">' + x.steps.map(t => "<li>" + md(t) + "</li>").join("") + "</ol>" : "") +
         '<dl class="deliver">' +
           (x.deliverable ? "<dt>Deliverable</dt><dd>" + textBlock(x.deliverable, "span") + "</dd>" : "") +
-          (x.stretch ? "<dt>Stretch</dt><dd>" + md(x.stretch) + "</dd>" : "") +
+          (x.stretch ? "<dt>Stretch</dt><dd>" + textBlock(x.stretch, "span") + "</dd>" : "") +
         "</dl>" +
         (x.goodLooksLike ? '<span class="sub">What good looks like</span>' + goodHTML(x.goodLooksLike) : "") +
         (x.help ? '<details class="reveal help"><summary>' + esc(x.help.title || "How to do it") +
-          '</summary><div class="reveal-body">' + md(x.help.text) + "</div></details>" : "") +
+          '</summary><div class="reveal-body">' + md(x.help.text) + "</div>" + (x.help.shot ? '<div class="reveal-shot">' + shotHTML(x.help.shot) + "</div>" : "") + "</details>" : "") +
+        // help.shot / reveal.shot: an illustration inside the box, under the text ({image, alt, caption})
         (x.reveal ? '<details class="reveal"><summary>' + esc(x.reveal.title || "Check your answer (open it after you've tried)") +
-          '</summary><div class="reveal-body">' + md(x.reveal.text) + "</div></details>" : "") +
+          '</summary>' + (x.reveal.shot ? '<div class="reveal-shot">' + shotHTML(x.reveal.shot) + "</div>" : "") +
+          '<div class="reveal-body">' + md(x.reveal.text) + "</div></details>" : "") +
       "</div>").join("");
   }
 
@@ -1310,6 +1559,7 @@ window.AIBW = (function () {
     const box = (x, cls) => '<div class="resp' + (cls ? " " + cls : "") + '"><b>' + esc(x.title || "The rule for this module") + "</b>" +
       (x.text ? "<p>" + md(x.text) + "</p>" : "") +
       (x.rules && x.rules.length ? "<ol>" + li(x.rules) + "</ol>" : "") +
+      (x.points && x.points.length ? '<ul class="pts">' + li(x.points) + "</ul>" : "") +     // points: a bulleted checklist
       // use / never: two columns (Use ✓ and Never paste ✗)
       (x.use || x.never ? '<div class="usenever">' +
         (x.use ? '<div class="use"><span class="sub">✓ Use</span><ul class="pts">' + li(x.use) + "</ul></div>" : "") +

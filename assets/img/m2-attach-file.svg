@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 230" width="560" height="230" role="img" aria-label="Illustration of the Claude chat box: the + button at the bottom left is highlighted, and its menu shows Add files or photos, also highlighted">
+  <!-- Illustration of attaching a file in Claude (light mode), drawn for AI Basics Lab. Not a screenshot. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:14px;fill:#2f2f2c}
+    .ic{fill:none;stroke:#3d3d3a;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  </style>
+  <rect width="560" height="230" fill="#faf9f5"/>
+  <!-- menu opened from + -->
+  <rect x="24" y="14" width="230" height="96" rx="10" fill="#ffffff" stroke="#e3e1da"/>
+  <rect x="32" y="22" width="214" height="34" rx="7" fill="#f0eee6"/>
+  <g class="ic"><path d="M46 46l9-9a4 4 0 0 1 6 6l-11 11a2.5 2.5 0 0 1-3.5-3.5l9-9"/></g>
+  <text x="70" y="44" class="t" style="font-weight:600">Add files or photos</text>
+  <g class="ic"><rect x="43" y="68" width="16" height="12" rx="2"/><circle cx="51" cy="74" r="3"/></g>
+  <text x="70" y="80" class="t" style="fill:#6b6a64">Take a screenshot</text>
+  <rect x="28" y="18" width="222" height="42" rx="9" fill="none" stroke="#A31F34" stroke-width="3"/>
+  <rect x="268" y="28" width="160" height="24" rx="5" fill="#A31F34"/>
+  <text x="348" y="45" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:13px;font-weight:700;fill:#ffffff">2 · Add files or photos</text>
+  <!-- chat box -->
+  <rect x="16" y="124" width="528" height="92" rx="16" fill="#ffffff" stroke="#dcd9d0"/>
+  <text x="36" y="154" class="t" style="fill:#9a988f">How can I help you today?</text>
+  <rect x="30" y="172" width="32" height="32" rx="8" fill="#ffffff" stroke="#dcd9d0"/>
+  <g class="ic"><path d="M46 181v14M39 188h14"/></g>
+  <rect x="25" y="167" width="42" height="42" rx="10" fill="none" stroke="#A31F34" stroke-width="3"/>
+  <rect x="76" y="177" width="96" height="24" rx="5" fill="#A31F34"/>
+  <text x="124" y="194" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:13px;font-weight:700;fill:#ffffff">1 · Click +</text>
+  <rect x="500" y="172" width="32" height="32" rx="8" fill="#d97757"/>
+  <path d="M516 196v-14M510 188l6-6 6 6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

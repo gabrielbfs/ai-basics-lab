@@ -198,12 +198,22 @@
       (f && !f.top ? fig : "") + cmp;
   }
 
-  // frameworks: {intro, cards:[{name, goodFor, parts:[[term, meaning]]}], table, note, sample:{title, task, items:[{name, prompt}]}}
+  // Small chart icons for framework cards: parts: [term, meaning, icon] with icon = bar | line | stacked | hist | scatter
+  const ICON = {
+    bar: '<path d="M3 14V8M8 14V3M13 14V10" stroke-width="3"/>',
+    line: '<path d="M2 12l4-5 4 2 4-6" stroke-width="2"/>',
+    stacked: '<path d="M4 14V10M8 14V9M12 14V11" stroke-width="3" stroke-opacity=".45"/><path d="M4 10V5M8 9V2M12 11V7" stroke-width="3"/>',
+    hist: '<path d="M2.5 14V11M5.5 14V6M8.5 14V3M11.5 14V7M14.5 14V12" stroke-width="2.6"/>',
+    scatter: '<g fill="currentColor" stroke="none"><circle cx="3" cy="12" r="1.6"/><circle cx="6" cy="9" r="1.6"/><circle cx="8" cy="10.5" r="1.6"/><circle cx="10.5" cy="6" r="1.6"/><circle cx="13" cy="4" r="1.6"/></g>'
+  };
+  const icon = k => ICON[k] ? '<svg class="fw-ic" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round">' + ICON[k] + "</svg>" : "";
+
+  // frameworks: {intro, cards:[{name, goodFor, parts:[[term, meaning, icon?]]}], table, note, sample:{title, task, items:[{name, prompt}]}}
   function frameworksHTML(f) {
     const s = f.sample;
     return (f.intro ? '<p class="para">' + md(f.intro) + "</p>" : "") +
       (f.cards ? '<div class="fw-cards">' + f.cards.map(c => '<div class="fw-card"><b class="fw-name">' + esc(c.name) + "</b>" +
-        "<ul>" + c.parts.map(p => "<li><b>" + esc(p[0]) + "</b><span>" + md(p[1]) + "</span></li>").join("") + "</ul>" +
+        "<ul>" + c.parts.map(p => "<li><b>" + icon(p[2]) + esc(p[0]) + "</b><span>" + md(p[1]) + "</span></li>").join("") + "</ul>" +
         (c.goodFor ? '<p class="fw-good"><span>Good for</span> ' + md(c.goodFor) + "</p>" : "") + "</div>").join("") + "</div>" : "") +
       (f.table ? table(f.table) : "") +
       // note: one sentence, or {label, points} for a highlighted tip box with bullets
@@ -280,7 +290,7 @@
     // a step can be {title, text}, or {group: "Exercise A · ~10 min"} for an unnumbered heading row; numbering continues across groups
     return '<ol class="steps">' + m.steps.map(x => x.group
       ? '<li class="grp">' + esc(x.group) + "</li>"
-      : "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol>" +
+      : "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span>" + (x.shot ? shotHTML(x.shot) : "") + "</div></li>").join("") + "</ol>" +   // shot: optional illustration under a step
       (m.tip ? '<div class="tip"><b>Tip</b><span>' + md(m.tip) + "</span></div>" : "") +
       // tipShot: an illustration under the tip, same format as setup shots ({image, alt, caption})
       (m.tipShot ? shotHTML(m.tipShot) : "") +
@@ -318,13 +328,15 @@
           '<ol class="xsteps">' + x.steps.map(t => "<li>" + md(t) + "</li>").join("") + "</ol>" : "") +
         '<dl class="deliver">' +
           (x.deliverable ? "<dt>Deliverable</dt><dd>" + textBlock(x.deliverable, "span") + "</dd>" : "") +
-          (x.stretch ? "<dt>Stretch</dt><dd>" + md(x.stretch) + "</dd>" : "") +
+          (x.stretch ? "<dt>Stretch</dt><dd>" + textBlock(x.stretch, "span") + "</dd>" : "") +
         "</dl>" +
         (x.goodLooksLike ? '<span class="sub">What good looks like</span>' + goodHTML(x.goodLooksLike) : "") +
         (x.help ? '<details class="reveal help"><summary>' + esc(x.help.title || "How to do it") +
-          '</summary><div class="reveal-body">' + md(x.help.text) + "</div></details>" : "") +
+          '</summary><div class="reveal-body">' + md(x.help.text) + "</div>" + (x.help.shot ? '<div class="reveal-shot">' + shotHTML(x.help.shot) + "</div>" : "") + "</details>" : "") +
+        // help.shot / reveal.shot: an illustration inside the box, under the text ({image, alt, caption})
         (x.reveal ? '<details class="reveal"><summary>' + esc(x.reveal.title || "Check your answer (open it after you've tried)") +
-          '</summary><div class="reveal-body">' + md(x.reveal.text) + "</div></details>" : "") +
+          '</summary>' + (x.reveal.shot ? '<div class="reveal-shot">' + shotHTML(x.reveal.shot) + "</div>" : "") +
+          '<div class="reveal-body">' + md(x.reveal.text) + "</div></details>" : "") +
       "</div>").join("");
   }
 
@@ -334,6 +346,7 @@
     const box = (x, cls) => '<div class="resp' + (cls ? " " + cls : "") + '"><b>' + esc(x.title || "The rule for this module") + "</b>" +
       (x.text ? "<p>" + md(x.text) + "</p>" : "") +
       (x.rules && x.rules.length ? "<ol>" + li(x.rules) + "</ol>" : "") +
+      (x.points && x.points.length ? '<ul class="pts">' + li(x.points) + "</ul>" : "") +     // points: a bulleted checklist
       // use / never: two columns (Use ✓ and Never paste ✗)
       (x.use || x.never ? '<div class="usenever">' +
         (x.use ? '<div class="use"><span class="sub">✓ Use</span><ul class="pts">' + li(x.use) + "</ul></div>" : "") +

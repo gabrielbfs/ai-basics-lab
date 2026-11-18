@@ -10,7 +10,7 @@
 
    The practice data has ONE planted problem: the Amex statements for August and
    September were imported twice, so those transactions appear again at the end
-   of the file. The script checks that this changes the answer to "did eating out
+   of the file, with the same transaction_id as the originals. The script checks that this changes the answer to "did eating out
    drive the jump in spending from Q2 (Apr-Jun) to Q3 (Jul-Sep)?":
    with the duplicates, Dining out looks like the driver; without them, Dining out
    is about flat and Travel is the real driver. It stops if that's not true, and
@@ -38,12 +38,12 @@ const csvCell = v => {
   const s = v === null || v === undefined ? "" : String(v);
   return /[",\r\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
 };
-function writeBoth(name, columns, rows, sheet) {
+function writeBoth(name, columns, rows, sheet, filter) {
   const keys = columns.map(c => c.key);
   const csv = [keys.join(",")].concat(rows.map(r => keys.map(k => csvCell(r[k])).join(","))).join("\r\n") + "\r\n";
   if (/[^\x00-\x7F]/.test(csv)) throw new Error(name + ": keep CSV text ASCII-only (Excel reads it reliably)");
   fs.writeFileSync(path.join(OUT, name + ".csv"), csv);
-  writeXlsx(path.join(OUT, name + ".xlsx"), { sheet, columns, rows });
+  writeXlsx(path.join(OUT, name + ".xlsx"), { sheet, columns, rows, filter });   // CSV stays plain; formats and filter are Excel-only
   console.log("  wrote " + name + ".csv / .xlsx (" + rows.length + " rows)");
 }
 const usd = cents => "$" + (cents / 100).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -87,7 +87,15 @@ add(7, 18, "Visa", "Lakeside Inn", "Travel", 23600);
 add(12, 20, "Visa", "SkyHop Airlines", "Travel", 52900);
 
 tx.sort((a, b) => a.date.localeCompare(b.date) || a.card.localeCompare(b.card) || a.merchant.localeCompare(b.merchant) || a.cents - b.cents);
-const dups = tx.filter(t => t.card === "Amex" && (t.date.startsWith("2025-08") || t.date.startsWith("2025-09"))).map(t => ({ ...t }));
+// Statement reference, like a real export: card prefix, month+day, number within that card and day (e.g. AMX-0815-02).
+// The duplicated rows below are copies, so they repeat the same ID: that's how students can prove they're duplicates.
+const seen = {};
+for (const t of tx) {
+  const k = t.card + t.date;
+  seen[k] = (seen[k] || 0) + 1;
+  t.id = (t.card === "Amex" ? "AMX" : "VIS") + "-" + t.date.slice(5, 7) + t.date.slice(8, 10) + "-" + String(seen[k]).padStart(2, "0");
+}
+const dups =tx.filter(t => t.card === "Amex" && (t.date.startsWith("2025-08") || t.date.startsWith("2025-09"))).map(t => ({ ...t }));
 const withDups = tx.concat(dups);   // appended at the end, like statements imported twice
 
 /* check that the planted problem changes the answer */
@@ -113,13 +121,17 @@ const gap = r => { const d = Object.values(r.t).map(x => x.diff).sort((a, b) => 
 if (gap(withD) < 25000 || gap(clean) < 25000) throw new Error("the driver must lead by $250+ in both versions: " + usd(gap(withD)) + " / " + usd(gap(clean)));
 if (Math.abs(clean.t["Dining out"].diff) > 10000) throw new Error("clean Dining out change should be under $100: " + usd(clean.t["Dining out"].diff));
 
-// Columns A-F: date, quarter, card, merchant, category, amount_usd (the module's SUMIFS hint uses these letters).
-// quarter is text ("Q3") so spreadsheets don't turn it into a date.
+// Columns A-H: date, month, quarter, card, merchant, category, amount_usd, transaction_id
+// (the module's SUMIFS hint uses these letters: C = quarter, F = category, G = amount_usd).
+// month ("Jan") and quarter ("Q3") are text so spreadsheets don't turn them into dates.
+// Excel only: date is a real date, amount_usd shows as $0.00, and the filter arrows are already on.
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+if (new Set(tx.map(t => t.id)).size !== tx.length) throw new Error("transaction_id must be unique before the duplicates are added");
 writeBoth("household-spending-2025", [
-  { key: "date", width: 12 }, { key: "quarter", width: 9 }, { key: "card", width: 7 }, { key: "merchant", width: 24 },
-  { key: "category", width: 16 }, { key: "amount_usd", width: 12 }
-], withDups.map(t => ({ date: t.date, quarter: "Q" + quarter(t.date), card: t.card, merchant: t.merchant, category: t.category,
-                        amount_usd: +(t.cents / 100).toFixed(2) })), "Spending");
+  { key: "date", width: 12, format: "date" }, { key: "month", width: 8 }, { key: "quarter", width: 9 }, { key: "card", width: 7 },
+  { key: "merchant", width: 24 }, { key: "category", width: 16 }, { key: "amount_usd", width: 13, format: "usd" }, { key: "transaction_id", width: 15 }
+], withDups.map(t => ({ date: t.date, month: MONTHS[+t.date.slice(5, 7) - 1], quarter: "Q" + quarter(t.date), card: t.card, merchant: t.merchant,
+                        category: t.category, amount_usd: +(t.cents / 100).toFixed(2), transaction_id: t.id })), "Spending", true);
 
 /* ---------- 2. assumptions template ---------- */
 writeBoth("assumptions-template", [

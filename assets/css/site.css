@@ -216,6 +216,7 @@ mark.hl{color:inherit;border-radius:3px;padding:0 2px;box-decoration-break:clone
 .fw-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
 .fw-card li{display:flex;flex-direction:column;font-size:14.5px;line-height:1.35}
 .fw-card li b{font-family:var(--ui);font-size:14.5px}
+.fw-card .fw-ic{width:15px;height:15px;vertical-align:-2px;margin-right:7px;color:var(--accent)}
 .fw-card li span{color:var(--muted)}
 .fw-good{margin:auto 0 0;padding-top:8px;border-top:1px dashed var(--line);font-size:13.5px}
 .fw-good span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -299,6 +300,8 @@ ol.steps ul.pts li::marker{color:var(--accent)}
 .reveal summary{cursor:pointer;padding:10px 14px;font-family:var(--ui);font-weight:600;font-size:15px;color:var(--navy)}
 .reveal[open] summary{border-bottom:1px dashed var(--navy)}
 .reveal-body{padding:12px 14px;font-size:15px;white-space:pre-line;max-width:72ch}
+.reveal-shot{padding:12px 14px 0}
+.reveal-shot .shot{max-width:680px;margin:0}
 
 /* responsible use */
 .resp{display:flex;flex-direction:column;gap:6px;padding:16px 18px;border-radius:10px;background:var(--accent-soft);border-left:4px solid var(--accent)}

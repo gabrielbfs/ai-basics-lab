@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 250" width="680" height="250" role="img" aria-label="Two bar charts of the change in spending from Q2 to Q3. With the duplicates: Dining out +$867, Travel +$533, Groceries +$73, Utilities +$54, so Dining out looks like the driver. Without them: Travel +$533, Groceries +$73, Utilities +$54, Dining out +$29, so Travel is the real driver.">
+  <!-- Before/after chart for Module 2, Exercise A answer. Numbers from tools/make-m2-files.js answer key. Scale: 0.3 px per dollar. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13px;fill:#1f2328}
+    .v{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;fill:#5f6368}
+    .hd{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:11px;letter-spacing:.08em;font-weight:600}
+  </style>
+  <rect width="680" height="250" fill="#ffffff"/>
+  <text x="10" y="18" class="t" style="font-weight:700">Change in spending, Q2 → Q3 (top 4 categories)</text>
+
+  <!-- left: with duplicates -->
+  <text x="10" y="48" class="hd" fill="#A31F34">WITH THE DUPLICATES</text>
+  <g class="t">
+    <text x="88" y="80"  text-anchor="end" style="font-weight:700">Dining out</text>
+    <text x="88" y="112" text-anchor="end">Travel</text>
+    <text x="88" y="144" text-anchor="end">Groceries</text>
+    <text x="88" y="176" text-anchor="end">Utilities</text>
+  </g>
+  <rect x="96" y="66" width="260" height="20" rx="3" fill="#A31F34"/>
+  <rect x="96" y="98" width="160" height="20" rx="3" fill="#c9ccd1"/>
+  <rect x="96" y="130" width="22" height="20" rx="3" fill="#c9ccd1"/>
+  <rect x="96" y="162" width="16" height="20" rx="3" fill="#c9ccd1"/>
+  <g class="v">
+    <text x="262" y="81" style="fill:#ffffff;font-weight:700">+$867</text>
+    <text x="262" y="113">+$533</text>
+    <text x="124" y="145">+$73</text>
+    <text x="118" y="177">+$54</text>
+  </g>
+  <text x="10" y="212" class="v">Looks like eating out drove the jump.</text>
+
+  <!-- divider -->
+  <path d="M372 40v190" stroke="#e3e1da"/>
+
+  <!-- right: without -->
+  <text x="388" y="48" class="hd" fill="#2E6B2A">WITHOUT THEM</text>
+  <g class="t">
+    <text x="466" y="80"  text-anchor="end" style="font-weight:700">Travel</text>
+    <text x="466" y="112" text-anchor="end">Groceries</text>
+    <text x="466" y="144" text-anchor="end">Utilities</text>
+    <text x="466" y="176" text-anchor="end">Dining out</text>
+  </g>
+  <rect x="474" y="66" width="160" height="20" rx="3" fill="#2E6B2A"/>
+  <rect x="474" y="98" width="22" height="20" rx="3" fill="#c9ccd1"/>
+  <rect x="474" y="130" width="16" height="20" rx="3" fill="#c9ccd1"/>
+  <rect x="474" y="162" width="9" height="20" rx="3" fill="#c9ccd1"/>
+  <g class="v">
+    <text x="586" y="81" style="fill:#ffffff;font-weight:700">+$533</text>
+    <text x="502" y="113">+$73</text>
+    <text x="496" y="145">+$54</text>
+    <text x="489" y="177">+$29</text>
+  </g>
+  <text x="388" y="212" class="v">The trip in July is the real driver.</text>
+</svg>

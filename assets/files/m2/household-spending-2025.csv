@@ -1,346 +1,346 @@
-date,quarter,card,merchant,category,amount_usd
-2025-01-01,Q1,Visa,Peak Fitness Gym,Subscriptions,45
-2025-01-02,Q1,Visa,Metro Transit,Transportation,50
-2025-01-03,Q1,Visa,City Power & Light,Utilities,108.12
-2025-01-04,Q1,Visa,FreshCo Grocery,Groceries,104.81
-2025-01-04,Q1,Visa,QuickFuel,Transportation,49
-2025-01-05,Q1,Visa,Hometown Hardware,Shopping,84.61
-2025-01-05,Q1,Visa,StreamFlix,Subscriptions,15.49
-2025-01-06,Q1,Amex,The Daily Grind Cafe,Dining out,50.91
-2025-01-06,Q1,Visa,Hometown Hardware,Shopping,120.37
-2025-01-06,Q1,Visa,QuickFuel,Transportation,55.76
-2025-01-08,Q1,Visa,Metro Water,Utilities,48.98
-2025-01-09,Q1,Visa,TuneBox,Subscriptions,10.99
-2025-01-12,Q1,Visa,FastNet Internet,Utilities,70
-2025-01-14,Q1,Visa,Corner Market,Groceries,85.89
-2025-01-15,Q1,Amex,Harbor Grill,Dining out,51.94
-2025-01-16,Q1,Amex,Harbor Grill,Dining out,59.68
-2025-01-16,Q1,Amex,The Daily Grind Cafe,Dining out,90.41
-2025-01-17,Q1,Visa,Neighborhood Pharmacy,Health,25.95
-2025-01-20,Q1,Amex,The Daily Grind Cafe,Dining out,18.45
-2025-01-20,Q1,Visa,Green Basket Market,Groceries,68.49
-2025-01-21,Q1,Visa,FreshCo Grocery,Groceries,119.43
-2025-01-22,Q1,Amex,Noodle Bar 88,Dining out,25.74
-2025-01-22,Q1,Amex,Taqueria Sol,Dining out,26.29
-2025-01-25,Q1,Visa,FreshCo Grocery,Groceries,76.11
-2025-01-28,Q1,Visa,QuickFuel,Transportation,43.41
-2025-01-29,Q1,Amex,Starlight Cinema,Entertainment,62.6
-2025-01-29,Q1,Amex,Taqueria Sol,Dining out,82.55
-2025-01-29,Q1,Visa,Cityline Apparel,Shopping,54.88
-2025-02-01,Q1,Amex,The Daily Grind Cafe,Dining out,30.35
-2025-02-01,Q1,Visa,Peak Fitness Gym,Subscriptions,45
-2025-02-02,Q1,Visa,Green Basket Market,Groceries,77.14
-2025-02-02,Q1,Visa,Metro Transit,Transportation,50
-2025-02-03,Q1,Visa,City Power & Light,Utilities,88.29
-2025-02-04,Q1,Amex,Harbor Grill,Dining out,37.74
-2025-02-05,Q1,Amex,Taqueria Sol,Dining out,58.77
-2025-02-05,Q1,Amex,The Daily Grind Cafe,Dining out,83.32
-2025-02-05,Q1,Visa,StreamFlix,Subscriptions,15.49
-2025-02-06,Q1,Amex,Harbor Grill,Dining out,37.65
-2025-02-08,Q1,Visa,FreshCo Grocery,Groceries,75
-2025-02-08,Q1,Visa,Metro Water,Utilities,50.59
-2025-02-09,Q1,Visa,QuickFuel,Transportation,40.09
-2025-02-09,Q1,Visa,TuneBox,Subscriptions,10.99
-2025-02-10,Q1,Visa,Cityline Apparel,Shopping,92.56
-2025-02-10,Q1,Visa,QuickFuel,Transportation,57.97
-2025-02-12,Q1,Visa,FastNet Internet,Utilities,70
-2025-02-13,Q1,Visa,Neighborhood Pharmacy,Health,27.21
-2025-02-16,Q1,Amex,City Concert Hall,Entertainment,37.11
-2025-02-18,Q1,Visa,FreshCo Grocery,Groceries,115.69
-2025-02-19,Q1,Amex,Starlight Cinema,Entertainment,75.51
-2025-02-19,Q1,Amex,The Daily Grind Cafe,Dining out,19.15
-2025-02-19,Q1,Visa,QuickFuel,Transportation,47.79
-2025-02-20,Q1,Visa,Green Basket Market,Groceries,117.29
-2025-02-23,Q1,Visa,FreshCo Grocery,Groceries,86.6
-2025-02-25,Q1,Visa,ShopOnline,Shopping,20.61
-2025-02-26,Q1,Amex,The Daily Grind Cafe,Dining out,28.41
-2025-02-26,Q1,Visa,ShopOnline,Shopping,27.49
-2025-03-01,Q1,Visa,Neighborhood Pharmacy,Health,16.26
-2025-03-01,Q1,Visa,Peak Fitness Gym,Subscriptions,45
-2025-03-02,Q1,Amex,Noodle Bar 88,Dining out,82.48
-2025-03-02,Q1,Visa,Green Basket Market,Groceries,63.25
-2025-03-02,Q1,Visa,Metro Transit,Transportation,50
-2025-03-03,Q1,Amex,Bowl-O-Rama,Entertainment,80.72
-2025-03-03,Q1,Amex,Taqueria Sol,Dining out,58.74
-2025-03-03,Q1,Visa,City Power & Light,Utilities,111.5
-2025-03-05,Q1,Visa,StreamFlix,Subscriptions,15.49
-2025-03-07,Q1,Amex,Bella Cucina,Dining out,59.69
-2025-03-08,Q1,Visa,Metro Water,Utilities,48.39
-2025-03-09,Q1,Visa,TuneBox,Subscriptions,10.99
-2025-03-10,Q1,Visa,Cityline Apparel,Shopping,40.78
-2025-03-12,Q1,Visa,FastNet Internet,Utilities,70
-2025-03-14,Q1,Visa,ShopOnline,Shopping,69.58
-2025-03-15,Q1,Visa,FreshCo Grocery,Groceries,134.71
-2025-03-15,Q1,Visa,QuickFuel,Transportation,50.13
-2025-03-16,Q1,Amex,Harbor Grill,Dining out,47.46
-2025-03-16,Q1,Visa,Green Basket Market,Groceries,145.33
-2025-03-17,Q1,Visa,QuickFuel,Transportation,51.33
-2025-03-18,Q1,Visa,FreshCo Grocery,Groceries,96.86
-2025-03-23,Q1,Amex,City Concert Hall,Entertainment,42.73
-2025-03-23,Q1,Amex,Taqueria Sol,Dining out,78.16
-2025-03-23,Q1,Visa,Hometown Hardware,Shopping,77.07
-2025-03-24,Q1,Amex,Noodle Bar 88,Dining out,43.29
-2025-03-24,Q1,Visa,QuickFuel,Transportation,44.96
-2025-03-30,Q1,Amex,Bella Cucina,Dining out,85.11
-2025-03-30,Q1,Visa,Green Basket Market,Groceries,60.55
-2025-04-01,Q2,Visa,Peak Fitness Gym,Subscriptions,45
-2025-04-02,Q2,Visa,Hometown Hardware,Shopping,51.45
-2025-04-02,Q2,Visa,Metro Transit,Transportation,50
-2025-04-03,Q2,Visa,City Power & Light,Utilities,92.24
-2025-04-03,Q2,Visa,Corner Market,Groceries,127.72
-2025-04-03,Q2,Visa,ShopOnline,Shopping,95.48
-2025-04-04,Q2,Visa,QuickFuel,Transportation,41.42
-2025-04-05,Q2,Visa,Green Basket Market,Groceries,58.21
-2025-04-05,Q2,Visa,StreamFlix,Subscriptions,15.49
-2025-04-07,Q2,Visa,Corner Market,Groceries,58.68
-2025-04-07,Q2,Visa,QuickFuel,Transportation,44.03
-2025-04-08,Q2,Visa,Metro Water,Utilities,52.61
-2025-04-09,Q2,Amex,The Daily Grind Cafe,Dining out,27.54
-2025-04-09,Q2,Visa,TuneBox,Subscriptions,10.99
-2025-04-10,Q2,Amex,Bowl-O-Rama,Entertainment,93.35
-2025-04-12,Q2,Visa,FastNet Internet,Utilities,70
-2025-04-13,Q2,Amex,Bella Cucina,Dining out,82.51
-2025-04-14,Q2,Visa,FreshCo Grocery,Groceries,109.19
-2025-04-15,Q2,Amex,City Concert Hall,Entertainment,102.48
-2025-04-16,Q2,Amex,Bella Cucina,Dining out,56.18
-2025-04-18,Q2,Amex,Harbor Grill,Dining out,64.74
-2025-04-19,Q2,Amex,The Daily Grind Cafe,Dining out,51.21
-2025-04-21,Q2,Visa,Corner Market,Groceries,120.85
-2025-04-22,Q2,Visa,Cityline Apparel,Shopping,68.56
-2025-04-23,Q2,Visa,QuickFuel,Transportation,59.06
-2025-04-26,Q2,Amex,Noodle Bar 88,Dining out,86
-2025-04-28,Q2,Visa,Neighborhood Pharmacy,Health,31.15
-2025-05-01,Q2,Visa,Peak Fitness Gym,Subscriptions,45
-2025-05-01,Q2,Visa,QuickFuel,Transportation,54.31
-2025-05-02,Q2,Visa,Metro Transit,Transportation,50
-2025-05-03,Q2,Visa,City Power & Light,Utilities,88.01
-2025-05-04,Q2,Amex,Taqueria Sol,Dining out,47.13
-2025-05-04,Q2,Visa,Neighborhood Pharmacy,Health,21
-2025-05-05,Q2,Visa,StreamFlix,Subscriptions,15.49
-2025-05-06,Q2,Visa,FreshCo Grocery,Groceries,148.64
-2025-05-08,Q2,Visa,Metro Water,Utilities,39.04
-2025-05-09,Q2,Amex,Bella Cucina,Dining out,91.01
-2025-05-09,Q2,Visa,Green Basket Market,Groceries,134
-2025-05-09,Q2,Visa,TuneBox,Subscriptions,10.99
-2025-05-11,Q2,Amex,Harbor Grill,Dining out,94.85
-2025-05-11,Q2,Amex,Taqueria Sol,Dining out,38.42
-2025-05-11,Q2,Visa,Green Basket Market,Groceries,138.33
-2025-05-11,Q2,Visa,QuickFuel,Transportation,61.66
-2025-05-12,Q2,Amex,Bella Cucina,Dining out,71
-2025-05-12,Q2,Amex,City Concert Hall,Entertainment,71.68
-2025-05-12,Q2,Amex,Harbor Grill,Dining out,62.12
-2025-05-12,Q2,Visa,FastNet Internet,Utilities,70
-2025-05-12,Q2,Visa,Green Basket Market,Groceries,118.6
-2025-05-12,Q2,Visa,ShopOnline,Shopping,40.41
-2025-05-15,Q2,Visa,QuickFuel,Transportation,49.25
-2025-05-16,Q2,Visa,Coastline Rail,Travel,186
-2025-05-20,Q2,Amex,Bella Cucina,Dining out,64.71
-2025-05-21,Q2,Visa,Green Basket Market,Groceries,70.87
-2025-05-27,Q2,Amex,Taqueria Sol,Dining out,28.88
-2025-05-31,Q2,Visa,ShopOnline,Shopping,98.3
-2025-06-01,Q2,Visa,Peak Fitness Gym,Subscriptions,45
-2025-06-02,Q2,Visa,Metro Transit,Transportation,50
-2025-06-03,Q2,Amex,Bella Cucina,Dining out,18.2
-2025-06-03,Q2,Amex,The Daily Grind Cafe,Dining out,84.42
-2025-06-03,Q2,Visa,City Power & Light,Utilities,143.18
-2025-06-03,Q2,Visa,Corner Market,Groceries,129.06
-2025-06-05,Q2,Visa,StreamFlix,Subscriptions,15.49
-2025-06-06,Q2,Visa,ShopOnline,Shopping,100.52
-2025-06-08,Q2,Visa,Metro Water,Utilities,56.73
-2025-06-09,Q2,Amex,Bella Cucina,Dining out,67.2
-2025-06-09,Q2,Visa,Cityline Apparel,Shopping,118.85
-2025-06-09,Q2,Visa,TuneBox,Subscriptions,10.99
-2025-06-10,Q2,Visa,Green Basket Market,Groceries,106.6
-2025-06-10,Q2,Visa,Green Basket Market,Groceries,126.57
-2025-06-11,Q2,Visa,QuickFuel,Transportation,56.04
-2025-06-12,Q2,Visa,FastNet Internet,Utilities,70
-2025-06-15,Q2,Visa,Green Basket Market,Groceries,70.5
-2025-06-15,Q2,Visa,ShopOnline,Shopping,118.99
-2025-06-16,Q2,Visa,QuickFuel,Transportation,59.68
-2025-06-18,Q2,Amex,City Concert Hall,Entertainment,80.04
-2025-06-22,Q2,Amex,Harbor Grill,Dining out,61.21
-2025-06-23,Q2,Visa,QuickFuel,Transportation,39.65
-2025-06-25,Q2,Amex,Harbor Grill,Dining out,45.02
-2025-06-26,Q2,Amex,Bella Cucina,Dining out,44.66
-2025-06-27,Q2,Visa,FreshCo Grocery,Groceries,111.9
-2025-06-28,Q2,Visa,Neighborhood Pharmacy,Health,14.69
-2025-06-29,Q2,Amex,Noodle Bar 88,Dining out,24.57
-2025-06-29,Q2,Amex,Noodle Bar 88,Dining out,27.98
-2025-07-01,Q3,Amex,The Daily Grind Cafe,Dining out,24.83
-2025-07-01,Q3,Visa,Peak Fitness Gym,Subscriptions,45
-2025-07-02,Q3,Visa,Corner Market,Groceries,81.69
-2025-07-02,Q3,Visa,Metro Transit,Transportation,50
-2025-07-03,Q3,Visa,City Power & Light,Utilities,122.48
-2025-07-05,Q3,Visa,StreamFlix,Subscriptions,15.49
-2025-07-06,Q3,Visa,Corner Market,Groceries,65.11
-2025-07-07,Q3,Visa,Green Basket Market,Groceries,121.76
-2025-07-08,Q3,Visa,Metro Water,Utilities,51.41
-2025-07-09,Q3,Visa,Corner Market,Groceries,116.77
-2025-07-09,Q3,Visa,TuneBox,Subscriptions,10.99
-2025-07-11,Q3,Amex,Bowl-O-Rama,Entertainment,70.18
-2025-07-11,Q3,Visa,SkyHop Airlines,Travel,482.5
-2025-07-12,Q3,Amex,Bella Cucina,Dining out,92.95
-2025-07-12,Q3,Visa,FastNet Internet,Utilities,70
-2025-07-13,Q3,Visa,Corner Market,Groceries,85.84
-2025-07-16,Q3,Amex,The Daily Grind Cafe,Dining out,93.91
-2025-07-18,Q3,Visa,Lakeside Inn,Travel,236
-2025-07-20,Q3,Visa,QuickFuel,Transportation,50.64
-2025-07-22,Q3,Visa,QuickFuel,Transportation,56.25
-2025-07-25,Q3,Amex,Noodle Bar 88,Dining out,61.58
-2025-07-25,Q3,Amex,The Daily Grind Cafe,Dining out,75.92
-2025-07-27,Q3,Amex,The Daily Grind Cafe,Dining out,81.41
-2025-07-27,Q3,Visa,Neighborhood Pharmacy,Health,12.15
-2025-07-29,Q3,Visa,ShopOnline,Shopping,63.91
-2025-07-31,Q3,Visa,Cityline Apparel,Shopping,79.22
-2025-07-31,Q3,Visa,QuickFuel,Transportation,38.08
-2025-08-01,Q3,Amex,Taqueria Sol,Dining out,44.23
-2025-08-01,Q3,Visa,Green Basket Market,Groceries,131.82
-2025-08-01,Q3,Visa,Peak Fitness Gym,Subscriptions,45
-2025-08-02,Q3,Visa,Metro Transit,Transportation,50
-2025-08-02,Q3,Visa,QuickFuel,Transportation,49.92
-2025-08-03,Q3,Visa,City Power & Light,Utilities,148.5
-2025-08-04,Q3,Visa,QuickFuel,Transportation,59.23
-2025-08-05,Q3,Visa,FreshCo Grocery,Groceries,136.69
-2025-08-05,Q3,Visa,StreamFlix,Subscriptions,15.49
-2025-08-07,Q3,Amex,Noodle Bar 88,Dining out,31.82
-2025-08-07,Q3,Amex,The Daily Grind Cafe,Dining out,26.99
-2025-08-08,Q3,Visa,Metro Water,Utilities,45.76
-2025-08-09,Q3,Visa,TuneBox,Subscriptions,10.99
-2025-08-10,Q3,Visa,Neighborhood Pharmacy,Health,21.71
-2025-08-12,Q3,Visa,FastNet Internet,Utilities,70
-2025-08-13,Q3,Visa,Green Basket Market,Groceries,129.24
-2025-08-15,Q3,Amex,Taqueria Sol,Dining out,59.32
-2025-08-15,Q3,Amex,The Daily Grind Cafe,Dining out,79.3
-2025-08-16,Q3,Visa,Cityline Apparel,Shopping,135.14
-2025-08-19,Q3,Amex,Bowl-O-Rama,Entertainment,85.03
-2025-08-22,Q3,Visa,QuickFuel,Transportation,55.25
-2025-08-25,Q3,Visa,Corner Market,Groceries,135.27
-2025-08-29,Q3,Visa,Cityline Apparel,Shopping,24.79
-2025-08-29,Q3,Visa,Corner Market,Groceries,83.2
-2025-08-31,Q3,Amex,Bella Cucina,Dining out,38.24
-2025-08-31,Q3,Amex,Bella Cucina,Dining out,81.56
-2025-09-01,Q3,Visa,Peak Fitness Gym,Subscriptions,45
-2025-09-02,Q3,Amex,Taqueria Sol,Dining out,74.59
-2025-09-02,Q3,Visa,Metro Transit,Transportation,50
-2025-09-03,Q3,Amex,Bella Cucina,Dining out,38.56
-2025-09-03,Q3,Amex,Noodle Bar 88,Dining out,28.14
-2025-09-03,Q3,Visa,City Power & Light,Utilities,112.09
-2025-09-03,Q3,Visa,FreshCo Grocery,Groceries,105.26
-2025-09-04,Q3,Amex,Harbor Grill,Dining out,78.52
-2025-09-05,Q3,Visa,QuickFuel,Transportation,45.2
-2025-09-05,Q3,Visa,StreamFlix,Subscriptions,15.49
-2025-09-06,Q3,Amex,Taqueria Sol,Dining out,85.28
-2025-09-07,Q3,Visa,Corner Market,Groceries,143.69
-2025-09-08,Q3,Amex,The Daily Grind Cafe,Dining out,66.97
-2025-09-08,Q3,Visa,Metro Water,Utilities,45.84
-2025-09-09,Q3,Visa,Green Basket Market,Groceries,129.08
-2025-09-09,Q3,Visa,TuneBox,Subscriptions,10.99
-2025-09-11,Q3,Visa,QuickFuel,Transportation,59.78
-2025-09-12,Q3,Visa,Corner Market,Groceries,135.31
-2025-09-12,Q3,Visa,FastNet Internet,Utilities,70
-2025-09-13,Q3,Visa,ShopOnline,Shopping,125.87
-2025-09-16,Q3,Visa,ShopOnline,Shopping,66.93
-2025-09-19,Q3,Amex,Taqueria Sol,Dining out,76.85
-2025-09-24,Q3,Visa,QuickFuel,Transportation,53.46
-2025-09-25,Q3,Amex,Noodle Bar 88,Dining out,27.78
-2025-09-27,Q3,Visa,Neighborhood Pharmacy,Health,16.37
-2025-09-29,Q3,Amex,Starlight Cinema,Entertainment,60.49
-2025-09-29,Q3,Visa,Green Basket Market,Groceries,101.95
-2025-10-01,Q4,Visa,Peak Fitness Gym,Subscriptions,45
-2025-10-02,Q4,Visa,Metro Transit,Transportation,50
-2025-10-03,Q4,Visa,City Power & Light,Utilities,85.21
-2025-10-05,Q4,Amex,Bella Cucina,Dining out,71.41
-2025-10-05,Q4,Visa,StreamFlix,Subscriptions,15.49
-2025-10-07,Q4,Amex,Bowl-O-Rama,Entertainment,56.99
-2025-10-08,Q4,Visa,Metro Water,Utilities,40.24
-2025-10-09,Q4,Visa,TuneBox,Subscriptions,10.99
-2025-10-11,Q4,Amex,Bowl-O-Rama,Entertainment,78.98
-2025-10-11,Q4,Amex,Harbor Grill,Dining out,27.13
-2025-10-12,Q4,Visa,FastNet Internet,Utilities,70
-2025-10-12,Q4,Visa,Hometown Hardware,Shopping,34.88
-2025-10-15,Q4,Amex,Harbor Grill,Dining out,20.16
-2025-10-15,Q4,Visa,Corner Market,Groceries,95.63
-2025-10-15,Q4,Visa,Green Basket Market,Groceries,84.96
-2025-10-16,Q4,Visa,QuickFuel,Transportation,38.47
-2025-10-19,Q4,Visa,Cityline Apparel,Shopping,125.21
-2025-10-20,Q4,Visa,QuickFuel,Transportation,42.23
-2025-10-22,Q4,Amex,The Daily Grind Cafe,Dining out,30.35
-2025-10-22,Q4,Visa,QuickFuel,Transportation,47.7
-2025-10-23,Q4,Visa,Hometown Hardware,Shopping,21.21
-2025-10-24,Q4,Amex,Bella Cucina,Dining out,43.21
-2025-10-24,Q4,Visa,Corner Market,Groceries,136.6
-2025-10-24,Q4,Visa,Green Basket Market,Groceries,108.45
-2025-10-26,Q4,Visa,Green Basket Market,Groceries,119.33
-2025-10-30,Q4,Amex,Noodle Bar 88,Dining out,78.64
-2025-10-31,Q4,Visa,Neighborhood Pharmacy,Health,36.58
-2025-11-01,Q4,Visa,Cityline Apparel,Shopping,107.83
-2025-11-01,Q4,Visa,Peak Fitness Gym,Subscriptions,45
-2025-11-02,Q4,Visa,Metro Transit,Transportation,50
-2025-11-03,Q4,Visa,City Power & Light,Utilities,97.65
-2025-11-05,Q4,Visa,StreamFlix,Subscriptions,15.49
-2025-11-08,Q4,Visa,FreshCo Grocery,Groceries,142.01
-2025-11-08,Q4,Visa,Metro Water,Utilities,52.63
-2025-11-09,Q4,Amex,Bella Cucina,Dining out,41.31
-2025-11-09,Q4,Visa,TuneBox,Subscriptions,10.99
-2025-11-11,Q4,Visa,Hometown Hardware,Shopping,100.07
-2025-11-12,Q4,Visa,FastNet Internet,Utilities,70
-2025-11-12,Q4,Visa,FreshCo Grocery,Groceries,71.68
-2025-11-13,Q4,Amex,Bella Cucina,Dining out,56.86
-2025-11-14,Q4,Visa,Corner Market,Groceries,55.9
-2025-11-19,Q4,Amex,Bella Cucina,Dining out,77.75
-2025-11-19,Q4,Amex,Bowl-O-Rama,Entertainment,70.98
-2025-11-19,Q4,Amex,The Daily Grind Cafe,Dining out,20.94
-2025-11-21,Q4,Amex,Noodle Bar 88,Dining out,34.66
-2025-11-22,Q4,Visa,QuickFuel,Transportation,55.84
-2025-11-23,Q4,Visa,Green Basket Market,Groceries,126.43
-2025-11-26,Q4,Visa,Neighborhood Pharmacy,Health,38.56
-2025-11-27,Q4,Amex,City Concert Hall,Entertainment,100.47
-2025-11-29,Q4,Amex,Bella Cucina,Dining out,22.62
-2025-11-29,Q4,Visa,QuickFuel,Transportation,43.66
-2025-11-30,Q4,Visa,Green Basket Market,Groceries,59.12
-2025-11-30,Q4,Visa,QuickFuel,Transportation,55.96
-2025-12-01,Q4,Visa,Peak Fitness Gym,Subscriptions,45
-2025-12-02,Q4,Visa,Metro Transit,Transportation,50
-2025-12-03,Q4,Visa,City Power & Light,Utilities,109.71
-2025-12-04,Q4,Amex,Noodle Bar 88,Dining out,55.53
-2025-12-05,Q4,Visa,StreamFlix,Subscriptions,15.49
-2025-12-08,Q4,Amex,City Concert Hall,Entertainment,63.62
-2025-12-08,Q4,Visa,Metro Water,Utilities,47.37
-2025-12-09,Q4,Visa,TuneBox,Subscriptions,10.99
-2025-12-11,Q4,Amex,Harbor Grill,Dining out,70.16
-2025-12-11,Q4,Visa,QuickFuel,Transportation,39.88
-2025-12-12,Q4,Visa,FastNet Internet,Utilities,70
-2025-12-14,Q4,Amex,Harbor Grill,Dining out,38.14
-2025-12-14,Q4,Visa,Corner Market,Groceries,61.39
-2025-12-15,Q4,Visa,Green Basket Market,Groceries,63.32
-2025-12-15,Q4,Visa,QuickFuel,Transportation,60.57
-2025-12-17,Q4,Amex,Taqueria Sol,Dining out,62.21
-2025-12-18,Q4,Visa,Neighborhood Pharmacy,Health,17.42
-2025-12-20,Q4,Visa,FreshCo Grocery,Groceries,105.31
-2025-12-20,Q4,Visa,SkyHop Airlines,Travel,529
-2025-12-21,Q4,Amex,Bella Cucina,Dining out,21.24
-2025-12-21,Q4,Amex,Harbor Grill,Dining out,31.88
-2025-12-24,Q4,Visa,Hometown Hardware,Shopping,114.85
-2025-12-27,Q4,Visa,Green Basket Market,Groceries,98.97
-2025-12-30,Q4,Amex,Noodle Bar 88,Dining out,45.6
-2025-12-30,Q4,Visa,Corner Market,Groceries,118.04
-2025-12-30,Q4,Visa,Hometown Hardware,Shopping,88.32
-2025-12-30,Q4,Visa,QuickFuel,Transportation,42.69
-2025-12-31,Q4,Amex,Bella Cucina,Dining out,44.87
-2025-08-01,Q3,Amex,Taqueria Sol,Dining out,44.23
-2025-08-07,Q3,Amex,Noodle Bar 88,Dining out,31.82
-2025-08-07,Q3,Amex,The Daily Grind Cafe,Dining out,26.99
-2025-08-15,Q3,Amex,Taqueria Sol,Dining out,59.32
-2025-08-15,Q3,Amex,The Daily Grind Cafe,Dining out,79.3
-2025-08-19,Q3,Amex,Bowl-O-Rama,Entertainment,85.03
-2025-08-31,Q3,Amex,Bella Cucina,Dining out,38.24
-2025-08-31,Q3,Amex,Bella Cucina,Dining out,81.56
-2025-09-02,Q3,Amex,Taqueria Sol,Dining out,74.59
-2025-09-03,Q3,Amex,Bella Cucina,Dining out,38.56
-2025-09-03,Q3,Amex,Noodle Bar 88,Dining out,28.14
-2025-09-04,Q3,Amex,Harbor Grill,Dining out,78.52
-2025-09-06,Q3,Amex,Taqueria Sol,Dining out,85.28
-2025-09-08,Q3,Amex,The Daily Grind Cafe,Dining out,66.97
-2025-09-19,Q3,Amex,Taqueria Sol,Dining out,76.85
-2025-09-25,Q3,Amex,Noodle Bar 88,Dining out,27.78
-2025-09-29,Q3,Amex,Starlight Cinema,Entertainment,60.49
+date,month,quarter,card,merchant,category,amount_usd,transaction_id
+2025-01-01,Jan,Q1,Visa,Peak Fitness Gym,Subscriptions,45,VIS-0101-01
+2025-01-02,Jan,Q1,Visa,Metro Transit,Transportation,50,VIS-0102-01
+2025-01-03,Jan,Q1,Visa,City Power & Light,Utilities,108.12,VIS-0103-01
+2025-01-04,Jan,Q1,Visa,FreshCo Grocery,Groceries,104.81,VIS-0104-01
+2025-01-04,Jan,Q1,Visa,QuickFuel,Transportation,49,VIS-0104-02
+2025-01-05,Jan,Q1,Visa,Hometown Hardware,Shopping,84.61,VIS-0105-01
+2025-01-05,Jan,Q1,Visa,StreamFlix,Subscriptions,15.49,VIS-0105-02
+2025-01-06,Jan,Q1,Amex,The Daily Grind Cafe,Dining out,50.91,AMX-0106-01
+2025-01-06,Jan,Q1,Visa,Hometown Hardware,Shopping,120.37,VIS-0106-01
+2025-01-06,Jan,Q1,Visa,QuickFuel,Transportation,55.76,VIS-0106-02
+2025-01-08,Jan,Q1,Visa,Metro Water,Utilities,48.98,VIS-0108-01
+2025-01-09,Jan,Q1,Visa,TuneBox,Subscriptions,10.99,VIS-0109-01
+2025-01-12,Jan,Q1,Visa,FastNet Internet,Utilities,70,VIS-0112-01
+2025-01-14,Jan,Q1,Visa,Corner Market,Groceries,85.89,VIS-0114-01
+2025-01-15,Jan,Q1,Amex,Harbor Grill,Dining out,51.94,AMX-0115-01
+2025-01-16,Jan,Q1,Amex,Harbor Grill,Dining out,59.68,AMX-0116-01
+2025-01-16,Jan,Q1,Amex,The Daily Grind Cafe,Dining out,90.41,AMX-0116-02
+2025-01-17,Jan,Q1,Visa,Neighborhood Pharmacy,Health,25.95,VIS-0117-01
+2025-01-20,Jan,Q1,Amex,The Daily Grind Cafe,Dining out,18.45,AMX-0120-01
+2025-01-20,Jan,Q1,Visa,Green Basket Market,Groceries,68.49,VIS-0120-01
+2025-01-21,Jan,Q1,Visa,FreshCo Grocery,Groceries,119.43,VIS-0121-01
+2025-01-22,Jan,Q1,Amex,Noodle Bar 88,Dining out,25.74,AMX-0122-01
+2025-01-22,Jan,Q1,Amex,Taqueria Sol,Dining out,26.29,AMX-0122-02
+2025-01-25,Jan,Q1,Visa,FreshCo Grocery,Groceries,76.11,VIS-0125-01
+2025-01-28,Jan,Q1,Visa,QuickFuel,Transportation,43.41,VIS-0128-01
+2025-01-29,Jan,Q1,Amex,Starlight Cinema,Entertainment,62.6,AMX-0129-01
+2025-01-29,Jan,Q1,Amex,Taqueria Sol,Dining out,82.55,AMX-0129-02
+2025-01-29,Jan,Q1,Visa,Cityline Apparel,Shopping,54.88,VIS-0129-01
+2025-02-01,Feb,Q1,Amex,The Daily Grind Cafe,Dining out,30.35,AMX-0201-01
+2025-02-01,Feb,Q1,Visa,Peak Fitness Gym,Subscriptions,45,VIS-0201-01
+2025-02-02,Feb,Q1,Visa,Green Basket Market,Groceries,77.14,VIS-0202-01
+2025-02-02,Feb,Q1,Visa,Metro Transit,Transportation,50,VIS-0202-02
+2025-02-03,Feb,Q1,Visa,City Power & Light,Utilities,88.29,VIS-0203-01
+2025-02-04,Feb,Q1,Amex,Harbor Grill,Dining out,37.74,AMX-0204-01
+2025-02-05,Feb,Q1,Amex,Taqueria Sol,Dining out,58.77,AMX-0205-01
+2025-02-05,Feb,Q1,Amex,The Daily Grind Cafe,Dining out,83.32,AMX-0205-02
+2025-02-05,Feb,Q1,Visa,StreamFlix,Subscriptions,15.49,VIS-0205-01
+2025-02-06,Feb,Q1,Amex,Harbor Grill,Dining out,37.65,AMX-0206-01
+2025-02-08,Feb,Q1,Visa,FreshCo Grocery,Groceries,75,VIS-0208-01
+2025-02-08,Feb,Q1,Visa,Metro Water,Utilities,50.59,VIS-0208-02
+2025-02-09,Feb,Q1,Visa,QuickFuel,Transportation,40.09,VIS-0209-01
+2025-02-09,Feb,Q1,Visa,TuneBox,Subscriptions,10.99,VIS-0209-02
+2025-02-10,Feb,Q1,Visa,Cityline Apparel,Shopping,92.56,VIS-0210-01
+2025-02-10,Feb,Q1,Visa,QuickFuel,Transportation,57.97,VIS-0210-02
+2025-02-12,Feb,Q1,Visa,FastNet Internet,Utilities,70,VIS-0212-01
+2025-02-13,Feb,Q1,Visa,Neighborhood Pharmacy,Health,27.21,VIS-0213-01
+2025-02-16,Feb,Q1,Amex,City Concert Hall,Entertainment,37.11,AMX-0216-01
+2025-02-18,Feb,Q1,Visa,FreshCo Grocery,Groceries,115.69,VIS-0218-01
+2025-02-19,Feb,Q1,Amex,Starlight Cinema,Entertainment,75.51,AMX-0219-01
+2025-02-19,Feb,Q1,Amex,The Daily Grind Cafe,Dining out,19.15,AMX-0219-02
+2025-02-19,Feb,Q1,Visa,QuickFuel,Transportation,47.79,VIS-0219-01
+2025-02-20,Feb,Q1,Visa,Green Basket Market,Groceries,117.29,VIS-0220-01
+2025-02-23,Feb,Q1,Visa,FreshCo Grocery,Groceries,86.6,VIS-0223-01
+2025-02-25,Feb,Q1,Visa,ShopOnline,Shopping,20.61,VIS-0225-01
+2025-02-26,Feb,Q1,Amex,The Daily Grind Cafe,Dining out,28.41,AMX-0226-01
+2025-02-26,Feb,Q1,Visa,ShopOnline,Shopping,27.49,VIS-0226-01
+2025-03-01,Mar,Q1,Visa,Neighborhood Pharmacy,Health,16.26,VIS-0301-01
+2025-03-01,Mar,Q1,Visa,Peak Fitness Gym,Subscriptions,45,VIS-0301-02
+2025-03-02,Mar,Q1,Amex,Noodle Bar 88,Dining out,82.48,AMX-0302-01
+2025-03-02,Mar,Q1,Visa,Green Basket Market,Groceries,63.25,VIS-0302-01
+2025-03-02,Mar,Q1,Visa,Metro Transit,Transportation,50,VIS-0302-02
+2025-03-03,Mar,Q1,Amex,Bowl-O-Rama,Entertainment,80.72,AMX-0303-01
+2025-03-03,Mar,Q1,Amex,Taqueria Sol,Dining out,58.74,AMX-0303-02
+2025-03-03,Mar,Q1,Visa,City Power & Light,Utilities,111.5,VIS-0303-01
+2025-03-05,Mar,Q1,Visa,StreamFlix,Subscriptions,15.49,VIS-0305-01
+2025-03-07,Mar,Q1,Amex,Bella Cucina,Dining out,59.69,AMX-0307-01
+2025-03-08,Mar,Q1,Visa,Metro Water,Utilities,48.39,VIS-0308-01
+2025-03-09,Mar,Q1,Visa,TuneBox,Subscriptions,10.99,VIS-0309-01
+2025-03-10,Mar,Q1,Visa,Cityline Apparel,Shopping,40.78,VIS-0310-01
+2025-03-12,Mar,Q1,Visa,FastNet Internet,Utilities,70,VIS-0312-01
+2025-03-14,Mar,Q1,Visa,ShopOnline,Shopping,69.58,VIS-0314-01
+2025-03-15,Mar,Q1,Visa,FreshCo Grocery,Groceries,134.71,VIS-0315-01
+2025-03-15,Mar,Q1,Visa,QuickFuel,Transportation,50.13,VIS-0315-02
+2025-03-16,Mar,Q1,Amex,Harbor Grill,Dining out,47.46,AMX-0316-01
+2025-03-16,Mar,Q1,Visa,Green Basket Market,Groceries,145.33,VIS-0316-01
+2025-03-17,Mar,Q1,Visa,QuickFuel,Transportation,51.33,VIS-0317-01
+2025-03-18,Mar,Q1,Visa,FreshCo Grocery,Groceries,96.86,VIS-0318-01
+2025-03-23,Mar,Q1,Amex,City Concert Hall,Entertainment,42.73,AMX-0323-01
+2025-03-23,Mar,Q1,Amex,Taqueria Sol,Dining out,78.16,AMX-0323-02
+2025-03-23,Mar,Q1,Visa,Hometown Hardware,Shopping,77.07,VIS-0323-01
+2025-03-24,Mar,Q1,Amex,Noodle Bar 88,Dining out,43.29,AMX-0324-01
+2025-03-24,Mar,Q1,Visa,QuickFuel,Transportation,44.96,VIS-0324-01
+2025-03-30,Mar,Q1,Amex,Bella Cucina,Dining out,85.11,AMX-0330-01
+2025-03-30,Mar,Q1,Visa,Green Basket Market,Groceries,60.55,VIS-0330-01
+2025-04-01,Apr,Q2,Visa,Peak Fitness Gym,Subscriptions,45,VIS-0401-01
+2025-04-02,Apr,Q2,Visa,Hometown Hardware,Shopping,51.45,VIS-0402-01
+2025-04-02,Apr,Q2,Visa,Metro Transit,Transportation,50,VIS-0402-02
+2025-04-03,Apr,Q2,Visa,City Power & Light,Utilities,92.24,VIS-0403-01
+2025-04-03,Apr,Q2,Visa,Corner Market,Groceries,127.72,VIS-0403-02
+2025-04-03,Apr,Q2,Visa,ShopOnline,Shopping,95.48,VIS-0403-03
+2025-04-04,Apr,Q2,Visa,QuickFuel,Transportation,41.42,VIS-0404-01
+2025-04-05,Apr,Q2,Visa,Green Basket Market,Groceries,58.21,VIS-0405-01
+2025-04-05,Apr,Q2,Visa,StreamFlix,Subscriptions,15.49,VIS-0405-02
+2025-04-07,Apr,Q2,Visa,Corner Market,Groceries,58.68,VIS-0407-01
+2025-04-07,Apr,Q2,Visa,QuickFuel,Transportation,44.03,VIS-0407-02
+2025-04-08,Apr,Q2,Visa,Metro Water,Utilities,52.61,VIS-0408-01
+2025-04-09,Apr,Q2,Amex,The Daily Grind Cafe,Dining out,27.54,AMX-0409-01
+2025-04-09,Apr,Q2,Visa,TuneBox,Subscriptions,10.99,VIS-0409-01
+2025-04-10,Apr,Q2,Amex,Bowl-O-Rama,Entertainment,93.35,AMX-0410-01
+2025-04-12,Apr,Q2,Visa,FastNet Internet,Utilities,70,VIS-0412-01
+2025-04-13,Apr,Q2,Amex,Bella Cucina,Dining out,82.51,AMX-0413-01
+2025-04-14,Apr,Q2,Visa,FreshCo Grocery,Groceries,109.19,VIS-0414-01
+2025-04-15,Apr,Q2,Amex,City Concert Hall,Entertainment,102.48,AMX-0415-01
+2025-04-16,Apr,Q2,Amex,Bella Cucina,Dining out,56.18,AMX-0416-01
+2025-04-18,Apr,Q2,Amex,Harbor Grill,Dining out,64.74,AMX-0418-01
+2025-04-19,Apr,Q2,Amex,The Daily Grind Cafe,Dining out,51.21,AMX-0419-01
+2025-04-21,Apr,Q2,Visa,Corner Market,Groceries,120.85,VIS-0421-01
+2025-04-22,Apr,Q2,Visa,Cityline Apparel,Shopping,68.56,VIS-0422-01
+2025-04-23,Apr,Q2,Visa,QuickFuel,Transportation,59.06,VIS-0423-01
+2025-04-26,Apr,Q2,Amex,Noodle Bar 88,Dining out,86,AMX-0426-01
+2025-04-28,Apr,Q2,Visa,Neighborhood Pharmacy,Health,31.15,VIS-0428-01
+2025-05-01,May,Q2,Visa,Peak Fitness Gym,Subscriptions,45,VIS-0501-01
+2025-05-01,May,Q2,Visa,QuickFuel,Transportation,54.31,VIS-0501-02
+2025-05-02,May,Q2,Visa,Metro Transit,Transportation,50,VIS-0502-01
+2025-05-03,May,Q2,Visa,City Power & Light,Utilities,88.01,VIS-0503-01
+2025-05-04,May,Q2,Amex,Taqueria Sol,Dining out,47.13,AMX-0504-01
+2025-05-04,May,Q2,Visa,Neighborhood Pharmacy,Health,21,VIS-0504-01
+2025-05-05,May,Q2,Visa,StreamFlix,Subscriptions,15.49,VIS-0505-01
+2025-05-06,May,Q2,Visa,FreshCo Grocery,Groceries,148.64,VIS-0506-01
+2025-05-08,May,Q2,Visa,Metro Water,Utilities,39.04,VIS-0508-01
+2025-05-09,May,Q2,Amex,Bella Cucina,Dining out,91.01,AMX-0509-01
+2025-05-09,May,Q2,Visa,Green Basket Market,Groceries,134,VIS-0509-01
+2025-05-09,May,Q2,Visa,TuneBox,Subscriptions,10.99,VIS-0509-02
+2025-05-11,May,Q2,Amex,Harbor Grill,Dining out,94.85,AMX-0511-01
+2025-05-11,May,Q2,Amex,Taqueria Sol,Dining out,38.42,AMX-0511-02
+2025-05-11,May,Q2,Visa,Green Basket Market,Groceries,138.33,VIS-0511-01
+2025-05-11,May,Q2,Visa,QuickFuel,Transportation,61.66,VIS-0511-02
+2025-05-12,May,Q2,Amex,Bella Cucina,Dining out,71,AMX-0512-01
+2025-05-12,May,Q2,Amex,City Concert Hall,Entertainment,71.68,AMX-0512-02
+2025-05-12,May,Q2,Amex,Harbor Grill,Dining out,62.12,AMX-0512-03
+2025-05-12,May,Q2,Visa,FastNet Internet,Utilities,70,VIS-0512-01
+2025-05-12,May,Q2,Visa,Green Basket Market,Groceries,118.6,VIS-0512-02
+2025-05-12,May,Q2,Visa,ShopOnline,Shopping,40.41,VIS-0512-03
+2025-05-15,May,Q2,Visa,QuickFuel,Transportation,49.25,VIS-0515-01
+2025-05-16,May,Q2,Visa,Coastline Rail,Travel,186,VIS-0516-01
+2025-05-20,May,Q2,Amex,Bella Cucina,Dining out,64.71,AMX-0520-01
+2025-05-21,May,Q2,Visa,Green Basket Market,Groceries,70.87,VIS-0521-01
+2025-05-27,May,Q2,Amex,Taqueria Sol,Dining out,28.88,AMX-0527-01
+2025-05-31,May,Q2,Visa,ShopOnline,Shopping,98.3,VIS-0531-01
+2025-06-01,Jun,Q2,Visa,Peak Fitness Gym,Subscriptions,45,VIS-0601-01
+2025-06-02,Jun,Q2,Visa,Metro Transit,Transportation,50,VIS-0602-01
+2025-06-03,Jun,Q2,Amex,Bella Cucina,Dining out,18.2,AMX-0603-01
+2025-06-03,Jun,Q2,Amex,The Daily Grind Cafe,Dining out,84.42,AMX-0603-02
+2025-06-03,Jun,Q2,Visa,City Power & Light,Utilities,143.18,VIS-0603-01
+2025-06-03,Jun,Q2,Visa,Corner Market,Groceries,129.06,VIS-0603-02
+2025-06-05,Jun,Q2,Visa,StreamFlix,Subscriptions,15.49,VIS-0605-01
+2025-06-06,Jun,Q2,Visa,ShopOnline,Shopping,100.52,VIS-0606-01
+2025-06-08,Jun,Q2,Visa,Metro Water,Utilities,56.73,VIS-0608-01
+2025-06-09,Jun,Q2,Amex,Bella Cucina,Dining out,67.2,AMX-0609-01
+2025-06-09,Jun,Q2,Visa,Cityline Apparel,Shopping,118.85,VIS-0609-01
+2025-06-09,Jun,Q2,Visa,TuneBox,Subscriptions,10.99,VIS-0609-02
+2025-06-10,Jun,Q2,Visa,Green Basket Market,Groceries,106.6,VIS-0610-01
+2025-06-10,Jun,Q2,Visa,Green Basket Market,Groceries,126.57,VIS-0610-02
+2025-06-11,Jun,Q2,Visa,QuickFuel,Transportation,56.04,VIS-0611-01
+2025-06-12,Jun,Q2,Visa,FastNet Internet,Utilities,70,VIS-0612-01
+2025-06-15,Jun,Q2,Visa,Green Basket Market,Groceries,70.5,VIS-0615-01
+2025-06-15,Jun,Q2,Visa,ShopOnline,Shopping,118.99,VIS-0615-02
+2025-06-16,Jun,Q2,Visa,QuickFuel,Transportation,59.68,VIS-0616-01
+2025-06-18,Jun,Q2,Amex,City Concert Hall,Entertainment,80.04,AMX-0618-01
+2025-06-22,Jun,Q2,Amex,Harbor Grill,Dining out,61.21,AMX-0622-01
+2025-06-23,Jun,Q2,Visa,QuickFuel,Transportation,39.65,VIS-0623-01
+2025-06-25,Jun,Q2,Amex,Harbor Grill,Dining out,45.02,AMX-0625-01
+2025-06-26,Jun,Q2,Amex,Bella Cucina,Dining out,44.66,AMX-0626-01
+2025-06-27,Jun,Q2,Visa,FreshCo Grocery,Groceries,111.9,VIS-0627-01
+2025-06-28,Jun,Q2,Visa,Neighborhood Pharmacy,Health,14.69,VIS-0628-01
+2025-06-29,Jun,Q2,Amex,Noodle Bar 88,Dining out,24.57,AMX-0629-01
+2025-06-29,Jun,Q2,Amex,Noodle Bar 88,Dining out,27.98,AMX-0629-02
+2025-07-01,Jul,Q3,Amex,The Daily Grind Cafe,Dining out,24.83,AMX-0701-01
+2025-07-01,Jul,Q3,Visa,Peak Fitness Gym,Subscriptions,45,VIS-0701-01
+2025-07-02,Jul,Q3,Visa,Corner Market,Groceries,81.69,VIS-0702-01
+2025-07-02,Jul,Q3,Visa,Metro Transit,Transportation,50,VIS-0702-02
+2025-07-03,Jul,Q3,Visa,City Power & Light,Utilities,122.48,VIS-0703-01
+2025-07-05,Jul,Q3,Visa,StreamFlix,Subscriptions,15.49,VIS-0705-01
+2025-07-06,Jul,Q3,Visa,Corner Market,Groceries,65.11,VIS-0706-01
+2025-07-07,Jul,Q3,Visa,Green Basket Market,Groceries,121.76,VIS-0707-01
+2025-07-08,Jul,Q3,Visa,Metro Water,Utilities,51.41,VIS-0708-01
+2025-07-09,Jul,Q3,Visa,Corner Market,Groceries,116.77,VIS-0709-01
+2025-07-09,Jul,Q3,Visa,TuneBox,Subscriptions,10.99,VIS-0709-02
+2025-07-11,Jul,Q3,Amex,Bowl-O-Rama,Entertainment,70.18,AMX-0711-01
+2025-07-11,Jul,Q3,Visa,SkyHop Airlines,Travel,482.5,VIS-0711-01
+2025-07-12,Jul,Q3,Amex,Bella Cucina,Dining out,92.95,AMX-0712-01
+2025-07-12,Jul,Q3,Visa,FastNet Internet,Utilities,70,VIS-0712-01
+2025-07-13,Jul,Q3,Visa,Corner Market,Groceries,85.84,VIS-0713-01
+2025-07-16,Jul,Q3,Amex,The Daily Grind Cafe,Dining out,93.91,AMX-0716-01
+2025-07-18,Jul,Q3,Visa,Lakeside Inn,Travel,236,VIS-0718-01
+2025-07-20,Jul,Q3,Visa,QuickFuel,Transportation,50.64,VIS-0720-01
+2025-07-22,Jul,Q3,Visa,QuickFuel,Transportation,56.25,VIS-0722-01
+2025-07-25,Jul,Q3,Amex,Noodle Bar 88,Dining out,61.58,AMX-0725-01
+2025-07-25,Jul,Q3,Amex,The Daily Grind Cafe,Dining out,75.92,AMX-0725-02
+2025-07-27,Jul,Q3,Amex,The Daily Grind Cafe,Dining out,81.41,AMX-0727-01
+2025-07-27,Jul,Q3,Visa,Neighborhood Pharmacy,Health,12.15,VIS-0727-01
+2025-07-29,Jul,Q3,Visa,ShopOnline,Shopping,63.91,VIS-0729-01
+2025-07-31,Jul,Q3,Visa,Cityline Apparel,Shopping,79.22,VIS-0731-01
+2025-07-31,Jul,Q3,Visa,QuickFuel,Transportation,38.08,VIS-0731-02
+2025-08-01,Aug,Q3,Amex,Taqueria Sol,Dining out,44.23,AMX-0801-01
+2025-08-01,Aug,Q3,Visa,Green Basket Market,Groceries,131.82,VIS-0801-01
+2025-08-01,Aug,Q3,Visa,Peak Fitness Gym,Subscriptions,45,VIS-0801-02
+2025-08-02,Aug,Q3,Visa,Metro Transit,Transportation,50,VIS-0802-01
+2025-08-02,Aug,Q3,Visa,QuickFuel,Transportation,49.92,VIS-0802-02
+2025-08-03,Aug,Q3,Visa,City Power & Light,Utilities,148.5,VIS-0803-01
+2025-08-04,Aug,Q3,Visa,QuickFuel,Transportation,59.23,VIS-0804-01
+2025-08-05,Aug,Q3,Visa,FreshCo Grocery,Groceries,136.69,VIS-0805-01
+2025-08-05,Aug,Q3,Visa,StreamFlix,Subscriptions,15.49,VIS-0805-02
+2025-08-07,Aug,Q3,Amex,Noodle Bar 88,Dining out,31.82,AMX-0807-01
+2025-08-07,Aug,Q3,Amex,The Daily Grind Cafe,Dining out,26.99,AMX-0807-02
+2025-08-08,Aug,Q3,Visa,Metro Water,Utilities,45.76,VIS-0808-01
+2025-08-09,Aug,Q3,Visa,TuneBox,Subscriptions,10.99,VIS-0809-01
+2025-08-10,Aug,Q3,Visa,Neighborhood Pharmacy,Health,21.71,VIS-0810-01
+2025-08-12,Aug,Q3,Visa,FastNet Internet,Utilities,70,VIS-0812-01
+2025-08-13,Aug,Q3,Visa,Green Basket Market,Groceries,129.24,VIS-0813-01
+2025-08-15,Aug,Q3,Amex,Taqueria Sol,Dining out,59.32,AMX-0815-01
+2025-08-15,Aug,Q3,Amex,The Daily Grind Cafe,Dining out,79.3,AMX-0815-02
+2025-08-16,Aug,Q3,Visa,Cityline Apparel,Shopping,135.14,VIS-0816-01
+2025-08-19,Aug,Q3,Amex,Bowl-O-Rama,Entertainment,85.03,AMX-0819-01
+2025-08-22,Aug,Q3,Visa,QuickFuel,Transportation,55.25,VIS-0822-01
+2025-08-25,Aug,Q3,Visa,Corner Market,Groceries,135.27,VIS-0825-01
+2025-08-29,Aug,Q3,Visa,Cityline Apparel,Shopping,24.79,VIS-0829-01
+2025-08-29,Aug,Q3,Visa,Corner Market,Groceries,83.2,VIS-0829-02
+2025-08-31,Aug,Q3,Amex,Bella Cucina,Dining out,38.24,AMX-0831-01
+2025-08-31,Aug,Q3,Amex,Bella Cucina,Dining out,81.56,AMX-0831-02
+2025-09-01,Sep,Q3,Visa,Peak Fitness Gym,Subscriptions,45,VIS-0901-01
+2025-09-02,Sep,Q3,Amex,Taqueria Sol,Dining out,74.59,AMX-0902-01
+2025-09-02,Sep,Q3,Visa,Metro Transit,Transportation,50,VIS-0902-01
+2025-09-03,Sep,Q3,Amex,Bella Cucina,Dining out,38.56,AMX-0903-01
+2025-09-03,Sep,Q3,Amex,Noodle Bar 88,Dining out,28.14,AMX-0903-02
+2025-09-03,Sep,Q3,Visa,City Power & Light,Utilities,112.09,VIS-0903-01
+2025-09-03,Sep,Q3,Visa,FreshCo Grocery,Groceries,105.26,VIS-0903-02
+2025-09-04,Sep,Q3,Amex,Harbor Grill,Dining out,78.52,AMX-0904-01
+2025-09-05,Sep,Q3,Visa,QuickFuel,Transportation,45.2,VIS-0905-01
+2025-09-05,Sep,Q3,Visa,StreamFlix,Subscriptions,15.49,VIS-0905-02
+2025-09-06,Sep,Q3,Amex,Taqueria Sol,Dining out,85.28,AMX-0906-01
+2025-09-07,Sep,Q3,Visa,Corner Market,Groceries,143.69,VIS-0907-01
+2025-09-08,Sep,Q3,Amex,The Daily Grind Cafe,Dining out,66.97,AMX-0908-01
+2025-09-08,Sep,Q3,Visa,Metro Water,Utilities,45.84,VIS-0908-01
+2025-09-09,Sep,Q3,Visa,Green Basket Market,Groceries,129.08,VIS-0909-01
+2025-09-09,Sep,Q3,Visa,TuneBox,Subscriptions,10.99,VIS-0909-02
+2025-09-11,Sep,Q3,Visa,QuickFuel,Transportation,59.78,VIS-0911-01
+2025-09-12,Sep,Q3,Visa,Corner Market,Groceries,135.31,VIS-0912-01
+2025-09-12,Sep,Q3,Visa,FastNet Internet,Utilities,70,VIS-0912-02
+2025-09-13,Sep,Q3,Visa,ShopOnline,Shopping,125.87,VIS-0913-01
+2025-09-16,Sep,Q3,Visa,ShopOnline,Shopping,66.93,VIS-0916-01
+2025-09-19,Sep,Q3,Amex,Taqueria Sol,Dining out,76.85,AMX-0919-01
+2025-09-24,Sep,Q3,Visa,QuickFuel,Transportation,53.46,VIS-0924-01
+2025-09-25,Sep,Q3,Amex,Noodle Bar 88,Dining out,27.78,AMX-0925-01
+2025-09-27,Sep,Q3,Visa,Neighborhood Pharmacy,Health,16.37,VIS-0927-01
+2025-09-29,Sep,Q3,Amex,Starlight Cinema,Entertainment,60.49,AMX-0929-01
+2025-09-29,Sep,Q3,Visa,Green Basket Market,Groceries,101.95,VIS-0929-01
+2025-10-01,Oct,Q4,Visa,Peak Fitness Gym,Subscriptions,45,VIS-1001-01
+2025-10-02,Oct,Q4,Visa,Metro Transit,Transportation,50,VIS-1002-01
+2025-10-03,Oct,Q4,Visa,City Power & Light,Utilities,85.21,VIS-1003-01
+2025-10-05,Oct,Q4,Amex,Bella Cucina,Dining out,71.41,AMX-1005-01
+2025-10-05,Oct,Q4,Visa,StreamFlix,Subscriptions,15.49,VIS-1005-01
+2025-10-07,Oct,Q4,Amex,Bowl-O-Rama,Entertainment,56.99,AMX-1007-01
+2025-10-08,Oct,Q4,Visa,Metro Water,Utilities,40.24,VIS-1008-01
+2025-10-09,Oct,Q4,Visa,TuneBox,Subscriptions,10.99,VIS-1009-01
+2025-10-11,Oct,Q4,Amex,Bowl-O-Rama,Entertainment,78.98,AMX-1011-01
+2025-10-11,Oct,Q4,Amex,Harbor Grill,Dining out,27.13,AMX-1011-02
+2025-10-12,Oct,Q4,Visa,FastNet Internet,Utilities,70,VIS-1012-01
+2025-10-12,Oct,Q4,Visa,Hometown Hardware,Shopping,34.88,VIS-1012-02
+2025-10-15,Oct,Q4,Amex,Harbor Grill,Dining out,20.16,AMX-1015-01
+2025-10-15,Oct,Q4,Visa,Corner Market,Groceries,95.63,VIS-1015-01
+2025-10-15,Oct,Q4,Visa,Green Basket Market,Groceries,84.96,VIS-1015-02
+2025-10-16,Oct,Q4,Visa,QuickFuel,Transportation,38.47,VIS-1016-01
+2025-10-19,Oct,Q4,Visa,Cityline Apparel,Shopping,125.21,VIS-1019-01
+2025-10-20,Oct,Q4,Visa,QuickFuel,Transportation,42.23,VIS-1020-01
+2025-10-22,Oct,Q4,Amex,The Daily Grind Cafe,Dining out,30.35,AMX-1022-01
+2025-10-22,Oct,Q4,Visa,QuickFuel,Transportation,47.7,VIS-1022-01
+2025-10-23,Oct,Q4,Visa,Hometown Hardware,Shopping,21.21,VIS-1023-01
+2025-10-24,Oct,Q4,Amex,Bella Cucina,Dining out,43.21,AMX-1024-01
+2025-10-24,Oct,Q4,Visa,Corner Market,Groceries,136.6,VIS-1024-01
+2025-10-24,Oct,Q4,Visa,Green Basket Market,Groceries,108.45,VIS-1024-02
+2025-10-26,Oct,Q4,Visa,Green Basket Market,Groceries,119.33,VIS-1026-01
+2025-10-30,Oct,Q4,Amex,Noodle Bar 88,Dining out,78.64,AMX-1030-01
+2025-10-31,Oct,Q4,Visa,Neighborhood Pharmacy,Health,36.58,VIS-1031-01
+2025-11-01,Nov,Q4,Visa,Cityline Apparel,Shopping,107.83,VIS-1101-01
+2025-11-01,Nov,Q4,Visa,Peak Fitness Gym,Subscriptions,45,VIS-1101-02
+2025-11-02,Nov,Q4,Visa,Metro Transit,Transportation,50,VIS-1102-01
+2025-11-03,Nov,Q4,Visa,City Power & Light,Utilities,97.65,VIS-1103-01
+2025-11-05,Nov,Q4,Visa,StreamFlix,Subscriptions,15.49,VIS-1105-01
+2025-11-08,Nov,Q4,Visa,FreshCo Grocery,Groceries,142.01,VIS-1108-01
+2025-11-08,Nov,Q4,Visa,Metro Water,Utilities,52.63,VIS-1108-02
+2025-11-09,Nov,Q4,Amex,Bella Cucina,Dining out,41.31,AMX-1109-01
+2025-11-09,Nov,Q4,Visa,TuneBox,Subscriptions,10.99,VIS-1109-01
+2025-11-11,Nov,Q4,Visa,Hometown Hardware,Shopping,100.07,VIS-1111-01
+2025-11-12,Nov,Q4,Visa,FastNet Internet,Utilities,70,VIS-1112-01
+2025-11-12,Nov,Q4,Visa,FreshCo Grocery,Groceries,71.68,VIS-1112-02
+2025-11-13,Nov,Q4,Amex,Bella Cucina,Dining out,56.86,AMX-1113-01
+2025-11-14,Nov,Q4,Visa,Corner Market,Groceries,55.9,VIS-1114-01
+2025-11-19,Nov,Q4,Amex,Bella Cucina,Dining out,77.75,AMX-1119-01
+2025-11-19,Nov,Q4,Amex,Bowl-O-Rama,Entertainment,70.98,AMX-1119-02
+2025-11-19,Nov,Q4,Amex,The Daily Grind Cafe,Dining out,20.94,AMX-1119-03
+2025-11-21,Nov,Q4,Amex,Noodle Bar 88,Dining out,34.66,AMX-1121-01
+2025-11-22,Nov,Q4,Visa,QuickFuel,Transportation,55.84,VIS-1122-01
+2025-11-23,Nov,Q4,Visa,Green Basket Market,Groceries,126.43,VIS-1123-01
+2025-11-26,Nov,Q4,Visa,Neighborhood Pharmacy,Health,38.56,VIS-1126-01
+2025-11-27,Nov,Q4,Amex,City Concert Hall,Entertainment,100.47,AMX-1127-01
+2025-11-29,Nov,Q4,Amex,Bella Cucina,Dining out,22.62,AMX-1129-01
+2025-11-29,Nov,Q4,Visa,QuickFuel,Transportation,43.66,VIS-1129-01
+2025-11-30,Nov,Q4,Visa,Green Basket Market,Groceries,59.12,VIS-1130-01
+2025-11-30,Nov,Q4,Visa,QuickFuel,Transportation,55.96,VIS-1130-02
+2025-12-01,Dec,Q4,Visa,Peak Fitness Gym,Subscriptions,45,VIS-1201-01
+2025-12-02,Dec,Q4,Visa,Metro Transit,Transportation,50,VIS-1202-01
+2025-12-03,Dec,Q4,Visa,City Power & Light,Utilities,109.71,VIS-1203-01
+2025-12-04,Dec,Q4,Amex,Noodle Bar 88,Dining out,55.53,AMX-1204-01
+2025-12-05,Dec,Q4,Visa,StreamFlix,Subscriptions,15.49,VIS-1205-01
+2025-12-08,Dec,Q4,Amex,City Concert Hall,Entertainment,63.62,AMX-1208-01
+2025-12-08,Dec,Q4,Visa,Metro Water,Utilities,47.37,VIS-1208-01
+2025-12-09,Dec,Q4,Visa,TuneBox,Subscriptions,10.99,VIS-1209-01
+2025-12-11,Dec,Q4,Amex,Harbor Grill,Dining out,70.16,AMX-1211-01
+2025-12-11,Dec,Q4,Visa,QuickFuel,Transportation,39.88,VIS-1211-01
+2025-12-12,Dec,Q4,Visa,FastNet Internet,Utilities,70,VIS-1212-01
+2025-12-14,Dec,Q4,Amex,Harbor Grill,Dining out,38.14,AMX-1214-01
+2025-12-14,Dec,Q4,Visa,Corner Market,Groceries,61.39,VIS-1214-01
+2025-12-15,Dec,Q4,Visa,Green Basket Market,Groceries,63.32,VIS-1215-01
+2025-12-15,Dec,Q4,Visa,QuickFuel,Transportation,60.57,VIS-1215-02
+2025-12-17,Dec,Q4,Amex,Taqueria Sol,Dining out,62.21,AMX-1217-01
+2025-12-18,Dec,Q4,Visa,Neighborhood Pharmacy,Health,17.42,VIS-1218-01
+2025-12-20,Dec,Q4,Visa,FreshCo Grocery,Groceries,105.31,VIS-1220-01
+2025-12-20,Dec,Q4,Visa,SkyHop Airlines,Travel,529,VIS-1220-02
+2025-12-21,Dec,Q4,Amex,Bella Cucina,Dining out,21.24,AMX-1221-01
+2025-12-21,Dec,Q4,Amex,Harbor Grill,Dining out,31.88,AMX-1221-02
+2025-12-24,Dec,Q4,Visa,Hometown Hardware,Shopping,114.85,VIS-1224-01
+2025-12-27,Dec,Q4,Visa,Green Basket Market,Groceries,98.97,VIS-1227-01
+2025-12-30,Dec,Q4,Amex,Noodle Bar 88,Dining out,45.6,AMX-1230-01
+2025-12-30,Dec,Q4,Visa,Corner Market,Groceries,118.04,VIS-1230-01
+2025-12-30,Dec,Q4,Visa,Hometown Hardware,Shopping,88.32,VIS-1230-02
+2025-12-30,Dec,Q4,Visa,QuickFuel,Transportation,42.69,VIS-1230-03
+2025-12-31,Dec,Q4,Amex,Bella Cucina,Dining out,44.87,AMX-1231-01
+2025-08-01,Aug,Q3,Amex,Taqueria Sol,Dining out,44.23,AMX-0801-01
+2025-08-07,Aug,Q3,Amex,Noodle Bar 88,Dining out,31.82,AMX-0807-01
+2025-08-07,Aug,Q3,Amex,The Daily Grind Cafe,Dining out,26.99,AMX-0807-02
+2025-08-15,Aug,Q3,Amex,Taqueria Sol,Dining out,59.32,AMX-0815-01
+2025-08-15,Aug,Q3,Amex,The Daily Grind Cafe,Dining out,79.3,AMX-0815-02
+2025-08-19,Aug,Q3,Amex,Bowl-O-Rama,Entertainment,85.03,AMX-0819-01
+2025-08-31,Aug,Q3,Amex,Bella Cucina,Dining out,38.24,AMX-0831-01
+2025-08-31,Aug,Q3,Amex,Bella Cucina,Dining out,81.56,AMX-0831-02
+2025-09-02,Sep,Q3,Amex,Taqueria Sol,Dining out,74.59,AMX-0902-01
+2025-09-03,Sep,Q3,Amex,Bella Cucina,Dining out,38.56,AMX-0903-01
+2025-09-03,Sep,Q3,Amex,Noodle Bar 88,Dining out,28.14,AMX-0903-02
+2025-09-04,Sep,Q3,Amex,Harbor Grill,Dining out,78.52,AMX-0904-01
+2025-09-06,Sep,Q3,Amex,Taqueria Sol,Dining out,85.28,AMX-0906-01
+2025-09-08,Sep,Q3,Amex,The Daily Grind Cafe,Dining out,66.97,AMX-0908-01
+2025-09-19,Sep,Q3,Amex,Taqueria Sol,Dining out,76.85,AMX-0919-01
+2025-09-25,Sep,Q3,Amex,Noodle Bar 88,Dining out,27.78,AMX-0925-01
+2025-09-29,Sep,Q3,Amex,Starlight Cinema,Entertainment,60.49,AMX-0929-01
