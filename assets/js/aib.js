@@ -39,7 +39,11 @@
   /* ---------- links ---------- */
   // Page file names come from course.js (overviewPage, and page: on each module)
   const pageOf = id => id === "overview" ? C.overviewPage : ((LIST.find(m => m.id === id) || {}).page || id + ".html");
-  const href = id => SINGLE ? "#" + id : pageOf(id);
+  // ?preview in the address shows unpublished modules (published: false in course.js); links keep it while you click around
+  const PREVIEW = /[?&]preview\b/.test(location.search);
+  const isPub = id => { const e = LIST.find(m => m.id === id); return !e || e.published !== false; };
+  const shown = id => PREVIEW || isPub(id);
+  const href = id => SINGLE ? "#" + id : pageOf(id) + (PREVIEW ? "?preview" : "");
   const PAGE_ID = { "index.html": "overview" };      // file name -> id, for the one-file version
   PAGE_ID[C.overviewPage] = "overview";
   LIST.forEach(m => { PAGE_ID[m.page] = m.id; PAGE_ID[m.id + ".html"] = m.id; });
@@ -82,10 +86,10 @@
       '<li><a href="' + href("overview") + '"' + (cur === "overview" ? ' aria-current="page"' : "") +
       '><span class="n">00</span><span>Course Overview</span><span></span></a></li>' +
       LIST.map((m, i) => {
-        const s = cached(m.id);
-        return '<li><a href="' + href(m.id) + '"' + (cur === m.id ? ' aria-current="page"' : "") +
-          '><span class="n">' + pad(i + 1) + "</span><span>" + esc(m.short || m.title) +
-          '</span><span class="dot ' + (s === "todo" ? "" : s) + '" title="' + LABEL[s] + '"></span></a>' +
+        const s = cached(m.id), soon = !isPub(m.id);
+        return '<li><a href="' + href(m.id) + '"' + (cur === m.id ? ' aria-current="page"' : "") + (soon ? ' class="is-soon"' : "") +
+          '><span class="n">' + pad(i + 1) + "</span><span>" + esc(m.short || m.title) + "</span>" +
+          (soon ? '<span class="soontag">Soon</span>' : '<span class="dot ' + (s === "todo" ? "" : s) + '" title="' + LABEL[s] + '"></span>') + "</a>" +
           (cur === m.id && SECS.length ? '<nav aria-label="Sections on this page">' + secNav("secs") + "</nav>" : "") + "</li>";
       }).join("");
     const done = LIST.filter(m => cached(m.id) === "done").length;
@@ -125,11 +129,12 @@
           '<div><span class="k">' + esc(w.label) + '</span><span class="when">' + esc(w.when) + "</span><b>" + esc(w.title) + "</b><p>" + md(w.text) + "</p></div>").join("") + "</div></section>" +
 
       '<section class="sect"><h2>The modules</h2><div class="grid">' + LIST.map((m, i) => {
-          const s = cached(m.id);
-          return '<a class="mcard" href="' + href(m.id) + '"><span class="num">' + (i + 1) + "</span><div><b>" + esc(m.title) + "</b>" +
+          const s = cached(m.id), soon = !isPub(m.id);
+          return '<a class="mcard' + (soon ? " is-soon" : "") + '" href="' + href(m.id) + '"><span class="num">' + (i + 1) + "</span><div><b>" + esc(m.title) + "</b>" +
             (m.blurb ? '<span class="out">' + esc(m.blurb) + "</span>" : "") +
             '<div class="meta">' +
-              (s !== "todo" ? '<span class="' + chip(s) + '">' + LABEL[s] + "</span>" : "") +     // no label until started
+              (soon ? '<span class="chip coming">Coming soon</span>'
+                    : s !== "todo" ? '<span class="' + chip(s) + '">' + LABEL[s] + "</span>" : "") +     // no label until started
               '<span class="chip track">' + esc((C.tracks[m.track] || {}).label || "") + "</span>" +
               (m.setup ? '<span class="chip setup">Setup ' + esc(m.setup) + "</span>" : "") +
             "</div></div></a>";
@@ -414,13 +419,15 @@
       pager(i);
   }
 
+  // Shown for modules with published: false (unless ?preview), and for modules with no content file yet
   function soonView(entry, i) {
-    return '<header class="mhead"><div class="top"><span>' + (i >= 0 ? "Module " + (i + 1) + " of " + LIST.length : "") + "</span>" +
-        (entry.track && C.tracks[entry.track] ? '<span class="chip track">' + esc(C.tracks[entry.track].label) + "</span>" : "") + "</div>" +
+    const first = LIST.find(m => isPub(m.id));
+    return '<header class="mhead">' +
         "<h1>" + esc(entry.title || "Page not found") + "</h1>" +
-        (entry.output ? '<p class="goal">You leave with: ' + esc(entry.output) + "</p>" : "") + "</header>" +
-      '<div class="soon"><b>This module is being written.</b><p>It will appear here once it has been drafted and test-run. ' +
-        'Start with the course overview, or come to office hours with questions.</p></div>' + pager(i);
+        (entry.blurb ? '<p class="goal">' + esc(entry.blurb) + "</p>" : "") + "</header>" +
+      '<div class="soon"><span class="chip coming">Coming soon</span><b>This module is being updated and will be published soon.</b>' +
+        "<p>In the meantime, start with " + (first && first.id !== entry.id ? '<a href="' + href(first.id) + '">Module ' + (LIST.indexOf(first) + 1) + ": " + esc(first.title) + "</a>" : "the course overview") +
+        " or come to office hours.</p></div>" + pager(i);
   }
 
   function pager(i) {
@@ -514,8 +521,11 @@
       return;
     }
     const i = LIST.findIndex(x => x.id === id);
-    const m = MODS[id];
-    if (m) { main.innerHTML = moduleView(m); mount(m); }
+    const m = shown(id) ? MODS[id] : null;
+    if (m) {
+      main.innerHTML = (isPub(id) ? "" : '<div class="previewbar">Preview · not published. Students see "Coming soon" on this page.</div>') + moduleView(m);
+      mount(m);
+    }
     else { SECS = []; main.innerHTML = soonView(LIST[i] || { id }, i); rail(id); }
     if (SINGLE) main.querySelectorAll("a[href]").forEach(a => {   // "m01-briefing-claude.html#..." -> "#m1" in the one-file version
       const k = a.getAttribute("href").match(/^([\w-]+\.html)(#.*)?$/);
@@ -525,7 +535,7 @@
   }
 
   function loadModule(id, done) {
-    if (MODS[id]) return done();
+    if (MODS[id] || !shown(id)) return done();      // unpublished: don't even load the content file
     const s = document.createElement("script");
     s.src = "content/modules/" + id + ".js";
     s.onload = done;

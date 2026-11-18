@@ -27,8 +27,11 @@ vm.runInNewContext(courseSrc, sandbox);
 const C = sandbox.window.AIB_COURSE;
 if (!C || !Array.isArray(C.modules)) throw new Error("content/course.js did not define AIB_COURSE.modules");
 
-const moduleFiles = C.modules.map(m => "content/modules/" + m.id + ".js").filter(exists);
-const missing = C.modules.filter(m => !exists("content/modules/" + m.id + ".js")).map(m => m.id);
+// Modules with published: false in course.js are left out, so their text isn't in the file (they show "Coming soon")
+const published = C.modules.filter(m => m.published !== false);
+const unpublished = C.modules.filter(m => m.published === false).map(m => m.id);
+const moduleFiles = published.map(m => "content/modules/" + m.id + ".js").filter(exists);
+const missing = published.filter(m => !exists("content/modules/" + m.id + ".js")).map(m => m.id);
 
 // Inline local images referenced from content as "assets/img/..."
 const MIME = { png: "image/png", jpg: "image/jpeg", jpeg: "image/jpeg", gif: "image/gif", svg: "image/svg+xml", webp: "image/webp" };
@@ -67,4 +70,5 @@ const out = path.join(root, "dist", "ai-basics-lab.html");
 fs.writeFileSync(out, html);
 console.log("Built " + path.relative(root, out) + " (" + Math.round(html.length / 1024) + " KB)");
 console.log("  modules included: " + (moduleFiles.length ? moduleFiles.map(f => path.basename(f, ".js")).join(", ") : "none yet"));
-if (missing.length) console.log("  not written yet (shown as 'being written'): " + missing.join(", "));
+if (unpublished.length) console.log("  left out, not published (shown as 'Coming soon'): " + unpublished.join(", "));
+if (missing.length) console.log("  not written yet (shown as 'Coming soon'): " + missing.join(", "));

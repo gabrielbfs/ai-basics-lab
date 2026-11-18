@@ -39,15 +39,17 @@ window.AIB_COURSE = {
   // once written, a content file (content/modules/m1.js). Until then the page says "being written".
   // blurb = the few-word description on the overview card; output = what the student leaves with;
   // setup = which setup part (A or B) the module needs, shown on the card as "Setup A" / "Setup B".
+  // published = false shows "Coming soon" in the menu, on the card and on the page, and leaves the module out of
+  // the single-file build. Add ?preview to a page address to see unpublished modules while you edit them.
   modules: [
-    { id: "m1", page: "m01-briefing-claude.html", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear prompts and check what Claude gives back.", output: "a 3-sentence project idea", setup: "A" },
-    { id: "m2", page: "m02-research-analysis.html", title: "Research & Analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "an assumptions table and sample data, checked", setup: "A" },
-    { id: "m3", page: "m03-asking-vs-delegating.html", title: "Asking vs. Delegating",              short: "Ask vs. Delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief", setup: "A" },
-    { id: "m4", page: "m04-projects-artifacts.html", title: "Projects & Artifacts",                short: "Projects & Artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool", setup: "A" },
-    { id: "m5", page: "m05-skills.html", title: "Skills",                              short: "Skills",               track: "nocode", blurb: "Teach Claude a task once and reuse it whenever you need it.", output: "a spec-writer skill and your build spec", setup: "A" },
-    { id: "m6", page: "m06-connectors-automation.html", title: "Connectors & Automation",             short: "Connectors",           track: "nocode", blurb: "Link your email, calendar or files and schedule a weekly task.", output: "one scheduled automation for your work", setup: "A" },
-    { id: "m7", page: "m07-claude-code.html", title: "Claude Code",                         short: "Claude Code",          track: "build",  blurb: "Turn your prototype into a real app on your computer.", output: "a real app in a folder on your computer", setup: "B" },
-    { id: "m8", page: "m08-save-ship.html", title: "Save & Ship",                         short: "Save & Ship",          track: "build",  blurb: "Put your app on GitHub and share a live link.", output: "a GitHub repo and a live link", setup: "B" }
+    { id: "m1", page: "m01-briefing-claude.html", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear prompts and check what Claude gives back.", output: "a 3-sentence project idea", setup: "A", published: true  },
+    { id: "m2", page: "m02-research-analysis.html", title: "Research & Analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "an assumptions table and sample data, checked", setup: "A", published: false },
+    { id: "m3", page: "m03-asking-vs-delegating.html", title: "Asking vs. Delegating",              short: "Ask vs. Delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief", setup: "A", published: false },
+    { id: "m4", page: "m04-projects-artifacts.html", title: "Projects & Artifacts",                short: "Projects & Artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool", setup: "A", published: false },
+    { id: "m5", page: "m05-skills.html", title: "Skills",                              short: "Skills",               track: "nocode", blurb: "Teach Claude a task once and reuse it whenever you need it.", output: "a spec-writer skill and your build spec", setup: "A", published: false },
+    { id: "m6", page: "m06-connectors-automation.html", title: "Connectors & Automation",             short: "Connectors",           track: "nocode", blurb: "Link your email, calendar or files and schedule a weekly task.", output: "one scheduled automation for your work", setup: "A", published: false },
+    { id: "m7", page: "m07-claude-code.html", title: "Claude Code",                         short: "Claude Code",          track: "build",  blurb: "Turn your prototype into a real app on your computer.", output: "a real app in a folder on your computer", setup: "B", published: false },
+    { id: "m8", page: "m08-save-ship.html", title: "Save & Ship",                         short: "Save & Ship",          track: "build",  blurb: "Put your app on GitHub and share a live link.", output: "a GitHub repo and a live link", setup: "B", published: false }
   ],
 
   // Not shown on the overview yet; kept for when the elective pages are written.

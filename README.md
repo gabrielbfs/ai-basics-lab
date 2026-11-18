@@ -59,6 +59,12 @@ The page's section order is fixed by the template. A section only appears if the
 
 On phones, the same list is an "On this page" menu at the top of the module. "Before you start" items are checkboxes, saved in the browser.
 
+## Publish a module
+
+Each module in `content/course.js` has `published: true` or `published: false`. Unpublished modules still appear in the menu and on the overview, marked **Coming soon**. Their page shows a short "coming soon" message, and the content file isn't loaded. To publish one, change it to `published: true` and rebuild the single file.
+
+To see an unpublished module while you work on it, add `?preview` to the address, e.g. `m02-research-analysis.html?preview`. A banner reminds you that students don't see it yet. Preview works with the separate pages only. The single file leaves unpublished modules out entirely.
+
 ## Make a single-file version
 
 ```
