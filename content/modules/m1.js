@@ -24,6 +24,8 @@ window.AIB_MODULES["m1"] = {
   breakdown: {
     // "prompt" = the message you send Claude (used across the course); "brief" is kept for Module 3's brief.docx
     key: "A **prompt** is the message you send Claude. A clear prompt in, a useful answer out. Then check it before you use it.",
+    figure: { top: true, image: "assets/img/m1-prompt-loop.svg",
+              alt: "Diagram of five steps in a row: 1 Prompt (all 4 parts), 2 Draft answer (Claude's first try), 3 Push back (one specific change), 4 Check (open the source), 5 Use (once it holds up). A dashed arrow from Check back to Push back says: Not right yet? Repeat." },
     // text can be one paragraph or a list of short bullets
     concepts: [
       { title: "The four parts of a good prompt",
@@ -126,6 +128,8 @@ window.AIB_MODULES["m1"] = {
     { title: "Save your idea", text: "Write it in 3 sentences and save it in your **ai-basics** folder as **project-idea**. Module 2 starts from it." }
   ],
   tip: "If the answer is off, fix your first message instead: hover over it, click **Edit** (the pencil), add what was missing and resend. That usually beats five follow-ups.",
+  tipShot: { image: "assets/img/m1-edit-message.svg", caption: "Illustration. Your screen may look slightly different.",
+             alt: "Illustration of a Claude chat. Under your sent message, Explain WACC to a classmate, is a small Edit button with a pencil. It is highlighted with the label: Hover, then click." },
   transfer: "The four parts, pushback and checking work the same way in ChatGPT, Microsoft Copilot and Google Gemini.",
 
   exercises: [
@@ -144,7 +148,9 @@ window.AIB_MODULES["m1"] = {
                      points: ["Your improved answer after two pushbacks",
                               "One claim you checked: what it said, where you checked it, and whether it held up"] },
       stretch: "Ask Claude: \"Argue against your expert explanation.\" Then decide which side is stronger, and why.",
-      goodLooksLike: { text: "**Pushback on a claim:** *\"Your expert version says margins typically fall 20–30% after a price war. Typical for which industry? Give me a source I can open, or say you're estimating.\"*\n\n**Pushback on the format:** *\"Your 10-year-old version uses the word 'capital'. Replace it with a word a kid knows.\"*\n\n**A check, written down:** *Checked the 20–30% figure. Claude's source was a consulting blog post with no data behind it, so I won't use the number.*" }
+      goodLooksLike: { image: "assets/img/m1-pushback-chat.svg",
+        alt: "Illustration of a chat. Claude's claim: after a price war, margins typically fall 20 to 30 percent, marked no source. Your pushback: Typical for which industry? Give me a source I can open, or say you're estimating. Claude's fix: You're right to ask: 20 to 30 percent is my estimate, not a sourced figure. Here's the expert version without it.",
+        text: "**Pushback on a claim:** *\"Your expert version says margins typically fall 20–30% after a price war. Typical for which industry? Give me a source I can open, or say you're estimating.\"*\n\n**Pushback on the format:** *\"Your 10-year-old version uses the word 'capital'. Replace it with a word a kid knows.\"*\n\n**A check, written down:** *Checked the 20–30% figure. Claude's source was a consulting blog post with no data behind it, so I won't use the number.*" }
     },
     {
       title: "B · Choose your project",

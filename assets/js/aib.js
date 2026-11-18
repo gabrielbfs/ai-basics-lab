@@ -180,13 +180,17 @@
   function breakdownHTML(bd) {
     // compare: one table or a list of them
     const cmp = bd.compare ? [].concat(bd.compare).map(table).join("") : "";
-    return (bd.key ? '<p class="keyidea">' + md(bd.key) + "</p>" : "") +
+    // figure: {svg} (inline) or {image, alt} (file in assets/img), optional caption; top: true puts it under the key line
+    const f = bd.figure;
+    const fig = f ? '<figure class="diagram">' + (f.image ? '<img src="' + esc(f.image) + '" alt="' + esc(f.alt || "") + '" loading="lazy">' : f.svg || "") +
+      (f.caption ? "<figcaption>" + md(f.caption) + "</figcaption>" : "") + "</figure>" : "";
+    return (bd.key ? '<p class="keyidea">' + md(bd.key) + "</p>" : "") + (f && f.top ? fig : "") +
       '<div class="concepts">' + (bd.concepts || []).map(c =>
         // text can be one paragraph or a list of short bullets
         '<div class="concept"><b>' + esc(c.title) + "</b>" + (Array.isArray(c.text)
           ? '<ul class="pts">' + c.text.map(x => "<li>" + md(x) + "</li>").join("") + "</ul>"
           : "<p>" + md(c.text) + "</p>") + "</div>").join("") + "</div>" +
-      (bd.figure ? '<figure class="diagram">' + bd.figure.svg + (bd.figure.caption ? "<figcaption>" + md(bd.figure.caption) + "</figcaption>" : "") + "</figure>" : "") + cmp;
+      (f && !f.top ? fig : "") + cmp;
   }
 
   // frameworks: {intro, cards:[{name, goodFor, parts:[[term, meaning]]}], table, note, sample:{title, task, items:[{name, prompt}]}}
@@ -273,17 +277,19 @@
       ? '<li class="grp">' + esc(x.group) + "</li>"
       : "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol>" +
       (m.tip ? '<div class="tip"><b>Tip</b><span>' + md(m.tip) + "</span></div>" : "") +
+      // tipShot: an illustration under the tip, same format as setup shots ({image, alt, caption})
+      (m.tipShot ? shotHTML(m.tipShot) : "") +
       (m.transfer ? '<p class="transfer"><b>Works elsewhere too.</b> ' + md(m.transfer) + "</p>" : "");
   }
 
+  // What good looks like: text, an image, or both (image first, then the text)
   function goodHTML(g) {
     if (!g) return "";
-    if (g.image) {
-      if (!g.alt) console.warn("[AI Basics Lab] 'What good looks like' image is missing alt text:", g.image);
-      return '<figure class="good"><img src="' + esc(g.image) + '" alt="' + esc(g.alt || "") + '" loading="lazy">' +
-        (g.caption ? "<figcaption>" + md(g.caption) + "</figcaption>" : "") + "</figure>";
-    }
-    return g.text ? '<div class="good"><p class="goodtext">' + md(g.text) + "</p></div>" : "";
+    if (g.image && !g.alt) console.warn("[AI Basics Lab] 'What good looks like' image is missing alt text:", g.image);
+    const img = g.image ? '<img src="' + esc(g.image) + '" alt="' + esc(g.alt || "") + '" loading="lazy">' +
+      (g.caption ? "<figcaption>" + md(g.caption) + "</figcaption>" : "") : "";
+    const txt = g.text ? '<p class="goodtext">' + md(g.text) + "</p>" : "";
+    return img || txt ? '<figure class="good">' + img + txt + "</figure>" : "";
   }
 
   function exercisesHTML(m) {

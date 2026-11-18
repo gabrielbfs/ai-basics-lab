@@ -287,6 +287,8 @@ ol.steps ul.pts li::marker{color:var(--accent)}
 .good img{display:block;width:100%}
 .good figcaption,.good .goodtext{padding:10px 14px;font-size:14.5px;color:var(--muted)}
 .good .goodtext{color:var(--fg);white-space:pre-line}
+.good img + .goodtext,.good figcaption + .goodtext{border-top:1px solid var(--line)}
+.good img{max-width:620px;margin:0 auto}
 .files{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .files .sub{margin-right:4px}
 .btn.file{text-decoration:none;color:var(--fg);font-size:13.5px;padding:5px 12px}
@@ -398,7 +400,7 @@ table.cmp.restable tbody tr.grp:first-child th{padding-top:8px}
 .xsteps{margin:4px 0 4px;padding-left:22px;display:flex;flex-direction:column;gap:6px;max-width:72ch}
 .xsteps li::marker{color:var(--accent);font-family:var(--ui);font-weight:700}
 figure.diagram{margin:18px 0 6px;max-width:760px}
-figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram svg,figure.diagram img{display:block;width:100%;height:auto}
 figure.diagram figcaption{font-size:14px;color:var(--muted);margin-top:6px}
 .dg-frame{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
 .dg-pane{fill:var(--bg);stroke:var(--line);stroke-width:1}

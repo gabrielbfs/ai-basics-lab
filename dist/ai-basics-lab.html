@@ -294,6 +294,8 @@ ol.steps ul.pts li::marker{color:var(--accent)}
 .good img{display:block;width:100%}
 .good figcaption,.good .goodtext{padding:10px 14px;font-size:14.5px;color:var(--muted)}
 .good .goodtext{color:var(--fg);white-space:pre-line}
+.good img + .goodtext,.good figcaption + .goodtext{border-top:1px solid var(--line)}
+.good img{max-width:620px;margin:0 auto}
 .files{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .files .sub{margin-right:4px}
 .btn.file{text-decoration:none;color:var(--fg);font-size:13.5px;padding:5px 12px}
@@ -405,7 +407,7 @@ table.cmp.restable tbody tr.grp:first-child th{padding-top:8px}
 .xsteps{margin:4px 0 4px;padding-left:22px;display:flex;flex-direction:column;gap:6px;max-width:72ch}
 .xsteps li::marker{color:var(--accent);font-family:var(--ui);font-weight:700}
 figure.diagram{margin:18px 0 6px;max-width:760px}
-figure.diagram svg{display:block;width:100%;height:auto}
+figure.diagram svg,figure.diagram img{display:block;width:100%;height:auto}
 figure.diagram figcaption{font-size:14px;color:var(--muted);margin-top:6px}
 .dg-frame{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
 .dg-pane{fill:var(--bg);stroke:var(--line);stroke-width:1}
@@ -583,6 +585,8 @@ window.AIB_MODULES["m1"] = {
   breakdown: {
     // "prompt" = the message you send Claude (used across the course); "brief" is kept for Module 3's brief.docx
     key: "A **prompt** is the message you send Claude. A clear prompt in, a useful answer out. Then check it before you use it.",
+    figure: { top: true, image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3ODAgMTYwIiB3aWR0aD0iNzgwIiBoZWlnaHQ9IjE2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJEaWFncmFtOiBQcm9tcHQsIHRoZW4gZHJhZnQgYW5zd2VyLCB0aGVuIHB1c2ggYmFjaywgdGhlbiBjaGVjaywgdGhlbiB1c2UuIElmIHRoZSBhbnN3ZXIgaXNuJ3QgcmlnaHQgeWV0LCBnbyBiYWNrIHRvIHB1c2ggYmFjay4iPgogIDwhLS0gTW9kdWxlIDEgbG9vcCBkaWFncmFtLCBkcmF3biBmb3IgQUkgQmFzaWNzIExhYi4gLS0+CiAgPHN0eWxlPgogICAgLmJ7ZmlsbDojZmZmZmZmO3N0cm9rZTojZDlkNmNmO3N0cm9rZS13aWR0aDoxLjV9CiAgICAua3tmaWxsOiNmOGU5ZWM7c3Ryb2tlOiNBMzFGMzQ7c3Ryb2tlLXdpZHRoOjEuNX0KICAgIC5ue2ZvbnQtZmFtaWx5OiJKb3N0IiwtYXBwbGUtc3lzdGVtLCJTZWdvZSBVSSIsUm9ib3RvLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEycHg7Zm9udC13ZWlnaHQ6NzAwO2ZpbGw6I0EzMUYzNH0KICAgIC50e2ZvbnQtZmFtaWx5OiJKb3N0IiwtYXBwbGUtc3lzdGVtLCJTZWdvZSBVSSIsUm9ib3RvLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE2cHg7Zm9udC13ZWlnaHQ6NjAwO2ZpbGw6IzFmMjMyOH0KICAgIC5ze2ZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sIlNlZ29lIFVJIixSb2JvdG8sQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTIuNXB4O2ZpbGw6IzVmNjM2OH0KICAgIC5he2ZpbGw6bm9uZTtzdHJva2U6IzhhOGY5ODtzdHJva2Utd2lkdGg6MjtzdHJva2UtbGluZWNhcDpyb3VuZDtzdHJva2UtbGluZWpvaW46cm91bmR9CiAgICAucntmaWxsOm5vbmU7c3Ryb2tlOiNBMzFGMzQ7c3Ryb2tlLXdpZHRoOjI7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1kYXNoYXJyYXk6NSA0fQogIDwvc3R5bGU+CiAgPCEtLSBib3hlcyAtLT4KICA8cmVjdCBjbGFzcz0iYiIgeD0iMTAiICB5PSIxNCIgd2lkdGg9IjEzMiIgaGVpZ2h0PSI3NiIgcng9IjEwIi8+CiAgPHJlY3QgY2xhc3M9ImIiIHg9IjE2NiIgeT0iMTQiIHdpZHRoPSIxMzIiIGhlaWdodD0iNzYiIHJ4PSIxMCIvPgogIDxyZWN0IGNsYXNzPSJrIiB4PSIzMjIiIHk9IjE0IiB3aWR0aD0iMTMyIiBoZWlnaHQ9Ijc2IiByeD0iMTAiLz4KICA8cmVjdCBjbGFzcz0iayIgeD0iNDc4IiB5PSIxNCIgd2lkdGg9IjEzMiIgaGVpZ2h0PSI3NiIgcng9IjEwIi8+CiAgPHJlY3QgY2xhc3M9ImIiIHg9IjYzNCIgeT0iMTQiIHdpZHRoPSIxMzIiIGhlaWdodD0iNzYiIHJ4PSIxMCIvPgogIDx0ZXh0IGNsYXNzPSJuIiB4PSIyNCIgIHk9IjM2Ij4xPC90ZXh0Pjx0ZXh0IGNsYXNzPSJ0IiB4PSIyNCIgIHk9IjU4Ij5Qcm9tcHQ8L3RleHQ+PHRleHQgY2xhc3M9InMiIHg9IjI0IiAgeT0iNzgiPmFsbCA0IHBhcnRzPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJuIiB4PSIxODAiIHk9IjM2Ij4yPC90ZXh0Pjx0ZXh0IGNsYXNzPSJ0IiB4PSIxODAiIHk9IjU4Ij5EcmFmdCBhbnN3ZXI8L3RleHQ+PHRleHQgY2xhc3M9InMiIHg9IjE4MCIgeT0iNzgiPkNsYXVkZSdzIGZpcnN0IHRyeTwvdGV4dD4KICA8dGV4dCBjbGFzcz0ibiIgeD0iMzM2IiB5PSIzNiI+MzwvdGV4dD48dGV4dCBjbGFzcz0idCIgeD0iMzM2IiB5PSI1OCI+UHVzaCBiYWNrPC90ZXh0Pjx0ZXh0IGNsYXNzPSJzIiB4PSIzMzYiIHk9Ijc4Ij5vbmUgc3BlY2lmaWMgY2hhbmdlPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJuIiB4PSI0OTIiIHk9IjM2Ij40PC90ZXh0Pjx0ZXh0IGNsYXNzPSJ0IiB4PSI0OTIiIHk9IjU4Ij5DaGVjazwvdGV4dD48dGV4dCBjbGFzcz0icyIgeD0iNDkyIiB5PSI3OCI+b3BlbiB0aGUgc291cmNlPC90ZXh0PgogIDx0ZXh0IGNsYXNzPSJuIiB4PSI2NDgiIHk9IjM2Ij41PC90ZXh0Pjx0ZXh0IGNsYXNzPSJ0IiB4PSI2NDgiIHk9IjU4Ij5Vc2U8L3RleHQ+PHRleHQgY2xhc3M9InMiIHg9IjY0OCIgeT0iNzgiPm9uY2UgaXQgaG9sZHMgdXA8L3RleHQ+CiAgPCEtLSBmb3J3YXJkIGFycm93cyAtLT4KICA8cGF0aCBjbGFzcz0iYSIgZD0iTTE0NCA1MmgxOE0xNTYgNDZsNiA2LTYgNiIvPgogIDxwYXRoIGNsYXNzPSJhIiBkPSJNMzAwIDUyaDE4TTMxMiA0Nmw2IDYtNiA2Ii8+CiAgPHBhdGggY2xhc3M9ImEiIGQ9Ik00NTYgNTJoMThNNDY4IDQ2bDYgNi02IDYiLz4KICA8cGF0aCBjbGFzcz0iYSIgZD0iTTYxMiA1MmgxOE02MjQgNDZsNiA2LTYgNiIvPgogIDwhLS0gcmVwZWF0IGxvb3A6IGZyb20gQ2hlY2sgYmFjayB0byBQdXNoIGJhY2sgLS0+CiAgPHBhdGggY2xhc3M9InIiIGQ9Ik01NDQgOTJ2MzBIMzg4Vjk2Ii8+CiAgPHBhdGggZD0iTTM4MiAxMDNsNi04IDYgOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTMxRjM0IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDx0ZXh0IHg9IjQ2NiIgeT0iMTQ0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0iZm9udC1mYW1pbHk6LWFwcGxlLXN5c3RlbSwnU2Vnb2UgVUknLFJvYm90byxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMi41cHg7Zm9udC13ZWlnaHQ6NjAwO2ZpbGw6I0EzMUYzNCI+Tm90IHJpZ2h0IHlldD8gUmVwZWF0PC90ZXh0Pgo8L3N2Zz4K",
+              alt: "Diagram of five steps in a row: 1 Prompt (all 4 parts), 2 Draft answer (Claude's first try), 3 Push back (one specific change), 4 Check (open the source), 5 Use (once it holds up). A dashed arrow from Check back to Push back says: Not right yet? Repeat." },
     // text can be one paragraph or a list of short bullets
     concepts: [
       { title: "The four parts of a good prompt",
@@ -685,6 +689,8 @@ window.AIB_MODULES["m1"] = {
     { title: "Save your idea", text: "Write it in 3 sentences and save it in your **ai-basics** folder as **project-idea**. Module 2 starts from it." }
   ],
   tip: "If the answer is off, fix your first message instead: hover over it, click **Edit** (the pencil), add what was missing and resend. That usually beats five follow-ups.",
+  tipShot: { image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MjAgMjIwIiB3aWR0aD0iNTIwIiBoZWlnaHQ9IjIyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJJbGx1c3RyYXRpb246IGEgc2VudCBtZXNzYWdlIGluIGEgQ2xhdWRlIGNoYXQsIHdpdGggdGhlIEVkaXQgYnV0dG9uIHVuZGVyIGl0IGhpZ2hsaWdodGVkIj4KICA8IS0tIElsbHVzdHJhdGlvbiBvZiBlZGl0aW5nIGEgc2VudCBtZXNzYWdlIGluIENsYXVkZSAobGlnaHQgbW9kZSksIGRyYXduIGZvciBBSSBCYXNpY3MgTGFiLiBOb3QgYSBzY3JlZW5zaG90LiBHcmV5IGJhcnMgc3RhbmQgZm9yIHRleHQuIC0tPgogIDxzdHlsZT4KICAgIC50e2ZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sIlNlZ29lIFVJIixSb2JvdG8sQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTRweDtmaWxsOiMyZjJmMmN9CiAgICAuaWN7ZmlsbDpub25lO3N0cm9rZTojNmI2YTY0O3N0cm9rZS13aWR0aDoxLjY7c3Ryb2tlLWxpbmVjYXA6cm91bmQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kfQogIDwvc3R5bGU+CiAgPHJlY3Qgd2lkdGg9IjUyMCIgaGVpZ2h0PSIyMjAiIGZpbGw9IiNmYWY5ZjUiLz4KICA8IS0tIHlvdXIgbWVzc2FnZSAtLT4KICA8cmVjdCB4PSIxOTYiIHk9IjIwIiB3aWR0aD0iMzA0IiBoZWlnaHQ9IjQwIiByeD0iMTIiIGZpbGw9IiNmMGVlZTYiLz4KICA8dGV4dCB4PSIyMTQiIHk9IjQ1IiBjbGFzcz0idCI+RXhwbGFpbiBXQUNDIHRvIGEgY2xhc3NtYXRlLjwvdGV4dD4KICA8IS0tIGhvdmVyIGFjdGlvbnMgdW5kZXIgeW91ciBtZXNzYWdlIC0tPgogIDxyZWN0IHg9IjQwOCIgeT0iNjYiIHdpZHRoPSI3MCIgaGVpZ2h0PSIyNiIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2RjZDlkMCIvPgogIDxnIGNsYXNzPSJpYyI+PHBhdGggZD0iTTQxOCA4NmwyLTYgOS05IDQgNC05IDl6IE00MjcgNzNsNCA0Ii8+PC9nPgogIDx0ZXh0IHg9IjQ0MCIgeT0iODQiIGNsYXNzPSJ0IiBzdHlsZT0iZm9udC1zaXplOjEzcHgiPkVkaXQ8L3RleHQ+CiAgPCEtLSBoaWdobGlnaHQgLS0+CiAgPHJlY3QgeD0iNDAzIiB5PSI2MSIgd2lkdGg9IjgwIiBoZWlnaHQ9IjM2IiByeD0iOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTMxRjM0IiBzdHJva2Utd2lkdGg9IjMiLz4KICA8cGF0aCBkPSJNMzk2IDc5aC0yNCIgc3Ryb2tlPSIjQTMxRjM0IiBzdHJva2Utd2lkdGg9IjIuNSIvPgogIDxwYXRoIGQ9Ik0zOTYgNzlsLTctNU0zOTYgNzlsLTcgNSIgc3Ryb2tlPSIjQTMxRjM0IiBzdHJva2Utd2lkdGg9IjIuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPHJlY3QgeD0iMjMwIiB5PSI2NiIgd2lkdGg9IjEzOCIgaGVpZ2h0PSIyNiIgcng9IjUiIGZpbGw9IiNBMzFGMzQiLz4KICA8dGV4dCB4PSIyOTkiIHk9Ijg0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0iZm9udC1mYW1pbHk6LWFwcGxlLXN5c3RlbSwnU2Vnb2UgVUknLFJvYm90byxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxM3B4O2ZvbnQtd2VpZ2h0OjcwMDtmaWxsOiNmZmZmZmYiPkhvdmVyLCB0aGVuIGNsaWNrPC90ZXh0PgogIDwhLS0gQ2xhdWRlJ3MgYW5zd2VyIC0tPgogIDxjaXJjbGUgY3g9IjM0IiBjeT0iMTI2IiByPSIxMCIgZmlsbD0iI2Q5Nzc1NyIvPgogIDx0ZXh0IHg9IjU0IiB5PSIxMzEiIGNsYXNzPSJ0Ij5XQUNDIGlzIHRoZSBhdmVyYWdlIGNvc3Qgb2YgdGhlIG1vbmV5IGEgY29tcGFueSB1c2VzLi4uPC90ZXh0PgogIDxyZWN0IHg9IjU0IiB5PSIxNDYiIHdpZHRoPSIzODAiIGhlaWdodD0iOSIgcng9IjQiIGZpbGw9IiNlNmU0ZGMiLz4KICA8cmVjdCB4PSI1NCIgeT0iMTY0IiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjkiIHJ4PSI0IiBmaWxsPSIjZTZlNGRjIi8+CiAgPHJlY3QgeD0iNTQiIHk9IjE4MiIgd2lkdGg9IjI1MCIgaGVpZ2h0PSI5IiByeD0iNCIgZmlsbD0iI2VjZWJlNSIvPgo8L3N2Zz4K", caption: "Illustration. Your screen may look slightly different.",
+             alt: "Illustration of a Claude chat. Under your sent message, Explain WACC to a classmate, is a small Edit button with a pencil. It is highlighted with the label: Hover, then click." },
   transfer: "The four parts, pushback and checking work the same way in ChatGPT, Microsoft Copilot and Google Gemini.",
 
   exercises: [
@@ -703,7 +709,9 @@ window.AIB_MODULES["m1"] = {
                      points: ["Your improved answer after two pushbacks",
                               "One claim you checked: what it said, where you checked it, and whether it held up"] },
       stretch: "Ask Claude: \"Argue against your expert explanation.\" Then decide which side is stronger, and why.",
-      goodLooksLike: { text: "**Pushback on a claim:** *\"Your expert version says margins typically fall 20–30% after a price war. Typical for which industry? Give me a source I can open, or say you're estimating.\"*\n\n**Pushback on the format:** *\"Your 10-year-old version uses the word 'capital'. Replace it with a word a kid knows.\"*\n\n**A check, written down:** *Checked the 20–30% figure. Claude's source was a consulting blog post with no data behind it, so I won't use the number.*" }
+      goodLooksLike: { image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MjAgMzMwIiB3aWR0aD0iNjIwIiBoZWlnaHQ9IjMzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJJbGx1c3RyYXRpb24gb2YgYSBjaGF0OiBDbGF1ZGUgbWFrZXMgYW4gdW5zb3VyY2VkIGNsYWltLCB5b3UgcHVzaCBiYWNrIHdpdGggYSBzcGVjaWZpYyBxdWVzdGlvbiwgYW5kIENsYXVkZSBjb3JyZWN0cyBpdHNlbGYiPgogIDwhLS0gUHVzaGJhY2sgZXhhbXBsZSwgZHJhd24gZm9yIEFJIEJhc2ljcyBMYWIuIE5vdCBhIHNjcmVlbnNob3QuIE1hZGUtdXAgY29udmVyc2F0aW9uLiAtLT4KICA8c3R5bGU+CiAgICAudHtmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLCJTZWdvZSBVSSIsUm9ib3RvLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEzLjVweDtmaWxsOiMyZjJmMmN9CiAgICAudGFne2ZvbnQtZmFtaWx5OnVpLW1vbm9zcGFjZSwiU0ZNb25vLVJlZ3VsYXIiLENvbnNvbGFzLG1vbm9zcGFjZTtmb250LXNpemU6MTAuNXB4O2xldHRlci1zcGFjaW5nOi4wOGVtO2ZvbnQtd2VpZ2h0OjYwMH0KICA8L3N0eWxlPgogIDxyZWN0IHdpZHRoPSI2MjAiIGhlaWdodD0iMzMwIiBmaWxsPSIjZmZmZmZmIi8+CgogIDwhLS0gMS4gQ2xhdWRlJ3MgY2xhaW0gLS0+CiAgPHRleHQgeD0iMjAiIHk9IjI2IiBjbGFzcz0idGFnIiBmaWxsPSIjNWY2MzY4Ij5DTEFVREUnUyBDTEFJTTwvdGV4dD4KICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjU0IiByPSI5IiBmaWxsPSIjZDk3NzU3Ii8+CiAgPHJlY3QgeD0iNDgiIHk9IjM2IiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjU4IiByeD0iMTIiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2UzZTFkYSIvPgogIDx0ZXh0IHg9IjY0IiB5PSI2MCIgY2xhc3M9InQiPkV4cGVydCB2ZXJzaW9uOiBhZnRlciBhIHByaWNlIHdhciwgbWFyZ2luczwvdGV4dD4KICA8dGV4dCB4PSI2NCIgeT0iODAiIGNsYXNzPSJ0Ij50eXBpY2FsbHkgZmFsbCAyMOKAkzMwJS48L3RleHQ+CiAgPHJlY3QgeD0iMzY4IiB5PSI3MCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2ZmZjRjYyIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHN0eWxlPSJmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLCdTZWdvZSBVSScsUm9ib3RvLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjEwLjVweDtmb250LXdlaWdodDo3MDA7ZmlsbDojN0E1QTAwIj5ubyBzb3VyY2U8L3RleHQ+CgogIDwhLS0gMi4gWW91ciBwdXNoYmFjayAtLT4KICA8dGV4dCB4PSI2MDAiIHk9IjEyNCIgdGV4dC1hbmNob3I9ImVuZCIgY2xhc3M9InRhZyIgZmlsbD0iI0EzMUYzNCI+WU9VUiBQVVNIQkFDSzwvdGV4dD4KICA8cmVjdCB4PSIxNzAiIHk9IjEzNCIgd2lkdGg9IjQzMCIgaGVpZ2h0PSI1OCIgcng9IjEyIiBmaWxsPSIjZjhlOWVjIiBzdHJva2U9IiNBMzFGMzQiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iMTg2IiB5PSIxNTgiIGNsYXNzPSJ0Ij5UeXBpY2FsIGZvciB3aGljaCBpbmR1c3RyeT8gR2l2ZSBtZSBhIHNvdXJjZSBJIGNhbjwvdGV4dD4KICA8dGV4dCB4PSIxODYiIHk9IjE3OCIgY2xhc3M9InQiPm9wZW4sIG9yIHNheSB5b3UncmUgZXN0aW1hdGluZy48L3RleHQ+CgogIDwhLS0gMy4gQ2xhdWRlJ3MgZml4IC0tPgogIDx0ZXh0IHg9IjIwIiB5PSIyMjIiIGNsYXNzPSJ0YWciIGZpbGw9IiMyRTZCMkEiPkNMQVVERSdTIEZJWDwvdGV4dD4KICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjI1MCIgcj0iOSIgZmlsbD0iI2Q5Nzc1NyIvPgogIDxyZWN0IHg9IjQ4IiB5PSIyMzIiIHdpZHRoPSI0MzAiIGhlaWdodD0iNzgiIHJ4PSIxMiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjZTNlMWRhIi8+CiAgPHRleHQgeD0iNjQiIHk9IjI1NiIgY2xhc3M9InQiPllvdSdyZSByaWdodCB0byBhc2s6IDIw4oCTMzAlIGlzIG15IGVzdGltYXRlLCBub3QgYTwvdGV4dD4KICA8dGV4dCB4PSI2NCIgeT0iMjc2IiBjbGFzcz0idCI+c291cmNlZCBmaWd1cmUuIEhlcmUncyB0aGUgZXhwZXJ0IHZlcnNpb24gd2l0aG91dCBpdCw8L3RleHQ+CiAgPHRleHQgeD0iNjQiIHk9IjI5NiIgY2xhc3M9InQiPmZvY3VzZWQgb24gd2hhdCBkcml2ZXMgdGhlIGRyb3AgaW5zdGVhZC48L3RleHQ+Cjwvc3ZnPgo=",
+        alt: "Illustration of a chat. Claude's claim: after a price war, margins typically fall 20 to 30 percent, marked no source. Your pushback: Typical for which industry? Give me a source I can open, or say you're estimating. Claude's fix: You're right to ask: 20 to 30 percent is my estimate, not a sourced figure. Here's the expert version without it.",
+        text: "**Pushback on a claim:** *\"Your expert version says margins typically fall 20–30% after a price war. Typical for which industry? Give me a source I can open, or say you're estimating.\"*\n\n**Pushback on the format:** *\"Your 10-year-old version uses the word 'capital'. Replace it with a word a kid knows.\"*\n\n**A check, written down:** *Checked the 20–30% figure. Claude's source was a consulting blog post with no data behind it, so I won't use the number.*" }
     },
     {
       title: "B · Choose your project",
@@ -2111,13 +2119,17 @@ window.AIBW = (function () {
   function breakdownHTML(bd) {
     // compare: one table or a list of them
     const cmp = bd.compare ? [].concat(bd.compare).map(table).join("") : "";
-    return (bd.key ? '<p class="keyidea">' + md(bd.key) + "</p>" : "") +
+    // figure: {svg} (inline) or {image, alt} (file in assets/img), optional caption; top: true puts it under the key line
+    const f = bd.figure;
+    const fig = f ? '<figure class="diagram">' + (f.image ? '<img src="' + esc(f.image) + '" alt="' + esc(f.alt || "") + '" loading="lazy">' : f.svg || "") +
+      (f.caption ? "<figcaption>" + md(f.caption) + "</figcaption>" : "") + "</figure>" : "";
+    return (bd.key ? '<p class="keyidea">' + md(bd.key) + "</p>" : "") + (f && f.top ? fig : "") +
       '<div class="concepts">' + (bd.concepts || []).map(c =>
         // text can be one paragraph or a list of short bullets
         '<div class="concept"><b>' + esc(c.title) + "</b>" + (Array.isArray(c.text)
           ? '<ul class="pts">' + c.text.map(x => "<li>" + md(x) + "</li>").join("") + "</ul>"
           : "<p>" + md(c.text) + "</p>") + "</div>").join("") + "</div>" +
-      (bd.figure ? '<figure class="diagram">' + bd.figure.svg + (bd.figure.caption ? "<figcaption>" + md(bd.figure.caption) + "</figcaption>" : "") + "</figure>" : "") + cmp;
+      (f && !f.top ? fig : "") + cmp;
   }
 
   // frameworks: {intro, cards:[{name, goodFor, parts:[[term, meaning]]}], table, note, sample:{title, task, items:[{name, prompt}]}}
@@ -2204,17 +2216,19 @@ window.AIBW = (function () {
       ? '<li class="grp">' + esc(x.group) + "</li>"
       : "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol>" +
       (m.tip ? '<div class="tip"><b>Tip</b><span>' + md(m.tip) + "</span></div>" : "") +
+      // tipShot: an illustration under the tip, same format as setup shots ({image, alt, caption})
+      (m.tipShot ? shotHTML(m.tipShot) : "") +
       (m.transfer ? '<p class="transfer"><b>Works elsewhere too.</b> ' + md(m.transfer) + "</p>" : "");
   }
 
+  // What good looks like: text, an image, or both (image first, then the text)
   function goodHTML(g) {
     if (!g) return "";
-    if (g.image) {
-      if (!g.alt) console.warn("[AI Basics Lab] 'What good looks like' image is missing alt text:", g.image);
-      return '<figure class="good"><img src="' + esc(g.image) + '" alt="' + esc(g.alt || "") + '" loading="lazy">' +
-        (g.caption ? "<figcaption>" + md(g.caption) + "</figcaption>" : "") + "</figure>";
-    }
-    return g.text ? '<div class="good"><p class="goodtext">' + md(g.text) + "</p></div>" : "";
+    if (g.image && !g.alt) console.warn("[AI Basics Lab] 'What good looks like' image is missing alt text:", g.image);
+    const img = g.image ? '<img src="' + esc(g.image) + '" alt="' + esc(g.alt || "") + '" loading="lazy">' +
+      (g.caption ? "<figcaption>" + md(g.caption) + "</figcaption>" : "") : "";
+    const txt = g.text ? '<p class="goodtext">' + md(g.text) + "</p>" : "";
+    return img || txt ? '<figure class="good">' + img + txt + "</figure>" : "";
   }
 
   function exercisesHTML(m) {

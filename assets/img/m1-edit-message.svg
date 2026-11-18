@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" width="520" height="220" role="img" aria-label="Illustration: a sent message in a Claude chat, with the Edit button under it highlighted">
+  <!-- Illustration of editing a sent message in Claude (light mode), drawn for AI Basics Lab. Not a screenshot. Grey bars stand for text. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:14px;fill:#2f2f2c}
+    .ic{fill:none;stroke:#6b6a64;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  </style>
+  <rect width="520" height="220" fill="#faf9f5"/>
+  <!-- your message -->
+  <rect x="196" y="20" width="304" height="40" rx="12" fill="#f0eee6"/>
+  <text x="214" y="45" class="t">Explain WACC to a classmate.</text>
+  <!-- hover actions under your message -->
+  <rect x="408" y="66" width="70" height="26" rx="6" fill="#ffffff" stroke="#dcd9d0"/>
+  <g class="ic"><path d="M418 86l2-6 9-9 4 4-9 9z M427 73l4 4"/></g>
+  <text x="440" y="84" class="t" style="font-size:13px">Edit</text>
+  <!-- highlight -->
+  <rect x="403" y="61" width="80" height="36" rx="8" fill="none" stroke="#A31F34" stroke-width="3"/>
+  <path d="M396 79h-24" stroke="#A31F34" stroke-width="2.5"/>
+  <path d="M396 79l-7-5M396 79l-7 5" stroke="#A31F34" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <rect x="230" y="66" width="138" height="26" rx="5" fill="#A31F34"/>
+  <text x="299" y="84" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:13px;font-weight:700;fill:#ffffff">Hover, then click</text>
+  <!-- Claude's answer -->
+  <circle cx="34" cy="126" r="10" fill="#d97757"/>
+  <text x="54" y="131" class="t">WACC is the average cost of the money a company uses...</text>
+  <rect x="54" y="146" width="380" height="9" rx="4" fill="#e6e4dc"/>
+  <rect x="54" y="164" width="330" height="9" rx="4" fill="#e6e4dc"/>
+  <rect x="54" y="182" width="250" height="9" rx="4" fill="#ecebe5"/>
+</svg>

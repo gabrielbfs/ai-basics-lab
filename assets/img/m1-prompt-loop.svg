@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 160" width="780" height="160" role="img" aria-label="Diagram: Prompt, then draft answer, then push back, then check, then use. If the answer isn't right yet, go back to push back.">
+  <!-- Module 1 loop diagram, drawn for AI Basics Lab. -->
+  <style>
+    .b{fill:#ffffff;stroke:#d9d6cf;stroke-width:1.5}
+    .k{fill:#f8e9ec;stroke:#A31F34;stroke-width:1.5}
+    .n{font-family:"Jost",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;font-weight:700;fill:#A31F34}
+    .t{font-family:"Jost",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;font-weight:600;fill:#1f2328}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;fill:#5f6368}
+    .a{fill:none;stroke:#8a8f98;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .r{fill:none;stroke:#A31F34;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:5 4}
+  </style>
+  <!-- boxes -->
+  <rect class="b" x="10"  y="14" width="132" height="76" rx="10"/>
+  <rect class="b" x="166" y="14" width="132" height="76" rx="10"/>
+  <rect class="k" x="322" y="14" width="132" height="76" rx="10"/>
+  <rect class="k" x="478" y="14" width="132" height="76" rx="10"/>
+  <rect class="b" x="634" y="14" width="132" height="76" rx="10"/>
+  <text class="n" x="24"  y="36">1</text><text class="t" x="24"  y="58">Prompt</text><text class="s" x="24"  y="78">all 4 parts</text>
+  <text class="n" x="180" y="36">2</text><text class="t" x="180" y="58">Draft answer</text><text class="s" x="180" y="78">Claude's first try</text>
+  <text class="n" x="336" y="36">3</text><text class="t" x="336" y="58">Push back</text><text class="s" x="336" y="78">one specific change</text>
+  <text class="n" x="492" y="36">4</text><text class="t" x="492" y="58">Check</text><text class="s" x="492" y="78">open the source</text>
+  <text class="n" x="648" y="36">5</text><text class="t" x="648" y="58">Use</text><text class="s" x="648" y="78">once it holds up</text>
+  <!-- forward arrows -->
+  <path class="a" d="M144 52h18M156 46l6 6-6 6"/>
+  <path class="a" d="M300 52h18M312 46l6 6-6 6"/>
+  <path class="a" d="M456 52h18M468 46l6 6-6 6"/>
+  <path class="a" d="M612 52h18M624 46l6 6-6 6"/>
+  <!-- repeat loop: from Check back to Push back -->
+  <path class="r" d="M544 92v30H388V96"/>
+  <path d="M382 103l6-8 6 8" fill="none" stroke="#A31F34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="466" y="144" text-anchor="middle" style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:12.5px;font-weight:600;fill:#A31F34">Not right yet? Repeat</text>
+</svg>
