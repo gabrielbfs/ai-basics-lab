@@ -12,8 +12,8 @@ window.AIB_MODULES["m3"] = {
   title: "Asking vs. Delegating",
   level: "Needs the Claude desktop app (Setup A)",
 
-  goal: "Know when to ask Claude for an answer to think with, and when to delegate a multi-step task that ends in finished files, while you stay in control.",
-  outcomes: ["Tell asking from delegating", "Delegate with a clear outcome", "Review the plan before it runs", "Check the output against the source"],
+  goal: "Learn when to ask Claude and when to delegate a multi-step task.",
+  outcomes: ["Tell asking from delegating", "Delegate with a clear outcome", "Review the plan first", "Check files against sources"],
 
   budget: { read: 5, do: 23, check: 2 },
 

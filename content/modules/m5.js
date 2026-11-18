@@ -11,8 +11,8 @@ window.AIB_MODULES["m5"] = {
   title: "Skills",
   level: "Builds on Module 4",
 
-  goal: "Turn a task you repeat into a skill Claude uses automatically, then use it to write the build spec for the real app you'll build in Module 7.",
-  outcomes: ["Explain prompt vs. project vs. skill", "Write a description that triggers", "Build and test a skill", "Produce your build spec"],
+  goal: "Learn to turn a task you repeat into a reusable skill.",
+  outcomes: ["Compare prompt, project and skill", "Write a description that triggers", "Build and test a skill", "Write your build spec"],
 
   budget: { read: 5, do: 23, check: 2 },
 

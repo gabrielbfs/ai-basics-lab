@@ -11,8 +11,8 @@ window.AIB_MODULES["m7"] = {
   title: "Claude Code",
   level: "No coding needed · Setup B done",
 
-  goal: "Turn your prototype into a real app in a folder on your computer, by giving Claude Code your spec, approving its plan, and steering the build.",
-  outcomes: ["Explain when Claude Code beats an artifact", "Approve a plan before code", "Run the app and change it once", "Say which file does what"],
+  goal: "Learn to build a real app from your spec with Claude Code.",
+  outcomes: ["Know when to use Claude Code", "Approve a plan before code", "Run and change your app", "Know which file does what"],
 
   budget: { read: 6, do: 22, check: 2 },
 

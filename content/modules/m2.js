@@ -11,8 +11,8 @@ window.AIB_MODULES["m2"] = {
   title: "Research & Analysis",
   level: "Builds on Module 1",
 
-  goal: "Research with sources, analyze a spreadsheet, check both yourself, and collect the numbers your tool needs.",
-  outcomes: ["Get a sourced answer and verify one source", "Analyze a dataset and produce a chart", "Spot an error or weak assumption", "Collect the assumptions your tool needs"],
+  goal: "Learn to research with sources and analyze a spreadsheet, then check Claude's work.",
+  outcomes: ["Get a sourced answer", "Turn data into a chart", "Spot a weak assumption", "List your tool's numbers"],
 
   budget: { read: 5, do: 23, check: 2 },
 

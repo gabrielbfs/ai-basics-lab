@@ -11,8 +11,8 @@ window.AIB_MODULES["m6"] = {
   title: "Connectors & Automation",
   level: "Builds on Modules 1, 3 and 5",
 
-  goal: "Connect Claude to your email, calendar, Drive or Slack and automate one recurring task, such as meeting prep or a weekly digest, safely.",
-  outcomes: ["Connect one app and say what Claude can see", "Run a task that pulls from that app", "Schedule it to repeat", "State your responsible-use rules"],
+  goal: "Learn to connect Claude to your apps and automate a recurring task safely.",
+  outcomes: ["Connect one app safely", "Run a task with its data", "Schedule it to repeat", "Set your data rules"],
 
   budget: { read: 5, do: 23, check: 2 },
 

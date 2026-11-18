@@ -154,6 +154,8 @@ table.cmp ul.todo{margin:0;padding-left:18px}table.cmp ul.todo li{margin:0 0 6px
 .mhead .top{display:flex;gap:8px 10px;align-items:center;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--muted)}
 .mhead h1{font-size:clamp(30px,4.4vw,46px);letter-spacing:-.015em}
 .mhead .goal{font-size:17.5px;color:var(--muted);max-width:64ch}
+.mhead .leave{margin:0;font-size:16px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.mhead .leave .sub{color:var(--accent)}
 .outcomes{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
 .outcomes span{font-size:13.5px;background:var(--surface);padding:5px 10px;border-radius:6px}
 .budget{display:flex;gap:3px;margin-top:6px;font-size:12px;color:var(--muted);font-family:var(--mono)}
@@ -493,7 +495,7 @@ window.AIB_COURSE = {
   // the single-file build. Add ?preview to a page address to see unpublished modules while you edit them.
   modules: [
     { id: "m1", page: "m01-briefing-claude.html", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear prompts and check what Claude gives back.", output: "a 3-sentence project idea", setup: "A", published: true  },
-    { id: "m2", page: "m02-research-analysis.html", title: "Research & Analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "an assumptions table and sample data, checked", setup: "A", published: false },
+    { id: "m2", page: "m02-research-analysis.html", title: "Research & Analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "a checked assumptions table and sample data", setup: "A", published: false },
     { id: "m3", page: "m03-asking-vs-delegating.html", title: "Asking vs. Delegating",              short: "Ask vs. Delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief", setup: "A", published: false },
     { id: "m4", page: "m04-projects-artifacts.html", title: "Projects & Artifacts",                short: "Projects & Artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool", setup: "A", published: false },
     { id: "m5", page: "m05-skills.html", title: "Skills",                              short: "Skills",               track: "nocode", blurb: "Teach Claude a task once and reuse it whenever you need it.", output: "a spec-writer skill and your build spec", setup: "A", published: false },
@@ -579,8 +581,8 @@ window.AIB_MODULES["m1"] = {
   title: "Briefing Claude",
   level: "No experience needed",
 
-  goal: "Learn to write a clear prompt, improve Claude's answers, check what it tells you, and pick the tool you'll build.",
-  outcomes: ["Write a 4-part prompt", "Improve an answer with specific pushback", "Catch and verify a shaky claim", "Choose a project"],
+  goal: "Learn to write clear prompts and check what Claude tells you.",
+  outcomes: ["Write a 4-part prompt", "Push back with specifics", "Verify a shaky claim", "Choose your project"],
 
   budget: { read: 8, do: 20, check: 2 },
 
@@ -1382,7 +1384,9 @@ window.AIBW = (function () {
     // No status/module-number/time/level/track line above the title (removed Nov 17, 2026)
     return '<header class="mhead">' +
         "<h1>" + esc(m.title || entry.title) + "</h1>" +
+        // Headline structure for every module: "Learn to…" (goal in the module file), then "You leave with" (output in course.js)
         (m.goal ? '<p class="goal">' + md(m.goal) + "</p>" : "") +
+        (entry.output ? '<p class="leave"><span class="sub">You leave with</span> ' + esc(entry.output) + "</p>" : "") +
         (m.outcomes && m.outcomes.length ? '<div class="outcomes">' + m.outcomes.map(o => "<span>" + esc(o) + "</span>").join("") + "</div>" : "") +
         budget +
       "</header>" +

@@ -12,8 +12,8 @@ window.AIB_MODULES["m8"] = {
   title: "Save & Ship",
   level: "Builds on Module 7 · Setup B done",
 
-  goal: "Save versions of your app on GitHub and publish it with a link anyone can open. Then work out what it would take to make a tool like it real at your company.",
-  outcomes: ["Explain repo, commit, push and revert", "Put your app on GitHub", "Go live with GitHub Pages", "Explain static vs. dynamic, and what it means for IT and budget"],
+  goal: "Learn to save your app on GitHub and publish it.",
+  outcomes: ["Save versions with Git", "Put your app on GitHub", "Go live with GitHub Pages", "Judge what it takes at work"],
 
   budget: { read: 6, do: 22, check: 2 },
 

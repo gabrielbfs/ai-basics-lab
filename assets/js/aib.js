@@ -408,7 +408,9 @@
     // No status/module-number/time/level/track line above the title (removed Nov 17, 2026)
     return '<header class="mhead">' +
         "<h1>" + esc(m.title || entry.title) + "</h1>" +
+        // Headline structure for every module: "Learn to…" (goal in the module file), then "You leave with" (output in course.js)
         (m.goal ? '<p class="goal">' + md(m.goal) + "</p>" : "") +
+        (entry.output ? '<p class="leave"><span class="sub">You leave with</span> ' + esc(entry.output) + "</p>" : "") +
         (m.outcomes && m.outcomes.length ? '<div class="outcomes">' + m.outcomes.map(o => "<span>" + esc(o) + "</span>").join("") + "</div>" : "") +
         budget +
       "</header>" +

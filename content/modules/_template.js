@@ -15,8 +15,11 @@ window.AIB_MODULES["_template"] = {
   title: "Module title",
   level: "Who it's for, e.g. No experience needed",
 
-  goal: "One sentence: what a student can do by the end of this module.",
-  outcomes: ["Outcome one", "Outcome two", "Outcome three", "Outcome four"],
+  // Headline rule (same in every module): goal = "Learn to [skill]." in about 15 words or fewer;
+  // the "You leave with" line under it comes from output: in course.js.
+  goal: "Learn to [what the student can do by the end].",
+  // 4 chips, each starting with a verb, 6 words or fewer. They also appear as "You can now" in Finish.
+  outcomes: ["Verb + outcome one", "Verb + outcome two", "Verb + outcome three", "Verb + outcome four"],
 
   // Minutes for each part, set after a timed test run (series change #6). Total shows in the header.
   budget: { read: 5, do: 23, check: 2 },

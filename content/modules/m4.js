@@ -52,8 +52,8 @@ window.AIB_MODULES["m4"] = {
   title: "Projects & Artifacts",
   level: "Builds on Modules 1–3",
 
-  goal: "Give Claude a project that remembers your context, then build a clickable prototype of your tool that you can test, improve and share.",
-  outcomes: ["Set up a project with instructions and files", "Build a working prototype", "Test it and improve it twice", "Know what sharing exposes"],
+  goal: "Learn to keep your context in a project and build a prototype.",
+  outcomes: ["Set up a project", "Build a working prototype", "Test and improve it twice", "Know what sharing exposes"],
 
   budget: { read: 5, do: 23, check: 2 },
 

@@ -9,8 +9,8 @@ window.AIB_MODULES["m1"] = {
   title: "Briefing Claude",
   level: "No experience needed",
 
-  goal: "Learn to write a clear prompt, improve Claude's answers, check what it tells you, and pick the tool you'll build.",
-  outcomes: ["Write a 4-part prompt", "Improve an answer with specific pushback", "Catch and verify a shaky claim", "Choose a project"],
+  goal: "Learn to write clear prompts and check what Claude tells you.",
+  outcomes: ["Write a 4-part prompt", "Push back with specifics", "Verify a shaky claim", "Choose your project"],
 
   budget: { read: 8, do: 20, check: 2 },
 
