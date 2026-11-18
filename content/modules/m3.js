@@ -33,7 +33,7 @@ window.AIB_MODULES["m3"] = {
   },
 
   breakdown: {
-    key: "The same Claude can answer you or do the work for you. What changes is your brief: ask for an answer, or describe a finished result.",
+    key: "The same Claude can answer you or do the work for you. What changes is your prompt: ask for an answer, or describe a finished result.",
     concepts: [
       { title: "Ask: think and draft",
         text: "For brainstorming, explaining and quick drafts. The answer stays in the conversation and you take it from there." },
@@ -71,7 +71,7 @@ window.AIB_MODULES["m3"] = {
     { title: "Open the files and check one claim", text: "Compare one sentence or number in the output with the source it came from." }
   ],
   tip: "End every delegated task with \"Show me your plan and the file list first, and wait for my OK.\" It costs one message and prevents most surprises.",
-  transfer: "Agent features in Microsoft Copilot and ChatGPT work the same way: brief the outcome, scope what they can see, and review before you approve.",
+  transfer: "Agent features in Microsoft Copilot and ChatGPT work the same way: describe the outcome, scope what they can see, and review before you approve.",
 
   exercises: [
     {
@@ -113,7 +113,7 @@ window.AIB_MODULES["m3"] = {
     { problem: "It asks permission for every single step",
       fix: "That's **Manual** mode, the Enterprise default, and it's expected. Read each request and allow it. It's slower, but you see everything Claude does." },
     { problem: "It started working before showing me a plan",
-      fix: "Stop it, and add to your brief: \"Show me your plan and the file list first, and wait for my OK.\"" },
+      fix: "Stop it, and add to your prompt: \"Show me your plan and the file list first, and wait for my OK.\"" },
     { problem: "A file it made won't open",
       fix: "Ask Claude to save it again as .xlsx or .docx, or as .csv for the inputs table." }
   ],

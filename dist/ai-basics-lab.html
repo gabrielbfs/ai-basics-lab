@@ -184,6 +184,9 @@ table.cmp ul.todo{margin:0;padding-left:18px}table.cmp ul.todo li{margin:0 0 6px
 .concept{padding:16px 18px;background:var(--surface);border-radius:10px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .concept b{font-family:var(--ui);font-size:16px}
 .concept p{font-size:15px}
+ul.pts{list-style:disc;margin:0;padding-left:18px;display:flex;flex-direction:column;gap:3px}
+ul.pts li::marker{color:var(--accent)}
+.concept ul.pts{font-size:15px}
 .keyidea{border-left:3px solid var(--accent);padding:4px 0 4px 16px;font-size:18px;max-width:64ch}
 
 .ex{border:1px solid var(--line);border-radius:10px;overflow:hidden}
@@ -198,9 +201,21 @@ table.cmp ul.todo{margin:0;padding-left:18px}table.cmp ul.todo li{margin:0 0 6px
 details.why{padding:0}
 details.why summary{cursor:pointer;padding:10px 16px;font-family:var(--ui);font-weight:600;font-size:14px;color:var(--navy)}
 details.why > div{padding:0 16px 12px}
-.ex .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-.ex .tag{font-family:var(--mono);font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--navy-soft);color:var(--navy)}
-.fw-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+:is(.ex,.prompt) .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+:is(.ex,.prompt) .tag{font-family:var(--mono);font-size:11.5px;padding:2px 8px;border-radius:999px;background:var(--navy-soft);color:var(--navy)}
+.ex .exh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.ex .exidea{font-family:var(--ui);font-weight:400;font-size:13px;color:var(--muted)}
+.ex .exrow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ex .gets{font-size:14px;color:var(--muted);margin-top:auto;padding-top:8px;border-top:1px dashed var(--line)}
+.ex .gets b{color:var(--ink,inherit);font-family:var(--ui);font-weight:600}
+/* highlighted parts of a strong prompt; the tag below uses the same color */
+mark.hl{color:inherit;border-radius:3px;padding:0 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hl-0{background:#DCEBFF} :is(.ex,.prompt) .tag.hl-0{color:#1F4E8C;background:#DCEBFF}
+.hl-1{background:#DDF2D8} :is(.ex,.prompt) .tag.hl-1{color:#2E6B2A;background:#DDF2D8}
+.hl-2{background:#FFEFC2} :is(.ex,.prompt) .tag.hl-2{color:#7A5A00;background:#FFEFC2}
+.hl-3{background:#F8DCE6} :is(.ex,.prompt) .tag.hl-3{color:#8C2347;background:#F8DCE6}
+.hl-4{background:#E9E1F7} :is(.ex,.prompt) .tag.hl-4{color:#5B3A8C;background:#E9E1F7}
+.fw-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px}
 .fw-card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
 .fw-card .fw-name{font-family:var(--display);font-size:18px;color:var(--accent)}
 .fw-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
@@ -211,12 +226,18 @@ details.why > div{padding:0 16px 12px}
 .fw-good span{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .fw{padding:12px 14px;display:flex;flex-direction:column;gap:12px}
 .fw-task{margin:0;font-size:15px}
-.fw-item{display:flex;flex-direction:column;gap:4px;border-left:3px solid var(--navy);padding:2px 0 2px 12px}
+.fw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
+.fw-item{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-left:3px solid var(--navy);border-radius:0 10px 10px 0;padding:12px 14px;background:var(--bg);min-width:0}
+.fw-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.fw-tip{margin-top:4px;flex-direction:column;gap:6px}
+.fw-tip ul.pts{gap:8px}
 .fw-item b{font-family:var(--ui);font-size:14.5px}
 .fw-item .q{font-family:var(--mono);font-size:13px;line-height:1.55;white-space:pre-line;overflow-wrap:anywhere}
-.idea-groups{padding:12px 14px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px}
+.idea-groups{padding:12px 14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:12px}
 .idea-intro{grid-column:1/-1;margin:0;font-size:14.5px;color:var(--muted)}
-.idea-group ul{margin:4px 0 0;padding-left:18px;font-size:14.5px;display:flex;flex-direction:column;gap:3px}
+.idea-group{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.idea-group ul{margin:6px 0 0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.idea-group li::marker{color:var(--accent)}
 
 /* demo (video + click-through) */
 .demo{background:var(--surface);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px}
@@ -241,6 +262,9 @@ details.why > div{padding:0 16px 12px}
 ol.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:flex;flex-direction:column}
 ol.steps li{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
 ol.steps li::before{content:counter(s);font-family:var(--display);font-weight:700;font-size:19px;color:var(--accent);line-height:1.45}
+ol.steps li.grp{display:block;counter-increment:none;padding:18px 0 6px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--line)}
+ol.steps li.grp:first-child{padding-top:0}
+ol.steps li.grp::before{content:none}
 ol.steps li > div > b{display:block;font-family:var(--ui);font-size:16px}
 ol.steps li span b{color:var(--fg);font-weight:600}
 ol.steps li span{color:var(--muted);font-size:15px}
@@ -285,6 +309,13 @@ ol.steps ul.pts li::marker{color:var(--accent)}
 .resp p{max-width:68ch}
 .resp ol{margin:4px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px;max-width:70ch}
 .resp .resp-note{font-size:14px;color:var(--muted);margin-top:4px}
+.resp .usenever{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:10px;margin:4px 0}
+.resp .usenever > div{background:var(--bg);border-radius:8px;padding:10px 14px}
+.resp .usenever .sub{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+.resp .use .sub{color:var(--ok)} .resp .never .sub{color:var(--accent)}
+.resp .usenever ul.pts{margin-top:6px;font-size:15px}
+.resp .use li::marker{color:var(--ok)}
+.resp .resp-tip b{margin-right:6px}
 .resp.base{margin-top:12px;background:var(--navy-soft);border-left-color:var(--navy)}
 .resp.base b{color:var(--navy)}
 
@@ -297,8 +328,12 @@ ol.steps ul.pts li::marker{color:var(--accent)}
 .stuck-foot{font-size:14px;color:var(--muted)}
 
 /* finish: the "Mark as done" box at the end of each module */
-.finish{background:var(--surface);border-radius:12px;padding:20px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.finish{background:var(--surface);border-radius:12px;padding:20px;display:flex;flex-direction:column;align-items:stretch;gap:12px}
 .finish p{margin:0}
+.finish ul.did{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:15.5px}
+.finish ul.did li::before{content:"✓";color:var(--ok);font-weight:700;margin-right:10px}
+.finish .donerow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:4px}
+.finish .donenote{font-size:13.5px;color:var(--muted)}
 .btn.is-done{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:600}
 .checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
 .checks label{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:9px 10px;border-radius:8px;cursor:pointer}
@@ -317,8 +352,14 @@ ol.steps ul.pts li::marker{color:var(--accent)}
 .fb{font-size:14.5px;color:var(--muted)}
 .fb.ok{color:var(--ok)}
 
-/* live session + office hours */
-.res{display:flex;flex-direction:column;gap:6px;font-size:15px}
+
+/* Go deeper: one table of links (Resource | Source | Type) with group divider rows */
+table.cmp.restable{min-width:0}
+table.cmp.restable td:first-child{font-weight:400}
+table.cmp.restable td:not(:first-child){color:var(--muted);font-size:14px;white-space:nowrap}
+table.cmp.restable tr.grp th{padding:16px 12px 6px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;border-bottom:1px solid var(--line)}
+table.cmp.restable tbody tr.grp:first-child th{padding-top:8px}
+@media (max-width:640px){table.cmp.restable td:not(:first-child){white-space:normal}}
 
 /* coming soon */
 .soon{margin-top:32px;padding:24px;border:1px dashed var(--line);border-radius:12px;background:var(--surface);display:flex;flex-direction:column;gap:8px;max-width:68ch}
@@ -345,7 +386,7 @@ ol.steps ul.pts li::marker{color:var(--accent)}
   .turn{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:640px){
-  .grid,.concepts,.tracks,.ways{grid-template-columns:minmax(0,1fr)}
+  .grid,.concepts,.tracks,.ways,.resp .usenever{grid-template-columns:minmax(0,1fr)}
   .ex .pair{grid-template-columns:minmax(0,1fr)}
   .idea-groups{grid-template-columns:minmax(0,1fr)}
   .ex .pair > div + div{border-left:0;border-top:1px solid var(--line)}
@@ -415,15 +456,18 @@ window.AIB_COURSE = {
     live: "Fridays 9:00–10:00am"
   },
 
-  // Shown under every module's own Responsible use rules (Module 1 states them itself, with base: false).
+  // The course rules. Module 1 shows them as its own rules (base: "only"); Modules 2–8 show them under their own rule.
+  // TODO (staff): update once Sloan confirms which MIT data levels the Claude Enterprise account is approved for.
   rulesBase: {
-    title: "The course rules (from Module 1): what not to paste",
-    rules: [
-      "**In this course, use made-up or public information only.** Every exercise is designed to work that way.",
-      "**Never paste high-risk information into any AI tool:** Social Security numbers, financial account or credit card numbers, health records, passwords. MIT's guidance says this applies even to MIT-licensed tools.",
-      "**No one else's personal information,** and no non-public MIT information such as unpublished research, student records or hiring materials.",
-      "**For work, your employer's AI policy comes first.** If you're not sure something is allowed, don't paste it. Ask your employer, or for MIT information, ai-guidance@mit.edu."
-    ],
+    title: "The course rules (from Module 1): what's safe to paste",
+    use: ["Made-up information", "Public information"],
+    never: ["Social Security, bank or card numbers",
+            "Health records, passwords",
+            "Anyone else's personal information",
+            "Non-public MIT information: unpublished research, student records, hiring materials"],
+    after: ["**At work, your employer's AI policy comes first.** Not sure? Don't paste it. Ask your employer, or ai-guidance@mit.edu for MIT information.",
+            "The never-paste list applies even to MIT-licensed tools, including your Claude Enterprise account."],
+    tip: "Not sure? Swap real names, companies and numbers for made-up ones before you paste.",
     note: "Based on [MIT IS&T guidance for the use of generative AI](https://ist.mit.edu/ai-guidance)."
   },
 
@@ -437,7 +481,7 @@ window.AIB_COURSE = {
   // blurb = the few-word description on the overview card; output = what the student leaves with;
   // setup = which setup part (A or B) the module needs, shown on the card as "Setup A" / "Setup B".
   modules: [
-    { id: "m1", page: "m01-briefing-claude.html", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear briefs and check what Claude gives back.", output: "a 3-sentence project idea", setup: "A" },
+    { id: "m1", page: "m01-briefing-claude.html", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear prompts and check what Claude gives back.", output: "a 3-sentence project idea", setup: "A" },
     { id: "m2", page: "m02-research-analysis.html", title: "Research & Analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "an assumptions table and sample data, checked", setup: "A" },
     { id: "m3", page: "m03-asking-vs-delegating.html", title: "Asking vs. Delegating",              short: "Ask vs. Delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief", setup: "A" },
     { id: "m4", page: "m04-projects-artifacts.html", title: "Projects & Artifacts",                short: "Projects & Artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool", setup: "A" },
@@ -524,40 +568,40 @@ window.AIB_MODULES["m1"] = {
   title: "Briefing Claude",
   level: "No experience needed",
 
-  goal: "Give Claude a clear brief, push back on specifics, check its claims, and choose the tool you'll build.",
+  goal: "Learn to write a clear prompt, improve Claude's answers, check what it tells you, and pick the tool you'll build.",
   outcomes: ["Write a 4-part prompt", "Improve an answer with specific pushback", "Catch and verify a shaky claim", "Choose a project"],
 
   budget: { read: 8, do: 20, check: 2 },
 
   before: {
     needs: [
-      { text: "Setup A done: signed in to Claude with your **Claude Enterprise** account. Check the organization name in the account menu; a personal account is the wrong one. The web app and the desktop app both work.",
+      { text: "Setup A done: signed in to Claude with your **Claude Enterprise** account. Check the organization name in the account menu. The web app and the desktop app both work.",
         ifNot: "Not yet? Follow [Setup A](m00-course-overview.html#setup) on the course overview, or bring it to office hours." }
     ]
   },
 
   breakdown: {
-    key: "Better input, better output: tell Claude who you are, what you need and how you'll use it, then check what comes back.",
+    // "prompt" = the message you send Claude (used across the course); "brief" is kept for Module 3's brief.docx
+    key: "A **prompt** is the message you send Claude. A clear prompt in, a useful answer out. Then check it before you use it.",
+    // text can be one paragraph or a list of short bullets
     concepts: [
-      { title: "The four parts of a good brief",
-        text: "**Context**: who you are and what it's for. **Task**: what you want done. **Format**: length, structure, audience. **Constraints**: what to include or avoid. A first message with all four usually saves a round of edits." },
+      { title: "The four parts of a good prompt",
+        text: ["**Context:** who you are and why", "**Task:** what you want done",
+               "**Format:** length, structure, audience", "**Constraints:** what to include or avoid"] },
       { title: "Treat the first answer as a draft",
-        text: "Reply with the exact change you want. \"That's wrong\" gets an apology; \"Use 5% growth, not 20%\" gets a fix." },
-      { title: "Trust, then verify",
-        text: "Claude can sound sure and still be wrong, even when it names a source. Ask what it's least sure of to know where to look, then open the source yourself." },
+        text: ["Reply with the exact change you want", "✗ \"That's wrong\" gets an apology", "✓ \"Use 5% growth, not 20%\" gets a fix"] },
+      { title: "Check before you trust",
+        text: ["Claude can sound sure and still be wrong", "Ask: \"Which claim are you least confident about?\"", "Open the source before you use it"] },
       { title: "Keep sensitive data out",
-        text: "In this course, use made-up or public information only. The full rules are under **Responsible use** below." }
+        text: ["Use made-up or public information only", "Never paste passwords, ID numbers, health or financial data", "Full rules: **Responsible use**, below"] }
     ]
   },
 
   frameworks: {
     title: "Prompt frameworks",
-    intro: "You'll see many prompt acronyms online. They're memory aids for the same ideas as the four parts above, and none of them is official. You don't need to memorize any of them: use the one that sticks.",
+    intro: "There are many prompt frameworks online, each with its own acronym. None is official, and they all cover the four parts above. Here are four common ones: pick the one that's easiest to remember.",
     // One card per framework: each letter on its own line with a short explanation
     cards: [
-      { name: "This course", goodFor: "Any first message",
-        parts: [["Context", "who you are and what it's for"], ["Task", "what you want done"],
-                ["Format", "length, structure, audience"], ["Constraints", "what to include or avoid"]] },
       { name: "CARE", goodFor: "Quick everyday prompts",
         parts: [["Context", "the situation"], ["Ask", "the specific request"],
                 ["Rules", "limits and what to avoid"], ["Examples", "a sample of the output you want"]] },
@@ -574,102 +618,137 @@ window.AIB_MODULES["m1"] = {
                 ["Instructions", "the core assignment"], ["Expectations", "the result you want it to achieve"],
                 ["Format", "how to structure the output"]] }
     ],
-    note: "Two ideas worth borrowing: give Claude a **role** (RISEN, BRIEF), and **show an example** of what you want (CARE).",
+    // note can be one sentence, or {label, points} for a highlighted tip box with bullets
+    note: { label: "Tip · works with any framework",
+            points: ["**Give Claude a role.** Start with \"You're a CFO reviewing a budget request.\" Claude answers with that person's priorities.",
+                     "**Show an example.** Paste a past email or table you liked. Claude matches its length, tone and layout."] },
+    // sample: the SAME output (a short note to the CFO) written 4 ways, so only the framework changes.
+    // Every number Claude needs is in the task, so it has nothing to invent.
     sample: {
       title: "See one task written in each framework",
-      task: "**The task:** you run operations at a 200-person logistics company (made-up), and you want your CFO to fund a 4-week pilot to cut overtime.",
+      task: "**Made-up example** · You run operations at a 200-person logistics company. Overtime cost $480K last year, up 30%. You want the CFO to fund a 4-week, $15K pilot to cut it.",
+      tryIt: "Each prompt asks for the same short note. Copy two into Claude and compare the answers.",
       items: [
         { name: "CARE",
-          prompt: "**Context:** I run operations at a 200-person logistics company. Overtime costs are up 30% this year.\n**Ask:** Draft a short email asking our CFO to fund a 4-week pilot to cut overtime.\n**Rules:** Under 150 words. No layoffs. Include the pilot's cost and one risk.\n**Examples:** Match this past email: \"Quick ask: $8K for a 2-week routing test. Expected payback: 3 months. Risk: driver pushback, which we'll handle with a weekly check-in.\"" },
+          prompt: "**Context:** I run operations at a 200-person logistics company. Overtime cost $480K last year, up 30%.\n**Ask:** Write a short note asking our CFO to fund a 4-week, $15K pilot to cut overtime.\n**Rules:** Under 150 words. No layoffs. Use only the numbers above. Name one risk.\n**Examples:** Match the style of this past note: \"Quick ask: $8K for a 2-week routing test. Risk: driver pushback, which we'll handle with a weekly check-in.\"" },
         { name: "CO-STAR",
-          prompt: "**Context:** I run operations at a 200-person logistics company. Overtime costs are up 30% this year.\n**Objective:** Get the CFO to approve a 4-week pilot to cut overtime.\n**Style:** Executive memo.\n**Tone:** Confident, not salesy.\n**Audience:** A CFO who wants the numbers first.\n**Response:** 5 bullets, then a one-line ask." },
+          prompt: "**Context:** I run operations at a 200-person logistics company. Overtime cost $480K last year, up 30%. The pilot runs 4 weeks and costs $15K.\n**Objective:** Get the CFO to fund the pilot.\n**Style:** A short executive note.\n**Tone:** Confident, not salesy.\n**Audience:** A CFO who wants the numbers first.\n**Response:** Under 150 words: 3 bullets, then a one-line ask." },
         { name: "RISEN",
-          prompt: "**Role:** You're an operations consultant who has run overtime-reduction projects.\n**Instructions:** Plan a 4-week pilot to cut overtime at my 200-person logistics company.\n**Steps:** 1) List the likely causes of overtime. 2) Pick the two easiest to test. 3) Define one measure of success for each.\n**End goal:** A one-page plan I can show my CFO on Monday.\n**Narrowing:** No layoffs, no new software, under 300 words." },
+          prompt: "**Role:** You're an operations consultant who has run overtime-reduction projects.\n**Instructions:** Write a short note asking the CFO of my 200-person logistics company to fund a 4-week, $15K pilot to cut overtime.\n**Steps:** 1) State the problem: overtime cost $480K last year, up 30%. 2) Describe the pilot. 3) End with the ask.\n**End goal:** The CFO agrees to fund the pilot.\n**Narrowing:** Under 150 words. No layoffs. Use only the numbers above." },
         { name: "BRIEF",
-          prompt: "**Background:** A 200-person logistics company whose overtime costs rose 30% this year.\n**Role:** You're my chief of staff.\n**Instructions:** Write the case for a 4-week pilot to cut overtime.\n**Expectations:** The CFO approves the pilot budget at Friday's meeting.\n**Format:** A table with 3 rows (problem, pilot, cost and payback), then a two-sentence ask." }
+          prompt: "**Background:** A 200-person logistics company. Overtime cost $480K last year, up 30%.\n**Role:** You're my chief of staff.\n**Instructions:** Write a short note asking the CFO to fund a 4-week, $15K pilot to cut overtime.\n**Expectations:** The CFO approves the pilot budget at Friday's meeting.\n**Format:** Under 150 words: a 3-row table (problem, pilot, cost), then a two-sentence ask." }
       ]
     }
   },
 
-  examplesIntro: "For each pair, guess what the strong version adds, then open **What changed?** The tags show what each strong version uses.",
+  examplesIntro: "Read each weak prompt and guess what's missing. Then open **What changed?** to check.",
   examplesGuess: true,
+  // Order follows the key ideas: first message (1, 2), then follow-ups (3, 4).
+  // [[Tag::words]] colors those words in the strong prompt and shows a matching tag.
   examples: [
-    { title: "Explaining a concept",
+    { title: "Explaining a concept", idea: "The four parts of a good prompt",
       weak: "explain WACC",
-      strong: "I'm an MBA student with an operations background. Explain WACC in under 150 words, then give a worked example with made-up numbers. End with the most common mistake students make.",
-      tags: ["Context", "Task", "Format", "Constraints"],
-      why: "It says who is asking, how long the answer should be, what shape it should take, and that the numbers are made up." },
-    { title: "Pushing back",
-      weak: "that's wrong",
-      strong: "Your second point assumes 20% annual growth. Where does that come from? Redo it with 5% and 10% and show both.",
-      tags: ["Names the problem", "Asks for a specific fix"],
-      why: "Naming the exact assumption gets you a correction instead of an apology." },
-    { title: "Asking for a self-check",
-      weak: "are you sure?",
-      strong: "Which claim in your answer are you least confident about? For that one, give me a source I can open and tell me what to look for.",
-      tags: ["Finds the weak spot", "Asks for a source to open"],
-      why: "\"Are you sure?\" usually gets a yes. Asking for the weakest claim and a source tells you where to check." },
-    { title: "Showing what you want",
+      strong: "[[Context::I'm an MBA student with an operations background.]] [[Task::Explain WACC]] [[Format::in under 150 words. Give a worked example with made-up numbers, then the most common mistake students make.]] [[Constraints::Skip the formula derivation.]]",
+      gets: { weak: "A long textbook definition, full formula included.",
+              strong: "About 150 words at your level, one worked example and one mistake to avoid." },
+      why: "It says who is asking (Context), what to do (Task), how long and in what shape (Format), and what to leave out (Constraints)." },
+    { title: "Showing what you want", idea: "Show an example (Tip)",
       weak: "write a status update for my team",
-      strong: "Write this week's status update for my team on the office move. Use the same format as last week's:\n\nWins: Signed the lease for floor 3.\nRisks: Furniture delivery may slip a week.\nNext: Seating plan review on Thursday.\n\nKeep it under 80 words.",
-      tags: ["Task", "Example", "Format"],
-      why: "A short sample shows the format faster than describing it. This is the **E** in CARE." }
+      strong: "[[Task::Write this week's status update for my team on the office move.]] [[Example::Use the same format as last week's:]]\n\n[[Example::Wins: Signed the lease for floor 3.\nRisks: Furniture delivery may slip a week.\nNext: Seating plan review on Thursday.]]\n\n[[Format::Keep it under 80 words.]]",
+      gets: { weak: "A generic update in a layout your team hasn't seen.",
+              strong: "A short update in last week's layout: Wins, Risks, Next." },
+      why: "A short sample shows the format faster than describing it. This is the **E** in CARE." },
+    { title: "Pushing back", idea: "Treat the first answer as a draft",
+      weak: "that's wrong",
+      strong: "[[Names the problem::Your second point assumes 20% annual growth.]] [[Asks where it came from::Where does that come from?]] [[Asks for a specific fix::Redo it with 5% and 10% and show both.]]",
+      gets: { weak: "An apology and a new answer that may repeat the mistake.",
+              strong: "Where the 20% came from, plus two corrected versions to compare." },
+      why: "Naming the exact assumption gets you a correction instead of an apology." },
+    { title: "Asking for a self-check", idea: "Check before you trust",
+      weak: "are you sure?",
+      strong: "[[Finds the weak spot::Which claim in your answer are you least confident about?]] [[Asks for a source::For that one, give me a source I can open]] [[Says what to check::and tell me what to look for.]]",
+      gets: { weak: "\"Yes, I'm confident.\" Nothing to check.",
+              strong: "The shakiest claim and a source you can open to check it." },
+      why: "\"Are you sure?\" usually gets a yes. Asking for the weakest claim and a source tells you where to check." }
   ],
 
+  // {group: "..."} = an unnumbered heading row; keep its minutes in line with the exercises below
   steps: [
+    { group: "Exercise A · ~10 min" },
     { title: "Open a new chat", text: "At claude.ai or in the desktop app, signed in with your Enterprise account. Keep the default model." },
-    { title: "Send a 4-part prompt", text: "Use Exercise A's prompt below and fill in the brackets." },
-    { title: "Push back twice", text: "Each reply names one specific thing to change." },
-    { title: "Ask for a self-check, then verify", text: "Ask \"What in your answer is most likely wrong, and how would I verify it?\" Then open a source yourself and check one claim." }
+    { title: "Send the prompt", text: "Copy Exercise A's prompt and fill in the brackets." },
+    { title: "Push back twice", text: "Each reply names one specific change." },
+    { title: "Ask for a self-check", text: "\"Which claim in your answer are you least confident about? Give me a source I can open.\"" },
+    { title: "Check one claim yourself", text: "Open the source and write down what you found." },
+    { group: "Exercise B · ~8 min" },
+    { title: "Choose your project", text: "Send Exercise B's prompt and answer Claude's 3 questions." },
+    { title: "Save your idea", text: "Write it in 3 sentences and save it in your **ai-basics** folder as **project-idea**. Module 2 starts from it." }
   ],
-  tip: "If an answer is off, edit your first message to add the missing context and resend it. That usually beats five follow-ups.",
-  transfer: "The four parts, pushback and checking work the same way in ChatGPT, Microsoft Copilot and Google Gemini, which MIT licenses for students.",
+  tip: "If the answer is off, fix your first message instead: hover over it, click **Edit** (the pencil), add what was missing and resend. That usually beats five follow-ups.",
+  transfer: "The four parts, pushback and checking work the same way in ChatGPT, Microsoft Copilot and Google Gemini.",
 
   exercises: [
     {
-      title: "A · Three audiences, two pushbacks, one check",
+      title: "A · Explain it three ways",
       where: "Claude chat",
       minutes: 10,
-      intro: "Pick a concept you know well, so you can tell when Claude gets it wrong. Send the prompt. Then reply twice, each time naming one specific thing to change. Finally, ask **\"What in your answer is most likely wrong, and how would I verify it?\"** and check one claim in a source you open yourself.",
-      prompt: "I'm at MIT as [your program or role]. My background is [your industry and role].\nExplain [the concept you picked] three ways: to a 10-year-old, to a classmate, and to an expert in my industry. Under 60 words each. Use plain language and one concrete example per audience.",
-      deliverable: "Your improved answer after two rounds of pushback, plus one claim you checked: what it was and where you checked it.",
-      stretch: "Ask Claude to argue against its own expert explanation, then decide which side is stronger.",
-      goodLooksLike: { text: "**Pushback that works:** *\"Your expert version says margins typically fall 20–30% after a price war. Typical for which industry? Give me a source I can open, or say you're estimating.\"*\n\n**A check, written down:** *Checked the 20–30% figure. Claude's source was a consulting blog post with no data behind it, so I won't use the number.*" }
+      // intro / deliverable: a sentence, a list of bullets, or {text, points}
+      intro: { text: "Pick a concept you know well, so you can spot when Claude gets it wrong. Examples: WACC, the bullwhip effect, net promoter score.",
+               points: ["Send the prompt below",
+                        "Push back twice, one specific change each time",
+                        "Ask for a self-check, then open the source and check one claim"] },
+      // [[Tag::words]] colors the four parts, as in the Examples; Copy copies plain text
+      prompt: "[[Context::I'm at MIT as [your program or role]. My background is [your industry and role].]]\n[[Task::Explain [the concept you picked] three ways: to a 10-year-old, to a classmate, and to an expert in my industry.]]\n[[Format::Under 60 words each, with one concrete example per audience.]]\n[[Constraints::Use plain language and avoid jargon, even for the expert.]]",
+      deliverable: { text: "Save in your **ai-basics** folder:",
+                     points: ["Your improved answer after two pushbacks",
+                              "One claim you checked: what it said, where you checked it, and whether it held up"] },
+      stretch: "Ask Claude: \"Argue against your expert explanation.\" Then decide which side is stronger, and why.",
+      goodLooksLike: { text: "**Pushback on a claim:** *\"Your expert version says margins typically fall 20–30% after a price war. Typical for which industry? Give me a source I can open, or say you're estimating.\"*\n\n**Pushback on the format:** *\"Your 10-year-old version uses the word 'capital'. Replace it with a word a kid knows.\"*\n\n**A check, written down:** *Checked the 20–30% figure. Claude's source was a consulting blog post with no data behind it, so I won't use the number.*" }
     },
     {
       title: "B · Choose your project",
       where: "Claude chat",
       minutes: 8,
-      intro: "This idea runs through the whole course, so pick something small that **you** would actually use, for your work or your personal life. It should fit on one screen, work with made-up numbers while you build it, and need no login, database or AI inside it (in Module 8 you publish it as a simple web page). Open **Need ideas?** below if you're stuck.",
+      intro: { text: "This idea runs through the whole course, and in Module 8 you publish it as a web page. Pick something small **you** would actually use. **A good project:**",
+               points: ["Fits on one screen",
+                        "Works with made-up numbers while you build it",
+                        "Needs no login, database or AI inside it",
+                        "Is something you'd use at work or in life"] },
       ideas: {
         title: "Need ideas? Examples for work and for life",
         intro: "Examples only. Your own idea is better, and it can be a variation of one of these.",
         groups: [
-          { label: "For your work · studies",
+          { label: "Work & studies",
             items: ["**Decision matrix:** options vs. weighted criteria → score, and what would flip it",
                     "**Bottleneck finder:** process steps and times → the bottleneck and output per day",
                     "**Market-sizing worksheet:** top-down vs. bottom-up estimates, side by side",
                     "**Investment quick-check:** cash flows → NPV, IRR and payback",
                     "**Group project tracker:** tasks, owners and deadlines → who's behind"] },
-          { label: "For your life · Money",
+          { label: "Side projects & small business",
+            items: ["**Pricing calculator:** costs and target margin → price per unit",
+                    "**Break-even calculator:** fixed and variable costs → units to break even",
+                    "**Invoice tracker:** clients and invoices → what's overdue",
+                    "**Inventory counter:** stock and sales → when to reorder",
+                    "**Feedback tally:** comments by theme → the top 3 issues"] },
+          { label: "Money",
             items: ["**Monthly budget tracker:** spending vs. plan by category",
                     "**Savings goal planner:** how many months to reach a goal",
                     "**Rent vs. buy calculator:** total cost of each over the years you'd stay",
                     "**Trip cost splitter:** who paid what → who owes whom",
                     "**Subscription audit:** every subscription → monthly and yearly total"] },
-          { label: "For your life · Health & habits",
+          { label: "Health & habits",
             items: ["**Habit tracker:** daily check-ins → streaks",
                     "**Workout log:** sets and weights → progress over time",
                     "**Meal planner:** the week's meals → a grocery list",
                     "**Sleep and water tracker:** daily entries → weekly averages",
                     "**Running pace calculator:** distance and time → pace and race-time estimates"] },
-          { label: "For your life · Time & life admin",
+          { label: "Time & admin",
             items: ["**Weekly time-block planner:** priorities → a week laid out in blocks",
                     "**Trip planner:** itinerary plus a running budget",
                     "**Packing checklist:** trip type and length → what to pack",
                     "**Moving checklist:** move date → tasks by week",
                     "**Gift and birthday tracker:** people, dates, ideas and budget"] },
-          { label: "For your life · Learning & career",
+          { label: "Learning & career",
             items: ["**Reading list tracker:** books → progress and notes",
                     "**Vocabulary flashcards:** words → practice that repeats the ones you miss",
                     "**Job application tracker:** applications → pipeline by stage",
@@ -677,48 +756,57 @@ window.AIB_MODULES["m1"] = {
                     "**Study timer:** focus sessions → a log of time per subject"] }
         ]
       },
-      prompt: "Help me choose a small tool to build in this course, for my work or my personal life. It should fit on one screen, work with made-up data while I build it, and need no login, database or AI inside it.\nAsk me 3 questions, one at a time, and wait for each answer. Then propose 3 options. For each, give one sentence each on: the problem, who it helps, and what the tool does. Finally, tell me which option is easiest to build in a few hours, and why.",
-      deliverable: "Your project idea in 3 sentences: the problem, who it helps, what the tool does. Save it; Module 2 starts from it.",
-      stretch: "Ask Claude: \"What's the smallest version of this I could build in one hour?\"",
-      goodLooksLike: { text: "**A work idea.** **Problem:** Our regional managers price multi-year service contracts by gut feel and often underprice the long ones. **Who it helps:** regional sales managers at a mid-size services company. **What it does:** they enter contract length, monthly fee and expected costs, and the tool shows margin per year and flags any contract below a 25% margin.\n\n**A personal idea.** **Problem:** I don't know what my subscriptions cost in total, and renewals catch me by surprise. **Who it helps:** me. **What it does:** I list each subscription with its price and renewal date, and it shows the monthly and yearly total and flags anything renewing in the next 7 days." }
+      prompt: "[[Context::I'm at MIT as [your program or role]. I'm interested in [work, money, health, time or learning].]]\n[[Task::Help me choose a small tool to build in this course.]]\n[[Constraints::It should fit on one screen, work with made-up data while I build it, and need no login, database or AI inside it.]]\n[[Format::Ask me 3 questions, one at a time, and wait for each answer. Then propose 3 options. For each, write one sentence on the problem, one on who it helps, and one on what the tool does. Finally, tell me which is easiest to build in a few hours, and why.]]",
+      deliverable: { text: "Save in your **ai-basics** folder as **project-idea**, one sentence each. Module 2 starts from it.",
+                     points: ["**Problem:** what's hard or slow today",
+                              "**Who it helps:** you, or who exactly",
+                              "**What the tool does:** what you enter and what it shows"] },
+      stretch: "Ask Claude: \"What's the smallest version of this I could build in one hour?\" Keep that version in mind for Module 4.",
+      goodLooksLike: { text: "**A work idea.** **Problem:** Our regional managers price multi-year service contracts by gut feel and often underprice the long ones. **Who it helps:** regional sales managers at a mid-size services company. **What it does:** they enter contract length, monthly fee and expected costs, and the tool shows margin per year and flags any contract below a 25% margin.\n\n**A personal idea.** **Problem:** I don't know what my subscriptions cost in total, and renewals catch me by surprise. **Who it helps:** me. **What it does:** I list each subscription with its price and renewal date, and it shows the monthly and yearly total and flags anything renewing in the next 7 days.\n\n**Too big:** *\"A CRM for my team.\"* It needs logins and a database. **Smaller:** a follow-up tracker for one person's contacts." }
     }
   ],
 
   responsibleUse: {
-    title: "What not to paste",
-    base: false,                 // these ARE the course rules (repeated from course.js rulesBase in other modules)
-    text: "These rules apply in every module of this course.",
-    rules: [
-      "**In this course, use made-up or public information only.** Every exercise is designed to work that way.",
-      "**Never paste high-risk information into any AI tool:** Social Security numbers, financial account or credit card numbers, health records, passwords. MIT's guidance says this applies even to MIT-licensed tools.",
-      "**No one else's personal information,** and no non-public MIT information such as unpublished research, student records or hiring materials.",
-      "**For work, your employer's AI policy comes first.** If you're not sure something is allowed, don't paste it. Ask your employer, or for MIT information, ai-guidance@mit.edu."
-    ],
-    note: "Based on [MIT IS&T guidance for the use of generative AI](https://ist.mit.edu/ai-guidance). Your Claude Enterprise account doesn't change these rules. We'll update this section once Sloan confirms which MIT data levels the account is approved for."
+    title: "What's safe to paste",
+    base: "only",                // shows the course rules from course.js (rulesBase) as this module's own; edit them there
+    text: "These rules apply in every module of this course."
+    // the source note and the staff TODO now live with the rules in course.js
   },
 
+  // In the order students meet them: setup, Exercise A, then Exercise B
   stuck: [
     { problem: "Claude shows my personal account, not the Enterprise one",
-      fix: "Open the account menu (your name or initials) and check the organization shown. Sign out, then sign in with the email address the program gave you. Still wrong? Bring it to office hours; the first one is a setup clinic." },
+      fix: "Check the organization in the account menu. Sign out, then sign in with your MIT email. Still wrong? Bring your laptop to office hours." },
     { problem: "The answer is long and generic",
-      fix: "Add the missing parts: who it's for and the format, e.g. \"under 100 words, 3 bullets, for my CFO.\" Or edit your first message and resend it." },
-    { problem: "Claude asked all three questions at once",
-      fix: "Reply: \"Please ask one question at a time and wait for my answer.\" Or answer them all in one message; that works too." },
+      fix: "Add who it's for and the format: \"under 100 words, 3 bullets, for my CFO.\" Or edit your first message and resend." },
     { problem: "The self-check didn't give me anything I can open",
-      fix: "Ask: \"For that claim, give me a source I can open and tell me what to look for.\" If there's no source you can find, treat the claim as unverified and don't rely on it." },
+      fix: "Ask: \"For that claim, give me a source I can open and tell me what to look for.\" No source? Treat the claim as unverified." },
+    { problem: "The link doesn't open, or doesn't say what Claude claimed",
+      fix: "That happens. Treat the claim as unverified, ask for another source, or search for it yourself." },
+    { problem: "Claude asked all three questions at once",
+      fix: "Reply: \"Please ask one question at a time.\" Or answer them all in one message; that works too." },
     { problem: "I can't decide on a project",
-      fix: "Pick two ideas from **Need ideas?** in Exercise B and ask Claude which one is smaller and more useful to you. You can switch ideas any time before Module 4, where you build the first version." }
+      fix: "Pick two ideas from **Need ideas?** and ask Claude which is smaller and more useful to you. You can switch before Module 4, where you build the first version." }
   ],
 
+  // Go deeper: source and type show above the title; group puts cards under a small heading
   resources: [
-    { label: "Anthropic Academy: AI Fluency: Framework & Foundations (free course)", url: "https://anthropic.skilljar.com/ai-fluency-framework-foundations" },
-    { label: "Anthropic: Interactive prompt engineering tutorial", url: "https://github.com/anthropics/prompt-eng-interactive-tutorial" },
-    { label: "Anthropic: Prompting best practices", url: "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" },
-    { label: "Anthropic: Prompt engineering overview", url: "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" },
-    { label: "Nielsen Norman Group: CARE, a structure for crafting AI prompts", url: "https://www.nngroup.com/articles/careful-prompts/" },
-    { label: "Sheila Teo: How I won Singapore's GPT-4 prompt engineering competition (CO-STAR)", url: "https://towardsdatascience.com/how-i-won-singapores-gpt-4-prompt-engineering-competition-34c195a93d41" },
-    { label: "MIT IS&T: Guidance for the use of generative AI", url: "https://ist.mit.edu/ai-guidance" },
-    { label: "MIT Sloan Teaching & Learning Technologies: Generative AI resource hub", url: "https://mitsloanedtech.mit.edu/ai/" }
+    { group: "Start here", source: "Anthropic Academy", type: "Free course",
+      label: "AI Fluency: Framework & Foundations", url: "https://anthropic.skilljar.com/ai-fluency-framework-foundations" },
+    { group: "Prompting guides", source: "Anthropic", type: "Tutorial",
+      label: "Interactive prompt engineering tutorial", url: "https://github.com/anthropics/prompt-eng-interactive-tutorial" },
+    { group: "Prompting guides", source: "Anthropic", type: "Guide",
+      label: "Prompting best practices", url: "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices" },
+    { group: "Prompting guides", source: "Anthropic", type: "Guide",
+      label: "Prompt engineering overview", url: "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" },
+    { group: "The frameworks", source: "Nielsen Norman Group", type: "Article",
+      label: "CARE, a structure for crafting AI prompts", url: "https://www.nngroup.com/articles/careful-prompts/" },
+    { group: "The frameworks", source: "Sheila Teo", type: "Article",
+      label: "How I won Singapore's GPT-4 prompt engineering competition (CO-STAR)", url: "https://towardsdatascience.com/how-i-won-singapores-gpt-4-prompt-engineering-competition-34c195a93d41" },
+    { group: "MIT guidance", source: "MIT IS&T", type: "Guidance",
+      label: "Guidance for the use of generative AI", url: "https://ist.mit.edu/ai-guidance" },
+    { group: "MIT guidance", source: "MIT Sloan TLT", type: "Resource hub",
+      label: "Generative AI resource hub", url: "https://mitsloanedtech.mit.edu/ai/" }
   ]
 };
 
@@ -888,7 +976,7 @@ window.AIB_MODULES["m3"] = {
   },
 
   breakdown: {
-    key: "The same Claude can answer you or do the work for you. What changes is your brief: ask for an answer, or describe a finished result.",
+    key: "The same Claude can answer you or do the work for you. What changes is your prompt: ask for an answer, or describe a finished result.",
     concepts: [
       { title: "Ask: think and draft",
         text: "For brainstorming, explaining and quick drafts. The answer stays in the conversation and you take it from there." },
@@ -926,7 +1014,7 @@ window.AIB_MODULES["m3"] = {
     { title: "Open the files and check one claim", text: "Compare one sentence or number in the output with the source it came from." }
   ],
   tip: "End every delegated task with \"Show me your plan and the file list first, and wait for my OK.\" It costs one message and prevents most surprises.",
-  transfer: "Agent features in Microsoft Copilot and ChatGPT work the same way: brief the outcome, scope what they can see, and review before you approve.",
+  transfer: "Agent features in Microsoft Copilot and ChatGPT work the same way: describe the outcome, scope what they can see, and review before you approve.",
 
   exercises: [
     {
@@ -968,7 +1056,7 @@ window.AIB_MODULES["m3"] = {
     { problem: "It asks permission for every single step",
       fix: "That's **Manual** mode, the Enterprise default, and it's expected. Read each request and allow it. It's slower, but you see everything Claude does." },
     { problem: "It started working before showing me a plan",
-      fix: "Stop it, and add to your brief: \"Show me your plan and the file list first, and wait for my OK.\"" },
+      fix: "Stop it, and add to your prompt: \"Show me your plan and the file list first, and wait for my OK.\"" },
     { problem: "A file it made won't open",
       fix: "Ask Claude to save it again as .xlsx or .docx, or as .csv for the inputs table." }
   ],
@@ -1341,7 +1429,7 @@ window.AIB_MODULES["m6"] = {
       { title: "Least access",
         text: "Connect one app. Start with read-only tasks. Review anything before it's sent, created or changed." },
       { title: "Automation",
-        text: "A clear brief plus a schedule, e.g. every weekday at 7am. Scheduled tasks run in the cloud, so you review the output afterwards, starting with the first run." },
+        text: "A clear prompt plus a schedule, e.g. every weekday at 7am. Scheduled tasks run in the cloud, so you review the output afterwards, starting with the first run." },
       { title: "Responsible use, wrapped up",
         text: "Verify before you rely on it, follow the data rules, disclose AI help where it's expected, and remember that people stay accountable. Details below." }
     ]
@@ -1360,11 +1448,11 @@ window.AIB_MODULES["m6"] = {
 
   steps: [
     { title: "Connect one app", text: "In Connectors, connect one app and sign in. Or share the `work-week/` folder in the desktop app." },
-    { title: "Run a read-only task and check one item", text: "Send Exercise A's brief, then compare one line of the output with the email, invite or document it came from." },
+    { title: "Run a read-only task and check one item", text: "Send Exercise A's prompt, then compare one line of the output with the email, invite or document it came from." },
     { title: "Turn it into a scheduled task", text: "Type **/schedule** in the task, or open **Scheduled** in the sidebar, and pick a frequency: hourly, daily, weekly or weekdays." },
     { title: "Review the first automatic run", text: "Open it on the Scheduled page. Check one item again before you rely on it." }
   ],
-  tip: "End every connected brief with \"Read only: don't send, create, change or delete anything. List what you looked at.\" It keeps the task safe and the output checkable.",
+  tip: "End every connected prompt with \"Read only: don't send, create, change or delete anything. List what you looked at.\" It keeps the task safe and the output checkable.",
   transfer: "Microsoft Copilot and Google Gemini connect to Microsoft 365 and Google Workspace in the same way, and the same least-access habits apply.",
 
   exercises: [
@@ -1383,14 +1471,14 @@ window.AIB_MODULES["m6"] = {
       title: "B · Schedule it",
       where: "The same task",
       minutes: 9,
-      intro: "Turn your brief into a scheduled task, and fix anything your check in Exercise A turned up first. Then write the **data check**: what can this automation see, and who receives its output?",
-      prompt: "/schedule Run this [every weekday at 7am / weekly on Monday at 8am]: [your brief from Exercise A, with any fixes].\nRead only: don't send, create, change or delete anything.",
+      intro: "Turn your prompt into a scheduled task, and fix anything your check in Exercise A turned up first. Then write the **data check**: what can this automation see, and who receives its output?",
+      prompt: "/schedule Run this [every weekday at 7am / weekly on Monday at 8am]: [your prompt from Exercise A, with any fixes].\nRead only: don't send, create, change or delete anything.",
       deliverable: "One scheduled task, plus three sentences: what it can see, who receives its output, and how much time it saves you each week.",
       stretch: "Combine it with your Module 5 skill, or ask for a fixed format, so every run looks the same and is quicker to check.",
       goodLooksLike: { text: "**Trail Club price test: kickoff** · Mon 2:00–3:00pm, Zoom\n**Attendees:** CFO, Head of Sales, Analytics Lead, you\n**Last related:** the CFO's email of Fri Nov 13 (test $49 in the Southeast and Midwest for three months); `notes/price-test-design.md`\n**Ask:** 1) Is three months long enough to see churn change? 2) What churn would make us stop the test early? 3) Who owns the regional baseline?\n**Looked at:** calendar.csv, emails/01, notes/price-test-design.md" },
       reveal: {
         title: "Before you leave it running (open it after you've scheduled yours)",
-        text: "**What can it see?** Everything your account can see in that app, not just what you had in mind.\n\n**Who gets the output?** Only you, unless your brief sends or shares it. Keep it that way until you've checked several runs.\n\n**Does the brief say read-only?** If not, add it.\n\n**Using the sandbox?** Did your digest include the partner's email marked *\"Confidential: do not forward\"*? A digest that copies confidential terms into a summary has just forwarded them. Add to the brief: \"Leave out anything marked confidential; just note that it exists.\"\n\n**To pause or delete it:** open **Scheduled** in the sidebar."
+        text: "**What can it see?** Everything your account can see in that app, not just what you had in mind.\n\n**Who gets the output?** Only you, unless your prompt sends or shares it. Keep it that way until you've checked several runs.\n\n**Does the prompt say read-only?** If not, add it.\n\n**Using the sandbox?** Did your digest include the partner's email marked *\"Confidential: do not forward\"*? A digest that copies confidential terms into a summary has just forwarded them. Add to the prompt: \"Leave out anything marked confidential; just note that it exists.\"\n\n**To pause or delete it:** open **Scheduled** in the sidebar."
       }
     }
   ],
@@ -1417,7 +1505,7 @@ window.AIB_MODULES["m6"] = {
     { problem: "My scheduled task didn't run",
       fix: "Tasks that use local files (like the sandbox folder) only run while the desktop app is open; tasks that only use connectors run in the cloud. Check its past runs on the **Scheduled** page, or use **run now**." },
     { problem: "The output included something confidential",
-      fix: "Pause the task on the Scheduled page, narrow the brief (\"leave out anything marked confidential\"), and delete that output. If it's someone else's information, mention it at office hours." }
+      fix: "Pause the task on the Scheduled page, narrow the prompt (\"leave out anything marked confidential\"), and delete that output. If it's someone else's information, mention it at office hours." }
   ],
 
   resources: [
@@ -2000,7 +2088,7 @@ window.AIBW = (function () {
   // needs: "text" or {text, ifNot, files}; ifNot shows while the box is unticked; files = download buttons
   function beforeHTML(b) {
     return '<div class="before">' +
-      (b.needs && b.needs.length ? '<span class="sub">Tick each one when it\'s ready</span><ul class="checks ready">' + b.needs.map((x, k) => {
+      (b.needs && b.needs.length ? '<span class="sub">Checklist</span><ul class="checks ready">' + b.needs.map((x, k) => {
         const it = typeof x === "string" ? { text: x } : x;
         return '<li><label><input type="checkbox" data-b="' + k + '"><span>' + md(it.text) +
           (it.ifNot ? '<span class="ifnot">' + md(it.ifNot) + "</span>" : "") + "</span></label>" +
@@ -2025,7 +2113,10 @@ window.AIBW = (function () {
     const cmp = bd.compare ? [].concat(bd.compare).map(table).join("") : "";
     return (bd.key ? '<p class="keyidea">' + md(bd.key) + "</p>" : "") +
       '<div class="concepts">' + (bd.concepts || []).map(c =>
-        '<div class="concept"><b>' + esc(c.title) + "</b><p>" + md(c.text) + "</p></div>").join("") + "</div>" +
+        // text can be one paragraph or a list of short bullets
+        '<div class="concept"><b>' + esc(c.title) + "</b>" + (Array.isArray(c.text)
+          ? '<ul class="pts">' + c.text.map(x => "<li>" + md(x) + "</li>").join("") + "</ul>"
+          : "<p>" + md(c.text) + "</p>") + "</div>").join("") + "</div>" +
       (bd.figure ? '<figure class="diagram">' + bd.figure.svg + (bd.figure.caption ? "<figcaption>" + md(bd.figure.caption) + "</figcaption>" : "") + "</figure>" : "") + cmp;
   }
 
@@ -2037,23 +2128,62 @@ window.AIBW = (function () {
         "<ul>" + c.parts.map(p => "<li><b>" + esc(p[0]) + "</b><span>" + md(p[1]) + "</span></li>").join("") + "</ul>" +
         (c.goodFor ? '<p class="fw-good"><span>Good for</span> ' + md(c.goodFor) + "</p>" : "") + "</div>").join("") + "</div>" : "") +
       (f.table ? table(f.table) : "") +
-      (f.note ? '<p class="para">' + md(f.note) + "</p>" : "") +
+      // note: one sentence, or {label, points} for a highlighted tip box with bullets
+      (f.note ? (f.note.points
+        ? '<div class="tip fw-tip"><b>' + esc(f.note.label || "Tip") + '</b><ul class="pts">' + f.note.points.map(x => "<li>" + md(x) + "</li>").join("") + "</ul></div>"
+        : '<p class="para">' + md(f.note) + "</p>") : "") +
+      // sample: the same task written in each framework, as cards with a Copy button (copies the text without ** marks)
       (s ? '<details class="reveal"><summary>' + esc(s.title || "See one task in each framework") + '</summary><div class="fw">' +
         (s.task ? '<p class="fw-task">' + md(s.task) + "</p>" : "") +
-        s.items.map(x => '<div class="fw-item"><b>' + esc(x.name) + '</b><span class="q">' + md(x.prompt) + "</span></div>").join("") +
+        (s.tryIt ? '<p class="fw-task">' + md(s.tryIt) + "</p>" : "") +
+        '<div class="fw-grid">' + s.items.map((x, k) => '<div class="fw-item"><div class="fw-head"><b>' + esc(x.name) + "</b>" +
+          '<button type="button" class="btn copy" data-fwcopy="' + k + '">Copy</button></div>' +
+          '<span class="q" id="fwq-' + k + '">' + md(x.prompt) + "</span></div>").join("") + "</div>" +
         "</div></details>" : "");
   }
 
   // examples: [{title, weak, strong, tags?, why}]; set guess:true to hide each "why" until opened
+  // examples: [{title, idea?, weak, strong, gets?: {weak, strong}, tags?, why}]
+  // In strong, mark parts as [[Tag::words]] to color those words and show a matching colored tag.
+  // Without marks, tags (if any) show as plain grey-blue chips.
+  const HL = /\[\[([^:\]]+)::([\s\S]*?)\]\]/g;
+  const plainStrong = s => s.replace(HL, "$2");
+  // text with [[Tag::words]] marks -> {html with colored marks, matching tag chips}; also used for exercise prompts
+  function hlHTML(text, plainTags) {
+    const names = [];
+    let html = "", last = 0, mt;
+    HL.lastIndex = 0;
+    while ((mt = HL.exec(text))) {
+      if (names.indexOf(mt[1]) < 0) names.push(mt[1]);
+      html += esc(text.slice(last, mt.index)) + '<mark class="hl hl-' + (names.indexOf(mt[1]) % 5) + '">' + esc(mt[2]) + "</mark>";
+      last = HL.lastIndex;
+    }
+    html += esc(text.slice(last));
+    const tags = names.length
+      ? names.map((t, k) => '<span class="tag hl-' + (k % 5) + '">' + esc(t) + "</span>")
+      : (plainTags || []).map(t => '<span class="tag">' + esc(t) + "</span>");
+    return { html, tags: tags.length ? '<span class="tags">' + tags.join("") + "</span>" : "" };
+  }
+  const strongHTML = e => hlHTML(e.strong, e.tags);
+  // a text field can be a sentence, a list of bullets, or {text, points} (a lead sentence plus bullets)
+  function textBlock(v, tag) {
+    const ul = a => '<ul class="pts">' + a.map(x => "<li>" + md(x) + "</li>").join("") + "</ul>";
+    if (Array.isArray(v)) return ul(v);
+    if (v && v.points) return (v.text ? "<" + tag + ">" + md(v.text) + "</" + tag + ">" : "") + ul(v.points);
+    return "<" + tag + ">" + md(v) + "</" + tag + ">";
+  }
   function examplesHTML(list, intro, guess) {
     return '<p class="intro">' + md(intro || 'Compare each weak and strong version. The strong one usually adds context, specifics, or what "done" looks like.') + "</p>" +
-      list.map(e => '<div class="ex"><div class="exh">' + esc(e.title) + '</div><div class="pair">' +
-        '<div><span class="lbl weak">Weak</span><span class="q">' + esc(e.weak) + "</span></div>" +
-        '<div><span class="lbl strong">Strong</span><span class="q">' + esc(e.strong) + "</span>" +
-          (e.tags && e.tags.length ? '<span class="tags">' + e.tags.map(t => '<span class="tag">' + esc(t) + "</span>").join("") + "</span>" : "") +
+      list.map((e, k) => { const s = strongHTML(e); return '<div class="ex"><div class="exh">' + esc(e.title) +
+          (e.idea ? '<span class="exidea">Key idea: ' + md(e.idea) + "</span>" : "") + '</div><div class="pair">' +
+        '<div><span class="lbl weak">Weak</span><span class="q">' + esc(e.weak) + "</span>" +
+          (e.gets && e.gets.weak ? '<span class="gets"><b>You get:</b> ' + md(e.gets.weak) + "</span>" : "") + "</div>" +
+        '<div><span class="exrow"><span class="lbl strong">Strong</span><button type="button" class="btn copy" data-excopy="' + k + '">Copy</button></span>' +
+          '<span class="q" id="exq-' + k + '">' + s.html + "</span>" + s.tags +
+          (e.gets && e.gets.strong ? '<span class="gets"><b>You get:</b> ' + md(e.gets.strong) + "</span>" : "") +
         "</div></div>" +
         (e.why ? (guess ? '<details class="why"><summary>What changed?</summary><div>' + md(e.why) + "</div></details>"
-                        : '<div class="why">' + md(e.why) + "</div>") : "") + "</div>").join("");
+                        : '<div class="why">' + md(e.why) + "</div>") : "") + "</div>"; }).join("");
   }
 
   function demoHTML(d) {
@@ -2069,7 +2199,10 @@ window.AIBW = (function () {
   }
 
   function stepsHTML(m) {
-    return '<ol class="steps">' + m.steps.map(x => "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol>" +
+    // a step can be {title, text}, or {group: "Exercise A · ~10 min"} for an unnumbered heading row; numbering continues across groups
+    return '<ol class="steps">' + m.steps.map(x => x.group
+      ? '<li class="grp">' + esc(x.group) + "</li>"
+      : "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol>" +
       (m.tip ? '<div class="tip"><b>Tip</b><span>' + md(m.tip) + "</span></div>" : "") +
       (m.transfer ? '<p class="transfer"><b>Works elsewhere too.</b> ' + md(m.transfer) + "</p>" : "");
   }
@@ -2090,7 +2223,7 @@ window.AIBW = (function () {
       '<div class="task"><div class="th"><h3>' + esc(x.title) + "</h3>" +
         (many && x.minutes ? '<span class="mins">' + x.minutes + " min</span>" : "") +
         (x.where ? '<span class="where">Do it in: ' + esc(x.where) + "</span>" : "") + "</div>" +
-        (x.intro ? "<p>" + md(x.intro) + "</p>" : "") +
+        (x.intro ? textBlock(x.intro, "p") : "") +
         (x.ideas ? '<details class="reveal ideas"><summary>' + esc(x.ideas.title || "Need ideas?") + '</summary><div class="idea-groups">' +
           (x.ideas.intro ? '<p class="idea-intro">' + md(x.ideas.intro) + "</p>" : "") +
           x.ideas.groups.map(g => '<div class="idea-group"><span class="sub">' + esc(g.label) + "</span><ul>" +
@@ -2098,12 +2231,13 @@ window.AIBW = (function () {
         (x.files && x.files.length ? '<div class="files"><span class="sub">Downloads</span>' + x.files.map(f =>
           '<a class="btn file" href="' + esc(f.url) + '" download>' + esc(f.label) + "</a>").join("") + "</div>" : "") +
         (x.prompt ? '<div class="prompt"><span class="pl">' + esc(x.promptLabel || "Copy this prompt and fill in the brackets") + "</span>" +
-          '<button type="button" class="btn copy" data-copy="' + k + '">Copy</button><span class="ptext" id="ptext-' + k + '">' + esc(x.prompt) + "</span></div>" : "") +
+          '<button type="button" class="btn copy" data-copy="' + k + '">Copy</button>' +
+          (p => '<span class="ptext" id="ptext-' + k + '">' + p.html + "</span>" + p.tags)(hlHTML(x.prompt)) + "</div>" : "") +
         // numbered steps to do after sending the prompt
         (x.steps && x.steps.length ? (x.stepsLabel ? '<span class="sub">' + esc(x.stepsLabel) + "</span>" : "") +
           '<ol class="xsteps">' + x.steps.map(t => "<li>" + md(t) + "</li>").join("") + "</ol>" : "") +
         '<dl class="deliver">' +
-          (x.deliverable ? "<dt>Deliverable</dt><dd>" + md(x.deliverable) + "</dd>" : "") +
+          (x.deliverable ? "<dt>Deliverable</dt><dd>" + textBlock(x.deliverable, "span") + "</dd>" : "") +
           (x.stretch ? "<dt>Stretch</dt><dd>" + md(x.stretch) + "</dd>" : "") +
         "</dl>" +
         (x.goodLooksLike ? '<span class="sub">What good looks like</span>' + goodHTML(x.goodLooksLike) : "") +
@@ -2114,20 +2248,51 @@ window.AIBW = (function () {
       "</div>").join("");
   }
 
-  // The module's own rules, then the course rules from course.js (rulesBase) unless base: false
+  // The module's own rules, then the course rules from course.js (rulesBase) unless base: false; base: "only" shows just the course rules
   function respHTML(r) {
+    const li = a => a.map(y => "<li>" + md(y) + "</li>").join("");
     const box = (x, cls) => '<div class="resp' + (cls ? " " + cls : "") + '"><b>' + esc(x.title || "The rule for this module") + "</b>" +
       (x.text ? "<p>" + md(x.text) + "</p>" : "") +
-      (x.rules && x.rules.length ? "<ol>" + x.rules.map(y => "<li>" + md(y) + "</li>").join("") + "</ol>" : "") +
+      (x.rules && x.rules.length ? "<ol>" + li(x.rules) + "</ol>" : "") +
+      // use / never: two columns (Use ✓ and Never paste ✗)
+      (x.use || x.never ? '<div class="usenever">' +
+        (x.use ? '<div class="use"><span class="sub">✓ Use</span><ul class="pts">' + li(x.use) + "</ul></div>" : "") +
+        (x.never ? '<div class="never"><span class="sub">✗ Never paste</span><ul class="pts">' + li(x.never) + "</ul></div>" : "") + "</div>" : "") +
+      (x.after ? x.after.map(y => "<p>" + md(y) + "</p>").join("") : "") +
+      (x.tip ? '<p class="resp-tip"><b>Tip</b> ' + md(x.tip) + "</p>" : "") +
       (x.note ? '<p class="resp-note">' + md(x.note) + "</p>" : "") + "</div>";
+    // base: "only" = show the course rules as this module's own (Module 1); base: false = hide them
+    if (r.base === "only") return C.rulesBase ? box(Object.assign({}, C.rulesBase, { title: r.title || C.rulesBase.title, text: r.text })) : "";
     return box(r) + (r.base !== false && C.rulesBase ? box(C.rulesBase, "base") : "");
   }
 
   function stuckHTML(list) {
     return '<div class="stuck">' + list.map(x =>
       "<details><summary>" + md(x.problem) + '</summary><div class="fix">' + md(x.fix) + "</div></details>").join("") +
-      '<p class="stuck-foot">Still stuck? Write down the exact step and what you saw, and bring it to office hours' +
-      (C.schedule && C.schedule.officeHours ? " (" + esc(C.schedule.officeHours) + ")" : "") + ".</p></div>";
+      '<p class="stuck-foot">Still stuck? Write down the exact step and what you saw, and bring it to office hours.</p></div>';
+  }
+
+  // Go deeper: [{label, url, source?, type?, group?}] -> one table (Resource | Source | Type), with a divider row per group.
+  // Without source, a label like "Anthropic: Prompting best practices" is split at the first ": ".
+  // The Source / Type columns only appear when at least one link has one.
+  function resHTML(list) {
+    const rows = list.map(r => {
+      const cut = r.source ? -1 : r.label.indexOf(": ");
+      return { r, source: r.source || (cut > 0 ? r.label.slice(0, cut) : ""), title: cut > 0 ? r.label.slice(cut + 2) : r.label };
+    });
+    const hasSrc = rows.some(x => x.source), hasType = rows.some(x => x.r.type);
+    const cols = 1 + hasSrc + hasType;
+    let last = null;
+    const body = rows.map(x => {
+      const g = x.r.group || "";
+      const head = g && g !== last ? '<tr class="grp"><th colspan="' + cols + '" scope="colgroup">' + esc(g) + "</th></tr>" : "";
+      last = g;
+      return head + "<tr><td>" + '<a href="' + esc(x.r.url) + '"' + ext(x.r.url) + ">" + esc(x.title) +
+        (ext(x.r.url) ? ' ↗<span class="vh"> (opens in a new tab)</span>' : "") + "</a></td>" +
+        (hasSrc ? "<td>" + esc(x.source) + "</td>" : "") + (hasType ? "<td>" + esc(x.r.type || "") + "</td>" : "") + "</tr>";
+    }).join("");
+    return '<div class="tablewrap"><table class="cmp restable"><thead><tr><th scope="col">Resource</th>' +
+      (hasSrc ? '<th scope="col">Source</th>' : "") + (hasType ? '<th scope="col">Type</th>' : "") + "</tr></thead><tbody>" + body + "</tbody></table></div>";
   }
 
   function moduleView(m) {
@@ -2140,31 +2305,28 @@ window.AIBW = (function () {
 
     if (m.before) add("before", "Before you start", beforeHTML(m.before));
     if (m.breakdown) add("breakdown", "Key ideas", breakdownHTML(m.breakdown),
-      b.read ? b.read + " min with " + (m.frameworks ? "frameworks and examples" : "examples") : "");
+      b.read ? "Learn · ~" + b.read + " min" : "");
     if (m.frameworks) add("frameworks", m.frameworks.title || "Prompt frameworks", frameworksHTML(m.frameworks));
     if (m.examples && m.examples.length) add("examples", "Examples", examplesHTML(m.examples, m.examplesIntro, m.examplesGuess));
-    if (m.demo) add("demo", "Demo", demoHTML(m.demo), b.demo ? b.demo + " min" : "");
+    if (m.demo) add("demo", "Demo", demoHTML(m.demo), b.demo ? "Demo · ~" + b.demo + " min" : "");
     if (m.steps && m.steps.length) add("steps", "Step by step", stepsHTML(m));
-    if (m.exercises && m.exercises.length) add("exercise", m.exercises.length > 1 ? "Your exercises" : "Your exercise", exercisesHTML(m), b.do ? b.do + " min with steps" : "");
-    if (m.responsibleUse) add("responsible", "Responsible use", respHTML(m.responsibleUse), b.check ? b.check + " min with Stuck?" : "");
+    if (m.exercises && m.exercises.length) add("exercise", m.exercises.length > 1 ? "Your exercises" : "Your exercise", exercisesHTML(m), b.do ? "Do · ~" + b.do + " min" : "");
+    if (m.responsibleUse) add("responsible", "Responsible use", respHTML(m.responsibleUse), b.check ? "Check · ~" + b.check + " min" : "");
     if (m.stuck && m.stuck.length) add("stuck", "Stuck?", stuckHTML(m.stuck));
-    if (m.resources && m.resources.length) add("deeper", "Go deeper", '<div class="res">' + m.resources.map(r =>
-      '<a href="' + esc(r.url) + '"' + ext(r.url) + ">" + esc(r.label) + (ext(r.url) ? ' ↗<span class="vh"> (opens in a new tab)</span>' : "") + "</a>").join("") + "</div>");
-    // Last section on every module: mark it as done (drives the sidebar progress, menu dots and card labels)
-    add("finish", "Finish", '<div class="finish"><p>Finished both exercises? Mark this module as done. Your progress is saved in this browser only.</p>' +
-      '<button type="button" class="btn primary" id="doneBtn" aria-pressed="false">Mark as done</button></div>');
+    if (m.resources && m.resources.length) add("deeper", "Go deeper", resHTML(m.resources));
+    // Last section on every module: recap, then mark as done (drives the sidebar progress, menu dots and card labels)
+    add("finish", "Finish", '<div class="finish">' +
+      (m.outcomes && m.outcomes.length ? '<span class="sub">You can now</span><ul class="did">' +
+        m.outcomes.map(o => "<li>" + esc(o) + "</li>").join("") + "</ul>" : "") +
+      '<div class="donerow"><button type="button" class="btn primary" id="doneBtn" aria-pressed="false">Mark as done</button>' +
+      '<span class="donenote">Progress is saved in this browser only.</span></div>' +
+      "</div>");
 
-    const total = mins(m);
-    const where = i >= 0 ? "Module " + (i + 1) + " of " + LIST.length : (m.label || "Template preview");
     const budget = m.budget ? '<div class="budget" aria-label="Time plan">' + [["Learn", "read"], ["Demo", "demo"], ["Do", "do"], ["Check", "check"]]
       .filter(x => b[x[1]]).map(x => '<span class="b-' + x[1] + '" style="flex:' + b[x[1]] + '"><i></i><em><b>' + x[0] + "</b> " + b[x[1]] + " min</em></span>").join("") + "</div>" : "";
 
+    // No status/module-number/time/level/track line above the title (removed Nov 17, 2026)
     return '<header class="mhead">' +
-        '<div class="top"><span id="mchip"></span><span>' + esc(where) + "</span>" +
-          (total ? "<span>·</span><span>~" + total + " min on your own</span>" : "") +
-          (m.level ? "<span>·</span><span>" + esc(m.level) + "</span>" : "") +
-          (entry.track && C.tracks[entry.track] ? '<span class="chip track">' + esc(C.tracks[entry.track].label) + "</span>" : "") +
-"</div>" +
         "<h1>" + esc(m.title || entry.title) + "</h1>" +
         (m.goal ? '<p class="goal">' + md(m.goal) + "</p>" : "") +
         (m.outcomes && m.outcomes.length ? '<div class="outcomes">' + m.outcomes.map(o => "<span>" + esc(o) + "</span>").join("") + "</div>" : "") +
@@ -2215,7 +2377,15 @@ window.AIBW = (function () {
     if (m.demo && m.demo.turns) W.demo(document.getElementById("demo-mount"), m.demo.turns);
     document.querySelectorAll("[data-copy]").forEach(btn => {
       const k = +btn.dataset.copy;
-      W.copy(btn, m.exercises[k].prompt, document.getElementById("ptext-" + k));
+      W.copy(btn, plainStrong(m.exercises[k].prompt), document.getElementById("ptext-" + k));
+    });
+    document.querySelectorAll("[data-excopy]").forEach(btn => {
+      const k = +btn.dataset.excopy;
+      W.copy(btn, plainStrong(m.examples[k].strong), document.getElementById("exq-" + k));
+    });
+    document.querySelectorAll("[data-fwcopy]").forEach(btn => {
+      const k = +btn.dataset.fwcopy;
+      W.copy(btn, m.frameworks.sample.items[k].prompt.replace(/\*\*/g, ""), document.getElementById("fwq-" + k));
     });
     const doneBtn = document.getElementById("doneBtn");
     if (doneBtn) doneBtn.addEventListener("click", () => { s.done = !s.done; refresh(); });

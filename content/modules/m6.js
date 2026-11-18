@@ -32,7 +32,7 @@ window.AIB_MODULES["m6"] = {
       { title: "Least access",
         text: "Connect one app. Start with read-only tasks. Review anything before it's sent, created or changed." },
       { title: "Automation",
-        text: "A clear brief plus a schedule, e.g. every weekday at 7am. Scheduled tasks run in the cloud, so you review the output afterwards, starting with the first run." },
+        text: "A clear prompt plus a schedule, e.g. every weekday at 7am. Scheduled tasks run in the cloud, so you review the output afterwards, starting with the first run." },
       { title: "Responsible use, wrapped up",
         text: "Verify before you rely on it, follow the data rules, disclose AI help where it's expected, and remember that people stay accountable. Details below." }
     ]
@@ -51,11 +51,11 @@ window.AIB_MODULES["m6"] = {
 
   steps: [
     { title: "Connect one app", text: "In Connectors, connect one app and sign in. Or share the `work-week/` folder in the desktop app." },
-    { title: "Run a read-only task and check one item", text: "Send Exercise A's brief, then compare one line of the output with the email, invite or document it came from." },
+    { title: "Run a read-only task and check one item", text: "Send Exercise A's prompt, then compare one line of the output with the email, invite or document it came from." },
     { title: "Turn it into a scheduled task", text: "Type **/schedule** in the task, or open **Scheduled** in the sidebar, and pick a frequency: hourly, daily, weekly or weekdays." },
     { title: "Review the first automatic run", text: "Open it on the Scheduled page. Check one item again before you rely on it." }
   ],
-  tip: "End every connected brief with \"Read only: don't send, create, change or delete anything. List what you looked at.\" It keeps the task safe and the output checkable.",
+  tip: "End every connected prompt with \"Read only: don't send, create, change or delete anything. List what you looked at.\" It keeps the task safe and the output checkable.",
   transfer: "Microsoft Copilot and Google Gemini connect to Microsoft 365 and Google Workspace in the same way, and the same least-access habits apply.",
 
   exercises: [
@@ -74,14 +74,14 @@ window.AIB_MODULES["m6"] = {
       title: "B · Schedule it",
       where: "The same task",
       minutes: 9,
-      intro: "Turn your brief into a scheduled task, and fix anything your check in Exercise A turned up first. Then write the **data check**: what can this automation see, and who receives its output?",
-      prompt: "/schedule Run this [every weekday at 7am / weekly on Monday at 8am]: [your brief from Exercise A, with any fixes].\nRead only: don't send, create, change or delete anything.",
+      intro: "Turn your prompt into a scheduled task, and fix anything your check in Exercise A turned up first. Then write the **data check**: what can this automation see, and who receives its output?",
+      prompt: "/schedule Run this [every weekday at 7am / weekly on Monday at 8am]: [your prompt from Exercise A, with any fixes].\nRead only: don't send, create, change or delete anything.",
       deliverable: "One scheduled task, plus three sentences: what it can see, who receives its output, and how much time it saves you each week.",
       stretch: "Combine it with your Module 5 skill, or ask for a fixed format, so every run looks the same and is quicker to check.",
       goodLooksLike: { text: "**Trail Club price test: kickoff** · Mon 2:00–3:00pm, Zoom\n**Attendees:** CFO, Head of Sales, Analytics Lead, you\n**Last related:** the CFO's email of Fri Nov 13 (test $49 in the Southeast and Midwest for three months); `notes/price-test-design.md`\n**Ask:** 1) Is three months long enough to see churn change? 2) What churn would make us stop the test early? 3) Who owns the regional baseline?\n**Looked at:** calendar.csv, emails/01, notes/price-test-design.md" },
       reveal: {
         title: "Before you leave it running (open it after you've scheduled yours)",
-        text: "**What can it see?** Everything your account can see in that app, not just what you had in mind.\n\n**Who gets the output?** Only you, unless your brief sends or shares it. Keep it that way until you've checked several runs.\n\n**Does the brief say read-only?** If not, add it.\n\n**Using the sandbox?** Did your digest include the partner's email marked *\"Confidential: do not forward\"*? A digest that copies confidential terms into a summary has just forwarded them. Add to the brief: \"Leave out anything marked confidential; just note that it exists.\"\n\n**To pause or delete it:** open **Scheduled** in the sidebar."
+        text: "**What can it see?** Everything your account can see in that app, not just what you had in mind.\n\n**Who gets the output?** Only you, unless your prompt sends or shares it. Keep it that way until you've checked several runs.\n\n**Does the prompt say read-only?** If not, add it.\n\n**Using the sandbox?** Did your digest include the partner's email marked *\"Confidential: do not forward\"*? A digest that copies confidential terms into a summary has just forwarded them. Add to the prompt: \"Leave out anything marked confidential; just note that it exists.\"\n\n**To pause or delete it:** open **Scheduled** in the sidebar."
       }
     }
   ],
@@ -108,7 +108,7 @@ window.AIB_MODULES["m6"] = {
     { problem: "My scheduled task didn't run",
       fix: "Tasks that use local files (like the sandbox folder) only run while the desktop app is open; tasks that only use connectors run in the cloud. Check its past runs on the **Scheduled** page, or use **run now**." },
     { problem: "The output included something confidential",
-      fix: "Pause the task on the Scheduled page, narrow the brief (\"leave out anything marked confidential\"), and delete that output. If it's someone else's information, mention it at office hours." }
+      fix: "Pause the task on the Scheduled page, narrow the prompt (\"leave out anything marked confidential\"), and delete that output. If it's someone else's information, mention it at office hours." }
   ],
 
   resources: [

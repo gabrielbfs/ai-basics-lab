@@ -102,7 +102,8 @@ window.AIB_MODULES["_template"] = {
 
   // Series change #4: one data or verification rule tied to this module's tool.
   // Use text for one rule, rules for a numbered list, note for a small footnote (all optional).
-  // The course rules (course.js rulesBase) are shown underneath automatically; base: false hides them.
+  // The course rules (course.js rulesBase) are shown underneath automatically; base: false hides them,
+  // base: "only" shows just the course rules (Module 1).
   responsibleUse: {
     title: "The rule for this module",
     text: "One concrete rule, e.g. what not to paste and why.",

@@ -15,15 +15,18 @@ window.AIB_COURSE = {
     live: "Fridays 9:00–10:00am"
   },
 
-  // Shown under every module's own Responsible use rules (Module 1 states them itself, with base: false).
+  // The course rules. Module 1 shows them as its own rules (base: "only"); Modules 2–8 show them under their own rule.
+  // TODO (staff): update once Sloan confirms which MIT data levels the Claude Enterprise account is approved for.
   rulesBase: {
-    title: "The course rules (from Module 1): what not to paste",
-    rules: [
-      "**In this course, use made-up or public information only.** Every exercise is designed to work that way.",
-      "**Never paste high-risk information into any AI tool:** Social Security numbers, financial account or credit card numbers, health records, passwords. MIT's guidance says this applies even to MIT-licensed tools.",
-      "**No one else's personal information,** and no non-public MIT information such as unpublished research, student records or hiring materials.",
-      "**For work, your employer's AI policy comes first.** If you're not sure something is allowed, don't paste it. Ask your employer, or for MIT information, ai-guidance@mit.edu."
-    ],
+    title: "The course rules (from Module 1): what's safe to paste",
+    use: ["Made-up information", "Public information"],
+    never: ["Social Security, bank or card numbers",
+            "Health records, passwords",
+            "Anyone else's personal information",
+            "Non-public MIT information: unpublished research, student records, hiring materials"],
+    after: ["**At work, your employer's AI policy comes first.** Not sure? Don't paste it. Ask your employer, or ai-guidance@mit.edu for MIT information.",
+            "The never-paste list applies even to MIT-licensed tools, including your Claude Enterprise account."],
+    tip: "Not sure? Swap real names, companies and numbers for made-up ones before you paste.",
     note: "Based on [MIT IS&T guidance for the use of generative AI](https://ist.mit.edu/ai-guidance)."
   },
 
@@ -37,7 +40,7 @@ window.AIB_COURSE = {
   // blurb = the few-word description on the overview card; output = what the student leaves with;
   // setup = which setup part (A or B) the module needs, shown on the card as "Setup A" / "Setup B".
   modules: [
-    { id: "m1", page: "m01-briefing-claude.html", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear briefs and check what Claude gives back.", output: "a 3-sentence project idea", setup: "A" },
+    { id: "m1", page: "m01-briefing-claude.html", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear prompts and check what Claude gives back.", output: "a 3-sentence project idea", setup: "A" },
     { id: "m2", page: "m02-research-analysis.html", title: "Research & Analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "an assumptions table and sample data, checked", setup: "A" },
     { id: "m3", page: "m03-asking-vs-delegating.html", title: "Asking vs. Delegating",              short: "Ask vs. Delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief", setup: "A" },
     { id: "m4", page: "m04-projects-artifacts.html", title: "Projects & Artifacts",                short: "Projects & Artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool", setup: "A" },

@@ -157,7 +157,7 @@
   // needs: "text" or {text, ifNot, files}; ifNot shows while the box is unticked; files = download buttons
   function beforeHTML(b) {
     return '<div class="before">' +
-      (b.needs && b.needs.length ? '<span class="sub">Tick each one when it\'s ready</span><ul class="checks ready">' + b.needs.map((x, k) => {
+      (b.needs && b.needs.length ? '<span class="sub">Checklist</span><ul class="checks ready">' + b.needs.map((x, k) => {
         const it = typeof x === "string" ? { text: x } : x;
         return '<li><label><input type="checkbox" data-b="' + k + '"><span>' + md(it.text) +
           (it.ifNot ? '<span class="ifnot">' + md(it.ifNot) + "</span>" : "") + "</span></label>" +
@@ -182,7 +182,10 @@
     const cmp = bd.compare ? [].concat(bd.compare).map(table).join("") : "";
     return (bd.key ? '<p class="keyidea">' + md(bd.key) + "</p>" : "") +
       '<div class="concepts">' + (bd.concepts || []).map(c =>
-        '<div class="concept"><b>' + esc(c.title) + "</b><p>" + md(c.text) + "</p></div>").join("") + "</div>" +
+        // text can be one paragraph or a list of short bullets
+        '<div class="concept"><b>' + esc(c.title) + "</b>" + (Array.isArray(c.text)
+          ? '<ul class="pts">' + c.text.map(x => "<li>" + md(x) + "</li>").join("") + "</ul>"
+          : "<p>" + md(c.text) + "</p>") + "</div>").join("") + "</div>" +
       (bd.figure ? '<figure class="diagram">' + bd.figure.svg + (bd.figure.caption ? "<figcaption>" + md(bd.figure.caption) + "</figcaption>" : "") + "</figure>" : "") + cmp;
   }
 
@@ -194,23 +197,62 @@
         "<ul>" + c.parts.map(p => "<li><b>" + esc(p[0]) + "</b><span>" + md(p[1]) + "</span></li>").join("") + "</ul>" +
         (c.goodFor ? '<p class="fw-good"><span>Good for</span> ' + md(c.goodFor) + "</p>" : "") + "</div>").join("") + "</div>" : "") +
       (f.table ? table(f.table) : "") +
-      (f.note ? '<p class="para">' + md(f.note) + "</p>" : "") +
+      // note: one sentence, or {label, points} for a highlighted tip box with bullets
+      (f.note ? (f.note.points
+        ? '<div class="tip fw-tip"><b>' + esc(f.note.label || "Tip") + '</b><ul class="pts">' + f.note.points.map(x => "<li>" + md(x) + "</li>").join("") + "</ul></div>"
+        : '<p class="para">' + md(f.note) + "</p>") : "") +
+      // sample: the same task written in each framework, as cards with a Copy button (copies the text without ** marks)
       (s ? '<details class="reveal"><summary>' + esc(s.title || "See one task in each framework") + '</summary><div class="fw">' +
         (s.task ? '<p class="fw-task">' + md(s.task) + "</p>" : "") +
-        s.items.map(x => '<div class="fw-item"><b>' + esc(x.name) + '</b><span class="q">' + md(x.prompt) + "</span></div>").join("") +
+        (s.tryIt ? '<p class="fw-task">' + md(s.tryIt) + "</p>" : "") +
+        '<div class="fw-grid">' + s.items.map((x, k) => '<div class="fw-item"><div class="fw-head"><b>' + esc(x.name) + "</b>" +
+          '<button type="button" class="btn copy" data-fwcopy="' + k + '">Copy</button></div>' +
+          '<span class="q" id="fwq-' + k + '">' + md(x.prompt) + "</span></div>").join("") + "</div>" +
         "</div></details>" : "");
   }
 
   // examples: [{title, weak, strong, tags?, why}]; set guess:true to hide each "why" until opened
+  // examples: [{title, idea?, weak, strong, gets?: {weak, strong}, tags?, why}]
+  // In strong, mark parts as [[Tag::words]] to color those words and show a matching colored tag.
+  // Without marks, tags (if any) show as plain grey-blue chips.
+  const HL = /\[\[([^:\]]+)::([\s\S]*?)\]\]/g;
+  const plainStrong = s => s.replace(HL, "$2");
+  // text with [[Tag::words]] marks -> {html with colored marks, matching tag chips}; also used for exercise prompts
+  function hlHTML(text, plainTags) {
+    const names = [];
+    let html = "", last = 0, mt;
+    HL.lastIndex = 0;
+    while ((mt = HL.exec(text))) {
+      if (names.indexOf(mt[1]) < 0) names.push(mt[1]);
+      html += esc(text.slice(last, mt.index)) + '<mark class="hl hl-' + (names.indexOf(mt[1]) % 5) + '">' + esc(mt[2]) + "</mark>";
+      last = HL.lastIndex;
+    }
+    html += esc(text.slice(last));
+    const tags = names.length
+      ? names.map((t, k) => '<span class="tag hl-' + (k % 5) + '">' + esc(t) + "</span>")
+      : (plainTags || []).map(t => '<span class="tag">' + esc(t) + "</span>");
+    return { html, tags: tags.length ? '<span class="tags">' + tags.join("") + "</span>" : "" };
+  }
+  const strongHTML = e => hlHTML(e.strong, e.tags);
+  // a text field can be a sentence, a list of bullets, or {text, points} (a lead sentence plus bullets)
+  function textBlock(v, tag) {
+    const ul = a => '<ul class="pts">' + a.map(x => "<li>" + md(x) + "</li>").join("") + "</ul>";
+    if (Array.isArray(v)) return ul(v);
+    if (v && v.points) return (v.text ? "<" + tag + ">" + md(v.text) + "</" + tag + ">" : "") + ul(v.points);
+    return "<" + tag + ">" + md(v) + "</" + tag + ">";
+  }
   function examplesHTML(list, intro, guess) {
     return '<p class="intro">' + md(intro || 'Compare each weak and strong version. The strong one usually adds context, specifics, or what "done" looks like.') + "</p>" +
-      list.map(e => '<div class="ex"><div class="exh">' + esc(e.title) + '</div><div class="pair">' +
-        '<div><span class="lbl weak">Weak</span><span class="q">' + esc(e.weak) + "</span></div>" +
-        '<div><span class="lbl strong">Strong</span><span class="q">' + esc(e.strong) + "</span>" +
-          (e.tags && e.tags.length ? '<span class="tags">' + e.tags.map(t => '<span class="tag">' + esc(t) + "</span>").join("") + "</span>" : "") +
+      list.map((e, k) => { const s = strongHTML(e); return '<div class="ex"><div class="exh">' + esc(e.title) +
+          (e.idea ? '<span class="exidea">Key idea: ' + md(e.idea) + "</span>" : "") + '</div><div class="pair">' +
+        '<div><span class="lbl weak">Weak</span><span class="q">' + esc(e.weak) + "</span>" +
+          (e.gets && e.gets.weak ? '<span class="gets"><b>You get:</b> ' + md(e.gets.weak) + "</span>" : "") + "</div>" +
+        '<div><span class="exrow"><span class="lbl strong">Strong</span><button type="button" class="btn copy" data-excopy="' + k + '">Copy</button></span>' +
+          '<span class="q" id="exq-' + k + '">' + s.html + "</span>" + s.tags +
+          (e.gets && e.gets.strong ? '<span class="gets"><b>You get:</b> ' + md(e.gets.strong) + "</span>" : "") +
         "</div></div>" +
         (e.why ? (guess ? '<details class="why"><summary>What changed?</summary><div>' + md(e.why) + "</div></details>"
-                        : '<div class="why">' + md(e.why) + "</div>") : "") + "</div>").join("");
+                        : '<div class="why">' + md(e.why) + "</div>") : "") + "</div>"; }).join("");
   }
 
   function demoHTML(d) {
@@ -226,7 +268,10 @@
   }
 
   function stepsHTML(m) {
-    return '<ol class="steps">' + m.steps.map(x => "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol>" +
+    // a step can be {title, text}, or {group: "Exercise A · ~10 min"} for an unnumbered heading row; numbering continues across groups
+    return '<ol class="steps">' + m.steps.map(x => x.group
+      ? '<li class="grp">' + esc(x.group) + "</li>"
+      : "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol>" +
       (m.tip ? '<div class="tip"><b>Tip</b><span>' + md(m.tip) + "</span></div>" : "") +
       (m.transfer ? '<p class="transfer"><b>Works elsewhere too.</b> ' + md(m.transfer) + "</p>" : "");
   }
@@ -247,7 +292,7 @@
       '<div class="task"><div class="th"><h3>' + esc(x.title) + "</h3>" +
         (many && x.minutes ? '<span class="mins">' + x.minutes + " min</span>" : "") +
         (x.where ? '<span class="where">Do it in: ' + esc(x.where) + "</span>" : "") + "</div>" +
-        (x.intro ? "<p>" + md(x.intro) + "</p>" : "") +
+        (x.intro ? textBlock(x.intro, "p") : "") +
         (x.ideas ? '<details class="reveal ideas"><summary>' + esc(x.ideas.title || "Need ideas?") + '</summary><div class="idea-groups">' +
           (x.ideas.intro ? '<p class="idea-intro">' + md(x.ideas.intro) + "</p>" : "") +
           x.ideas.groups.map(g => '<div class="idea-group"><span class="sub">' + esc(g.label) + "</span><ul>" +
@@ -255,12 +300,13 @@
         (x.files && x.files.length ? '<div class="files"><span class="sub">Downloads</span>' + x.files.map(f =>
           '<a class="btn file" href="' + esc(f.url) + '" download>' + esc(f.label) + "</a>").join("") + "</div>" : "") +
         (x.prompt ? '<div class="prompt"><span class="pl">' + esc(x.promptLabel || "Copy this prompt and fill in the brackets") + "</span>" +
-          '<button type="button" class="btn copy" data-copy="' + k + '">Copy</button><span class="ptext" id="ptext-' + k + '">' + esc(x.prompt) + "</span></div>" : "") +
+          '<button type="button" class="btn copy" data-copy="' + k + '">Copy</button>' +
+          (p => '<span class="ptext" id="ptext-' + k + '">' + p.html + "</span>" + p.tags)(hlHTML(x.prompt)) + "</div>" : "") +
         // numbered steps to do after sending the prompt
         (x.steps && x.steps.length ? (x.stepsLabel ? '<span class="sub">' + esc(x.stepsLabel) + "</span>" : "") +
           '<ol class="xsteps">' + x.steps.map(t => "<li>" + md(t) + "</li>").join("") + "</ol>" : "") +
         '<dl class="deliver">' +
-          (x.deliverable ? "<dt>Deliverable</dt><dd>" + md(x.deliverable) + "</dd>" : "") +
+          (x.deliverable ? "<dt>Deliverable</dt><dd>" + textBlock(x.deliverable, "span") + "</dd>" : "") +
           (x.stretch ? "<dt>Stretch</dt><dd>" + md(x.stretch) + "</dd>" : "") +
         "</dl>" +
         (x.goodLooksLike ? '<span class="sub">What good looks like</span>' + goodHTML(x.goodLooksLike) : "") +
@@ -271,20 +317,51 @@
       "</div>").join("");
   }
 
-  // The module's own rules, then the course rules from course.js (rulesBase) unless base: false
+  // The module's own rules, then the course rules from course.js (rulesBase) unless base: false; base: "only" shows just the course rules
   function respHTML(r) {
+    const li = a => a.map(y => "<li>" + md(y) + "</li>").join("");
     const box = (x, cls) => '<div class="resp' + (cls ? " " + cls : "") + '"><b>' + esc(x.title || "The rule for this module") + "</b>" +
       (x.text ? "<p>" + md(x.text) + "</p>" : "") +
-      (x.rules && x.rules.length ? "<ol>" + x.rules.map(y => "<li>" + md(y) + "</li>").join("") + "</ol>" : "") +
+      (x.rules && x.rules.length ? "<ol>" + li(x.rules) + "</ol>" : "") +
+      // use / never: two columns (Use ✓ and Never paste ✗)
+      (x.use || x.never ? '<div class="usenever">' +
+        (x.use ? '<div class="use"><span class="sub">✓ Use</span><ul class="pts">' + li(x.use) + "</ul></div>" : "") +
+        (x.never ? '<div class="never"><span class="sub">✗ Never paste</span><ul class="pts">' + li(x.never) + "</ul></div>" : "") + "</div>" : "") +
+      (x.after ? x.after.map(y => "<p>" + md(y) + "</p>").join("") : "") +
+      (x.tip ? '<p class="resp-tip"><b>Tip</b> ' + md(x.tip) + "</p>" : "") +
       (x.note ? '<p class="resp-note">' + md(x.note) + "</p>" : "") + "</div>";
+    // base: "only" = show the course rules as this module's own (Module 1); base: false = hide them
+    if (r.base === "only") return C.rulesBase ? box(Object.assign({}, C.rulesBase, { title: r.title || C.rulesBase.title, text: r.text })) : "";
     return box(r) + (r.base !== false && C.rulesBase ? box(C.rulesBase, "base") : "");
   }
 
   function stuckHTML(list) {
     return '<div class="stuck">' + list.map(x =>
       "<details><summary>" + md(x.problem) + '</summary><div class="fix">' + md(x.fix) + "</div></details>").join("") +
-      '<p class="stuck-foot">Still stuck? Write down the exact step and what you saw, and bring it to office hours' +
-      (C.schedule && C.schedule.officeHours ? " (" + esc(C.schedule.officeHours) + ")" : "") + ".</p></div>";
+      '<p class="stuck-foot">Still stuck? Write down the exact step and what you saw, and bring it to office hours.</p></div>';
+  }
+
+  // Go deeper: [{label, url, source?, type?, group?}] -> one table (Resource | Source | Type), with a divider row per group.
+  // Without source, a label like "Anthropic: Prompting best practices" is split at the first ": ".
+  // The Source / Type columns only appear when at least one link has one.
+  function resHTML(list) {
+    const rows = list.map(r => {
+      const cut = r.source ? -1 : r.label.indexOf(": ");
+      return { r, source: r.source || (cut > 0 ? r.label.slice(0, cut) : ""), title: cut > 0 ? r.label.slice(cut + 2) : r.label };
+    });
+    const hasSrc = rows.some(x => x.source), hasType = rows.some(x => x.r.type);
+    const cols = 1 + hasSrc + hasType;
+    let last = null;
+    const body = rows.map(x => {
+      const g = x.r.group || "";
+      const head = g && g !== last ? '<tr class="grp"><th colspan="' + cols + '" scope="colgroup">' + esc(g) + "</th></tr>" : "";
+      last = g;
+      return head + "<tr><td>" + '<a href="' + esc(x.r.url) + '"' + ext(x.r.url) + ">" + esc(x.title) +
+        (ext(x.r.url) ? ' ↗<span class="vh"> (opens in a new tab)</span>' : "") + "</a></td>" +
+        (hasSrc ? "<td>" + esc(x.source) + "</td>" : "") + (hasType ? "<td>" + esc(x.r.type || "") + "</td>" : "") + "</tr>";
+    }).join("");
+    return '<div class="tablewrap"><table class="cmp restable"><thead><tr><th scope="col">Resource</th>' +
+      (hasSrc ? '<th scope="col">Source</th>' : "") + (hasType ? '<th scope="col">Type</th>' : "") + "</tr></thead><tbody>" + body + "</tbody></table></div>";
   }
 
   function moduleView(m) {
@@ -297,31 +374,28 @@
 
     if (m.before) add("before", "Before you start", beforeHTML(m.before));
     if (m.breakdown) add("breakdown", "Key ideas", breakdownHTML(m.breakdown),
-      b.read ? b.read + " min with " + (m.frameworks ? "frameworks and examples" : "examples") : "");
+      b.read ? "Learn · ~" + b.read + " min" : "");
     if (m.frameworks) add("frameworks", m.frameworks.title || "Prompt frameworks", frameworksHTML(m.frameworks));
     if (m.examples && m.examples.length) add("examples", "Examples", examplesHTML(m.examples, m.examplesIntro, m.examplesGuess));
-    if (m.demo) add("demo", "Demo", demoHTML(m.demo), b.demo ? b.demo + " min" : "");
+    if (m.demo) add("demo", "Demo", demoHTML(m.demo), b.demo ? "Demo · ~" + b.demo + " min" : "");
     if (m.steps && m.steps.length) add("steps", "Step by step", stepsHTML(m));
-    if (m.exercises && m.exercises.length) add("exercise", m.exercises.length > 1 ? "Your exercises" : "Your exercise", exercisesHTML(m), b.do ? b.do + " min with steps" : "");
-    if (m.responsibleUse) add("responsible", "Responsible use", respHTML(m.responsibleUse), b.check ? b.check + " min with Stuck?" : "");
+    if (m.exercises && m.exercises.length) add("exercise", m.exercises.length > 1 ? "Your exercises" : "Your exercise", exercisesHTML(m), b.do ? "Do · ~" + b.do + " min" : "");
+    if (m.responsibleUse) add("responsible", "Responsible use", respHTML(m.responsibleUse), b.check ? "Check · ~" + b.check + " min" : "");
     if (m.stuck && m.stuck.length) add("stuck", "Stuck?", stuckHTML(m.stuck));
-    if (m.resources && m.resources.length) add("deeper", "Go deeper", '<div class="res">' + m.resources.map(r =>
-      '<a href="' + esc(r.url) + '"' + ext(r.url) + ">" + esc(r.label) + (ext(r.url) ? ' ↗<span class="vh"> (opens in a new tab)</span>' : "") + "</a>").join("") + "</div>");
-    // Last section on every module: mark it as done (drives the sidebar progress, menu dots and card labels)
-    add("finish", "Finish", '<div class="finish"><p>Finished both exercises? Mark this module as done. Your progress is saved in this browser only.</p>' +
-      '<button type="button" class="btn primary" id="doneBtn" aria-pressed="false">Mark as done</button></div>');
+    if (m.resources && m.resources.length) add("deeper", "Go deeper", resHTML(m.resources));
+    // Last section on every module: recap, then mark as done (drives the sidebar progress, menu dots and card labels)
+    add("finish", "Finish", '<div class="finish">' +
+      (m.outcomes && m.outcomes.length ? '<span class="sub">You can now</span><ul class="did">' +
+        m.outcomes.map(o => "<li>" + esc(o) + "</li>").join("") + "</ul>" : "") +
+      '<div class="donerow"><button type="button" class="btn primary" id="doneBtn" aria-pressed="false">Mark as done</button>' +
+      '<span class="donenote">Progress is saved in this browser only.</span></div>' +
+      "</div>");
 
-    const total = mins(m);
-    const where = i >= 0 ? "Module " + (i + 1) + " of " + LIST.length : (m.label || "Template preview");
     const budget = m.budget ? '<div class="budget" aria-label="Time plan">' + [["Learn", "read"], ["Demo", "demo"], ["Do", "do"], ["Check", "check"]]
       .filter(x => b[x[1]]).map(x => '<span class="b-' + x[1] + '" style="flex:' + b[x[1]] + '"><i></i><em><b>' + x[0] + "</b> " + b[x[1]] + " min</em></span>").join("") + "</div>" : "";
 
+    // No status/module-number/time/level/track line above the title (removed Nov 17, 2026)
     return '<header class="mhead">' +
-        '<div class="top"><span id="mchip"></span><span>' + esc(where) + "</span>" +
-          (total ? "<span>·</span><span>~" + total + " min on your own</span>" : "") +
-          (m.level ? "<span>·</span><span>" + esc(m.level) + "</span>" : "") +
-          (entry.track && C.tracks[entry.track] ? '<span class="chip track">' + esc(C.tracks[entry.track].label) + "</span>" : "") +
-"</div>" +
         "<h1>" + esc(m.title || entry.title) + "</h1>" +
         (m.goal ? '<p class="goal">' + md(m.goal) + "</p>" : "") +
         (m.outcomes && m.outcomes.length ? '<div class="outcomes">' + m.outcomes.map(o => "<span>" + esc(o) + "</span>").join("") + "</div>" : "") +
@@ -372,7 +446,15 @@
     if (m.demo && m.demo.turns) W.demo(document.getElementById("demo-mount"), m.demo.turns);
     document.querySelectorAll("[data-copy]").forEach(btn => {
       const k = +btn.dataset.copy;
-      W.copy(btn, m.exercises[k].prompt, document.getElementById("ptext-" + k));
+      W.copy(btn, plainStrong(m.exercises[k].prompt), document.getElementById("ptext-" + k));
+    });
+    document.querySelectorAll("[data-excopy]").forEach(btn => {
+      const k = +btn.dataset.excopy;
+      W.copy(btn, plainStrong(m.examples[k].strong), document.getElementById("exq-" + k));
+    });
+    document.querySelectorAll("[data-fwcopy]").forEach(btn => {
+      const k = +btn.dataset.fwcopy;
+      W.copy(btn, m.frameworks.sample.items[k].prompt.replace(/\*\*/g, ""), document.getElementById("fwq-" + k));
     });
     const doneBtn = document.getElementById("doneBtn");
     if (doneBtn) doneBtn.addEventListener("click", () => { s.done = !s.done; refresh(); });
