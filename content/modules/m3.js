@@ -9,19 +9,19 @@
 window.AIB_MODULES = window.AIB_MODULES || {};
 window.AIB_MODULES["m3"] = {
   id: "m3",
-  title: "Asking vs. delegating",
+  title: "Asking vs. Delegating",
   level: "Needs the Claude desktop app (Setup A)",
 
   goal: "Know when to ask Claude for an answer to think with, and when to delegate a multi-step task that ends in finished files, while you stay in control.",
   outcomes: ["Tell asking from delegating", "Delegate with a clear outcome", "Review the plan before it runs", "Check the output against the source"],
 
-  budget: { read: 5, do: 21, check: 4 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
       "The **Claude desktop app**, installed and signed in with your Enterprise account (Setup A). Folder access only works there.",
       { text: "Your **ai-basics** folder (Setup A), with your Module 2 **assumptions** and **sample-data** files in it.",
-        ifNot: "Missing them? Do [Module 2, Exercise B](m2.html#s-exercise) first (11 min) and save both files in the folder." },
+        ifNot: "Missing them? Do [Module 2, Exercise B](m02-research-analysis.html#s-exercise) first (11 min) and save both files in the folder." },
       { text: "The two practice articles, downloaded: short, fictional opinion pieces on renting vs. buying a home.",
         files: [
           { label: "Article 1: Buy (.docx)", url: "assets/files/m3/article-buy.docx" },
@@ -116,39 +116,6 @@ window.AIB_MODULES["m3"] = {
       fix: "Stop it, and add to your brief: \"Show me your plan and the file list first, and wait for my OK.\"" },
     { problem: "A file it made won't open",
       fix: "Ask Claude to save it again as .xlsx or .docx, or as .csv for the inputs table." }
-  ],
-
-  checks: [
-    { text: "I can say in one sentence when to ask and when to delegate", evidence: "The sentence you wrote in Exercise B." },
-    { text: "I reviewed Claude's plan before it ran", evidence: "You approved it, or changed it first." },
-    { text: "I checked one number in the output against its source", evidence: "Name the input and what your assumptions file says." },
-    { text: "inputs.xlsx and brief.docx are saved in my ai-basics folder", evidence: "Open them; Module 4 starts from them." }
-  ],
-  quiz: [
-    { q: "You need 40 receipts in a folder turned into one expense spreadsheet. What's the best approach?",
-      options: [
-        "Ask: paste the receipts into a conversation one at a time",
-        "Delegate: share your whole Documents folder so Claude can find them",
-        "Delegate: share just the receipts folder and describe the spreadsheet you want"
-      ],
-      answer: 2,
-      explain: "Repetitive work across many files that ends in a file is a delegating task, and the narrowest folder that does the job is the right one." },
-    { q: "You want to brainstorm angles for a negotiation tomorrow. What's the best approach?",
-      options: [
-        "Delegate a task that writes a full negotiation strategy document",
-        "Ask, and think it through with Claude in the conversation",
-        "Neither: brainstorming isn't a good use of AI"
-      ],
-      answer: 1,
-      explain: "Open-ended thinking with no files is what asking is for. A finished document is premature before you've done the thinking." },
-    { q: "A client sends you a confidential file, and you'd like Claude to turn it into a summary deck. What do you do first?",
-      options: [
-        "Put it in a narrow folder and delegate the deck",
-        "Remove the client's name, then delegate",
-        "Check that your company and the client allow this data in this tool, before sharing anything"
-      ],
-      answer: 2,
-      explain: "A narrow folder limits what else Claude sees, but it doesn't make confidential data OK to share. Approval comes first." }
   ],
 
   resources: [

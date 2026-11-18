@@ -6,7 +6,7 @@
    how that text is laid out. Section order follows the revision plan.
 
    Two modes, same code:
-   - multi-page (default): index.html, m1.html ... each page loads its own content file
+   - multi-page (default): m00-course-overview.html, m01-briefing-claude.html ... each page loads its own content file
    - single file (<body data-mode="single">): everything bundled, pages switch by #hash
    ========================================================================== */
 (function () {
@@ -20,26 +20,29 @@
   const LIST = C.modules;
 
   /* ---------- progress (saved in this browser only) ---------- */
-  const KEY = "aibasics.progress.v2";
+  const KEY = "aibasics.progress.v3";            // v3: "Mark as done" replaced the mastery check
   let S = {};
   try { S = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { S = {}; }
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* storage blocked */ } };
-  const st = id => S[id] || (S[id] = { c: {}, q: {} });
+  const st = id => S[id] || (S[id] = { b: {} });
 
+  // done = the student pressed "Mark as done"; in progress = any "Before you start" box ticked
   function status(m) {
     const s = st(m.id);
-    const checks = m.checks || [], quiz = m.quiz || [];
-    const got = checks.filter((_, k) => s.c[k]).length + quiz.filter((x, k) => s.q[k] === x.answer).length;
-    const total = checks.length + quiz.length;
-    s.state = got === 0 ? "todo" : got === total ? "done" : "prog";   // cached so other pages can show it
-    return { got, total, pct: total ? Math.round(got / total * 100) : 0, state: s.state };
+    s.state = s.done ? "done" : Object.values(s.b || {}).some(Boolean) ? "prog" : "todo";   // cached so other pages can show it
+    return { state: s.state };
   }
-  const LABEL = { todo: "Not started", prog: "In progress", done: "Mastered" };
+  const LABEL = { todo: "Not started", prog: "In progress", done: "Done" };
   const chip = state => "chip" + (state && state !== "todo" ? " " + state : "");
   const cached = id => (S[id] && S[id].state) || "todo";
 
   /* ---------- links ---------- */
-  const href = id => SINGLE ? "#" + id : (id === "overview" ? "index.html" : id + ".html");
+  // Page file names come from course.js (overviewPage, and page: on each module)
+  const pageOf = id => id === "overview" ? C.overviewPage : ((LIST.find(m => m.id === id) || {}).page || id + ".html");
+  const href = id => SINGLE ? "#" + id : pageOf(id);
+  const PAGE_ID = { "index.html": "overview" };      // file name -> id, for the one-file version
+  PAGE_ID[C.overviewPage] = "overview";
+  LIST.forEach(m => { PAGE_ID[m.page] = m.id; PAGE_ID[m.id + ".html"] = m.id; });
   const pad = n => String(n).padStart(2, "0");
   const mins = m => m.budget ? ["read", "demo", "do", "check"].reduce((a, k) => a + (m.budget[k] || 0), 0) : 0;
   const ext = url => /^https?:/i.test(url) ? ' target="_blank" rel="noopener"' : "";
@@ -52,40 +55,17 @@
         '<a class="brand" href="' + href("overview") + '"><span class="eyebrow">' + esc(C.program) + "</span><b>" + esc(C.title) + "</b></a>" +
         '<div class="overall"><span id="overallTxt"></span><div class="bar"><i id="overallBar"></i></div></div>' +
         '<nav aria-label="Course pages"><ul class="nav" id="nav"></ul></nav>' +
-        '<div class="theme" role="group" aria-label="Color theme"><span class="sub">Theme</span>' +
-          '<button type="button" data-theme-set="auto">Auto</button>' +
-          '<button type="button" data-theme-set="light">Light</button>' +
-          '<button type="button" data-theme-set="dark">Dark</button></div>' +
         '<div class="railnote" id="railnote"></div>' +
       '</aside><main id="main" tabindex="-1"></main></div>');
     document.querySelector(".skip").addEventListener("click", e => {
       e.preventDefault(); document.getElementById("main").focus();
     });
-    themeSwitch();
-  }
-
-  /* Auto follows the device; Light and Dark override it. Saved in this browser. */
-  function themeSwitch() {
-    const TKEY = "aibasics.theme";
-    const root = document.documentElement;
-    const btns = document.querySelectorAll("[data-theme-set]");
-    const paint = () => {
-      const cur = root.getAttribute("data-theme") || "auto";
-      btns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.themeSet === cur)));
-    };
-    btns.forEach(b => b.addEventListener("click", () => {
-      const t = b.dataset.themeSet;
-      if (t === "auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", t);
-      try { if (t === "auto") localStorage.removeItem(TKEY); else localStorage.setItem(TKEY, t); } catch (e) { /* storage blocked */ }
-      paint();
-    }));
-    paint();
   }
 
   /* Sections of the module on screen, grouped for the sidebar (set by moduleView) */
   let SECS = [];
   const GROUP = { before: "Learn", breakdown: "Learn", frameworks: "Learn", examples: "Learn", demo: "Learn",
-                  steps: "Do", exercise: "Do", responsible: "Check", stuck: "Check", mastery: "Check", deeper: "Check" };
+                  steps: "Do", exercise: "Do", responsible: "Check", stuck: "Check", deeper: "Check", finish: "Check" };
   function secNav(cls) {
     let last = "";
     return '<ul class="' + cls + '">' + SECS.map(s => {
@@ -109,10 +89,10 @@
           (cur === m.id && SECS.length ? '<nav aria-label="Sections on this page">' + secNav("secs") + "</nav>" : "") + "</li>";
       }).join("");
     const done = LIST.filter(m => cached(m.id) === "done").length;
-    document.getElementById("overallTxt").textContent = done + " of " + LIST.length + " modules mastered";
+    document.getElementById("overallTxt").textContent = done + " of " + LIST.length + " modules done";
     document.getElementById("overallBar").style.width = (done / LIST.length * 100) + "%";
     document.getElementById("railnote").innerHTML =
-      "<span>Checkmarks are saved in this browser only.</span>" +
+      "<span>Progress is saved in this browser only.</span>" +
       (C.status ? "<span>" + esc(C.status) + ".</span>" : "");
     markSection();
     const a = nav.querySelector('[aria-current="page"]');
@@ -120,39 +100,57 @@
   }
 
   /* ---------- overview ---------- */
+  // A screenshot with optional highlight boxes ({x, y, w, h, label} in % of the image),
+  // or a dashed "Screenshot to add" box while only {todo} is set.
+  function shotHTML(s) {
+    if (!s) return "";
+    if (!s.image) return s.todo ? '<div class="shot-todo"><b>Screenshot to add:</b> ' + esc(s.todo) + "</div>" : "";
+    if (!s.alt) console.warn("[AI Basics Lab] screenshot is missing alt text:", s.image);
+    return '<figure class="shot"><div class="shot-img"><img src="' + esc(s.image) + '" alt="' + esc(s.alt || "") + '" loading="lazy">' +
+      (s.highlight || []).map(h => '<span class="hl" aria-hidden="true" style="left:' + h.x + "%;top:" + h.y + "%;width:" + h.w + "%;height:" + h.h + '%">' +
+        (h.label ? "<em>" + esc(h.label) + "</em>" : "") + "</span>").join("") + "</div>" +
+      (s.caption ? "<figcaption>" + md(s.caption) + "</figcaption>" : "") + "</figure>";
+  }
+
   function overviewView() {
     const o = C.overview;
     return '<section class="hero">' +
         (C.status ? '<span class="draft">' + esc(C.status) + "</span>" : "") +
         "<h1>" + md(o.headline) + "</h1>" +
         '<p class="lede">' + md(o.lede) + "</p>" +
-        '<div class="flow">' + o.waysIn.map((w, i) =>
-          '<div><span class="k">' + (i + 1) + " · " + esc(w.label) + "</span><b>" + esc(w.title) + "</b><p>" + md(w.text) + "</p></div>").join("") + "</div>" +
       "</section>" +
 
-      '<section class="sect"><h2>' + esc(o.friday.title) + "</h2>" +
-        '<div class="clock">' + o.friday.blocks.map(b =>
-          '<div><span class="bigt">' + esc(b.time) + "</span><b>" + esc(b.title) + "</b><p>" + md(b.text) + "</p></div>").join("") + "</div></section>" +
+      '<section class="sect"><h2>' + esc(o.ways.title) + "</h2>" +
+        '<div class="ways">' + o.ways.items.map(w =>
+          '<div><span class="k">' + esc(w.label) + '</span><span class="when">' + esc(w.when) + "</span><b>" + esc(w.title) + "</b><p>" + md(w.text) + "</p></div>").join("") + "</div></section>" +
 
       '<section class="sect"><h2>The modules</h2><div class="grid">' + LIST.map((m, i) => {
           const s = cached(m.id);
           return '<a class="mcard" href="' + href(m.id) + '"><span class="num">' + (i + 1) + "</span><div><b>" + esc(m.title) + "</b>" +
             (m.blurb ? '<span class="out">' + esc(m.blurb) + "</span>" : "") +
-            '<div class="meta"><span class="' + chip(s) + '">' + LABEL[s] + '</span><span class="chip track">' +
-            esc((C.tracks[m.track] || {}).label || "") + "</span></div></div></a>";
+            '<div class="meta">' +
+              (s !== "todo" ? '<span class="' + chip(s) + '">' + LABEL[s] + "</span>" : "") +     // no label until started
+              '<span class="chip track">' + esc((C.tracks[m.track] || {}).label || "") + "</span>" +
+              (m.setup ? '<span class="chip setup">Setup ' + esc(m.setup) + "</span>" : "") +
+            "</div></div></a>";
         }).join("") + "</div>" +
       "</section>" +
 
-      '<section class="sect"><h2>Two tracks</h2><div class="tracks">' + Object.values(C.tracks).map(t =>
-        "<div><b>" + esc(t.label) + "</b><p>" + md(t.text) + "</p></div>").join("") + "</div></section>" +
-
-      '<section class="sect" id="setup"><h2>' + esc(o.setup.title) + '</h2><p class="prose">' + md(o.setup.text) + "</p>" +
-        '<div class="tablewrap"><table class="cmp"><thead><tr><th>Part</th><th>When</th><th>What you do</th><th>Needed for</th></tr></thead><tbody>' +
-        o.setup.parts.map(p => "<tr><td>" + esc(p.part) + "</td><td>" + md(p.when) + "</td><td>" + md(p.what) + "</td><td>" + esc(p.neededFor) + "</td></tr>").join("") +
-        "</tbody></table></div></section>" +
+      '<section class="sect" id="setup"><h2>' + esc(o.setup.title) + "</h2>" +
+        (o.setup.text ? '<p class="prose">' + md(o.setup.text) + "</p>" : "") +
+        '<div class="tablewrap"><table class="cmp setup"><thead><tr><th>Part</th><th>What to do</th><th>Needed for</th></tr></thead><tbody>' +
+        o.setup.parts.map(p => "<tr><td>" + esc(p.part) + "</td><td>" +
+          (Array.isArray(p.what) ? '<ul class="todo">' + p.what.map(w => typeof w === "string" ? "<li>" + md(w) + "</li>"
+            : "<li>" + md(w.text) + shotHTML(w.shot) + "</li>").join("") + "</ul>" : md(p.what)) +
+          "</td><td>" + esc(p.neededFor) + "</td></tr>").join("") +
+        "</tbody></table></div>" +
+        (o.setup.screensAsOf ? '<p class="asof">Screenshots as of ' + esc(o.setup.screensAsOf) + ". The apps may look slightly different now.</p>" : "") +
+        "</section>" +
 
       '<section class="sect"><h2>' + esc(o.how.title) + '</h2><ol class="steps">' + o.how.items.map(x =>
-        "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol></section>";
+        "<li><div><b>" + esc(x.title) + "</b>" +
+          (Array.isArray(x.text) ? '<ul class="pts">' + x.text.map(t => "<li>" + md(t) + "</li>").join("") + "</ul>"
+                                 : "<span>" + md(x.text) + "</span>") + "</div></li>").join("") + "</ol></section>";
   }
 
   /* ---------- module sections ---------- */
@@ -298,26 +296,24 @@
     const add = (id, title, html, minsTxt) => { if (html) secs.push({ id, title, html, minsTxt }); };
 
     if (m.before) add("before", "Before you start", beforeHTML(m.before));
-    if (m.breakdown) add("breakdown", "Breakdown", breakdownHTML(m.breakdown),
+    if (m.breakdown) add("breakdown", "Key ideas", breakdownHTML(m.breakdown),
       b.read ? b.read + " min with " + (m.frameworks ? "frameworks and examples" : "examples") : "");
     if (m.frameworks) add("frameworks", m.frameworks.title || "Prompt frameworks", frameworksHTML(m.frameworks));
     if (m.examples && m.examples.length) add("examples", "Examples", examplesHTML(m.examples, m.examplesIntro, m.examplesGuess));
     if (m.demo) add("demo", "Demo", demoHTML(m.demo), b.demo ? b.demo + " min" : "");
     if (m.steps && m.steps.length) add("steps", "Step by step", stepsHTML(m));
     if (m.exercises && m.exercises.length) add("exercise", m.exercises.length > 1 ? "Your exercises" : "Your exercise", exercisesHTML(m), b.do ? b.do + " min with steps" : "");
-    if (m.responsibleUse) add("responsible", "Responsible use", respHTML(m.responsibleUse));
+    if (m.responsibleUse) add("responsible", "Responsible use", respHTML(m.responsibleUse), b.check ? b.check + " min with Stuck?" : "");
     if (m.stuck && m.stuck.length) add("stuck", "Stuck?", stuckHTML(m.stuck));
-    if (t.total) add("mastery", "Mastery check", '<div class="mastery"><div class="mstat"><span class="big" id="mbig"></span><span id="mchip2"></span></div>' +
-      '<div class="bar"><i id="mbar"></i></div>' +
-      (m.checks && m.checks.length ? '<span class="sub">I can…</span><div id="checks-mount"></div>' : "") +
-      (m.quiz && m.quiz.length ? '<span class="sub">Scenario questions</span><div class="quiz" id="quiz-mount"></div>' : "") +
-      '<button type="button" class="btn" id="resetM" style="align-self:flex-start">Reset this module</button></div>', b.check ? b.check + " min" : "");
     if (m.resources && m.resources.length) add("deeper", "Go deeper", '<div class="res">' + m.resources.map(r =>
       '<a href="' + esc(r.url) + '"' + ext(r.url) + ">" + esc(r.label) + (ext(r.url) ? ' ↗<span class="vh"> (opens in a new tab)</span>' : "") + "</a>").join("") + "</div>");
+    // Last section on every module: mark it as done (drives the sidebar progress, menu dots and card labels)
+    add("finish", "Finish", '<div class="finish"><p>Finished both exercises? Mark this module as done. Your progress is saved in this browser only.</p>' +
+      '<button type="button" class="btn primary" id="doneBtn" aria-pressed="false">Mark as done</button></div>');
 
     const total = mins(m);
     const where = i >= 0 ? "Module " + (i + 1) + " of " + LIST.length : (m.label || "Template preview");
-    const budget = m.budget ? '<div class="budget" aria-label="Time plan">' + [["Read", "read"], ["Demo", "demo"], ["Do", "do"], ["Check", "check"]]
+    const budget = m.budget ? '<div class="budget" aria-label="Time plan">' + [["Learn", "read"], ["Demo", "demo"], ["Do", "do"], ["Check", "check"]]
       .filter(x => b[x[1]]).map(x => '<span class="b-' + x[1] + '" style="flex:' + b[x[1]] + '"><i></i><em><b>' + x[0] + "</b> " + b[x[1]] + " min</em></span>").join("") + "</div>" : "";
 
     return '<header class="mhead">' +
@@ -351,9 +347,9 @@
     const prev = i > 0 ? LIST[i - 1] : null, next = i >= 0 && i < LIST.length - 1 ? LIST[i + 1] : null;
     return '<nav class="pager" aria-label="Previous and next module">' +
       (prev ? '<a href="' + href(prev.id) + '"><small>Previous</small>' + esc(prev.title) + "</a>"
-            : '<a href="' + href("overview") + '"><small>Back</small>Course overview</a>') +
+            : '<a href="' + href("overview") + '"><small>Back</small>Course Overview</a>') +
       (next ? '<a class="next" href="' + href(next.id) + '"><small>Next</small>' + esc(next.title) + "</a>"
-            : '<a class="next" href="' + href("overview") + '"><small>' + (i >= 0 ? "Finish" : "Back") + "</small>Course overview</a>") +
+            : '<a class="next" href="' + href("overview") + '"><small>' + (i >= 0 ? "Finish" : "Back") + "</small>Course Overview</a>") +
       "</nav>";
   }
 
@@ -363,15 +359,14 @@
     const refresh = () => {
       const t = status(m);
       save();
-      const big = document.getElementById("mbig");
-      if (big) {
-        big.textContent = t.got + " / " + t.total;
-        document.getElementById("mbar").style.width = t.pct + "%";
+      const el = document.getElementById("mchip");
+      if (el) { el.className = chip(t.state); el.textContent = LABEL[t.state]; }
+      const btn = document.getElementById("doneBtn");
+      if (btn) {
+        btn.setAttribute("aria-pressed", String(!!s.done));
+        btn.className = "btn" + (s.done ? " is-done" : " primary");
+        btn.textContent = s.done ? "✓ Done (click to undo)" : "Mark as done";
       }
-      ["mchip", "mchip2"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) { el.className = chip(t.state); el.textContent = LABEL[t.state]; }
-      });
       rail(m.id);
     };
     if (m.demo && m.demo.turns) W.demo(document.getElementById("demo-mount"), m.demo.turns);
@@ -379,14 +374,12 @@
       const k = +btn.dataset.copy;
       W.copy(btn, m.exercises[k].prompt, document.getElementById("ptext-" + k));
     });
-    W.checklist(document.getElementById("checks-mount"), m.checks, s.c, refresh);
-    W.quiz(document.getElementById("quiz-mount"), m.quiz, s.q, refresh);
-    const reset = document.getElementById("resetM");
-    if (reset) reset.addEventListener("click", () => { S[m.id] = { c: {}, q: {} }; save(); show(m.id); });
+    const doneBtn = document.getElementById("doneBtn");
+    if (doneBtn) doneBtn.addEventListener("click", () => { s.done = !s.done; refresh(); });
     s.b = s.b || {};
     document.querySelectorAll("input[data-b]").forEach(i => {
       i.checked = !!s.b[i.dataset.b];
-      i.addEventListener("change", () => { s.b[i.dataset.b] = i.checked; save(); });
+      i.addEventListener("change", () => { s.b[i.dataset.b] = i.checked; refresh(); });
     });
     refresh();
   }
@@ -436,9 +429,9 @@
     const m = MODS[id];
     if (m) { main.innerHTML = moduleView(m); mount(m); }
     else { SECS = []; main.innerHTML = soonView(LIST[i] || { id }, i); rail(id); }
-    if (SINGLE) main.querySelectorAll("a[href]").forEach(a => {   // "m1.html#..." -> "#m1" in the one-file version
-      const k = a.getAttribute("href").match(/^(m\d+|index)\.html(#.*)?$/);
-      if (k) a.setAttribute("href", "#" + (k[1] === "index" ? "overview" : k[1]));
+    if (SINGLE) main.querySelectorAll("a[href]").forEach(a => {   // "m01-briefing-claude.html#..." -> "#m1" in the one-file version
+      const k = a.getAttribute("href").match(/^([\w-]+\.html)(#.*)?$/);
+      if (k && PAGE_ID[k[1]]) a.setAttribute("href", "#" + PAGE_ID[k[1]]);
     });
     document.title = ((m && m.title) || (LIST[i] && LIST[i].title) || "Page not found") + " · " + C.title;
   }

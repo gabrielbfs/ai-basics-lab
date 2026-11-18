@@ -8,18 +8,18 @@
 window.AIB_MODULES = window.AIB_MODULES || {};
 window.AIB_MODULES["m2"] = {
   id: "m2",
-  title: "Research & analysis",
+  title: "Research & Analysis",
   level: "Builds on Module 1",
 
   goal: "Research with sources, analyze a spreadsheet, check both yourself, and collect the numbers your tool needs.",
   outcomes: ["Get a sourced answer and verify one source", "Analyze a dataset and produce a chart", "Spot an error or weak assumption", "Collect the assumptions your tool needs"],
 
-  budget: { read: 5, do: 21, check: 4 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
       { text: "Your 3-sentence project idea from Module 1.",
-        ifNot: "No idea yet? Do [Module 1, Exercise B](m1.html#s-exercise) first (8 min)." },
+        ifNot: "No idea yet? Do [Module 1, Exercise B](m01-briefing-claude.html#s-exercise) first (8 min)." },
       { text: "The practice file, downloaded (CSV or Excel): a fictional household's 2025 card spending, one row per transaction.",
         files: [
           { label: "Practice file (.csv)", url: "assets/files/m2/household-spending-2025.csv" },
@@ -113,39 +113,6 @@ window.AIB_MODULES["m2"] = {
       fix: "Ask Claude to list the rows it added up, and count yours. Differences are usually in which rows were included." },
     { problem: "I can't find a source for an assumption",
       fix: "Keep the row, mark it `checked: no`, and call it an estimate in the note. An honest estimate beats an invented source." }
-  ],
-
-  checks: [
-    { text: "I opened one source and checked that it says what Claude claimed", evidence: "Name the source and what you found." },
-    { text: "I recomputed one number myself", evidence: "Your Dining out Q3 total and row count, and whether they matched Claude's." },
-    { text: "I can say what a dataset can't answer", evidence: "One example from the practice file." },
-    { text: "My assumptions table and sample data are saved", evidence: "Both files in your ai-basics folder." }
-  ],
-  quiz: [
-    { q: "Claude says the market for your product was $2.4B, citing an industry report. You open the report: it does say $2.4B, but for Europe in 2019, and you need the US today. What do you do?",
-      options: [
-        "Use it: the number matches the source",
-        "Treat it as unverified for your question: find a current US figure, or adjust it and say how",
-        "Ask Claude to confirm the number"
-      ],
-      answer: 1,
-      explain: "A matching number isn't enough. It has to be for the same year, place and definition, or it isn't evidence for your question." },
-    { q: "Claude analyzes your spending file and says eating out drove the increase. What's the best next step?",
-      options: [
-        "Ask Claude to double-check its math",
-        "Recompute one number yourself and count the rows behind it",
-        "Ask for a chart to confirm it"
-      ],
-      answer: 1,
-      explain: "Claude re-checking itself and a chart of the same numbers both reuse the same inputs. Your own recompute catches problems in the rows." },
-    { q: "Which question can a year of card transactions (date, merchant, category, amount) answer?",
-      options: [
-        "Why spending on travel went up",
-        "How much the household spends in total, including cash",
-        "Which category's card spending grew most from Q2 to Q3"
-      ],
-      answer: 2,
-      explain: "The file shows what was charged to these cards, not why, and not spending in cash or on other cards." }
   ],
 
   resources: [

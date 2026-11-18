@@ -14,7 +14,7 @@ window.AIB_MODULES["m5"] = {
   goal: "Turn a task you repeat into a skill Claude uses automatically, then use it to write the build spec for the real app you'll build in Module 7.",
   outcomes: ["Explain prompt vs. project vs. skill", "Write a description that triggers", "Build and test a skill", "Produce your build spec"],
 
-  budget: { read: 5, do: 21, check: 4 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
@@ -119,39 +119,6 @@ window.AIB_MODULES["m5"] = {
       fix: "Ask Claude to shorten it to under 200 characters and keep the \"Use when…\" part. What it does and when to use it matter more than how." },
     { problem: "My spec is vague",
       fix: "Ask: \"Rewrite the acceptance checks so each one has inputs and an expected number I can test by hand.\" If that keeps happening, add the rule to the skill's steps." }
-  ],
-
-  checks: [
-    { text: "I can explain prompt vs. project vs. skill", evidence: "One sentence each." },
-    { text: "My skill's description says what it does and when to use it", evidence: "Read it aloud: under 200 characters, with \"Use when…\"." },
-    { text: "My skill triggered in a new chat without me naming it", evidence: "Claude said it used build-spec-writer." },
-    { text: "spec.md is saved in my ai-basics folder", evidence: "Module 7 starts from it." }
-  ],
-  quiz: [
-    { q: "Your skill never gets used, even when you ask for exactly that task. What do you check first?",
-      options: [
-        "Make the skill's instructions longer and more detailed",
-        "The description: does it say what the skill does and use the words you used?",
-        "Switch to a different model"
-      ],
-      answer: 1,
-      explain: "Claude only reads the description until a task matches. Longer instructions don't help if the skill is never picked up." },
-    { q: "Which task is the best candidate for a skill?",
-      options: [
-        "A one-off thank-you note to a mentor",
-        "A weekly client update in a fixed format",
-        "Brainstorming names for a new product"
-      ],
-      answer: 1,
-      explain: "Skills pay off on tasks you repeat in a consistent format. One-offs and open brainstorming are better as a prompt." },
-    { q: "You're writing a skill for weekly client updates. Which of these should stay OUT of the skill?",
-      options: [
-        "Your format and tone rules",
-        "An example update with made-up content",
-        "The current client's name and contract value"
-      ],
-      answer: 2,
-      explain: "A skill is reused and may be shared. Rules and made-up examples belong in it; real client details don't." }
   ],
 
   resources: [

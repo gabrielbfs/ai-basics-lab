@@ -12,12 +12,12 @@ window.AIB_MODULES["m1"] = {
   goal: "Give Claude a clear brief, push back on specifics, check its claims, and choose the tool you'll build.",
   outcomes: ["Write a 4-part prompt", "Improve an answer with specific pushback", "Catch and verify a shaky claim", "Choose a project"],
 
-  budget: { read: 8, do: 18, check: 4 },
+  budget: { read: 8, do: 20, check: 2 },
 
   before: {
     needs: [
       { text: "Setup A done: signed in to Claude with your **Claude Enterprise** account. Check the organization name in the account menu; a personal account is the wrong one. The web app and the desktop app both work.",
-        ifNot: "Not yet? Follow [Setup A](index.html#setup) on the course overview, or bring it to office hours." }
+        ifNot: "Not yet? Follow [Setup A](m00-course-overview.html#setup) on the course overview, or bring it to office hours." }
     ]
   },
 
@@ -193,39 +193,6 @@ window.AIB_MODULES["m1"] = {
       fix: "Ask: \"For that claim, give me a source I can open and tell me what to look for.\" If there's no source you can find, treat the claim as unverified and don't rely on it." },
     { problem: "I can't decide on a project",
       fix: "Pick two ideas from **Need ideas?** in Exercise B and ask Claude which one is smaller and more useful to you. You can switch ideas any time before Module 4, where you build the first version." }
-  ],
-
-  checks: [
-    { text: "I can write a prompt with context, task, format and constraints", evidence: "Point to the four parts in your Exercise A prompt." },
-    { text: "I improved an answer with two rounds of specific pushback", evidence: "Your chat shows two replies that each name one change." },
-    { text: "I checked one of Claude's claims against a source I opened myself", evidence: "Name the claim and where you checked it." },
-    { text: "I have a 3-sentence project idea", evidence: "Saved where you'll find it for Module 2." }
-  ],
-  quiz: [
-    { q: "Claude's answer includes a precise statistic and names where it comes from. You want to use it in a memo to your CEO. What do you do?",
-      options: [
-        "Use it: Claude named the source",
-        "Open the source and check that it says what Claude claims, and how it was measured",
-        "Ask Claude \"Are you sure?\" and use it if Claude says yes"
-      ],
-      answer: 1,
-      explain: "A named source can be misquoted, outdated or weaker than it sounds, and \"Are you sure?\" usually gets a yes. Only opening the source checks it." },
-    { q: "Which addition improves \"Summarize this article\" the most?",
-      options: [
-        "\"Be accurate and thorough\"",
-        "\"For a 2-minute update to my CFO: 5 bullets, focused on cost\"",
-        "\"Please, this is important\""
-      ],
-      answer: 1,
-      explain: "Audience, format and focus change the output far more than asking for accuracy or adding urgency." },
-    { q: "A colleague wants to paste a client's confidential financials into Claude to build a model. Your company has a Claude Enterprise account. What's the right first step?",
-      options: [
-        "Go ahead: enterprise accounts are meant for business data",
-        "Remove the client's name first, then paste it",
-        "Check how sensitive the data is, whether your company has approved this tool for it, and what the client agreement allows"
-      ],
-      answer: 2,
-      explain: "An enterprise account isn't automatically approved for every kind of data, and removing a name often doesn't hide whose numbers they are. Policy and approval come first." }
   ],
 
   resources: [

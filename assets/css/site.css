@@ -10,11 +10,9 @@
      Secondary  Navy #041D40 · Blue #00698E · Light Blue #6AA2B8 · Dark Green #006B67
                 Blue Green #4D858D · Dark Gray 2 #333D47
      Accent     Orange #ED7700 (the ONE highlight on this site; the guidelines say one per application)
-                Not used: Light Orange #F6B221 (dark mode only, as Orange's readable twin),
-                Light Blue 2 #288DC0, Bright Red #EC0044
-   Tints marked "tint" are lighter/darker mixes of a palette color, needed for soft
-   backgrounds and for dark mode, where most palette colors are too dark to read.
-   Every text/background pair meets WCAG AA (4.5:1) in light and dark mode.
+                Not used: Light Orange #F6B221, Light Blue 2 #288DC0, Bright Red #EC0044
+   Tints marked "tint" are lighter mixes of a palette color, needed for soft
+   backgrounds. Light theme only. Every text/background pair meets WCAG AA (4.5:1).
 
    Fonts (guidelines): Futura LT Pro = headlines; Adelle = website body copy.
    Both are licensed (Futura via brand.mitsloan@mit.edu). Each stack tries the real
@@ -46,33 +44,6 @@
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#161B21;             /* shade of Dark Gray 2 */
-  --surface:#212830;        /* shade of Dark Gray 2 */
-  --surface2:#333D47;       /* Dark Gray 2 */
-  --line:#545759;           /* Dark Gray */
-  --fg:#F4F4F3;             /* tint of Light Gray */
-  --muted:#C9C8C7;          /* Light Gray */
-  --accent:#F0899A;         /* tint of Sloan Red */
-  --accent-strong:#F7AEBA;  /* tint of Sloan Red */
-  --accent-soft:#3D1A21;    /* shade of Sloan Red */
-  --on-accent:#161B21;
-  --navy:#6AA2B8;           /* Light Blue */
-  --navy-soft:#0F2440;      /* shade of Navy */
-  --ok:#7CC4BF;             /* tint of Dark Green */
-  --ok-soft:#0F2E2C;        /* shade of Dark Green */
-  --hi:#F6B221;             /* Light Orange: Orange's readable twin on dark */
-  --hi-ink:#F6B221;
-  --hi-soft:#3A2A0E;        /* shade of Orange */
-  color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#161B21; --surface:#212830; --surface2:#333D47; --line:#545759;
-  --fg:#F4F4F3; --muted:#C9C8C7;
-  --accent:#F0899A; --accent-strong:#F7AEBA; --accent-soft:#3D1A21; --on-accent:#161B21;
-  --navy:#6AA2B8; --navy-soft:#0F2440;
-  --ok:#7CC4BF; --ok-soft:#0F2E2C;
-  --hi:#F6B221; --hi-ink:#F6B221; --hi-soft:#3A2A0E;
-  color-scheme:dark}
 
 /* ---------- base ---------- */
 *{box-sizing:border-box}
@@ -116,11 +87,6 @@ img{max-width:100%;height:auto}
 .dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--line)}
 .dot.prog{border-color:var(--hi);background:linear-gradient(90deg,var(--hi) 50%,transparent 50%)}
 .dot.done{border-color:var(--ok);background:var(--ok)}
-.theme{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-.theme .sub{margin-right:6px}
-.theme button{font-family:var(--ui);font-size:13px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--muted);cursor:pointer}
-.theme button:hover{border-color:var(--accent);color:var(--fg)}
-.theme button[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
 .railnote{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:6px}
 main{min-width:0}
 main:focus{outline:none}
@@ -131,6 +97,7 @@ main:focus{outline:none}
 .chip.prog{background:var(--hi-soft);color:var(--hi-ink);box-shadow:inset 3px 0 0 var(--hi)}
 .chip.done{background:var(--ok-soft);color:var(--ok)}
 .chip.track{background:var(--navy-soft);color:var(--navy)}
+.chip.setup{background:var(--bg);color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
 .sub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .btn{font-family:var(--ui);border:1px solid var(--line);background:var(--bg);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:14px}
 .btn:hover{border-color:var(--accent)}
@@ -145,6 +112,7 @@ table.cmp th,table.cmp td{text-align:left;padding:10px 12px;border-bottom:1px so
 table.cmp th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
 table.cmp td:first-child{font-weight:600}
 table.cmp caption{caption-side:top;text-align:left;font-family:var(--ui);font-weight:600;font-size:15px;color:var(--fg);padding:4px 0 6px}
+table.cmp ul.todo{margin:0;padding-left:18px}table.cmp ul.todo li{margin:0 0 6px}table.cmp ul.todo li:last-child{margin-bottom:0}table.cmp.setup td:first-child,table.cmp.setup td:last-child{white-space:nowrap}
 .note-box{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px dashed var(--navy);border-radius:10px;font-size:15px}
 .note-box b{color:var(--navy)}
 
@@ -153,11 +121,6 @@ table.cmp caption{caption-side:top;text-align:left;font-family:var(--ui);font-we
 .hero h1{font-size:clamp(34px,5vw,54px);letter-spacing:-.02em}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .lede{font-size:18px;color:var(--muted);max-width:62ch}
-.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
-.flow > div{background:var(--surface);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
-.flow .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.flow b{font-family:var(--ui);font-size:17px}
-.flow p{font-size:14.5px;color:var(--muted)}
 .sect{margin-top:44px;display:flex;flex-direction:column;gap:14px}
 .sect > h2{font-size:24px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -166,16 +129,18 @@ table.cmp caption{caption-side:top;text-align:left;font-family:var(--ui);font-we
 .mcard .num{font-family:var(--display);font-weight:700;font-size:28px;color:var(--accent);line-height:1}
 .mcard b{display:block;font-family:var(--ui);font-size:17px}
 .mcard .out{font-size:14.5px;color:var(--muted)}
-.mcard .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.mcard .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
 .tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .tracks > div{padding:16px;border-left:3px solid var(--navy);background:var(--navy-soft);border-radius:0 8px 8px 0}
 .tracks b{color:var(--navy);font-family:var(--ui);font-size:16px}
 .tracks p{font-size:14.5px;margin-top:4px}
-.clock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.clock > div{display:flex;flex-direction:column;gap:6px;padding:14px 16px;background:var(--surface);border-radius:10px}
-.clock .bigt{font-family:var(--display);font-weight:700;font-size:28px;line-height:1;color:var(--accent)}
-.clock b{font-family:var(--ui)}
-.clock p{font-size:14.5px;color:var(--muted)}
+/* Three ways to learn: three equal boxes in one row (stacked on phones) */
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ways > div{display:flex;flex-direction:column;gap:6px;padding:18px 20px;background:var(--surface);border-radius:10px;border-left:4px solid var(--accent)}
+.ways .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ways .when{font-family:var(--display);font-weight:700;font-size:clamp(17px,1.7vw,22px);line-height:1.2;color:var(--accent);white-space:nowrap}
+.ways b{font-family:var(--ui);font-size:17px;line-height:1.3;margin-top:4px}
+.ways p{margin:0;font-size:14.5px;color:var(--muted)}
 
 /* ---------- module header ---------- */
 .mhead{display:flex;flex-direction:column;gap:10px;padding-bottom:24px;border-bottom:1px solid var(--line)}
@@ -272,6 +237,10 @@ ol.steps li::before{content:counter(s);font-family:var(--display);font-weight:70
 ol.steps li > div > b{display:block;font-family:var(--ui);font-size:16px}
 ol.steps li span b{color:var(--fg);font-weight:600}
 ol.steps li span{color:var(--muted);font-size:15px}
+ol.steps ul.pts{list-style:disc;margin:4px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
+ol.steps ul.pts li{display:list-item;counter-increment:none;padding:0;border:0;color:var(--muted);font-size:15px}
+ol.steps ul.pts li::before{content:none}
+ol.steps ul.pts li::marker{color:var(--accent)}
 .tip{display:flex;gap:10px;padding:12px 14px;border-radius:0 8px 8px 0;background:var(--hi-soft);border-left:4px solid var(--hi);font-size:15px}
 .tip b{color:var(--hi-ink);white-space:nowrap;font-family:var(--ui)}
 .transfer{font-size:14.5px;color:var(--muted)}
@@ -320,10 +289,10 @@ ol.steps li span{color:var(--muted);font-size:15px}
 .stuck .fix{padding:12px 16px;font-size:15px;max-width:72ch}
 .stuck-foot{font-size:14px;color:var(--muted)}
 
-/* mastery */
-.mastery{background:var(--surface);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:18px}
-.mstat{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.mstat .big{font-family:var(--display);font-weight:700;font-size:21px}
+/* finish: the "Mark as done" box at the end of each module */
+.finish{background:var(--surface);border-radius:12px;padding:20px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.finish p{margin:0}
+.btn.is-done{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:600}
 .checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
 .checks label{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:9px 10px;border-radius:8px;cursor:pointer}
 .checks label:hover{background:var(--bg)}
@@ -369,7 +338,7 @@ ol.steps li span{color:var(--muted);font-size:15px}
   .turn{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:640px){
-  .flow,.grid,.concepts,.tracks,.clock{grid-template-columns:minmax(0,1fr)}
+  .grid,.concepts,.tracks,.ways{grid-template-columns:minmax(0,1fr)}
   .ex .pair{grid-template-columns:minmax(0,1fr)}
   .idea-groups{grid-template-columns:minmax(0,1fr)}
   .ex .pair > div + div{border-left:0;border-top:1px solid var(--line)}
@@ -379,7 +348,7 @@ ol.steps li span{color:var(--muted);font-size:15px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{
-  .rail,.otp,.ctrl,.copy,.pager,.skip,.theme{display:none!important}
+  .rail,.otp,.ctrl,.copy,.pager,.skip{display:none!important}
   .shell{display:block}
   .stuck details{break-inside:avoid}
 }
@@ -405,3 +374,14 @@ figure.diagram figcaption{font-size:14px;color:var(--muted);margin-top:6px}
 .dg-line{stroke:var(--accent);stroke-width:1.5;fill:none}
 .dg-dot{fill:var(--accent)}
 .dg-n{fill:var(--on-accent);font-family:var(--ui);font-size:12px;font-weight:700}
+
+/* ---------- screenshots on the overview ---------- */
+/* Setup step screenshots: always visible, under the step */
+.shot{margin:10px 0 4px;max-width:520px}
+.shot-img{position:relative;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.shot-img img{display:block;width:100%;height:auto}
+.shot .hl{position:absolute;border:3px solid var(--accent);border-radius:6px;box-shadow:0 0 0 3px rgba(255,255,255,.7)}
+.shot .hl em{position:absolute;left:100%;top:50%;transform:translate(8px,-50%);background:var(--accent);color:var(--on-accent);font:600 12px/1.2 var(--ui);font-style:normal;padding:3px 7px;border-radius:4px;white-space:nowrap}
+.shot figcaption{font-size:13.5px;color:var(--muted);margin-top:4px}
+.shot-todo{margin:8px 0 4px;max-width:520px;padding:10px 12px;border:1.5px dashed var(--hi);border-radius:8px;background:var(--hi-soft);font-size:13.5px;color:var(--fg)}
+.asof{margin:6px 0 0;font-size:13px;color:var(--muted)}

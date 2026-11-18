@@ -49,19 +49,19 @@ const M4_SCREEN = '<svg viewBox="0 0 720 292" role="img" aria-labelledby="m4-dg-
 
 window.AIB_MODULES["m4"] = {
   id: "m4",
-  title: "Projects & artifacts",
+  title: "Projects & Artifacts",
   level: "Builds on Modules 1–3",
 
   goal: "Give Claude a project that remembers your context, then build a clickable prototype of your tool that you can test, improve and share.",
   outcomes: ["Set up a project with instructions and files", "Build a working prototype", "Test it and improve it twice", "Know what sharing exposes"],
 
-  budget: { read: 5, do: 21, check: 4 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
       "Your 3-sentence project idea from Module 1.",
       { text: "**inputs.xlsx** and **brief.docx** from Module 3, in your **ai-basics** folder.",
-        ifNot: "Missing them? Do [Module 3, Exercise B](m3.html#s-exercise) first (13 min)." },
+        ifNot: "Missing them? Do [Module 3, Exercise B](m03-asking-vs-delegating.html#s-exercise) first (13 min)." },
       "Claude open in the browser or the desktop app."
     ]
   },
@@ -170,39 +170,6 @@ window.AIB_MODULES["m4"] = {
       fix: "Ask: \"Give me the complete code as one HTML file in a single block.\" Copy it, paste it into a plain-text editor (Notepad, or TextEdit in plain-text mode) and save it as `prototype.html`. Double-click the file to check it opens." },
     { problem: "My idea is too big for one screen",
       fix: "Ask: \"What's the smallest version of this that fits on one screen and still helps [user]?\" Build that; the rest can wait for later modules." }
-  ],
-
-  checks: [
-    { text: "My project has instructions and my inputs and brief files", evidence: "Claude's 3 bullets about your project were right." },
-    { text: "My prototype works with labeled example data", evidence: "Demo it in 30 seconds." },
-    { text: "I improved it twice: one fix, one improvement", evidence: "Name the two changes." },
-    { text: "I tested an edge case and saved prototype.html", evidence: "The file opens in a browser from your ai-basics folder." }
-  ],
-  quiz: [
-    { q: "You keep re-explaining your project at the start of every chat. What fixes this?",
-      options: [
-        "Writing longer, more detailed prompts each time",
-        "Project instructions and files, with new chats started inside the project",
-        "Switching to a different model"
-      ],
-      answer: 1,
-      explain: "Project instructions and files carry into every chat in the project, so you write them once." },
-    { q: "You're about to share your prototype with your study group. What should you check first?",
-      options: [
-        "That it looks good on a phone",
-        "That it contains only example data, and the chat it came from has no attachments you wouldn't share",
-        "That the link is short enough to paste"
-      ],
-      answer: 1,
-      explain: "Looking good matters, but what the link exposes matters more: the artifact's data, and for an artifact made in a chat, that chat's attachments too." },
-    { q: "A classmate types 0 for the monthly saving and your prototype shows \"Infinity\". What's the best fix?",
-      options: [
-        "Add a note telling users not to enter 0",
-        "Ask Claude to show a clear message when the monthly saving is 0, then test it",
-        "Start the prototype over from scratch"
-      ],
-      answer: 1,
-      explain: "Users will type 0 whatever the note says. Handling it in the tool, then testing, fixes it for everyone." }
   ],
 
   resources: [

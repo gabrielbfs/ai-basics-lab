@@ -14,7 +14,7 @@ window.AIB_MODULES["m7"] = {
   goal: "Turn your prototype into a real app in a folder on your computer, by giving Claude Code your spec, approving its plan, and steering the build.",
   outcomes: ["Explain when Claude Code beats an artifact", "Approve a plan before code", "Run the app and change it once", "Say which file does what"],
 
-  budget: { read: 6, do: 21, check: 3 },
+  budget: { read: 6, do: 22, check: 2 },
 
   before: {
     needs: [
@@ -117,39 +117,6 @@ window.AIB_MODULES["m7"] = {
       fix: "Open index.html directly from the folder. Then tell Claude what you see: \"The page is blank. Check app.js for errors and explain the fix before you make it.\"" },
     { problem: "Claude changed something I didn't want",
       fix: "Click the **+N −N** indicator to see every change in the diff view, then tell Claude what to undo. From Module 8 on, Git gives you a real undo button." }
-  ],
-
-  checks: [
-    { text: "I can say when to use Claude Code instead of an artifact", evidence: "One sentence." },
-    { text: "I approved a plan before any code was written", evidence: "It's in your session." },
-    { text: "My app runs, passes an acceptance check, and I changed it once", evidence: "Demo it." },
-    { text: "I can say which file does what", evidence: "Explain it to a classmate." }
-  ],
-  quiz: [
-    { q: "Claude Code asks to run a command you don't recognize. What do you do?",
-      options: [
-        "Approve it: Claude knows what it's doing",
-        "Ask what the command does and why it's needed, then decide",
-        "Switch to Auto mode so it stops asking"
-      ],
-      answer: 1,
-      explain: "You stay the decision-maker. Asking is always fine, and declining is too." },
-    { q: "Later, your app needs an API key for a data service. Where does the key go?",
-      options: [
-        "In app.js: the folder is only on my laptop for now",
-        "In no file in the folder: real apps keep keys in a secrets store, set up with IT",
-        "In README.md, so it isn't lost"
-      ],
-      answer: 1,
-      explain: "Keys in files get shared by accident, especially once the folder is on GitHub. If one ever leaks, it has to be replaced." },
-    { q: "Which of these is a job for Claude Code rather than an artifact?",
-      options: [
-        "A one-off chart for tomorrow's meeting",
-        "A quick explanation of a formula",
-        "A tool you'll keep improving, with version history and your own public link"
-      ],
-      answer: 2,
-      explain: "Artifacts are great for quick, one-page things. Real files in a folder are what you version, host and keep building on." }
   ],
 
   resources: [

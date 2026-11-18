@@ -52,9 +52,6 @@ const html = `<!doctype html>
 <style>
 ${css}
 </style>
-<script>
-${read("assets/js/theme.js")}
-</script>
 </head>
 <body data-mode="single">
 <noscript><p style="padding:24px">This page needs JavaScript turned on.</p></noscript>

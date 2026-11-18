@@ -17,11 +17,9 @@
      Secondary  Navy #041D40 · Blue #00698E · Light Blue #6AA2B8 · Dark Green #006B67
                 Blue Green #4D858D · Dark Gray 2 #333D47
      Accent     Orange #ED7700 (the ONE highlight on this site; the guidelines say one per application)
-                Not used: Light Orange #F6B221 (dark mode only, as Orange's readable twin),
-                Light Blue 2 #288DC0, Bright Red #EC0044
-   Tints marked "tint" are lighter/darker mixes of a palette color, needed for soft
-   backgrounds and for dark mode, where most palette colors are too dark to read.
-   Every text/background pair meets WCAG AA (4.5:1) in light and dark mode.
+                Not used: Light Orange #F6B221, Light Blue 2 #288DC0, Bright Red #EC0044
+   Tints marked "tint" are lighter mixes of a palette color, needed for soft
+   backgrounds. Light theme only. Every text/background pair meets WCAG AA (4.5:1).
 
    Fonts (guidelines): Futura LT Pro = headlines; Adelle = website body copy.
    Both are licensed (Futura via brand.mitsloan@mit.edu). Each stack tries the real
@@ -53,33 +51,6 @@
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
   color-scheme:light;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#161B21;             /* shade of Dark Gray 2 */
-  --surface:#212830;        /* shade of Dark Gray 2 */
-  --surface2:#333D47;       /* Dark Gray 2 */
-  --line:#545759;           /* Dark Gray */
-  --fg:#F4F4F3;             /* tint of Light Gray */
-  --muted:#C9C8C7;          /* Light Gray */
-  --accent:#F0899A;         /* tint of Sloan Red */
-  --accent-strong:#F7AEBA;  /* tint of Sloan Red */
-  --accent-soft:#3D1A21;    /* shade of Sloan Red */
-  --on-accent:#161B21;
-  --navy:#6AA2B8;           /* Light Blue */
-  --navy-soft:#0F2440;      /* shade of Navy */
-  --ok:#7CC4BF;             /* tint of Dark Green */
-  --ok-soft:#0F2E2C;        /* shade of Dark Green */
-  --hi:#F6B221;             /* Light Orange: Orange's readable twin on dark */
-  --hi-ink:#F6B221;
-  --hi-soft:#3A2A0E;        /* shade of Orange */
-  color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#161B21; --surface:#212830; --surface2:#333D47; --line:#545759;
-  --fg:#F4F4F3; --muted:#C9C8C7;
-  --accent:#F0899A; --accent-strong:#F7AEBA; --accent-soft:#3D1A21; --on-accent:#161B21;
-  --navy:#6AA2B8; --navy-soft:#0F2440;
-  --ok:#7CC4BF; --ok-soft:#0F2E2C;
-  --hi:#F6B221; --hi-ink:#F6B221; --hi-soft:#3A2A0E;
-  color-scheme:dark}
 
 /* ---------- base ---------- */
 *{box-sizing:border-box}
@@ -123,11 +94,6 @@ img{max-width:100%;height:auto}
 .dot{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--line)}
 .dot.prog{border-color:var(--hi);background:linear-gradient(90deg,var(--hi) 50%,transparent 50%)}
 .dot.done{border-color:var(--ok);background:var(--ok)}
-.theme{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-.theme .sub{margin-right:6px}
-.theme button{font-family:var(--ui);font-size:13px;padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--muted);cursor:pointer}
-.theme button:hover{border-color:var(--accent);color:var(--fg)}
-.theme button[aria-pressed="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
 .railnote{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:6px}
 main{min-width:0}
 main:focus{outline:none}
@@ -138,6 +104,7 @@ main:focus{outline:none}
 .chip.prog{background:var(--hi-soft);color:var(--hi-ink);box-shadow:inset 3px 0 0 var(--hi)}
 .chip.done{background:var(--ok-soft);color:var(--ok)}
 .chip.track{background:var(--navy-soft);color:var(--navy)}
+.chip.setup{background:var(--bg);color:var(--muted);box-shadow:inset 0 0 0 1px var(--line)}
 .sub{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .btn{font-family:var(--ui);border:1px solid var(--line);background:var(--bg);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:14px}
 .btn:hover{border-color:var(--accent)}
@@ -152,6 +119,7 @@ table.cmp th,table.cmp td{text-align:left;padding:10px 12px;border-bottom:1px so
 table.cmp th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
 table.cmp td:first-child{font-weight:600}
 table.cmp caption{caption-side:top;text-align:left;font-family:var(--ui);font-weight:600;font-size:15px;color:var(--fg);padding:4px 0 6px}
+table.cmp ul.todo{margin:0;padding-left:18px}table.cmp ul.todo li{margin:0 0 6px}table.cmp ul.todo li:last-child{margin-bottom:0}table.cmp.setup td:first-child,table.cmp.setup td:last-child{white-space:nowrap}
 .note-box{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px dashed var(--navy);border-radius:10px;font-size:15px}
 .note-box b{color:var(--navy)}
 
@@ -160,11 +128,6 @@ table.cmp caption{caption-side:top;text-align:left;font-family:var(--ui);font-we
 .hero h1{font-size:clamp(34px,5vw,54px);letter-spacing:-.02em}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .lede{font-size:18px;color:var(--muted);max-width:62ch}
-.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
-.flow > div{background:var(--surface);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
-.flow .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
-.flow b{font-family:var(--ui);font-size:17px}
-.flow p{font-size:14.5px;color:var(--muted)}
 .sect{margin-top:44px;display:flex;flex-direction:column;gap:14px}
 .sect > h2{font-size:24px}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -173,16 +136,18 @@ table.cmp caption{caption-side:top;text-align:left;font-family:var(--ui);font-we
 .mcard .num{font-family:var(--display);font-weight:700;font-size:28px;color:var(--accent);line-height:1}
 .mcard b{display:block;font-family:var(--ui);font-size:17px}
 .mcard .out{font-size:14.5px;color:var(--muted)}
-.mcard .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.mcard .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
 .tracks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .tracks > div{padding:16px;border-left:3px solid var(--navy);background:var(--navy-soft);border-radius:0 8px 8px 0}
 .tracks b{color:var(--navy);font-family:var(--ui);font-size:16px}
 .tracks p{font-size:14.5px;margin-top:4px}
-.clock{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.clock > div{display:flex;flex-direction:column;gap:6px;padding:14px 16px;background:var(--surface);border-radius:10px}
-.clock .bigt{font-family:var(--display);font-weight:700;font-size:28px;line-height:1;color:var(--accent)}
-.clock b{font-family:var(--ui)}
-.clock p{font-size:14.5px;color:var(--muted)}
+/* Three ways to learn: three equal boxes in one row (stacked on phones) */
+.ways{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.ways > div{display:flex;flex-direction:column;gap:6px;padding:18px 20px;background:var(--surface);border-radius:10px;border-left:4px solid var(--accent)}
+.ways .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ways .when{font-family:var(--display);font-weight:700;font-size:clamp(17px,1.7vw,22px);line-height:1.2;color:var(--accent);white-space:nowrap}
+.ways b{font-family:var(--ui);font-size:17px;line-height:1.3;margin-top:4px}
+.ways p{margin:0;font-size:14.5px;color:var(--muted)}
 
 /* ---------- module header ---------- */
 .mhead{display:flex;flex-direction:column;gap:10px;padding-bottom:24px;border-bottom:1px solid var(--line)}
@@ -279,6 +244,10 @@ ol.steps li::before{content:counter(s);font-family:var(--display);font-weight:70
 ol.steps li > div > b{display:block;font-family:var(--ui);font-size:16px}
 ol.steps li span b{color:var(--fg);font-weight:600}
 ol.steps li span{color:var(--muted);font-size:15px}
+ol.steps ul.pts{list-style:disc;margin:4px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
+ol.steps ul.pts li{display:list-item;counter-increment:none;padding:0;border:0;color:var(--muted);font-size:15px}
+ol.steps ul.pts li::before{content:none}
+ol.steps ul.pts li::marker{color:var(--accent)}
 .tip{display:flex;gap:10px;padding:12px 14px;border-radius:0 8px 8px 0;background:var(--hi-soft);border-left:4px solid var(--hi);font-size:15px}
 .tip b{color:var(--hi-ink);white-space:nowrap;font-family:var(--ui)}
 .transfer{font-size:14.5px;color:var(--muted)}
@@ -327,10 +296,10 @@ ol.steps li span{color:var(--muted);font-size:15px}
 .stuck .fix{padding:12px 16px;font-size:15px;max-width:72ch}
 .stuck-foot{font-size:14px;color:var(--muted)}
 
-/* mastery */
-.mastery{background:var(--surface);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:18px}
-.mstat{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.mstat .big{font-family:var(--display);font-weight:700;font-size:21px}
+/* finish: the "Mark as done" box at the end of each module */
+.finish{background:var(--surface);border-radius:12px;padding:20px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.finish p{margin:0}
+.btn.is-done{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:600}
 .checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
 .checks label{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;padding:9px 10px;border-radius:8px;cursor:pointer}
 .checks label:hover{background:var(--bg)}
@@ -376,7 +345,7 @@ ol.steps li span{color:var(--muted);font-size:15px}
   .turn{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:640px){
-  .flow,.grid,.concepts,.tracks,.clock{grid-template-columns:minmax(0,1fr)}
+  .grid,.concepts,.tracks,.ways{grid-template-columns:minmax(0,1fr)}
   .ex .pair{grid-template-columns:minmax(0,1fr)}
   .idea-groups{grid-template-columns:minmax(0,1fr)}
   .ex .pair > div + div{border-left:0;border-top:1px solid var(--line)}
@@ -386,7 +355,7 @@ ol.steps li span{color:var(--muted);font-size:15px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{
-  .rail,.otp,.ctrl,.copy,.pager,.skip,.theme{display:none!important}
+  .rail,.otp,.ctrl,.copy,.pager,.skip{display:none!important}
   .shell{display:block}
   .stuck details{break-inside:avoid}
 }
@@ -413,18 +382,18 @@ figure.diagram figcaption{font-size:14px;color:var(--muted);margin-top:6px}
 .dg-dot{fill:var(--accent)}
 .dg-n{fill:var(--on-accent);font-family:var(--ui);font-size:12px;font-weight:700}
 
-</style>
-<script>
-/* Apply the saved color theme before the page draws (avoids a flash of the wrong theme).
-   Loaded in <head> on every page. The switch itself lives in aib.js. */
-(function () {
-  try {
-    var t = localStorage.getItem("aibasics.theme");
-    if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-  } catch (e) { /* storage blocked: follow the device setting */ }
-})();
+/* ---------- screenshots on the overview ---------- */
+/* Setup step screenshots: always visible, under the step */
+.shot{margin:10px 0 4px;max-width:520px}
+.shot-img{position:relative;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.shot-img img{display:block;width:100%;height:auto}
+.shot .hl{position:absolute;border:3px solid var(--accent);border-radius:6px;box-shadow:0 0 0 3px rgba(255,255,255,.7)}
+.shot .hl em{position:absolute;left:100%;top:50%;transform:translate(8px,-50%);background:var(--accent);color:var(--on-accent);font:600 12px/1.2 var(--ui);font-style:normal;padding:3px 7px;border-radius:4px;white-space:nowrap}
+.shot figcaption{font-size:13.5px;color:var(--muted);margin-top:4px}
+.shot-todo{margin:8px 0 4px;max-width:520px;padding:10px 12px;border:1.5px dashed var(--hi);border-radius:8px;background:var(--hi-soft);font-size:13.5px;color:var(--fg)}
+.asof{margin:6px 0 0;font-size:13px;color:var(--muted)}
 
-</script>
+</style>
 </head>
 <body data-mode="single">
 <noscript><p style="padding:24px">This page needs JavaScript turned on.</p></noscript>
@@ -438,6 +407,7 @@ figure.diagram figcaption{font-size:14px;color:var(--muted);margin-top:6px}
 window.AIB_COURSE = {
   title: "AI Basics Lab",
   program: "MIT Sloan",
+  overviewPage: "m00-course-overview.html",          // the course overview page file
   status: "",                                    // optional tag, e.g. "Draft for review"; "" hides it
 
   schedule: {
@@ -462,18 +432,19 @@ window.AIB_COURSE = {
     build:  { label: "Build & ship", text: "Modules 7–8. Claude Code, GitHub and hosting. The installs (Setup B) happen during the Module 5–6 office hours, so they don't eat module time." }
   },
 
-  // Order here = order in the menu and on the overview. Each id needs a page (m1.html) and,
+  // Order here = order in the menu and on the overview. Each id needs a page file (page:, named mKK-name.html) and,
   // once written, a content file (content/modules/m1.js). Until then the page says "being written".
-  // blurb = the few-word description on the overview card; output = what the student leaves with.
+  // blurb = the few-word description on the overview card; output = what the student leaves with;
+  // setup = which setup part (A or B) the module needs, shown on the card as "Setup A" / "Setup B".
   modules: [
-    { id: "m1", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear briefs and check what Claude gives back.", output: "a 3-sentence project idea" },
-    { id: "m2", title: "Research & analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "an assumptions table and sample data, checked" },
-    { id: "m3", title: "Asking vs. delegating",              short: "Ask vs. Delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief" },
-    { id: "m4", title: "Projects & artifacts",                short: "Projects & Artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool" },
-    { id: "m5", title: "Skills",                              short: "Skills",               track: "nocode", blurb: "Teach Claude a task once and reuse it whenever you need it.", output: "a spec-writer skill and your build spec" },
-    { id: "m6", title: "Connectors & automation",             short: "Connectors",           track: "nocode", blurb: "Link your email, calendar or files and schedule a weekly task.", output: "one scheduled automation for your work" },
-    { id: "m7", title: "Claude Code",                         short: "Claude Code",          track: "build",  blurb: "Turn your prototype into a real app on your computer.", output: "a real app in a folder on your computer" },
-    { id: "m8", title: "Save & ship",                         short: "Save & Ship",          track: "build",  blurb: "Put your app on GitHub and share a live link.", output: "a GitHub repo and a live link" }
+    { id: "m1", page: "m01-briefing-claude.html", title: "Briefing Claude",                     short: "Briefing Claude",      track: "nocode", blurb: "Write clear briefs and check what Claude gives back.", output: "a 3-sentence project idea", setup: "A" },
+    { id: "m2", page: "m02-research-analysis.html", title: "Research & Analysis",                 short: "Research & Analysis",  track: "nocode", blurb: "Find sources, analyze a spreadsheet, and catch the errors.", output: "an assumptions table and sample data, checked", setup: "A" },
+    { id: "m3", page: "m03-asking-vs-delegating.html", title: "Asking vs. Delegating",              short: "Ask vs. Delegate",     track: "nocode", blurb: "Hand Claude a multi-step task and review the files it makes.", output: "an inputs file and a one-page brief", setup: "A" },
+    { id: "m4", page: "m04-projects-artifacts.html", title: "Projects & Artifacts",                short: "Projects & Artifacts", track: "nocode", blurb: "Keep your context in one place and build a clickable prototype.", output: "a clickable prototype of your tool", setup: "A" },
+    { id: "m5", page: "m05-skills.html", title: "Skills",                              short: "Skills",               track: "nocode", blurb: "Teach Claude a task once and reuse it whenever you need it.", output: "a spec-writer skill and your build spec", setup: "A" },
+    { id: "m6", page: "m06-connectors-automation.html", title: "Connectors & Automation",             short: "Connectors",           track: "nocode", blurb: "Link your email, calendar or files and schedule a weekly task.", output: "one scheduled automation for your work", setup: "A" },
+    { id: "m7", page: "m07-claude-code.html", title: "Claude Code",                         short: "Claude Code",          track: "build",  blurb: "Turn your prototype into a real app on your computer.", output: "a real app in a folder on your computer", setup: "B" },
+    { id: "m8", page: "m08-save-ship.html", title: "Save & Ship",                         short: "Save & Ship",          track: "build",  blurb: "Put your app on GitHub and share a live link.", output: "a GitHub repo and a live link", setup: "B" }
   ],
 
   // Not shown on the overview yet; kept for when the elective pages are written.
@@ -483,43 +454,58 @@ window.AIB_COURSE = {
 
   overview: {
     headline: "AI Basics: *learn it by building it.*",
-    lede: "Eight self-paced modules of about 30 minutes each. You start with your first conversation with Claude and finish with a small tool of your own, saved on GitHub and live on the web. No technical background needed.",
+    lede: "Self-paced modules of about 30 minutes each. Start with your first conversation with Claude and finish with a tool of your own, live on the web. No technical background needed.",
 
-    waysIn: [
-      { label: "Learn", title: "On your own",  text: "About 30 minutes per module: breakdown, examples, exercises, check." },
-      { label: "Join",  title: "Live session", text: "A walkthrough and guided build, then Q&A." },
-      { label: "Ask",   title: "Office hours", text: "Bring questions about modules or setup problems." }
-    ],
 
-    friday: {
-      title: "How a Friday works",
-      blocks: [
-        { time: "8:00", title: "Office hours", text: "Come with your question written down." },
-        { time: "9:00", title: "Live session", text: "45 minutes of walkthrough and guided build for the weekly module, then 15 minutes of Q&A." },
-        { time: "~30 min", title: "On your own", text: "Any time that week." }
+    // One section, three boxes. when = the red line on each box.
+    ways: {
+      title: "Three ways to learn",
+      items: [
+        { label: "Learn", when: "Anytime",          title: "On your own",  text: "About 30 minutes per module, at your own pace." },
+        { label: "Ask",   when: "Fri 8:00–9:00am",  title: "Office hours", text: "Bring questions about the modules or setup problems. Come with your question written down." },
+        { label: "Join",  when: "Fri 9:00–10:00am", title: "Live session", text: "45 minutes of walkthrough and guided build for the weekly module, then 15 minutes of Q&A." }
       ]
     },
 
 
+    // what = one bullet per step, shown as a list in the table.
+    // A step can be plain text, or {text, shot} to show a screenshot under it:
+    //   shot: {image: (path in assets/img), alt: (description), highlight: [{x, y, w, h, label}]}  (x, y, w, h in % of the image)
+    //   shot: {todo: "what the screenshot should show"}  shows a dashed "Screenshot to add" box until the image exists
+    // screensAsOf: shown under the table once real screenshots are in, e.g. "Nov 2026".
     setup: {
-      title: "Setup, in two parts",
-      text: "Setup is not module time. Part A comes before Module 1; Part B, the harder installs, comes later, when you need it.",
+      title: "Setup",
+      screensAsOf: "",
       parts: [
-        { part: "Setup A", when: "Before Module 1 (the first office hours is a setup clinic)",
-          what: "Sign in with your Claude Enterprise account · install the Claude desktop app · create a folder called **ai-basics** in Documents, where you'll save each module's work", neededFor: "Modules 1–6" },
-        { part: "Setup B", when: "During the Module 5–6 office hours",
-          what: "Open the **Code** tab in the Claude desktop app once (Claude Code is built in, nothing to install) and create an `ai-basics-app` folder next to your `ai-basics` folder · install Git for Module 8 (Mac: accept the developer-tools prompt; Windows: Git for Windows) · install the [GitHub CLI](https://cli.github.com/) (`gh`) · create a free GitHub account and, under Settings → Emails, turn on *Keep my email addresses private* and *Block command line pushes that expose my email* · optional: want a private repo? Verify with [GitHub Education](https://docs.github.com/en/education/about-github-education/github-education-for-students/about-github-education-for-students) using your MIT email; apply early, as approval can take days", neededFor: "Modules 7–8" }
+        { part: "Setup A", neededFor: "Modules 1–6", what: [
+          "Sign in to Claude with your MIT Claude Enterprise account.",
+          "[Install the Claude desktop app](https://claude.ai/download).",
+          "Create a folder called **ai-basics**. You'll save each module's work there."
+        ] },
+        { part: "Setup B", neededFor: "Modules 7–8", what: [
+          { text: "In the Claude desktop app, open the **Code** tab once. Claude Code is built in, so there's nothing to install.",
+            shot: { image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MjAgMjEwIiB3aWR0aD0iNTIwIiBoZWlnaHQ9IjIxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJJbGx1c3RyYXRpb246IHRvcC1sZWZ0IGNvcm5lciBvZiB0aGUgQ2xhdWRlIGRlc2t0b3AgYXBwLCB3aXRoIHRoZSBDb2RlIGJ1dHRvbiBoaWdobGlnaHRlZCI+CiAgPCEtLSBJbGx1c3RyYXRpb24gb2YgdGhlIENsYXVkZSBkZXNrdG9wIGFwcCAobGlnaHQgbW9kZSksIGRyYXduIGZvciBBSSBCYXNpY3MgTGFiLiBOb3QgYSBzY3JlZW5zaG90LiAtLT4KICA8c3R5bGU+CiAgICAudHtmb250LWZhbWlseTotYXBwbGUtc3lzdGVtLCJTZWdvZSBVSSIsUm9ib3RvLEFyaWFsLHNhbnMtc2VyaWY7Zm9udC1zaXplOjE0cHg7ZmlsbDojMmYyZjJjfQogICAgLmlje2ZpbGw6bm9uZTtzdHJva2U6IzNkM2QzYTtzdHJva2Utd2lkdGg6MS42O3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZH0KICAgIC5kaW17c3Ryb2tlOiNhOGE2OWZ9CiAgPC9zdHlsZT4KICA8cmVjdCB3aWR0aD0iNTIwIiBoZWlnaHQ9IjIxMCIgZmlsbD0iI2ZmZmZmZiIvPgogIDwhLS0gc2lkZWJhciAtLT4KICA8cmVjdCB3aWR0aD0iMjYyIiBoZWlnaHQ9IjIxMCIgZmlsbD0iI2Y1ZjRlZiIvPgogIDxsaW5lIHgxPSIyNjIiIHkxPSIwIiB4Mj0iMjYyIiB5Mj0iMjEwIiBzdHJva2U9IiNlM2UxZGEiLz4KICA8IS0tIHRvcCBiYXIgaWNvbnMgLS0+CiAgPGcgY2xhc3M9ImljIj4KICAgIDxwYXRoIGQ9Ik0xNiAxN2gxNk0xNiAyM2gxMk0xNiAyOWgxNiIvPgogICAgPHJlY3QgeD0iNDQiIHk9IjE1IiB3aWR0aD0iMTciIGhlaWdodD0iMTYiIHJ4PSIzIi8+PHBhdGggZD0iTTUwIDE1djE2Ii8+CiAgICA8cGF0aCBkPSJNODAgMTdsLTYgNiA2IDYiLz4KICAgIDxwYXRoIGNsYXNzPSJkaW0iIGQ9Ik0xMDAgMTdsNiA2LTYgNiIvPgogIDwvZz4KICA8IS0tIGNoYXQgLyBjb2RlIHN3aXRjaCAtLT4KICA8cmVjdCB4PSIxMjQiIHk9IjgiIHdpZHRoPSI3OCIgaGVpZ2h0PSIzMSIgcng9IjgiIGZpbGw9IiNlOWU3ZTAiLz4KICA8cmVjdCB4PSIxMjciIHk9IjExIiB3aWR0aD0iMzUiIGhlaWdodD0iMjUiIHJ4PSI2IiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9IiNkY2Q5ZDAiLz4KICA8ZyBjbGFzcz0iaWMiPjxwYXRoIGQ9Ik0xMzcgMTdoMTVhMiAyIDAgMCAxIDIgMnY3YTIgMiAwIDAgMS0yIDJoLTlsLTQgM3YtM2gtMmEyIDIgMCAwIDEtMi0ydi03YTIgMiAwIDAgMSAyLTJ6Ii8+PC9nPgogIDx0ZXh0IHg9IjE4MiIgeT0iMjguNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InQiIHN0eWxlPSJmb250LXNpemU6MTNweDtmb250LXdlaWdodDo2MDAiPiZsdDsvJmd0OzwvdGV4dD4KICA8IS0tIGhpZ2hsaWdodCAtLT4KICA8cmVjdCB4PSIxNjMiIHk9IjYiIHdpZHRoPSIzOCIgaGVpZ2h0PSIzNSIgcng9IjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0EzMUYzNCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHBhdGggZD0iTTIwNiAyM2gyMiIgc3Ryb2tlPSIjQTMxRjM0IiBzdHJva2Utd2lkdGg9IjIuNSIvPgogIDxwYXRoIGQ9Ik0yMDYgMjNsNy01TTIwNiAyM2w3IDUiIHN0cm9rZT0iI0EzMUYzNCIgc3Ryb2tlLXdpZHRoPSIyLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogIDxyZWN0IHg9IjIzMCIgeT0iMTAiIHdpZHRoPSI2MiIgaGVpZ2h0PSIyNiIgcng9IjUiIGZpbGw9IiNBMzFGMzQiLz4KICA8dGV4dCB4PSIyNjEiIHk9IjI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0iZm9udC1mYW1pbHk6LWFwcGxlLXN5c3RlbSwnU2Vnb2UgVUknLFJvYm90byxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxNHB4O2ZvbnQtd2VpZ2h0OjcwMDtmaWxsOiNmZmZmZmYiPkNvZGU8L3RleHQ+CiAgPCEtLSBzaWRlYmFyIGl0ZW1zIC0tPgogIDxyZWN0IHg9IjgiIHk9IjU2IiB3aWR0aD0iMjQ2IiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iI2U5ZTdlMCIvPgogIDxnIGNsYXNzPSJpYyI+PHBhdGggZD0iTTIyIDcyaDEyTTI4IDY2djEyIi8+PC9nPgogIDx0ZXh0IHg9IjQ0IiB5PSI3NyIgY2xhc3M9InQiIHN0eWxlPSJmb250LXdlaWdodDo2MDAiPk5ldzwvdGV4dD4KICA8ZyBjbGFzcz0iaWMiPjxjaXJjbGUgY3g9IjI3IiBjeT0iMTA3IiByPSI1LjUiLz48cGF0aCBkPSJNMzEgMTExbDQgNCIvPjwvZz4KICA8dGV4dCB4PSI0NCIgeT0iMTEyIiBjbGFzcz0idCI+U2VhcmNoPC90ZXh0PgogIDxnIGNsYXNzPSJpYyI+PHJlY3QgeD0iMjEiIHk9IjEzNiIgd2lkdGg9IjEzIiBoZWlnaHQ9IjEwIiByeD0iMiIvPjxwYXRoIGQ9Ik0yMyAxMzJoOU0yMiAxMzRoMTEiLz48L2c+CiAgPHRleHQgeD0iNDQiIHk9IjE0NiIgY2xhc3M9InQiPlByb2plY3RzPC90ZXh0PgogIDxnIGNsYXNzPSJpYyI+PHJlY3QgeD0iMjEiIHk9IjE2NiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEzIiByeD0iMiIvPjxyZWN0IHg9IjI1IiB5PSIxNzAiIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMyIgcng9IjIiLz48L2c+CiAgPHRleHQgeD0iNDQiIHk9IjE4MCIgY2xhc3M9InQiPkFydGlmYWN0czwvdGV4dD4KPC9zdmc+Cg==", caption: "Illustration. Your screen may look slightly different.",
+                    alt: "Illustration of the top-left corner of the Claude desktop app. Next to the back and forward arrows is a two-part switch: a chat icon and a </> icon. The </> icon is highlighted and labeled Code." } },
+          "Next to your **ai-basics** folder, create a folder called **ai-basics-app**.",
+          { text: "Install Git. **Mac:** accept the developer-tools prompt. **Windows:** [download Git for Windows](https://git-scm.com/downloads/win), run the installer, and click **Next** on every screen. The default choices are fine.",
+            shot: { image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MDAgMjMwIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjIzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJJbGx1c3RyYXRpb246IHRoZSBtYWNPUyBwb3AtdXAgYXNraW5nIHRvIGluc3RhbGwgdGhlIGNvbW1hbmQgbGluZSBkZXZlbG9wZXIgdG9vbHMsIHdpdGggdGhlIEluc3RhbGwgYnV0dG9uIGhpZ2hsaWdodGVkIj4KICA8IS0tIElsbHVzdHJhdGlvbiBvZiB0aGUgbWFjT1MgZGV2ZWxvcGVyLXRvb2xzIHByb21wdCwgZHJhd24gZm9yIEFJIEJhc2ljcyBMYWIuIE5vdCBhIHNjcmVlbnNob3QuIC0tPgogIDxzdHlsZT4KICAgIC50e2ZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sIlNlZ29lIFVJIixSb2JvdG8sQXJpYWwsc2Fucy1zZXJpZjtmaWxsOiMxZDFkMWZ9CiAgPC9zdHlsZT4KICA8ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9InNoIiB4PSItMTAlIiB5PSItMTAlIiB3aWR0aD0iMTIwJSIgaGVpZ2h0PSIxMzAlIj48ZmVEcm9wU2hhZG93IGR4PSIwIiBkeT0iNCIgc3RkRGV2aWF0aW9uPSI2IiBmbG9vZC1jb2xvcj0iIzAwMCIgZmxvb2Qtb3BhY2l0eT0iLjE4Ii8+PC9maWx0ZXI+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iMjMwIiBmaWxsPSIjZTllYWVjIi8+CiAgPHJlY3QgeD0iMjAiIHk9IjE2IiB3aWR0aD0iNDYwIiBoZWlnaHQ9IjE5MiIgcng9IjEyIiBmaWxsPSIjZjZmNmY2IiBzdHJva2U9IiNkMmQyZDQiIGZpbHRlcj0idXJsKCNzaCkiLz4KICA8IS0tIGFwcCBpY29uIC0tPgogIDxyZWN0IHg9IjQwIiB5PSIzOCIgd2lkdGg9IjUyIiBoZWlnaHQ9IjUyIiByeD0iMTIiIGZpbGw9IiM1YTVmNjYiLz4KICA8dGV4dCB4PSI2NiIgeT0iNzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0IiBzdHlsZT0iZm9udC1zaXplOjE3cHg7Zm9udC13ZWlnaHQ6NzAwO2ZpbGw6I2ZmZmZmZiI+Jmd0O188L3RleHQ+CiAgPCEtLSB0ZXh0IC0tPgogIDx0ZXh0IHg9IjEwOCIgeT0iNTAiIGNsYXNzPSJ0IiBzdHlsZT0iZm9udC1zaXplOjEzLjVweDtmb250LXdlaWdodDo3MDAiPlRoZSDigJxnaXTigJ0gY29tbWFuZCByZXF1aXJlcyB0aGUgY29tbWFuZCBsaW5lPC90ZXh0PgogIDx0ZXh0IHg9IjEwOCIgeT0iNjgiIGNsYXNzPSJ0IiBzdHlsZT0iZm9udC1zaXplOjEzLjVweDtmb250LXdlaWdodDo3MDAiPmRldmVsb3BlciB0b29scy4gV291bGQgeW91IGxpa2UgdG8gaW5zdGFsbDwvdGV4dD4KICA8dGV4dCB4PSIxMDgiIHk9Ijg2IiBjbGFzcz0idCIgc3R5bGU9ImZvbnQtc2l6ZToxMy41cHg7Zm9udC13ZWlnaHQ6NzAwIj50aGUgdG9vbHMgbm93PzwvdGV4dD4KICA8dGV4dCB4PSIxMDgiIHk9IjExMCIgY2xhc3M9InQiIHN0eWxlPSJmb250LXNpemU6MTJweDtmaWxsOiM0YTRhNGQiPkNob29zZSBJbnN0YWxsIHRvIGRvd25sb2FkIGFuZCBpbnN0YWxsIHRoZSBjb21tYW5kPC90ZXh0PgogIDx0ZXh0IHg9IjEwOCIgeT0iMTI2IiBjbGFzcz0idCIgc3R5bGU9ImZvbnQtc2l6ZToxMnB4O2ZpbGw6IzRhNGE0ZCI+bGluZSBkZXZlbG9wZXIgdG9vbHMgbm93LjwvdGV4dD4KICA8IS0tIGJ1dHRvbnMgLS0+CiAgPHJlY3QgeD0iMTA4IiB5PSIxNTAiIHdpZHRoPSI4OCIgaGVpZ2h0PSIyNiIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2M5YzljYyIvPgogIDx0ZXh0IHg9IjE1MiIgeT0iMTY3LjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0IiBzdHlsZT0iZm9udC1zaXplOjEzcHgiPkdldCBYY29kZTwvdGV4dD4KICA8cmVjdCB4PSIyNjgiIHk9IjE1MCIgd2lkdGg9Ijc4IiBoZWlnaHQ9IjI2IiByeD0iNiIgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSIjYzljOWNjIi8+CiAgPHRleHQgeD0iMzA3IiB5PSIxNjcuNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgY2xhc3M9InQiIHN0eWxlPSJmb250LXNpemU6MTNweCI+Tm90IE5vdzwvdGV4dD4KICA8cmVjdCB4PSIzNTYiIHk9IjE1MCIgd2lkdGg9Ijc4IiBoZWlnaHQ9IjI2IiByeD0iNiIgZmlsbD0iIzBhN2NmZiIvPgogIDx0ZXh0IHg9IjM5NSIgeT0iMTY3LjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGNsYXNzPSJ0IiBzdHlsZT0iZm9udC1zaXplOjEzcHg7Zm9udC13ZWlnaHQ6NjAwO2ZpbGw6I2ZmZmZmZiI+SW5zdGFsbDwvdGV4dD4KICA8IS0tIGhpZ2hsaWdodCAtLT4KICA8cmVjdCB4PSIzNTAiIHk9IjE0NCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjM4IiByeD0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTMxRjM0IiBzdHJva2Utd2lkdGg9IjMiLz4KICA8cmVjdCB4PSIzNTYiIHk9IjE5MCIgd2lkdGg9Ijc4IiBoZWlnaHQ9IjIyIiByeD0iNSIgZmlsbD0iI0EzMUYzNCIvPgogIDx0ZXh0IHg9IjM5NSIgeT0iMjA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBzdHlsZT0iZm9udC1mYW1pbHk6LWFwcGxlLXN5c3RlbSwnU2Vnb2UgVUknLFJvYm90byxBcmlhbCxzYW5zLXNlcmlmO2ZvbnQtc2l6ZToxMi41cHg7Zm9udC13ZWlnaHQ6NzAwO2ZpbGw6I2ZmZmZmZiI+Q2xpY2sgSW5zdGFsbDwvdGV4dD4KPC9zdmc+Cg==", caption: "Illustration. Your screen may look slightly different.",
+                    alt: "Illustration of the macOS pop-up: The git command requires the command line developer tools. Would you like to install the tools now? Three buttons: Get Xcode, Not Now and Install. Install is highlighted." } },
+          "Install the [GitHub CLI](https://cli.github.com/) (`gh`).",
+          { text: "Create a free GitHub account. In **Settings → Emails**, turn on *Keep my email addresses private* and *Block command line pushes that expose my email*.",
+            shot: { image: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NjAgMjUwIiB3aWR0aD0iNTYwIiBoZWlnaHQ9IjI1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJJbGx1c3RyYXRpb246IEdpdEh1YiBTZXR0aW5ncywgRW1haWxzIHBhZ2UsIHdpdGggdGhlIHR3byBwcml2YWN5IGNoZWNrYm94ZXMgdHVybmVkIG9uIGFuZCBoaWdobGlnaHRlZCI+CiAgPCEtLSBJbGx1c3RyYXRpb24gb2YgR2l0SHViIFNldHRpbmdzID4gRW1haWxzLCBkcmF3biBmb3IgQUkgQmFzaWNzIExhYi4gTm90IGEgc2NyZWVuc2hvdC4gR3JleSBiYXJzIHN0YW5kIGZvciB0ZXh0IHRoYXQgaXNuJ3QgbmVlZGVkIGhlcmUuIC0tPgogIDxzdHlsZT4KICAgIC50e2ZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sIlNlZ29lIFVJIixSb2JvdG8sQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTNweDtmaWxsOiMxZjIzMjh9CiAgICAubXtmaWxsOiM1OTYzNmV9CiAgPC9zdHlsZT4KICA8cmVjdCB3aWR0aD0iNTYwIiBoZWlnaHQ9IjI1MCIgZmlsbD0iI2ZmZmZmZiIvPgogIDwhLS0gbGVmdCBtZW51IC0tPgogIDx0ZXh0IHg9IjE2IiB5PSIyOCIgY2xhc3M9InQgbSIgc3R5bGU9ImZvbnQtc2l6ZToxMnB4O2ZvbnQtd2VpZ2h0OjYwMCI+U2V0dGluZ3M8L3RleHQ+CiAgPHRleHQgeD0iMjQiIHk9IjU4IiBjbGFzcz0idCI+UHVibGljIHByb2ZpbGU8L3RleHQ+CiAgPHRleHQgeD0iMjQiIHk9Ijg2IiBjbGFzcz0idCI+QWNjb3VudDwvdGV4dD4KICA8cmVjdCB4PSIxMiIgeT0iOTgiIHdpZHRoPSIxNDAiIGhlaWdodD0iMjgiIHJ4PSI2IiBmaWxsPSIjZjZmOGZhIi8+CiAgPHJlY3QgeD0iMTIiIHk9IjEwMiIgd2lkdGg9IjQiIGhlaWdodD0iMjAiIHJ4PSIyIiBmaWxsPSIjMDk2OWRhIi8+CiAgPHRleHQgeD0iMjQiIHk9IjExNyIgY2xhc3M9InQiIHN0eWxlPSJmb250LXdlaWdodDo2MDAiPkVtYWlsczwvdGV4dD4KICA8dGV4dCB4PSIyNCIgeT0iMTQ2IiBjbGFzcz0idCI+Tm90aWZpY2F0aW9uczwvdGV4dD4KICA8IS0tIG1haW4gLS0+CiAgPHRleHQgeD0iMTc2IiB5PSIzNCIgY2xhc3M9InQiIHN0eWxlPSJmb250LXNpemU6MjBweDtmb250LXdlaWdodDo2MDAiPkVtYWlsczwvdGV4dD4KICA8bGluZSB4MT0iMTc2IiB5MT0iNDgiIHgyPSI1NDQiIHkyPSI0OCIgc3Ryb2tlPSIjZDFkOWUwIi8+CiAgPHJlY3QgeD0iMTc2IiB5PSI2MiIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI5IiByeD0iNCIgZmlsbD0iI2U2ZTllYyIvPgogIDxyZWN0IHg9IjE3NiIgeT0iNzgiIHdpZHRoPSIzMDAiIGhlaWdodD0iOSIgcng9IjQiIGZpbGw9IiNlZmYxZjMiLz4KICA8IS0tIGNoZWNrYm94IDEgLS0+CiAgPHJlY3QgeD0iMTg2IiB5PSIxMTgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9IiMwOTY5ZGEiLz4KICA8cGF0aCBkPSJNMTkwIDEyNmwzLjUgMy41IDYuNS03IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgPHRleHQgeD0iMjEyIiB5PSIxMzEiIGNsYXNzPSJ0IiBzdHlsZT0iZm9udC13ZWlnaHQ6NjAwIj5LZWVwIG15IGVtYWlsIGFkZHJlc3NlcyBwcml2YXRlPC90ZXh0PgogIDxyZWN0IHg9IjIxMiIgeT0iMTQxIiB3aWR0aD0iMjgwIiBoZWlnaHQ9IjgiIHJ4PSI0IiBmaWxsPSIjZWZmMWYzIi8+CiAgPCEtLSBjaGVja2JveCAyIC0tPgogIDxyZWN0IHg9IjE4NiIgeT0iMTcyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjMDk2OWRhIi8+CiAgPHBhdGggZD0iTTE5MCAxODBsMy41IDMuNSA2LjUtNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogIDx0ZXh0IHg9IjIxMiIgeT0iMTg1IiBjbGFzcz0idCIgc3R5bGU9ImZvbnQtd2VpZ2h0OjYwMCI+QmxvY2sgY29tbWFuZCBsaW5lIHB1c2hlcyB0aGF0IGV4cG9zZSBteSBlbWFpbDwvdGV4dD4KICA8cmVjdCB4PSIyMTIiIHk9IjE5NSIgd2lkdGg9IjI1MCIgaGVpZ2h0PSI4IiByeD0iNCIgZmlsbD0iI2VmZjFmMyIvPgogIDwhLS0gaGlnaGxpZ2h0IC0tPgogIDxyZWN0IHg9IjE3NiIgeT0iMTA2IiB3aWR0aD0iMzcyIiBoZWlnaHQ9IjEwOCIgcng9IjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0EzMUYzNCIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHJlY3QgeD0iNDMyIiB5PSIyMjIiIHdpZHRoPSIxMTIiIGhlaWdodD0iMjQiIHJ4PSI1IiBmaWxsPSIjQTMxRjM0Ii8+CiAgPHRleHQgeD0iNDg4IiB5PSIyMzguNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgc3R5bGU9ImZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sJ1NlZ29lIFVJJyxSb2JvdG8sQXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTNweDtmb250LXdlaWdodDo3MDA7ZmlsbDojZmZmZmZmIj5UdXJuIGJvdGggb248L3RleHQ+Cjwvc3ZnPgo=", caption: "Illustration. Your screen may look slightly different.",
+                    alt: "Illustration of GitHub Settings, Emails page. Two checkboxes are ticked and highlighted: Keep my email addresses private, and Block command line pushes that expose my email." } },
+          "**Optional,** for a private repo: verify with [GitHub Education](https://docs.github.com/en/education/about-github-education/github-education-for-students/about-github-education-for-students) using your MIT email. Apply early; approval can take days."
+        ] }
       ]
     },
 
     how: {
       title: "How each module works",
       items: [
-        { title: "Before you start", text: "What you need open, and what to do if you missed a module." },
-        { title: "Breakdown and examples", text: "Four key ideas, and weak vs. strong examples." },
-        { title: "Steps and exercise", text: "A ready-to-copy prompt, one clear deliverable, and what good looks like." },
-        { title: "Responsible use and Stuck?", text: "One rule for this module's tool, and fixes for the most common problems." },
-        { title: "Mastery check", text: "\"I can…\" checkmarks and three scenario questions. Time budgets differ by module." }
+        // text can be one sentence or a list of short bullets
+        { title: "Learn · ~5 min", text: ["Check you have what you need", "Read 4 key ideas", "Compare weak and strong examples"] },
+        { title: "Do · ~23 min", text: ["Follow the steps (prompts ready to copy)", "Do Exercises A and B", "Exercise B adds to your project"] },
+        { title: "Check · ~2 min", text: ["Read the rule for safe use", "Fix common problems", "Mark the module as done"] }
       ]
     }
 
@@ -541,12 +527,12 @@ window.AIB_MODULES["m1"] = {
   goal: "Give Claude a clear brief, push back on specifics, check its claims, and choose the tool you'll build.",
   outcomes: ["Write a 4-part prompt", "Improve an answer with specific pushback", "Catch and verify a shaky claim", "Choose a project"],
 
-  budget: { read: 8, do: 18, check: 4 },
+  budget: { read: 8, do: 20, check: 2 },
 
   before: {
     needs: [
       { text: "Setup A done: signed in to Claude with your **Claude Enterprise** account. Check the organization name in the account menu; a personal account is the wrong one. The web app and the desktop app both work.",
-        ifNot: "Not yet? Follow [Setup A](index.html#setup) on the course overview, or bring it to office hours." }
+        ifNot: "Not yet? Follow [Setup A](m00-course-overview.html#setup) on the course overview, or bring it to office hours." }
     ]
   },
 
@@ -724,39 +710,6 @@ window.AIB_MODULES["m1"] = {
       fix: "Pick two ideas from **Need ideas?** in Exercise B and ask Claude which one is smaller and more useful to you. You can switch ideas any time before Module 4, where you build the first version." }
   ],
 
-  checks: [
-    { text: "I can write a prompt with context, task, format and constraints", evidence: "Point to the four parts in your Exercise A prompt." },
-    { text: "I improved an answer with two rounds of specific pushback", evidence: "Your chat shows two replies that each name one change." },
-    { text: "I checked one of Claude's claims against a source I opened myself", evidence: "Name the claim and where you checked it." },
-    { text: "I have a 3-sentence project idea", evidence: "Saved where you'll find it for Module 2." }
-  ],
-  quiz: [
-    { q: "Claude's answer includes a precise statistic and names where it comes from. You want to use it in a memo to your CEO. What do you do?",
-      options: [
-        "Use it: Claude named the source",
-        "Open the source and check that it says what Claude claims, and how it was measured",
-        "Ask Claude \"Are you sure?\" and use it if Claude says yes"
-      ],
-      answer: 1,
-      explain: "A named source can be misquoted, outdated or weaker than it sounds, and \"Are you sure?\" usually gets a yes. Only opening the source checks it." },
-    { q: "Which addition improves \"Summarize this article\" the most?",
-      options: [
-        "\"Be accurate and thorough\"",
-        "\"For a 2-minute update to my CFO: 5 bullets, focused on cost\"",
-        "\"Please, this is important\""
-      ],
-      answer: 1,
-      explain: "Audience, format and focus change the output far more than asking for accuracy or adding urgency." },
-    { q: "A colleague wants to paste a client's confidential financials into Claude to build a model. Your company has a Claude Enterprise account. What's the right first step?",
-      options: [
-        "Go ahead: enterprise accounts are meant for business data",
-        "Remove the client's name first, then paste it",
-        "Check how sensitive the data is, whether your company has approved this tool for it, and what the client agreement allows"
-      ],
-      answer: 2,
-      explain: "An enterprise account isn't automatically approved for every kind of data, and removing a name often doesn't hide whose numbers they are. Policy and approval come first." }
-  ],
-
   resources: [
     { label: "Anthropic Academy: AI Fluency: Framework & Foundations (free course)", url: "https://anthropic.skilljar.com/ai-fluency-framework-foundations" },
     { label: "Anthropic: Interactive prompt engineering tutorial", url: "https://github.com/anthropics/prompt-eng-interactive-tutorial" },
@@ -780,18 +733,18 @@ window.AIB_MODULES["m1"] = {
 window.AIB_MODULES = window.AIB_MODULES || {};
 window.AIB_MODULES["m2"] = {
   id: "m2",
-  title: "Research & analysis",
+  title: "Research & Analysis",
   level: "Builds on Module 1",
 
   goal: "Research with sources, analyze a spreadsheet, check both yourself, and collect the numbers your tool needs.",
   outcomes: ["Get a sourced answer and verify one source", "Analyze a dataset and produce a chart", "Spot an error or weak assumption", "Collect the assumptions your tool needs"],
 
-  budget: { read: 5, do: 21, check: 4 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
       { text: "Your 3-sentence project idea from Module 1.",
-        ifNot: "No idea yet? Do [Module 1, Exercise B](m1.html#s-exercise) first (8 min)." },
+        ifNot: "No idea yet? Do [Module 1, Exercise B](m01-briefing-claude.html#s-exercise) first (8 min)." },
       { text: "The practice file, downloaded (CSV or Excel): a fictional household's 2025 card spending, one row per transaction.",
         files: [
           { label: "Practice file (.csv)", url: "assets/files/m2/household-spending-2025.csv" },
@@ -887,39 +840,6 @@ window.AIB_MODULES["m2"] = {
       fix: "Keep the row, mark it `checked: no`, and call it an estimate in the note. An honest estimate beats an invented source." }
   ],
 
-  checks: [
-    { text: "I opened one source and checked that it says what Claude claimed", evidence: "Name the source and what you found." },
-    { text: "I recomputed one number myself", evidence: "Your Dining out Q3 total and row count, and whether they matched Claude's." },
-    { text: "I can say what a dataset can't answer", evidence: "One example from the practice file." },
-    { text: "My assumptions table and sample data are saved", evidence: "Both files in your ai-basics folder." }
-  ],
-  quiz: [
-    { q: "Claude says the market for your product was $2.4B, citing an industry report. You open the report: it does say $2.4B, but for Europe in 2019, and you need the US today. What do you do?",
-      options: [
-        "Use it: the number matches the source",
-        "Treat it as unverified for your question: find a current US figure, or adjust it and say how",
-        "Ask Claude to confirm the number"
-      ],
-      answer: 1,
-      explain: "A matching number isn't enough. It has to be for the same year, place and definition, or it isn't evidence for your question." },
-    { q: "Claude analyzes your spending file and says eating out drove the increase. What's the best next step?",
-      options: [
-        "Ask Claude to double-check its math",
-        "Recompute one number yourself and count the rows behind it",
-        "Ask for a chart to confirm it"
-      ],
-      answer: 1,
-      explain: "Claude re-checking itself and a chart of the same numbers both reuse the same inputs. Your own recompute catches problems in the rows." },
-    { q: "Which question can a year of card transactions (date, merchant, category, amount) answer?",
-      options: [
-        "Why spending on travel went up",
-        "How much the household spends in total, including cash",
-        "Which category's card spending grew most from Q2 to Q3"
-      ],
-      answer: 2,
-      explain: "The file shows what was charged to these cards, not why, and not spending in cash or on other cards." }
-  ],
-
   resources: [
     { label: "Claude Help Center: Enable and use web search", url: "https://support.claude.com/en/articles/10684626-enable-and-use-web-search" },
     { label: "Claude Help Center: Use research on Claude", url: "https://support.claude.com/en/articles/11088861-using-research-on-claude-ai" },
@@ -944,19 +864,19 @@ window.AIB_MODULES["m2"] = {
 window.AIB_MODULES = window.AIB_MODULES || {};
 window.AIB_MODULES["m3"] = {
   id: "m3",
-  title: "Asking vs. delegating",
+  title: "Asking vs. Delegating",
   level: "Needs the Claude desktop app (Setup A)",
 
   goal: "Know when to ask Claude for an answer to think with, and when to delegate a multi-step task that ends in finished files, while you stay in control.",
   outcomes: ["Tell asking from delegating", "Delegate with a clear outcome", "Review the plan before it runs", "Check the output against the source"],
 
-  budget: { read: 5, do: 21, check: 4 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
       "The **Claude desktop app**, installed and signed in with your Enterprise account (Setup A). Folder access only works there.",
       { text: "Your **ai-basics** folder (Setup A), with your Module 2 **assumptions** and **sample-data** files in it.",
-        ifNot: "Missing them? Do [Module 2, Exercise B](m2.html#s-exercise) first (11 min) and save both files in the folder." },
+        ifNot: "Missing them? Do [Module 2, Exercise B](m02-research-analysis.html#s-exercise) first (11 min) and save both files in the folder." },
       { text: "The two practice articles, downloaded: short, fictional opinion pieces on renting vs. buying a home.",
         files: [
           { label: "Article 1: Buy (.docx)", url: "assets/files/m3/article-buy.docx" },
@@ -1053,39 +973,6 @@ window.AIB_MODULES["m3"] = {
       fix: "Ask Claude to save it again as .xlsx or .docx, or as .csv for the inputs table." }
   ],
 
-  checks: [
-    { text: "I can say in one sentence when to ask and when to delegate", evidence: "The sentence you wrote in Exercise B." },
-    { text: "I reviewed Claude's plan before it ran", evidence: "You approved it, or changed it first." },
-    { text: "I checked one number in the output against its source", evidence: "Name the input and what your assumptions file says." },
-    { text: "inputs.xlsx and brief.docx are saved in my ai-basics folder", evidence: "Open them; Module 4 starts from them." }
-  ],
-  quiz: [
-    { q: "You need 40 receipts in a folder turned into one expense spreadsheet. What's the best approach?",
-      options: [
-        "Ask: paste the receipts into a conversation one at a time",
-        "Delegate: share your whole Documents folder so Claude can find them",
-        "Delegate: share just the receipts folder and describe the spreadsheet you want"
-      ],
-      answer: 2,
-      explain: "Repetitive work across many files that ends in a file is a delegating task, and the narrowest folder that does the job is the right one." },
-    { q: "You want to brainstorm angles for a negotiation tomorrow. What's the best approach?",
-      options: [
-        "Delegate a task that writes a full negotiation strategy document",
-        "Ask, and think it through with Claude in the conversation",
-        "Neither: brainstorming isn't a good use of AI"
-      ],
-      answer: 1,
-      explain: "Open-ended thinking with no files is what asking is for. A finished document is premature before you've done the thinking." },
-    { q: "A client sends you a confidential file, and you'd like Claude to turn it into a summary deck. What do you do first?",
-      options: [
-        "Put it in a narrow folder and delegate the deck",
-        "Remove the client's name, then delegate",
-        "Check that your company and the client allow this data in this tool, before sharing anything"
-      ],
-      answer: 2,
-      explain: "A narrow folder limits what else Claude sees, but it doesn't make confidential data OK to share. Approval comes first." }
-  ],
-
   resources: [
     { label: "Claude Academy: Choosing between Claude Cowork or Chat", url: "https://claude.com/resources/tutorials/choosing-between-claude-cowork-or-chat" },
     { label: "Claude Help Center: Claude Cowork and chat are one Claude", url: "https://support.claude.com/en/articles/16761823-claude-cowork-and-chat-are-one-claude" },
@@ -1150,19 +1037,19 @@ const M4_SCREEN = '<svg viewBox="0 0 720 292" role="img" aria-labelledby="m4-dg-
 
 window.AIB_MODULES["m4"] = {
   id: "m4",
-  title: "Projects & artifacts",
+  title: "Projects & Artifacts",
   level: "Builds on Modules 1–3",
 
   goal: "Give Claude a project that remembers your context, then build a clickable prototype of your tool that you can test, improve and share.",
   outcomes: ["Set up a project with instructions and files", "Build a working prototype", "Test it and improve it twice", "Know what sharing exposes"],
 
-  budget: { read: 5, do: 21, check: 4 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
       "Your 3-sentence project idea from Module 1.",
       { text: "**inputs.xlsx** and **brief.docx** from Module 3, in your **ai-basics** folder.",
-        ifNot: "Missing them? Do [Module 3, Exercise B](m3.html#s-exercise) first (13 min)." },
+        ifNot: "Missing them? Do [Module 3, Exercise B](m03-asking-vs-delegating.html#s-exercise) first (13 min)." },
       "Claude open in the browser or the desktop app."
     ]
   },
@@ -1273,39 +1160,6 @@ window.AIB_MODULES["m4"] = {
       fix: "Ask: \"What's the smallest version of this that fits on one screen and still helps [user]?\" Build that; the rest can wait for later modules." }
   ],
 
-  checks: [
-    { text: "My project has instructions and my inputs and brief files", evidence: "Claude's 3 bullets about your project were right." },
-    { text: "My prototype works with labeled example data", evidence: "Demo it in 30 seconds." },
-    { text: "I improved it twice: one fix, one improvement", evidence: "Name the two changes." },
-    { text: "I tested an edge case and saved prototype.html", evidence: "The file opens in a browser from your ai-basics folder." }
-  ],
-  quiz: [
-    { q: "You keep re-explaining your project at the start of every chat. What fixes this?",
-      options: [
-        "Writing longer, more detailed prompts each time",
-        "Project instructions and files, with new chats started inside the project",
-        "Switching to a different model"
-      ],
-      answer: 1,
-      explain: "Project instructions and files carry into every chat in the project, so you write them once." },
-    { q: "You're about to share your prototype with your study group. What should you check first?",
-      options: [
-        "That it looks good on a phone",
-        "That it contains only example data, and the chat it came from has no attachments you wouldn't share",
-        "That the link is short enough to paste"
-      ],
-      answer: 1,
-      explain: "Looking good matters, but what the link exposes matters more: the artifact's data, and for an artifact made in a chat, that chat's attachments too." },
-    { q: "A classmate types 0 for the monthly saving and your prototype shows \"Infinity\". What's the best fix?",
-      options: [
-        "Add a note telling users not to enter 0",
-        "Ask Claude to show a clear message when the monthly saving is 0, then test it",
-        "Start the prototype over from scratch"
-      ],
-      answer: 1,
-      explain: "Users will type 0 whatever the note says. Handling it in the tool, then testing, fixes it for everyone." }
-  ],
-
   resources: [
     { label: "Claude Help Center: What are artifacts and how do I use them?", url: "https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them" },
     { label: "Claude Help Center: Publishing and sharing artifacts", url: "https://support.claude.com/en/articles/9547008-publishing-and-sharing-artifacts" },
@@ -1338,7 +1192,7 @@ window.AIB_MODULES["m5"] = {
   goal: "Turn a task you repeat into a skill Claude uses automatically, then use it to write the build spec for the real app you'll build in Module 7.",
   outcomes: ["Explain prompt vs. project vs. skill", "Write a description that triggers", "Build and test a skill", "Produce your build spec"],
 
-  budget: { read: 5, do: 21, check: 4 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
@@ -1445,39 +1299,6 @@ window.AIB_MODULES["m5"] = {
       fix: "Ask: \"Rewrite the acceptance checks so each one has inputs and an expected number I can test by hand.\" If that keeps happening, add the rule to the skill's steps." }
   ],
 
-  checks: [
-    { text: "I can explain prompt vs. project vs. skill", evidence: "One sentence each." },
-    { text: "My skill's description says what it does and when to use it", evidence: "Read it aloud: under 200 characters, with \"Use when…\"." },
-    { text: "My skill triggered in a new chat without me naming it", evidence: "Claude said it used build-spec-writer." },
-    { text: "spec.md is saved in my ai-basics folder", evidence: "Module 7 starts from it." }
-  ],
-  quiz: [
-    { q: "Your skill never gets used, even when you ask for exactly that task. What do you check first?",
-      options: [
-        "Make the skill's instructions longer and more detailed",
-        "The description: does it say what the skill does and use the words you used?",
-        "Switch to a different model"
-      ],
-      answer: 1,
-      explain: "Claude only reads the description until a task matches. Longer instructions don't help if the skill is never picked up." },
-    { q: "Which task is the best candidate for a skill?",
-      options: [
-        "A one-off thank-you note to a mentor",
-        "A weekly client update in a fixed format",
-        "Brainstorming names for a new product"
-      ],
-      answer: 1,
-      explain: "Skills pay off on tasks you repeat in a consistent format. One-offs and open brainstorming are better as a prompt." },
-    { q: "You're writing a skill for weekly client updates. Which of these should stay OUT of the skill?",
-      options: [
-        "Your format and tone rules",
-        "An example update with made-up content",
-        "The current client's name and contract value"
-      ],
-      answer: 2,
-      explain: "A skill is reused and may be shared. Rules and made-up examples belong in it; real client details don't." }
-  ],
-
   resources: [
     { label: "Claude Help Center: Use skills in Claude", url: "https://support.claude.com/en/articles/12512180-use-skills-in-claude" },
     { label: "Claude Help Center: How to create custom skills", url: "https://support.claude.com/en/articles/12512198-how-to-create-custom-skills" },
@@ -1496,13 +1317,13 @@ window.AIB_MODULES["m5"] = {
 window.AIB_MODULES = window.AIB_MODULES || {};
 window.AIB_MODULES["m6"] = {
   id: "m6",
-  title: "Connectors & automation",
+  title: "Connectors & Automation",
   level: "Builds on Modules 1, 3 and 5",
 
   goal: "Connect Claude to your email, calendar, Drive or Slack and automate one recurring task, such as meeting prep or a weekly digest, safely.",
   outcomes: ["Connect one app and say what Claude can see", "Run a task that pulls from that app", "Schedule it to repeat", "State your responsible-use rules"],
 
-  budget: { read: 5, do: 20, check: 5 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
@@ -1599,39 +1420,6 @@ window.AIB_MODULES["m6"] = {
       fix: "Pause the task on the Scheduled page, narrow the brief (\"leave out anything marked confidential\"), and delete that output. If it's someone else's information, mention it at office hours." }
   ],
 
-  checks: [
-    { text: "I connected one app and can say what Claude can see in it", evidence: "Name the app and what's in scope." },
-    { text: "I ran a read-only task and checked one item against its source", evidence: "Name the item and the source." },
-    { text: "I scheduled it, and I know where to review and pause it", evidence: "It's listed under Scheduled." },
-    { text: "I know the data and disclosure rules that apply to me", evidence: "Name them: your course's, MIT's and your employer's." }
-  ],
-  quiz: [
-    { q: "Your meeting-prep task offers to email the agenda to all attendees. The draft looks right. What do you do?",
-      options: [
-        "Allow it: the draft looked right",
-        "Deny it, keep the task read-only, and send anything yourself after reviewing it",
-        "Allow it, but only for internal attendees"
-      ],
-      answer: 1,
-      explain: "A scheduled task runs when you're not watching. Keep it read-only, and keep sending a decision you make each time." },
-    { q: "Your weekly digest includes a client thread marked confidential. The digest only goes to you. What now?",
-      options: [
-        "Nothing: it's only visible to you",
-        "Pause the task, narrow the brief to leave out confidential items, delete that output, and check your organization's rules",
-        "Forward the digest to your manager so they know"
-      ],
-      answer: 1,
-      explain: "Copying confidential content into a new summary is a disclosure in itself, even to yourself, and it can travel further from there." },
-    { q: "Your automation drafts a Friday status summary, and you plan to send it to your team. What's right?",
-      options: [
-        "Send it as is: it's automated, so it's consistent",
-        "Review it, fix what's wrong, and say AI helped where your workplace expects that",
-        "Send it, and blame the tool if anything's wrong"
-      ],
-      answer: 1,
-      explain: "You stay accountable for what you send. Review it, and disclose AI help where that's expected." }
-  ],
-
   resources: [
     { label: "Claude Help Center: Use connectors to extend Claude's capabilities", url: "https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities" },
     { label: "Claude Help Center: Use Google Workspace connectors", url: "https://support.claude.com/en/articles/10166901-use-google-workspace-connectors" },
@@ -1658,7 +1446,7 @@ window.AIB_MODULES["m7"] = {
   goal: "Turn your prototype into a real app in a folder on your computer, by giving Claude Code your spec, approving its plan, and steering the build.",
   outcomes: ["Explain when Claude Code beats an artifact", "Approve a plan before code", "Run the app and change it once", "Say which file does what"],
 
-  budget: { read: 6, do: 21, check: 3 },
+  budget: { read: 6, do: 22, check: 2 },
 
   before: {
     needs: [
@@ -1763,39 +1551,6 @@ window.AIB_MODULES["m7"] = {
       fix: "Click the **+N −N** indicator to see every change in the diff view, then tell Claude what to undo. From Module 8 on, Git gives you a real undo button." }
   ],
 
-  checks: [
-    { text: "I can say when to use Claude Code instead of an artifact", evidence: "One sentence." },
-    { text: "I approved a plan before any code was written", evidence: "It's in your session." },
-    { text: "My app runs, passes an acceptance check, and I changed it once", evidence: "Demo it." },
-    { text: "I can say which file does what", evidence: "Explain it to a classmate." }
-  ],
-  quiz: [
-    { q: "Claude Code asks to run a command you don't recognize. What do you do?",
-      options: [
-        "Approve it: Claude knows what it's doing",
-        "Ask what the command does and why it's needed, then decide",
-        "Switch to Auto mode so it stops asking"
-      ],
-      answer: 1,
-      explain: "You stay the decision-maker. Asking is always fine, and declining is too." },
-    { q: "Later, your app needs an API key for a data service. Where does the key go?",
-      options: [
-        "In app.js: the folder is only on my laptop for now",
-        "In no file in the folder: real apps keep keys in a secrets store, set up with IT",
-        "In README.md, so it isn't lost"
-      ],
-      answer: 1,
-      explain: "Keys in files get shared by accident, especially once the folder is on GitHub. If one ever leaks, it has to be replaced." },
-    { q: "Which of these is a job for Claude Code rather than an artifact?",
-      options: [
-        "A one-off chart for tomorrow's meeting",
-        "A quick explanation of a formula",
-        "A tool you'll keep improving, with version history and your own public link"
-      ],
-      answer: 2,
-      explain: "Artifacts are great for quick, one-page things. Real files in a folder are what you version, host and keep building on." }
-  ],
-
   resources: [
     { label: "Claude Code docs: Get started with the desktop app", url: "https://code.claude.com/docs/en/desktop-quickstart" },
     { label: "Claude Code docs: Use Claude Code Desktop", url: "https://code.claude.com/docs/en/desktop" },
@@ -1816,13 +1571,13 @@ window.AIB_MODULES["m7"] = {
 window.AIB_MODULES = window.AIB_MODULES || {};
 window.AIB_MODULES["m8"] = {
   id: "m8",
-  title: "Save & ship",
+  title: "Save & Ship",
   level: "Builds on Module 7 · Setup B done",
 
   goal: "Save versions of your app on GitHub and publish it with a link anyone can open. Then work out what it would take to make a tool like it real at your company.",
   outcomes: ["Explain repo, commit, push and revert", "Put your app on GitHub", "Go live with GitHub Pages", "Explain static vs. dynamic, and what it means for IT and budget"],
 
-  budget: { read: 6, do: 21, check: 3 },
+  budget: { read: 6, do: 22, check: 2 },
 
   before: {
     needs: [
@@ -1930,40 +1685,6 @@ window.AIB_MODULES["m8"] = {
       fix: "Wait up to 10 minutes after turning on Pages. Then check: **Settings → Pages** shows Source = Deploy from a branch, `main`, `/ (root)`; and `index.html` is at the top of the repo. A private repo needs GitHub Pro (GitHub Education) for Pages." },
     { problem: "The live site still shows the old version",
       fix: "Wait a minute or two, then hard-refresh (Ctrl+Shift+R or Cmd+Shift+R). If it's still old after 10 minutes, ask Claude to check that your last commit was pushed." }
-  ],
-
-  checks: [
-    { text: "I can explain repo, commit, push and revert", evidence: "One minute, in plain English." },
-    { text: "My app is on GitHub with at least 3 commits, including a revert", evidence: "Your repo link." },
-    { text: "My app is live and works on a phone", evidence: "Your live link." },
-    { text: "I can explain static vs. dynamic, and what it would take at my company", evidence: "Server, security review, data, budget, owner." },
-    { text: "I wrote my 3-sentence course reflection", evidence: "Where AI saved you time, where it misled you and how you caught it, and what you'll never delegate." }
-  ],
-  quiz: [
-    { q: "You realize you pushed an API key to GitHub an hour ago. What must you do?",
-      options: [
-        "Delete the file and push again",
-        "Replace (rotate) the key so the old one stops working, then remove it from the repo and get help cleaning the history",
-        "Nothing, if no one has starred the repo yet"
-      ],
-      answer: 1,
-      explain: "The key stays in the history, and leaked keys are found by automated scanners within minutes. Treat it as exposed and replace it." },
-    { q: "You pushed a fix, but the live site looks exactly the same. What's the most likely cause?",
-      options: [
-        "Git deleted your change, so re-create the repo",
-        "GitHub Pages only updates once a day",
-        "The redeploy hasn't finished, or your browser is showing a cached copy"
-      ],
-      answer: 2,
-      explain: "Pages can take up to 10 minutes. Wait, then hard-refresh." },
-    { q: "Your team wants a version of your tool that calls an AI model and stores customer data. What does that mean?",
-      options: [
-        "It becomes a dynamic app: a server, key management, a security and data review, a budget and an owner",
-        "It's still a static site, as long as the repo is private",
-        "It just needs a bigger GitHub plan"
-      ],
-      answer: 0,
-      explain: "AI calls and stored data need a server and keys kept somewhere safe, and that brings in IT, security, data rules and budget." }
   ],
 
   resources: [
@@ -2128,7 +1849,7 @@ window.AIBW = (function () {
    how that text is laid out. Section order follows the revision plan.
 
    Two modes, same code:
-   - multi-page (default): index.html, m1.html ... each page loads its own content file
+   - multi-page (default): m00-course-overview.html, m01-briefing-claude.html ... each page loads its own content file
    - single file (<body data-mode="single">): everything bundled, pages switch by #hash
    ========================================================================== */
 (function () {
@@ -2142,26 +1863,29 @@ window.AIBW = (function () {
   const LIST = C.modules;
 
   /* ---------- progress (saved in this browser only) ---------- */
-  const KEY = "aibasics.progress.v2";
+  const KEY = "aibasics.progress.v3";            // v3: "Mark as done" replaced the mastery check
   let S = {};
   try { S = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { S = {}; }
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* storage blocked */ } };
-  const st = id => S[id] || (S[id] = { c: {}, q: {} });
+  const st = id => S[id] || (S[id] = { b: {} });
 
+  // done = the student pressed "Mark as done"; in progress = any "Before you start" box ticked
   function status(m) {
     const s = st(m.id);
-    const checks = m.checks || [], quiz = m.quiz || [];
-    const got = checks.filter((_, k) => s.c[k]).length + quiz.filter((x, k) => s.q[k] === x.answer).length;
-    const total = checks.length + quiz.length;
-    s.state = got === 0 ? "todo" : got === total ? "done" : "prog";   // cached so other pages can show it
-    return { got, total, pct: total ? Math.round(got / total * 100) : 0, state: s.state };
+    s.state = s.done ? "done" : Object.values(s.b || {}).some(Boolean) ? "prog" : "todo";   // cached so other pages can show it
+    return { state: s.state };
   }
-  const LABEL = { todo: "Not started", prog: "In progress", done: "Mastered" };
+  const LABEL = { todo: "Not started", prog: "In progress", done: "Done" };
   const chip = state => "chip" + (state && state !== "todo" ? " " + state : "");
   const cached = id => (S[id] && S[id].state) || "todo";
 
   /* ---------- links ---------- */
-  const href = id => SINGLE ? "#" + id : (id === "overview" ? "index.html" : id + ".html");
+  // Page file names come from course.js (overviewPage, and page: on each module)
+  const pageOf = id => id === "overview" ? C.overviewPage : ((LIST.find(m => m.id === id) || {}).page || id + ".html");
+  const href = id => SINGLE ? "#" + id : pageOf(id);
+  const PAGE_ID = { "index.html": "overview" };      // file name -> id, for the one-file version
+  PAGE_ID[C.overviewPage] = "overview";
+  LIST.forEach(m => { PAGE_ID[m.page] = m.id; PAGE_ID[m.id + ".html"] = m.id; });
   const pad = n => String(n).padStart(2, "0");
   const mins = m => m.budget ? ["read", "demo", "do", "check"].reduce((a, k) => a + (m.budget[k] || 0), 0) : 0;
   const ext = url => /^https?:/i.test(url) ? ' target="_blank" rel="noopener"' : "";
@@ -2174,40 +1898,17 @@ window.AIBW = (function () {
         '<a class="brand" href="' + href("overview") + '"><span class="eyebrow">' + esc(C.program) + "</span><b>" + esc(C.title) + "</b></a>" +
         '<div class="overall"><span id="overallTxt"></span><div class="bar"><i id="overallBar"></i></div></div>' +
         '<nav aria-label="Course pages"><ul class="nav" id="nav"></ul></nav>' +
-        '<div class="theme" role="group" aria-label="Color theme"><span class="sub">Theme</span>' +
-          '<button type="button" data-theme-set="auto">Auto</button>' +
-          '<button type="button" data-theme-set="light">Light</button>' +
-          '<button type="button" data-theme-set="dark">Dark</button></div>' +
         '<div class="railnote" id="railnote"></div>' +
       '</aside><main id="main" tabindex="-1"></main></div>');
     document.querySelector(".skip").addEventListener("click", e => {
       e.preventDefault(); document.getElementById("main").focus();
     });
-    themeSwitch();
-  }
-
-  /* Auto follows the device; Light and Dark override it. Saved in this browser. */
-  function themeSwitch() {
-    const TKEY = "aibasics.theme";
-    const root = document.documentElement;
-    const btns = document.querySelectorAll("[data-theme-set]");
-    const paint = () => {
-      const cur = root.getAttribute("data-theme") || "auto";
-      btns.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.themeSet === cur)));
-    };
-    btns.forEach(b => b.addEventListener("click", () => {
-      const t = b.dataset.themeSet;
-      if (t === "auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", t);
-      try { if (t === "auto") localStorage.removeItem(TKEY); else localStorage.setItem(TKEY, t); } catch (e) { /* storage blocked */ }
-      paint();
-    }));
-    paint();
   }
 
   /* Sections of the module on screen, grouped for the sidebar (set by moduleView) */
   let SECS = [];
   const GROUP = { before: "Learn", breakdown: "Learn", frameworks: "Learn", examples: "Learn", demo: "Learn",
-                  steps: "Do", exercise: "Do", responsible: "Check", stuck: "Check", mastery: "Check", deeper: "Check" };
+                  steps: "Do", exercise: "Do", responsible: "Check", stuck: "Check", deeper: "Check", finish: "Check" };
   function secNav(cls) {
     let last = "";
     return '<ul class="' + cls + '">' + SECS.map(s => {
@@ -2231,10 +1932,10 @@ window.AIBW = (function () {
           (cur === m.id && SECS.length ? '<nav aria-label="Sections on this page">' + secNav("secs") + "</nav>" : "") + "</li>";
       }).join("");
     const done = LIST.filter(m => cached(m.id) === "done").length;
-    document.getElementById("overallTxt").textContent = done + " of " + LIST.length + " modules mastered";
+    document.getElementById("overallTxt").textContent = done + " of " + LIST.length + " modules done";
     document.getElementById("overallBar").style.width = (done / LIST.length * 100) + "%";
     document.getElementById("railnote").innerHTML =
-      "<span>Checkmarks are saved in this browser only.</span>" +
+      "<span>Progress is saved in this browser only.</span>" +
       (C.status ? "<span>" + esc(C.status) + ".</span>" : "");
     markSection();
     const a = nav.querySelector('[aria-current="page"]');
@@ -2242,39 +1943,57 @@ window.AIBW = (function () {
   }
 
   /* ---------- overview ---------- */
+  // A screenshot with optional highlight boxes ({x, y, w, h, label} in % of the image),
+  // or a dashed "Screenshot to add" box while only {todo} is set.
+  function shotHTML(s) {
+    if (!s) return "";
+    if (!s.image) return s.todo ? '<div class="shot-todo"><b>Screenshot to add:</b> ' + esc(s.todo) + "</div>" : "";
+    if (!s.alt) console.warn("[AI Basics Lab] screenshot is missing alt text:", s.image);
+    return '<figure class="shot"><div class="shot-img"><img src="' + esc(s.image) + '" alt="' + esc(s.alt || "") + '" loading="lazy">' +
+      (s.highlight || []).map(h => '<span class="hl" aria-hidden="true" style="left:' + h.x + "%;top:" + h.y + "%;width:" + h.w + "%;height:" + h.h + '%">' +
+        (h.label ? "<em>" + esc(h.label) + "</em>" : "") + "</span>").join("") + "</div>" +
+      (s.caption ? "<figcaption>" + md(s.caption) + "</figcaption>" : "") + "</figure>";
+  }
+
   function overviewView() {
     const o = C.overview;
     return '<section class="hero">' +
         (C.status ? '<span class="draft">' + esc(C.status) + "</span>" : "") +
         "<h1>" + md(o.headline) + "</h1>" +
         '<p class="lede">' + md(o.lede) + "</p>" +
-        '<div class="flow">' + o.waysIn.map((w, i) =>
-          '<div><span class="k">' + (i + 1) + " · " + esc(w.label) + "</span><b>" + esc(w.title) + "</b><p>" + md(w.text) + "</p></div>").join("") + "</div>" +
       "</section>" +
 
-      '<section class="sect"><h2>' + esc(o.friday.title) + "</h2>" +
-        '<div class="clock">' + o.friday.blocks.map(b =>
-          '<div><span class="bigt">' + esc(b.time) + "</span><b>" + esc(b.title) + "</b><p>" + md(b.text) + "</p></div>").join("") + "</div></section>" +
+      '<section class="sect"><h2>' + esc(o.ways.title) + "</h2>" +
+        '<div class="ways">' + o.ways.items.map(w =>
+          '<div><span class="k">' + esc(w.label) + '</span><span class="when">' + esc(w.when) + "</span><b>" + esc(w.title) + "</b><p>" + md(w.text) + "</p></div>").join("") + "</div></section>" +
 
       '<section class="sect"><h2>The modules</h2><div class="grid">' + LIST.map((m, i) => {
           const s = cached(m.id);
           return '<a class="mcard" href="' + href(m.id) + '"><span class="num">' + (i + 1) + "</span><div><b>" + esc(m.title) + "</b>" +
             (m.blurb ? '<span class="out">' + esc(m.blurb) + "</span>" : "") +
-            '<div class="meta"><span class="' + chip(s) + '">' + LABEL[s] + '</span><span class="chip track">' +
-            esc((C.tracks[m.track] || {}).label || "") + "</span></div></div></a>";
+            '<div class="meta">' +
+              (s !== "todo" ? '<span class="' + chip(s) + '">' + LABEL[s] + "</span>" : "") +     // no label until started
+              '<span class="chip track">' + esc((C.tracks[m.track] || {}).label || "") + "</span>" +
+              (m.setup ? '<span class="chip setup">Setup ' + esc(m.setup) + "</span>" : "") +
+            "</div></div></a>";
         }).join("") + "</div>" +
       "</section>" +
 
-      '<section class="sect"><h2>Two tracks</h2><div class="tracks">' + Object.values(C.tracks).map(t =>
-        "<div><b>" + esc(t.label) + "</b><p>" + md(t.text) + "</p></div>").join("") + "</div></section>" +
-
-      '<section class="sect" id="setup"><h2>' + esc(o.setup.title) + '</h2><p class="prose">' + md(o.setup.text) + "</p>" +
-        '<div class="tablewrap"><table class="cmp"><thead><tr><th>Part</th><th>When</th><th>What you do</th><th>Needed for</th></tr></thead><tbody>' +
-        o.setup.parts.map(p => "<tr><td>" + esc(p.part) + "</td><td>" + md(p.when) + "</td><td>" + md(p.what) + "</td><td>" + esc(p.neededFor) + "</td></tr>").join("") +
-        "</tbody></table></div></section>" +
+      '<section class="sect" id="setup"><h2>' + esc(o.setup.title) + "</h2>" +
+        (o.setup.text ? '<p class="prose">' + md(o.setup.text) + "</p>" : "") +
+        '<div class="tablewrap"><table class="cmp setup"><thead><tr><th>Part</th><th>What to do</th><th>Needed for</th></tr></thead><tbody>' +
+        o.setup.parts.map(p => "<tr><td>" + esc(p.part) + "</td><td>" +
+          (Array.isArray(p.what) ? '<ul class="todo">' + p.what.map(w => typeof w === "string" ? "<li>" + md(w) + "</li>"
+            : "<li>" + md(w.text) + shotHTML(w.shot) + "</li>").join("") + "</ul>" : md(p.what)) +
+          "</td><td>" + esc(p.neededFor) + "</td></tr>").join("") +
+        "</tbody></table></div>" +
+        (o.setup.screensAsOf ? '<p class="asof">Screenshots as of ' + esc(o.setup.screensAsOf) + ". The apps may look slightly different now.</p>" : "") +
+        "</section>" +
 
       '<section class="sect"><h2>' + esc(o.how.title) + '</h2><ol class="steps">' + o.how.items.map(x =>
-        "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span></div></li>").join("") + "</ol></section>";
+        "<li><div><b>" + esc(x.title) + "</b>" +
+          (Array.isArray(x.text) ? '<ul class="pts">' + x.text.map(t => "<li>" + md(t) + "</li>").join("") + "</ul>"
+                                 : "<span>" + md(x.text) + "</span>") + "</div></li>").join("") + "</ol></section>";
   }
 
   /* ---------- module sections ---------- */
@@ -2420,26 +2139,24 @@ window.AIBW = (function () {
     const add = (id, title, html, minsTxt) => { if (html) secs.push({ id, title, html, minsTxt }); };
 
     if (m.before) add("before", "Before you start", beforeHTML(m.before));
-    if (m.breakdown) add("breakdown", "Breakdown", breakdownHTML(m.breakdown),
+    if (m.breakdown) add("breakdown", "Key ideas", breakdownHTML(m.breakdown),
       b.read ? b.read + " min with " + (m.frameworks ? "frameworks and examples" : "examples") : "");
     if (m.frameworks) add("frameworks", m.frameworks.title || "Prompt frameworks", frameworksHTML(m.frameworks));
     if (m.examples && m.examples.length) add("examples", "Examples", examplesHTML(m.examples, m.examplesIntro, m.examplesGuess));
     if (m.demo) add("demo", "Demo", demoHTML(m.demo), b.demo ? b.demo + " min" : "");
     if (m.steps && m.steps.length) add("steps", "Step by step", stepsHTML(m));
     if (m.exercises && m.exercises.length) add("exercise", m.exercises.length > 1 ? "Your exercises" : "Your exercise", exercisesHTML(m), b.do ? b.do + " min with steps" : "");
-    if (m.responsibleUse) add("responsible", "Responsible use", respHTML(m.responsibleUse));
+    if (m.responsibleUse) add("responsible", "Responsible use", respHTML(m.responsibleUse), b.check ? b.check + " min with Stuck?" : "");
     if (m.stuck && m.stuck.length) add("stuck", "Stuck?", stuckHTML(m.stuck));
-    if (t.total) add("mastery", "Mastery check", '<div class="mastery"><div class="mstat"><span class="big" id="mbig"></span><span id="mchip2"></span></div>' +
-      '<div class="bar"><i id="mbar"></i></div>' +
-      (m.checks && m.checks.length ? '<span class="sub">I can…</span><div id="checks-mount"></div>' : "") +
-      (m.quiz && m.quiz.length ? '<span class="sub">Scenario questions</span><div class="quiz" id="quiz-mount"></div>' : "") +
-      '<button type="button" class="btn" id="resetM" style="align-self:flex-start">Reset this module</button></div>', b.check ? b.check + " min" : "");
     if (m.resources && m.resources.length) add("deeper", "Go deeper", '<div class="res">' + m.resources.map(r =>
       '<a href="' + esc(r.url) + '"' + ext(r.url) + ">" + esc(r.label) + (ext(r.url) ? ' ↗<span class="vh"> (opens in a new tab)</span>' : "") + "</a>").join("") + "</div>");
+    // Last section on every module: mark it as done (drives the sidebar progress, menu dots and card labels)
+    add("finish", "Finish", '<div class="finish"><p>Finished both exercises? Mark this module as done. Your progress is saved in this browser only.</p>' +
+      '<button type="button" class="btn primary" id="doneBtn" aria-pressed="false">Mark as done</button></div>');
 
     const total = mins(m);
     const where = i >= 0 ? "Module " + (i + 1) + " of " + LIST.length : (m.label || "Template preview");
-    const budget = m.budget ? '<div class="budget" aria-label="Time plan">' + [["Read", "read"], ["Demo", "demo"], ["Do", "do"], ["Check", "check"]]
+    const budget = m.budget ? '<div class="budget" aria-label="Time plan">' + [["Learn", "read"], ["Demo", "demo"], ["Do", "do"], ["Check", "check"]]
       .filter(x => b[x[1]]).map(x => '<span class="b-' + x[1] + '" style="flex:' + b[x[1]] + '"><i></i><em><b>' + x[0] + "</b> " + b[x[1]] + " min</em></span>").join("") + "</div>" : "";
 
     return '<header class="mhead">' +
@@ -2473,9 +2190,9 @@ window.AIBW = (function () {
     const prev = i > 0 ? LIST[i - 1] : null, next = i >= 0 && i < LIST.length - 1 ? LIST[i + 1] : null;
     return '<nav class="pager" aria-label="Previous and next module">' +
       (prev ? '<a href="' + href(prev.id) + '"><small>Previous</small>' + esc(prev.title) + "</a>"
-            : '<a href="' + href("overview") + '"><small>Back</small>Course overview</a>') +
+            : '<a href="' + href("overview") + '"><small>Back</small>Course Overview</a>') +
       (next ? '<a class="next" href="' + href(next.id) + '"><small>Next</small>' + esc(next.title) + "</a>"
-            : '<a class="next" href="' + href("overview") + '"><small>' + (i >= 0 ? "Finish" : "Back") + "</small>Course overview</a>") +
+            : '<a class="next" href="' + href("overview") + '"><small>' + (i >= 0 ? "Finish" : "Back") + "</small>Course Overview</a>") +
       "</nav>";
   }
 
@@ -2485,15 +2202,14 @@ window.AIBW = (function () {
     const refresh = () => {
       const t = status(m);
       save();
-      const big = document.getElementById("mbig");
-      if (big) {
-        big.textContent = t.got + " / " + t.total;
-        document.getElementById("mbar").style.width = t.pct + "%";
+      const el = document.getElementById("mchip");
+      if (el) { el.className = chip(t.state); el.textContent = LABEL[t.state]; }
+      const btn = document.getElementById("doneBtn");
+      if (btn) {
+        btn.setAttribute("aria-pressed", String(!!s.done));
+        btn.className = "btn" + (s.done ? " is-done" : " primary");
+        btn.textContent = s.done ? "✓ Done (click to undo)" : "Mark as done";
       }
-      ["mchip", "mchip2"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) { el.className = chip(t.state); el.textContent = LABEL[t.state]; }
-      });
       rail(m.id);
     };
     if (m.demo && m.demo.turns) W.demo(document.getElementById("demo-mount"), m.demo.turns);
@@ -2501,14 +2217,12 @@ window.AIBW = (function () {
       const k = +btn.dataset.copy;
       W.copy(btn, m.exercises[k].prompt, document.getElementById("ptext-" + k));
     });
-    W.checklist(document.getElementById("checks-mount"), m.checks, s.c, refresh);
-    W.quiz(document.getElementById("quiz-mount"), m.quiz, s.q, refresh);
-    const reset = document.getElementById("resetM");
-    if (reset) reset.addEventListener("click", () => { S[m.id] = { c: {}, q: {} }; save(); show(m.id); });
+    const doneBtn = document.getElementById("doneBtn");
+    if (doneBtn) doneBtn.addEventListener("click", () => { s.done = !s.done; refresh(); });
     s.b = s.b || {};
     document.querySelectorAll("input[data-b]").forEach(i => {
       i.checked = !!s.b[i.dataset.b];
-      i.addEventListener("change", () => { s.b[i.dataset.b] = i.checked; save(); });
+      i.addEventListener("change", () => { s.b[i.dataset.b] = i.checked; refresh(); });
     });
     refresh();
   }
@@ -2558,9 +2272,9 @@ window.AIBW = (function () {
     const m = MODS[id];
     if (m) { main.innerHTML = moduleView(m); mount(m); }
     else { SECS = []; main.innerHTML = soonView(LIST[i] || { id }, i); rail(id); }
-    if (SINGLE) main.querySelectorAll("a[href]").forEach(a => {   // "m1.html#..." -> "#m1" in the one-file version
-      const k = a.getAttribute("href").match(/^(m\d+|index)\.html(#.*)?$/);
-      if (k) a.setAttribute("href", "#" + (k[1] === "index" ? "overview" : k[1]));
+    if (SINGLE) main.querySelectorAll("a[href]").forEach(a => {   // "m01-briefing-claude.html#..." -> "#m1" in the one-file version
+      const k = a.getAttribute("href").match(/^([\w-]+\.html)(#.*)?$/);
+      if (k && PAGE_ID[k[1]]) a.setAttribute("href", "#" + PAGE_ID[k[1]]);
     });
     document.title = ((m && m.title) || (LIST[i] && LIST[i].title) || "Page not found") + " · " + C.title;
   }

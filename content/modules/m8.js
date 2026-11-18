@@ -9,13 +9,13 @@
 window.AIB_MODULES = window.AIB_MODULES || {};
 window.AIB_MODULES["m8"] = {
   id: "m8",
-  title: "Save & ship",
+  title: "Save & Ship",
   level: "Builds on Module 7 · Setup B done",
 
   goal: "Save versions of your app on GitHub and publish it with a link anyone can open. Then work out what it would take to make a tool like it real at your company.",
   outcomes: ["Explain repo, commit, push and revert", "Put your app on GitHub", "Go live with GitHub Pages", "Explain static vs. dynamic, and what it means for IT and budget"],
 
-  budget: { read: 6, do: 21, check: 3 },
+  budget: { read: 6, do: 22, check: 2 },
 
   before: {
     needs: [
@@ -123,40 +123,6 @@ window.AIB_MODULES["m8"] = {
       fix: "Wait up to 10 minutes after turning on Pages. Then check: **Settings → Pages** shows Source = Deploy from a branch, `main`, `/ (root)`; and `index.html` is at the top of the repo. A private repo needs GitHub Pro (GitHub Education) for Pages." },
     { problem: "The live site still shows the old version",
       fix: "Wait a minute or two, then hard-refresh (Ctrl+Shift+R or Cmd+Shift+R). If it's still old after 10 minutes, ask Claude to check that your last commit was pushed." }
-  ],
-
-  checks: [
-    { text: "I can explain repo, commit, push and revert", evidence: "One minute, in plain English." },
-    { text: "My app is on GitHub with at least 3 commits, including a revert", evidence: "Your repo link." },
-    { text: "My app is live and works on a phone", evidence: "Your live link." },
-    { text: "I can explain static vs. dynamic, and what it would take at my company", evidence: "Server, security review, data, budget, owner." },
-    { text: "I wrote my 3-sentence course reflection", evidence: "Where AI saved you time, where it misled you and how you caught it, and what you'll never delegate." }
-  ],
-  quiz: [
-    { q: "You realize you pushed an API key to GitHub an hour ago. What must you do?",
-      options: [
-        "Delete the file and push again",
-        "Replace (rotate) the key so the old one stops working, then remove it from the repo and get help cleaning the history",
-        "Nothing, if no one has starred the repo yet"
-      ],
-      answer: 1,
-      explain: "The key stays in the history, and leaked keys are found by automated scanners within minutes. Treat it as exposed and replace it." },
-    { q: "You pushed a fix, but the live site looks exactly the same. What's the most likely cause?",
-      options: [
-        "Git deleted your change, so re-create the repo",
-        "GitHub Pages only updates once a day",
-        "The redeploy hasn't finished, or your browser is showing a cached copy"
-      ],
-      answer: 2,
-      explain: "Pages can take up to 10 minutes. Wait, then hard-refresh." },
-    { q: "Your team wants a version of your tool that calls an AI model and stores customer data. What does that mean?",
-      options: [
-        "It becomes a dynamic app: a server, key management, a security and data review, a budget and an owner",
-        "It's still a static site, as long as the repo is private",
-        "It just needs a bigger GitHub plan"
-      ],
-      answer: 0,
-      explain: "AI calls and stored data need a server and keys kept somewhere safe, and that brings in IT, security, data rules and budget." }
   ],
 
   resources: [

@@ -8,13 +8,13 @@
 window.AIB_MODULES = window.AIB_MODULES || {};
 window.AIB_MODULES["m6"] = {
   id: "m6",
-  title: "Connectors & automation",
+  title: "Connectors & Automation",
   level: "Builds on Modules 1, 3 and 5",
 
   goal: "Connect Claude to your email, calendar, Drive or Slack and automate one recurring task, such as meeting prep or a weekly digest, safely.",
   outcomes: ["Connect one app and say what Claude can see", "Run a task that pulls from that app", "Schedule it to repeat", "State your responsible-use rules"],
 
-  budget: { read: 5, do: 20, check: 5 },
+  budget: { read: 5, do: 23, check: 2 },
 
   before: {
     needs: [
@@ -109,39 +109,6 @@ window.AIB_MODULES["m6"] = {
       fix: "Tasks that use local files (like the sandbox folder) only run while the desktop app is open; tasks that only use connectors run in the cloud. Check its past runs on the **Scheduled** page, or use **run now**." },
     { problem: "The output included something confidential",
       fix: "Pause the task on the Scheduled page, narrow the brief (\"leave out anything marked confidential\"), and delete that output. If it's someone else's information, mention it at office hours." }
-  ],
-
-  checks: [
-    { text: "I connected one app and can say what Claude can see in it", evidence: "Name the app and what's in scope." },
-    { text: "I ran a read-only task and checked one item against its source", evidence: "Name the item and the source." },
-    { text: "I scheduled it, and I know where to review and pause it", evidence: "It's listed under Scheduled." },
-    { text: "I know the data and disclosure rules that apply to me", evidence: "Name them: your course's, MIT's and your employer's." }
-  ],
-  quiz: [
-    { q: "Your meeting-prep task offers to email the agenda to all attendees. The draft looks right. What do you do?",
-      options: [
-        "Allow it: the draft looked right",
-        "Deny it, keep the task read-only, and send anything yourself after reviewing it",
-        "Allow it, but only for internal attendees"
-      ],
-      answer: 1,
-      explain: "A scheduled task runs when you're not watching. Keep it read-only, and keep sending a decision you make each time." },
-    { q: "Your weekly digest includes a client thread marked confidential. The digest only goes to you. What now?",
-      options: [
-        "Nothing: it's only visible to you",
-        "Pause the task, narrow the brief to leave out confidential items, delete that output, and check your organization's rules",
-        "Forward the digest to your manager so they know"
-      ],
-      answer: 1,
-      explain: "Copying confidential content into a new summary is a disclosure in itself, even to yourself, and it can travel further from there." },
-    { q: "Your automation drafts a Friday status summary, and you plan to send it to your team. What's right?",
-      options: [
-        "Send it as is: it's automated, so it's consistent",
-        "Review it, fix what's wrong, and say AI helped where your workplace expects that",
-        "Send it, and blame the tool if anything's wrong"
-      ],
-      answer: 1,
-      explain: "You stay accountable for what you send. Review it, and disclose AI help where that's expected." }
   ],
 
   resources: [

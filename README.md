@@ -4,7 +4,7 @@ A self-paced course website for MIT Sloan students. It's plain HTML, CSS and Jav
 
 ## See it
 
-Double-click `index.html` to open it in your browser. Each module is its own page (`m1.html` … `m8.html`). `sample.html` shows the module template with every section filled in.
+Double-click `m00-course-overview.html` (or `index.html`, which only redirects there) to open it in your browser. Each module is its own page, named `mKK-module-name.html`: `m01-briefing-claude.html` … `m08-save-ship.html`. The file names are set in `content/course.js` (`overviewPage`, and `page:` on each module). `sample.html` shows the module template with every section filled in.
 
 ## What's where
 
@@ -13,7 +13,7 @@ Double-click `index.html` to open it in your browser. Each module is its own pag
 | `content/course.js` | Course settings, module list and order, overview page text, schedule | change the overview, rename or reorder modules |
 | `content/modules/m1.js` … | One file per module, holding all of that module's text | write or fix a module |
 | `content/modules/_template.js` | Blank module showing every field, with notes | start a new module (copy, rename, fill in) |
-| `assets/css/site.css` | All styling: brand colors, fonts, layout, dark mode | change the look (rarely) |
+| `assets/css/site.css` | All styling: brand colors, fonts, layout | change the look (rarely) |
 | `assets/js/aib.js` | The one page template that lays out every page | change the page structure (rarely) |
 | `assets/js/widgets.js` | Shared interactive parts: demo stepper, copy button, checklist, quiz | change how a widget behaves (rarely) |
 | `assets/img/` | Screenshots for "What good looks like" and similar | add images (always give alt text) |
@@ -31,7 +31,8 @@ Double-click `index.html` to open it in your browser. Each module is its own pag
 | `assets/files/m7/ai-basics-app-example/` | Finished Module 7 app for the default project (hand-written: `index.html`, `style.css`, `app.js`, `tests.html`, `README.md`, `CLAUDE.md`); also the Module 8 starter repo | edit by hand, then run `make-m7-files.js` |
 | `tools/make-m7-files.js` | Copies the worked example prototype and spec (assets/files/m5/) into the example's `docs/`, runs the spec's acceptance checks against `app.js` in Node, and zips the app with `ai-basics-app/` at the root | — |
 | `tools/xlsx-lite.js`, `docx-lite.js`, `zip-lite.js` | Small Excel, Word and zip writers used by the generators (no installs needed; same files every run) | — |
-| `index.html`, `m1.html` … | Short page files that load the above | nothing; they're all the same apart from the module id |
+| `m00-course-overview.html`, `m01-briefing-claude.html` … | Short page files that load the above | nothing; they're all the same apart from the module id. To rename one, also change its `page:` in `course.js` and any links to it in `content/modules/` |
+| `index.html` | Redirects to `m00-course-overview.html`, so the site's root address still works when hosted | — |
 | `tools/build-single.js` | Bundles everything into one HTML file | — |
 
 There is no practice folder: every file a student needs is a download on its module's page, and students save their work in their own `ai-basics` folder (Setup A).
@@ -47,16 +48,16 @@ node tools/make-m2-files.js && node tools/make-m3-files.js && node tools/make-m5
 1. Copy `content/modules/_template.js` to `content/modules/m1.js` (or whichever module).
 2. Change `id: "_template"` to `id: "m1"`, and change `["_template"]` to `["m1"]` on the line above it.
 3. Replace the text. Leave out any section you don't need yet; it won't show.
-4. Refresh `m1.html` in the browser.
+4. Refresh the module's page (e.g. `m01-briefing-claude.html`) in the browser.
 
 Text formatting in content files: `**bold**`, `*italic*`, `` `code` ``, `[link text](https://...)`. Prompts and examples are shown exactly as typed, line breaks included.
 
 The page's section order is fixed by the template. A section only appears if the module has content for it. In the sidebar, the current module lists its sections, grouped:
-- **Learn:** Before you start · Breakdown · Prompt frameworks (Module 1) · Examples · Demo
+- **Learn:** Before you start · Key ideas · Prompt frameworks (Module 1) · Examples · Demo
 - **Do:** Step by step · Your exercise(s)
-- **Check:** Responsible use · Stuck? · Mastery check · Go deeper
+- **Check:** Responsible use · Stuck? · Go deeper · Finish (the "Mark as done" button)
 
-On phones, the same list is an "On this page" menu at the top of the module. "Before you start" items are checkboxes, saved in the browser like the mastery check.
+On phones, the same list is an "On this page" menu at the top of the module. "Before you start" items are checkboxes, saved in the browser.
 
 ## Make a single-file version
 
@@ -72,26 +73,35 @@ Source: [MIT Sloan Brand Guidelines: Color, Typography, Photography](https://mit
 
 **Colors used on the site:**
 
-| Role | Light mode | Dark mode |
-| --- | --- | --- |
-| Main color (links, buttons, headings' accent) | Sloan Red `#A31F34` | lighter tint of Sloan Red |
-| Body text / secondary text | Dark Gray 2 `#333D47` / Dark Gray `#545759` | tint of Light Gray / Light Gray `#C9C8C7` |
-| Lines, panels | Light Gray `#C9C8C7` and its tints | Dark Gray `#545759`, Dark Gray 2 `#333D47` |
-| Info boxes (navigation, "Before you start") | Navy `#041D40` | Light Blue `#6AA2B8` |
-| Done / correct | Dark Green `#006B67` | tint of Dark Green |
-| **The one highlight color** (tips, "in progress", draft tag) | Orange `#ED7700` | Light Orange `#F6B221` |
+| Role | Color |
+| --- | --- |
+| Main color (links, buttons, headings' accent) | Sloan Red `#A31F34` |
+| Body text / secondary text | Dark Gray 2 `#333D47` / Dark Gray `#545759` |
+| Lines, panels | Light Gray `#C9C8C7` and its tints |
+| Info boxes (navigation, "Before you start") | Navy `#041D40` |
+| Done / correct | Dark Green `#006B67` |
+| **The one highlight color** (tips, "in progress", draft tag) | Orange `#ED7700` |
 
 - The guidelines say to use one highlight color per application, so Light Blue 2 and Bright Red are not used.
-- Tints and shades are needed for soft backgrounds and for dark mode, where most palette colors are too dark to read.
-- Every text color meets WCAG AA contrast (4.5:1) in both modes. Orange is never used for small text, only for marks and borders.
+- Tints are needed for soft backgrounds.
+- Every text color meets WCAG AA contrast (4.5:1). Orange is never used for small text, only for marks and borders.
 
 **Fonts:** the guidelines use Futura LT Pro for headlines and Adelle for website body text. Both are licensed. The site uses the real font when the computer has it (Macs include Futura); otherwise it falls back to free look-alikes: Jost for Futura and Bitter for Adelle, then Arial. Getting web licenses from Sloan (brand.mitsloan@mit.edu) would make the brand fonts show for everyone; nothing else would need to change.
 - **No logo yet.** The logo files on mitsloan.mit.edu/brand-guidelines/downloads need an MIT Touchstone login. Check with the Sloan brand office (brand.mitsloan@mit.edu) before adding one.
 
-## Light and dark mode
+## Theme
 
-A switch in the sidebar offers **Auto** (follows the device, the default), **Light** and **Dark**. The choice is saved in the student's browser. For live sessions, pick **Light** before projecting. `assets/js/theme.js` applies the saved choice before the page draws, so it doesn't flash the wrong mode first.
+Light theme only. There is no theme switch, and the site ignores the device's dark-mode setting.
 
 ## Progress tracking
 
-Checkmarks and quiz answers are saved in the student's own browser only.
+Each module ends with a **Mark as done** button. It drives the sidebar's "modules done" bar, the dots in the menu and the labels on the overview cards. A module shows *In progress* once any "Before you start" box is ticked. Everything is saved in the student's own browser only.
+
+## Screenshots
+
+- **Setup steps:** in `content/course.js`, a step written as `{ text, shot }` shows a screenshot under it. While only `shot.todo` is set, the page shows a dashed "Screenshot to add" box. To add the real image:
+  1. Take the screenshot in **light mode**, cropped tight, with no personal chats, names or email addresses visible.
+  2. Save it in `assets/img/` (for example `setup-code-tab.png`).
+  3. Replace `todo` with `image`, `alt` (what the screenshot shows, in words) and, if useful, `highlight: [{ x, y, w, h, label }]`. The numbers are percentages of the image, so the red box needs no image editing.
+  4. Set `screensAsOf` (for example `"Nov 2026"`) so the page dates the screenshots.
+- Recheck the screenshots before each run of the course; product screens change often.

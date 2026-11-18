@@ -19,15 +19,15 @@ window.AIB_MODULES["_template"] = {
   outcomes: ["Outcome one", "Outcome two", "Outcome three", "Outcome four"],
 
   // Minutes for each part, set after a timed test run (series change #6). Total shows in the header.
-  budget: { read: 5, do: 21, check: 4 },
+  budget: { read: 5, do: 23, check: 2 },
 
   // Series change #15 + #5: what students need open, and what to do if they missed a module.
-  // Each need is a checkbox (saved in the browser, not part of mastery). Use {text, ifNot} to show a hint while it's unticked,
+  // Each need is a checkbox (saved in the browser). Use {text, ifNot} to show a hint while it's unticked,
   // and files: [{ label, url }] for download buttons under that item.
   before: {
     needs: [
       "Your **Module N** output open (e.g. *inputs.xlsx*)",
-      { text: "The Claude desktop app (Setup A)", ifNot: "Not yet? Follow [Setup A](index.html#setup) on the course overview." }
+      { text: "The Claude desktop app (Setup A)", ifNot: "Not yet? Follow [Setup A](m00-course-overview.html#setup) on the course overview." }
     ],
     // optional: a short box under the list, e.g. a recent change to Claude that affects this module
     note: { title: "Claude has changed:", text: "What's different, and what to do about it." },
@@ -49,7 +49,7 @@ window.AIB_MODULES["_template"] = {
     compare: { head: ["", "Option A", "Option B"], rows: [["Best for", "…", "…"], ["Your role", "…", "…"]] }
   },
 
-  // Optional section after Breakdown, e.g. Module 1's prompt frameworks. sample is a collapsed box.
+  // Optional section after Key ideas, e.g. Module 1's prompt frameworks. sample is a collapsed box.
   // frameworks: { title: "Prompt frameworks", intro: "…",
   //               cards: [{ name: "CARE", goodFor: "…", parts: [["Context", "the situation"], ["Ask", "…"]] }],
   //               table: { head: […], rows: […] }, note: "…",
@@ -115,18 +115,6 @@ window.AIB_MODULES["_template"] = {
     { problem: "I don't see the button / option", fix: "What to click, or what account setting to check." },
     { problem: "Claude's answer is too long or off-topic", fix: "What to change in the prompt." },
     { problem: "It worked in class but not at home", fix: "The usual cause and the fix." }
-  ],
-
-  // Mastery: "I can..." items plus 3 scenario questions, at least one with a plausible wrong answer (series change #10).
-  checks: [
-    { text: "I can do the first outcome", evidence: "How to show it." },
-    { text: "I can do the second outcome", evidence: "How to show it." },
-    { text: "I can do the third outcome", evidence: "How to show it." }
-  ],
-  quiz: [
-    { q: "A realistic work scenario. What do you do?", options: ["A plausible but wrong choice", "The right choice", "An obviously wrong choice"], answer: 1, explain: "Why the right choice is right." },
-    { q: "Second scenario.", options: ["Right", "Wrong"], answer: 0, explain: "Why." },
-    { q: "Third scenario.", options: ["Wrong", "Wrong", "Right"], answer: 2, explain: "Why." }
   ],
 
   resources: [
