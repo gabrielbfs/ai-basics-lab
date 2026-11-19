@@ -169,7 +169,8 @@
         return '<li><label><input type="checkbox" data-b="' + k + '"><span>' + md(it.text) +
           (it.ifNot ? '<span class="ifnot">' + md(it.ifNot) + "</span>" : "") + "</span></label>" +
           (it.files && it.files.length ? '<div class="files">' + it.files.map(f =>
-            '<a class="btn file" href="' + esc(f.url) + '" download>' + esc(f.label) + "</a>").join("") + "</div>" : "") + "</li>";
+            '<a class="btn file" href="' + esc(f.url) + '" download>' + esc(f.label) + "</a>").join("") + "</div>" : "") +
+          (it.shot ? shotHTML(it.shot) : "") + "</li>";     // shot: an illustration under the item ({image, alt, caption})
       }).join("") + "</ul>" : "") +
       // note: {title, text} as one paragraph, or add table ({head, rows}) and/or shot ({image, alt, caption}) for a boxed note
       (b.note ? (b.note.table || b.note.shot
@@ -206,7 +207,8 @@
         '<div class="concept"><b>' + esc(c.title) + "</b>" + (Array.isArray(c.text)
           ? '<ul class="pts">' + c.text.map(x => "<li>" + md(x) + "</li>").join("") + "</ul>"
           : "<p>" + md(c.text) + "</p>") + "</div>").join("") + "</div>" +
-      (f && !f.top ? fig : "") + (bd.compareTop ? "" : cmp);
+      (f && !f.top ? fig : "") + (bd.compareTop ? "" : cmp) +
+      (bd.note ? '<p class="para">' + md(bd.note) + "</p>" : "");     // note: one line after the tables
   }
 
   // Small chart icons for framework cards: parts: [term, meaning, icon] with icon = bar | line | stacked | hist | scatter
@@ -234,6 +236,7 @@
         "<ul>" + c.parts.map(p => "<li><b>" + icon(p[2]) + esc(p[0]) + "</b><span>" + md(p[1]) + "</span></li>").join("") + "</ul>" +
         (c.goodFor ? '<p class="fw-good"><span>Good for</span> ' + md(c.goodFor) + "</p>" : "") + "</div>").join("") + "</div>" : "") +
       (f.table ? table(f.table) : "") +
+      (f.shotAfter ? shotHTML(f.shotAfter) : "") +     // shotAfter: a second illustration, under the table
       (f.noteTop ? "" : note) +
       // reference: {title, text, url, label} a whole file shown as text in a folded box, with a download link
       (f.reference ? '<details class="reveal"><summary>' + esc(f.reference.title || "See the whole file") + "</summary>" +

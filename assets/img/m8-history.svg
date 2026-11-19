@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 312" width="900" height="312" role="img" aria-label="Illustration of a commit history on GitHub, in two panels. Left, the commits list, newest first: Add live link to README (9d4e7b2), Revert Change page title (7c1a0f5), Change page title (3f9c2a1), First version of Trail Club calculator (b82e604). Labels: 1, the message; 2, the short ID. Right, the commit Change page title opened: in index.html, a red line removed, title Trail Club unit economics, and a green line added, title Trail Club calculator. Label 3: red removed, green added.">
+  <!-- A commit history, drawn for AI Basics Lab. Not a screenshot; GitHub's page may look different. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13.5px;fill:#1f2328}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;fill:#59636e}
+    .m{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:12.5px;fill:#1f2328}
+    .num{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13px;font-weight:700;fill:#ffffff}
+    .lab{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;font-weight:700;fill:#ffffff}
+    .ln{stroke:#d1d9e0}
+    .r{fill:none;stroke:#A31F34;stroke-width:2}
+  </style>
+  <rect width="900" height="312" fill="#f6f8fa"/>
+
+  <!-- left: commits -->
+  <rect x="10" y="10" width="470" height="292" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
+  <text class="t" x="28" y="38" style="font-weight:700">Commits</text>
+  <text class="s" x="96" y="38">newest first</text>
+  <path class="ln" d="M10 52h470"/>
+  <g>
+    <text class="t" x="28" y="76" style="font-weight:600">Add live link to README</text>
+    <text class="s" x="28" y="94">your-username committed 2 minutes ago</text>
+    <rect x="388" y="68" width="74" height="22" rx="5" fill="#f6f8fa" stroke="#d1d9e0"/><text class="m" x="425" y="83.5" text-anchor="middle">9d4e7b2</text>
+    <path class="ln" d="M10 110h470"/>
+    <text class="t" x="28" y="134" style="font-weight:600">Revert "Change page title"</text>
+    <text class="s" x="28" y="152">your-username committed 20 minutes ago</text>
+    <rect x="388" y="126" width="74" height="22" rx="5" fill="#f6f8fa" stroke="#d1d9e0"/><text class="m" x="425" y="141.5" text-anchor="middle">7c1a0f5</text>
+    <path class="ln" d="M10 168h470"/>
+    <rect x="12" y="170" width="466" height="56" fill="#f8e9ec"/>
+    <text class="t" x="28" y="192" style="font-weight:600">Change page title</text>
+    <text class="s" x="28" y="210">your-username committed 25 minutes ago</text>
+    <rect x="388" y="184" width="74" height="22" rx="5" fill="#ffffff" stroke="#d1d9e0"/><text class="m" x="425" y="199.5" text-anchor="middle">3f9c2a1</text>
+    <path class="ln" d="M10 228h470"/>
+    <text class="t" x="28" y="252" style="font-weight:600">First version of Trail Club calculator</text>
+    <text class="s" x="28" y="270">your-username committed 1 hour ago</text>
+    <rect x="388" y="244" width="74" height="22" rx="5" fill="#f6f8fa" stroke="#d1d9e0"/><text class="m" x="425" y="259.5" text-anchor="middle">b82e604</text>
+  </g>
+  <rect class="r" x="22" y="62" width="200" height="22" rx="6"/>
+  <circle cx="234" cy="73" r="11" fill="#A31F34"/><text class="num" x="234" y="77.5" text-anchor="middle">1</text>
+  <rect class="r" x="383" y="63" width="84" height="32" rx="7"/>
+  <circle cx="468" cy="62" r="11" fill="#A31F34"/><text class="num" x="468" y="66.5" text-anchor="middle">2</text>
+
+  <!-- arrow to the opened commit -->
+  <path d="M480 198h18M492 192l6 6-6 6" fill="none" stroke="#8a8f98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- right: one commit opened -->
+  <rect x="500" y="10" width="390" height="292" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
+  <text class="t" x="518" y="38" style="font-weight:700">Change page title</text>
+  <text class="m" x="840" y="38" text-anchor="end" style="fill:#59636e">3f9c2a1</text>
+  <path class="ln" d="M500 52h390"/>
+  <rect x="516" y="66" width="358" height="28" rx="5" fill="#f6f8fa" stroke="#d1d9e0"/>
+  <text class="m" x="528" y="85">index.html</text>
+  <text class="s" x="862" y="85" text-anchor="end">+1 −1</text>
+  <text class="m" x="528" y="120" style="fill:#59636e">5   &lt;meta charset="utf-8"&gt;</text>
+  <rect x="516" y="130" width="358" height="24" fill="#ffebe9"/>
+  <text class="m" x="528" y="147" style="fill:#82071e">− &lt;title&gt;Trail Club unit economics&lt;/title&gt;</text>
+  <rect x="516" y="156" width="358" height="24" fill="#dafbe1"/>
+  <text class="m" x="528" y="173" style="fill:#116329">+ &lt;title&gt;Trail Club calculator&lt;/title&gt;</text>
+  <text class="m" x="528" y="204" style="fill:#59636e">7   &lt;link rel="stylesheet" href="style.css"&gt;</text>
+  <rect class="r" x="512" y="126" width="366" height="58" rx="7"/>
+  <rect x="516" y="236" width="358" height="26" rx="5" fill="#A31F34"/>
+  <text x="695" y="253.5" text-anchor="middle" class="lab">3 · Red removed, green added</text>
+  <path d="M866 186v48" fill="none" stroke="#A31F34" stroke-width="2"/>
+</svg>

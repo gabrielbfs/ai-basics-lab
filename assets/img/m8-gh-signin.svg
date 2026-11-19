@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" width="900" height="260" role="img" aria-label="Illustration of signing in with the GitHub CLI, in two panels. Left, the terminal: you type gh auth login --web, and it says First copy your one-time code: ABCD-1234, then Press Enter to open github.com in your browser. Label 1: copy the code. Right, the browser at github.com/login/device: Device Activation, enter the code displayed on your device, with the code typed into the boxes and a Continue button. Label 2: paste it, Continue, then Authorize.">
+  <!-- Signing in with gh, drawn for AI Basics Lab. Not a screenshot; the real screens may look different. -->
+  <style>
+    .term{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:13px;fill:#e6edf3}
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13.5px;fill:#1f2328}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;fill:#59636e}
+    .code{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:16px;font-weight:700;fill:#1f2328}
+    .lab{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;font-weight:700;fill:#ffffff}
+    .r{fill:none;stroke:#A31F34;stroke-width:2.5}
+  </style>
+  <rect width="900" height="260" fill="#f6f8fa"/>
+
+  <!-- terminal -->
+  <rect x="10" y="10" width="430" height="240" rx="10" fill="#1f2328"/>
+  <circle cx="30" cy="28" r="5" fill="#ff5f57"/><circle cx="46" cy="28" r="5" fill="#febc2e"/><circle cx="62" cy="28" r="5" fill="#28c840"/>
+  <text class="s" x="225" y="32" text-anchor="middle" style="fill:#9198a1">Terminal</text>
+  <text class="term" x="28" y="72"><tspan fill="#9198a1">$</tspan> gh auth login --web</text>
+  <text class="term" x="28" y="104"><tspan fill="#febc2e">!</tspan> First copy your one-time code:</text>
+  <text class="term" x="28" y="126" style="font-weight:700;font-size:16px" fill="#ffffff">ABCD-1234</text>
+  <rect class="r" x="22" y="108" width="110" height="26" rx="6" style="stroke:#ff8a99"/>
+  <text class="term" x="28" y="158">Press Enter to open github.com in</text>
+  <text class="term" x="28" y="178">your browser...</text>
+  <rect x="22" y="206" width="200" height="28" rx="6" fill="#A31F34"/>
+  <text x="122" y="224.5" text-anchor="middle" class="lab">1 · Copy the code</text>
+
+  <path d="M444 130h22M460 124l6 6-6 6" fill="none" stroke="#8a8f98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- browser -->
+  <rect x="470" y="10" width="420" height="240" rx="10" fill="#ffffff" stroke="#d1d9e0"/>
+  <rect x="486" y="22" width="388" height="24" rx="12" fill="#f6f8fa" stroke="#d1d9e0"/>
+  <text class="s" x="500" y="38.5">github.com/login/device</text>
+  <text class="t" x="680" y="80" text-anchor="middle" style="font-size:17px;font-weight:700">Device Activation</text>
+  <text class="s" x="680" y="102" text-anchor="middle">Enter the code displayed on your device</text>
+  <g>
+    <rect x="566" y="116" width="26" height="34" rx="5" fill="#ffffff" stroke="#d1d9e0"/><text class="code" x="579" y="139" text-anchor="middle">A</text>
+    <rect x="596" y="116" width="26" height="34" rx="5" fill="#ffffff" stroke="#d1d9e0"/><text class="code" x="609" y="139" text-anchor="middle">B</text>
+    <rect x="626" y="116" width="26" height="34" rx="5" fill="#ffffff" stroke="#d1d9e0"/><text class="code" x="639" y="139" text-anchor="middle">C</text>
+    <rect x="656" y="116" width="26" height="34" rx="5" fill="#ffffff" stroke="#d1d9e0"/><text class="code" x="669" y="139" text-anchor="middle">D</text>
+    <text class="code" x="690" y="139" text-anchor="middle">-</text>
+    <rect x="698" y="116" width="26" height="34" rx="5" fill="#ffffff" stroke="#d1d9e0"/><text class="code" x="711" y="139" text-anchor="middle">1</text>
+    <rect x="728" y="116" width="26" height="34" rx="5" fill="#ffffff" stroke="#d1d9e0"/><text class="code" x="741" y="139" text-anchor="middle">2</text>
+    <rect x="758" y="116" width="26" height="34" rx="5" fill="#ffffff" stroke="#d1d9e0"/><text class="code" x="771" y="139" text-anchor="middle">3</text>
+    <rect x="788" y="116" width="26" height="34" rx="5" fill="#ffffff" stroke="#d1d9e0"/><text class="code" x="801" y="139" text-anchor="middle">4</text>
+  </g>
+  <rect class="r" x="560" y="110" width="260" height="46" rx="8"/>
+  <rect x="620" y="166" width="120" height="30" rx="6" fill="#1f883d"/>
+  <text class="t" x="680" y="186" text-anchor="middle" style="fill:#ffffff;font-weight:600">Continue</text>
+  <rect x="540" y="206" width="280" height="28" rx="6" fill="#A31F34"/>
+  <text x="680" y="224.5" text-anchor="middle" class="lab">2 · Paste it, Continue, then Authorize</text>
+</svg>
