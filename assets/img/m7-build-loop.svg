@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 156" width="790" height="156" role="img" aria-label="Diagram: the build loop. 1, Plan, marked start here: Plan mode, Claude proposes and changes nothing. 2, Approve: switch to Manual and say go. 3, Build: Claude asks before each edit or command, and you read the diff. 4, Check: run your acceptance checks by hand. An arrow loops from Check back to Plan: one change at a time.">
+  <!-- Module 7 key-ideas drawing, made for AI Basics Lab. Same style as m2-analysis-flow.svg. -->
+  <style>
+    .b{fill:#ffffff;stroke:#d9d6cf;stroke-width:1.5}
+    .k{fill:#f8e9ec;stroke:#A31F34;stroke-width:1.5}
+    .n{font-family:"Jost",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;font-weight:700;fill:#A31F34}
+    .t{font-family:"Jost",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;font-weight:600;fill:#1f2328}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;fill:#5f6368}
+    .l{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:11px;font-weight:700;letter-spacing:.08em;fill:#A31F34}
+    .a{fill:none;stroke:#8a8f98;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  </style>
+  <text class="l" x="10" y="12">START HERE</text>
+  <rect class="k" x="10"  y="18" width="172" height="84" rx="10"/>
+  <rect class="b" x="214" y="18" width="172" height="84" rx="10"/>
+  <rect class="b" x="418" y="18" width="172" height="84" rx="10"/>
+  <rect class="b" x="622" y="18" width="158" height="84" rx="10"/>
+  <text class="n" x="24"  y="40">1</text><text class="t" x="24"  y="62">Plan</text>
+  <text class="s" x="24"  y="80">Plan mode: Claude</text><text class="s" x="24" y="95">proposes, no changes</text>
+  <text class="n" x="228" y="40">2</text><text class="t" x="228" y="62">Approve</text>
+  <text class="s" x="228" y="80">Switch to Manual</text><text class="s" x="228" y="95">and say go</text>
+  <text class="n" x="432" y="40">3</text><text class="t" x="432" y="62">Build</text>
+  <text class="s" x="432" y="80">Claude asks first;</text><text class="s" x="432" y="95">you read the diff</text>
+  <text class="n" x="636" y="40">4</text><text class="t" x="636" y="62">Check</text>
+  <text class="s" x="636" y="80">Your acceptance</text><text class="s" x="636" y="95">checks, by hand</text>
+  <path class="a" d="M186 60h24M204 54l6 6-6 6"/>
+  <path class="a" d="M390 60h24M408 54l6 6-6 6"/>
+  <path class="a" d="M594 60h24M612 54l6 6-6 6"/>
+  <path class="a" d="M701 106v26H96v-24M90 114l6-6 6 6"/>
+  <text class="s" x="398" y="150" text-anchor="middle">Next change: back to step 1, one change at a time</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 236" width="640" height="236" role="img" aria-label="Diagram of two folders side by side. ai-basics, for Modules 1 to 6, stays private. Next to it, not inside it, ai-basics-app, for Modules 7 and 8, becomes public on GitHub. Inside ai-basics-app is a docs folder holding spec.md and prototype.html, copies of the files in ai-basics.">
+  <!-- Module 7 folder layout, drawn for AI Basics Lab. -->
+  <style>
+    .m{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:14px;fill:#1f2328}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;fill:#5f6368}
+    .lab{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;font-weight:700;fill:#ffffff}
+    .b{fill:#ffffff;stroke:#d9d6cf;stroke-width:1.5}
+    .k{fill:#f8e9ec;stroke:#A31F34;stroke-width:1.5}
+    .t{fill:none;stroke:#8a8f98;stroke-width:1.5}
+    .d{fill:none;stroke:#A31F34;stroke-width:1.5;stroke-dasharray:4 4}
+  </style>
+  <rect width="640" height="236" fill="#faf9f5"/>
+
+  <!-- ai-basics -->
+  <rect class="b" x="16" y="16" width="250" height="130" rx="10"/>
+  <text class="m" x="32" y="44" style="font-weight:700">ai-basics/</text>
+  <text class="s" x="32" y="64">Modules 1–6 · stays private</text>
+  <text class="m" x="48" y="96" style="fill:#5f6368">spec.md</text>
+  <text class="m" x="48" y="120" style="fill:#5f6368">prototype.html</text>
+  <path class="t" d="M36 74v46M36 92h8M36 116h8"/>
+
+  <!-- ai-basics-app -->
+  <rect class="k" x="330" y="16" width="294" height="174" rx="10"/>
+  <text class="m" x="346" y="44" style="font-weight:700">ai-basics-app/</text>
+  <text class="s" x="346" y="64">Modules 7–8 · public on GitHub</text>
+  <text class="m" x="366" y="96">docs/</text>
+  <text class="m" x="386" y="126">spec.md</text>
+  <text class="m" x="386" y="150">prototype.html</text>
+  <path class="t" d="M352 74v18h10M372 102v44M372 122h10M372 146h10"/>
+  <text class="s" x="366" y="178">Claude Code builds the app here</text>
+
+  <!-- copy arrows -->
+  <path class="d" d="M160 92C230 92 300 122 378 122"/>
+  <path class="d" d="M210 116C260 116 310 146 378 146"/>
+
+  <!-- labels -->
+  <rect x="16" y="166" width="250" height="24" rx="5" fill="#A31F34"/>
+  <text x="141" y="182.5" text-anchor="middle" class="lab">Next to each other, not inside</text>
+  <rect x="330" y="202" width="294" height="24" rx="5" fill="#A31F34"/>
+  <text x="477" y="218.5" text-anchor="middle" class="lab">docs/ holds copies, not the originals</text>
+</svg>

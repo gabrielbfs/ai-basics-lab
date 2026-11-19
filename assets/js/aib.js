@@ -68,12 +68,13 @@
 
   /* Sections of the module on screen, grouped for the sidebar (set by moduleView) */
   let SECS = [];
-  const GROUP = { before: "Learn", breakdown: "Learn", frameworks: "Learn", examples: "Learn", demo: "Learn",
+  // frameworks-2, frameworks-3… (extra tool sections) group like frameworks
+  const GROUP = { before: "Learn", breakdown: "Learn", tryit: "Learn", frameworks: "Learn", examples: "Learn", demo: "Learn",
                   steps: "Do", exercise: "Do", responsible: "Check", stuck: "Check", deeper: "Check", finish: "Check" };
   function secNav(cls) {
     let last = "";
     return '<ul class="' + cls + '">' + SECS.map(s => {
-      const g = GROUP[s.id] || "";
+      const g = GROUP[s.id] || GROUP[s.id.replace(/-\d+$/, "")] || "";
       const head = g && g !== last ? '<li class="sg">' + esc(g) + "</li>" : "";
       last = g || last;
       return head + '<li><a href="#s-' + s.id + '" data-sec="s-' + s.id + '">' + esc(s.title) + "</a></li>";
@@ -184,7 +185,9 @@
   const table = t => '<div class="tablewrap"><table class="cmp">' +
     (t.caption ? "<caption>" + esc(t.caption) + "</caption>" : "") + "<thead><tr>" +
     t.head.map(h => "<th>" + esc(h) + "</th>").join("") + "</tr></thead><tbody>" +
-    t.rows.map(r => "<tr>" + r.map(c => "<td>" + md(c) + "</td>").join("") + "</tr>").join("") +
+    // a row can be {group: "..."}: an unnumbered heading row across the table (same look as Go deeper)
+    t.rows.map(r => r.group ? '<tr class="grp"><th colspan="' + t.head.length + '" scope="colgroup">' + esc(r.group) + "</th></tr>"
+      : "<tr>" + r.map(c => "<td>" + md(c) + "</td>").join("") + "</tr>").join("") +
     "</tbody></table></div>";
 
   function breakdownHTML(bd) {
@@ -217,13 +220,16 @@
   const icon = k => ICON[k] ? '<svg class="fw-ic" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round">' + ICON[k] + "</svg>" : "";
 
   // frameworks: {intro, cards:[{name, goodFor, parts:[[term, meaning, icon?]]}], table, note, sample:{title, task, items:[{name, prompt}]}}
-  function frameworksHTML(f) {
+  // fi = which frameworks section this is (a module can have several; see m.frameworks below)
+  function frameworksHTML(f, fi) {
+    fi = fi || 0;
     const s = f.sample;
     // note: one sentence, or {label, points} for a highlighted tip box with bullets; noteTop: true puts it above the cards
     const note = f.note ? (f.note.points
       ? '<div class="tip fw-tip"><b>' + esc(f.note.label || "Tip") + '</b><ul class="pts">' + f.note.points.map(x => "<li>" + md(x) + "</li>").join("") + "</ul></div>"
       : '<p class="para">' + md(f.note) + "</p>") : "";
     return (f.intro ? '<p class="para">' + md(f.intro) + "</p>" : "") + (f.noteTop ? note : "") +
+      (f.shot ? shotHTML(f.shot) : "") +     // shot: an illustration under the intro ({image, alt, caption, wide})
       (f.cards ? '<div class="fw-cards">' + f.cards.map(c => '<div class="fw-card"><b class="fw-name">' + esc(c.name) + "</b>" +
         "<ul>" + c.parts.map(p => "<li><b>" + icon(p[2]) + esc(p[0]) + "</b><span>" + md(p[1]) + "</span></li>").join("") + "</ul>" +
         (c.goodFor ? '<p class="fw-good"><span>Good for</span> ' + md(c.goodFor) + "</p>" : "") + "</div>").join("") + "</div>" : "") +
@@ -231,6 +237,7 @@
       (f.noteTop ? "" : note) +
       // reference: {title, text, url, label} a whole file shown as text in a folded box, with a download link
       (f.reference ? '<details class="reveal"><summary>' + esc(f.reference.title || "See the whole file") + "</summary>" +
+        (f.reference.intro ? '<p class="reveal-body">' + md(f.reference.intro) + "</p>" : "") +     // intro: one line before the file
         '<pre class="filetext">' + esc(f.reference.text) + "</pre>" +
         (f.reference.url ? '<p class="tryopen"><a href="' + esc(f.reference.url) + '" download>' + esc(f.reference.label || "Download it") + "</a></p>" : "") +
         "</details>" : "") +
@@ -239,8 +246,8 @@
         (s.task ? '<p class="fw-task">' + md(s.task) + "</p>" : "") +
         (s.tryIt ? '<p class="fw-task">' + md(s.tryIt) + "</p>" : "") +
         '<div class="fw-grid">' + s.items.map((x, k) => '<div class="fw-item"><div class="fw-head"><b>' + esc(x.name) + "</b>" +
-          '<button type="button" class="btn copy" data-fwcopy="' + k + '">Copy</button></div>' +
-          '<span class="q" id="fwq-' + k + '">' + md(x.prompt) + "</span></div>").join("") + "</div>" +
+          '<button type="button" class="btn copy" data-fwcopy="' + fi + "-" + k + '">Copy</button></div>' +
+          '<span class="q" id="fwq-' + fi + "-" + k + '">' + md(x.prompt) + "</span></div>").join("") + "</div>" +
         "</div></details>" : "");
   }
 
@@ -422,10 +429,14 @@
       b.read ? "Learn · ~" + b.read + " min" : "");
     // tryIt: a working example embedded on the page, {title, text, url, label, height}
     if (m.tryIt) add("tryit", m.tryIt.title || "Try it", (m.tryIt.text ? '<p class="para">' + md(m.tryIt.text) + "</p>" : "") +
+      // points: an optional bulleted list of things to try
+      (m.tryIt.points ? '<ul class="pts">' + m.tryIt.points.map(x => "<li>" + md(x) + "</li>").join("") + "</ul>" : "") +
       '<div class="tryframe"><iframe src="' + esc(m.tryIt.url) + '" title="' + esc(m.tryIt.label || m.tryIt.title || "Example") +
       '" loading="lazy" style="height:' + (m.tryIt.height || 560) + 'px"></iframe></div>' +
       '<p class="tryopen"><a href="' + esc(m.tryIt.url) + '" target="_blank" rel="noopener">Open it in a new tab ↗<span class="vh"> (opens in a new tab)</span></a></p>');
-    if (m.frameworks) add("frameworks", m.frameworks.title || "Prompt frameworks", frameworksHTML(m.frameworks));
+    // frameworks: one section, or a list of them (each gets its own place in the menu)
+    if (m.frameworks) [].concat(m.frameworks).forEach((f, fi) =>
+      add(fi ? "frameworks-" + (fi + 1) : "frameworks", f.title || "Prompt frameworks", frameworksHTML(f, fi)));
     if (m.examples && m.examples.length) add("examples", "Examples", examplesHTML(m.examples, m.examplesIntro, m.examplesGuess));
     if (m.demo) add("demo", "Demo", demoHTML(m.demo), b.demo ? "Demo · ~" + b.demo + " min" : "");
     if (m.steps && m.steps.length) add("steps", "Step by step", stepsHTML(m));
@@ -508,8 +519,8 @@
       W.copy(btn, plainStrong(m.examples[k].strong), document.getElementById("exq-" + k));
     });
     document.querySelectorAll("[data-fwcopy]").forEach(btn => {
-      const k = +btn.dataset.fwcopy;
-      W.copy(btn, m.frameworks.sample.items[k].prompt.replace(/\*\*/g, ""), document.getElementById("fwq-" + k));
+      const [fi, k] = btn.dataset.fwcopy.split("-").map(Number);
+      W.copy(btn, [].concat(m.frameworks)[fi].sample.items[k].prompt.replace(/\*\*/g, ""), document.getElementById("fwq-" + fi + "-" + k));
     });
     const doneBtn = document.getElementById("doneBtn");
     if (doneBtn) doneBtn.addEventListener("click", () => { s.done = !s.done; refresh(); });

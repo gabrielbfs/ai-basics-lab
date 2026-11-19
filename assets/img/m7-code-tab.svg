@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 344" width="900" height="344" role="img" aria-label="Illustration of the Code tab in the Claude desktop app, with six numbered parts. 1, at the top: the folder ai-basics-app, running Local. 2, the prompt box at the bottom. 3, under it, the mode selector: start in Plan, then switch to Manual. 4, in the conversation: a permission request, Claude wants to edit app.js, with Deny and Allow buttons. 5, on the right: the Changes card showing plus 12 minus 1, with app.js and index.html listed. 6, the stop button next to the prompt box.">
+  <!-- The Code tab, drawn for AI Basics Lab. Not a screenshot; the real app may look different. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13px;fill:#2f2f2c}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;fill:#6b6a64}
+    .m{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:12px;fill:#2f2f2c}
+    .num{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13px;font-weight:700;fill:#ffffff}
+    .btn{fill:#ffffff;stroke:#c9c9cc}
+    .ln{stroke:#eceae3}
+  </style>
+  <rect width="900" height="344" fill="#faf9f5"/>
+  <rect x="10" y="10" width="880" height="324" rx="12" fill="#ffffff" stroke="#dcd9d0"/>
+
+  <!-- title bar -->
+  <path class="ln" d="M10 46h880"/>
+  <rect x="24" y="18" width="88" height="22" rx="11" fill="#f2f1ec"/>
+  <rect x="68" y="20" width="42" height="18" rx="9" fill="#1f2328"/>
+  <text class="s" x="40" y="33" text-anchor="middle">Chat</text>
+  <text x="89" y="33" text-anchor="middle" class="s" style="fill:#ffffff;font-weight:700">Code</text>
+  <text class="t" x="450" y="33" text-anchor="middle"><tspan style="font-weight:700">ai-basics-app</tspan> · Local</text>
+  <circle cx="536" cy="28" r="11" fill="#A31F34"/><text class="num" x="536" y="32.5" text-anchor="middle">1</text>
+
+  <!-- left sidebar -->
+  <path class="ln" d="M180 46v288"/>
+  <rect x="22" y="58" width="146" height="26" rx="7" class="btn"/>
+  <text class="t" x="34" y="75">+ New session</text>
+  <rect x="18" y="96" width="154" height="26" rx="7" fill="#eceae3"/>
+  <text class="t" x="30" y="113">Build the calculator</text>
+  <text class="s" x="30" y="143">Fix churn message</text>
+
+  <!-- conversation -->
+  <rect x="380" y="58" width="240" height="30" rx="12" fill="#f0eee6"/>
+  <text class="s" x="392" y="77" style="fill:#2f2f2c">Here is my spec (@docs/spec.md)…</text>
+  <text class="t" x="196" y="110" style="font-weight:700">Plan</text>
+  <text class="s" x="196" y="128">1. index.html: the page   2. app.js: the calculations</text>
+  <text class="s" x="196" y="145">3. style.css: the layout   4. README.md and CLAUDE.md</text>
+
+  <rect x="196" y="160" width="428" height="72" rx="10" fill="#faf9f5" stroke="#dcd9d0"/>
+  <text class="t" x="210" y="182" style="font-weight:700">Claude wants to edit app.js</text>
+  <text class="m" x="210" y="202" style="fill:#2E6B2A">+ function calculate(inputs) {</text>
+  <rect x="482" y="200" width="60" height="24" rx="6" class="btn"/><text class="t" x="512" y="216.5" text-anchor="middle">Deny</text>
+  <rect x="550" y="200" width="62" height="24" rx="6" fill="#1f2328"/><text class="t" x="581" y="216.5" text-anchor="middle" style="fill:#ffffff">Allow</text>
+  <circle cx="636" cy="172" r="11" fill="#A31F34"/><text class="num" x="636" y="176.5" text-anchor="middle">4</text>
+
+  <!-- prompt box -->
+  <rect x="196" y="252" width="428" height="68" rx="12" fill="#ffffff" stroke="#c9c9cc"/>
+  <text class="s" x="210" y="274">Reply to Claude…</text>
+  <circle cx="186" cy="262" r="11" fill="#A31F34"/><text class="num" x="186" y="266.5" text-anchor="middle">2</text>
+  <rect x="206" y="288" width="54" height="22" rx="11" fill="#f2f1ec"/>
+  <text class="s" x="233" y="303" text-anchor="middle" style="fill:#6b6a64">Plan</text>
+  <text class="s" x="270" y="303" text-anchor="middle">→</text>
+  <rect x="280" y="288" width="76" height="22" rx="11" fill="#1f2328"/>
+  <text class="s" x="318" y="303" text-anchor="middle" style="fill:#ffffff;font-weight:700">Manual ▾</text>
+  <circle cx="370" cy="299" r="11" fill="#A31F34"/><text class="num" x="370" y="303.5" text-anchor="middle">3</text>
+  <rect x="590" y="286" width="26" height="26" rx="13" fill="#1f2328"/>
+  <rect x="598" y="294" width="10" height="10" rx="2" fill="#ffffff"/>
+  <circle cx="636" cy="299" r="11" fill="#A31F34"/><text class="num" x="636" y="303.5" text-anchor="middle">6</text>
+
+  <!-- right panel: changes -->
+  <path class="ln" d="M660 46v288"/>
+  <text class="t" x="676" y="74" style="font-weight:700">Session details</text>
+  <rect x="676" y="88" width="198" height="96" rx="10" fill="#faf9f5" stroke="#dcd9d0"/>
+  <text class="t" x="690" y="110" style="font-weight:700">Changes</text>
+  <text class="m" x="790" y="110"><tspan style="fill:#2E6B2A">+12</tspan> <tspan style="fill:#A31F34">−1</tspan></text>
+  <rect x="784" y="96" width="70" height="22" rx="6" fill="none" stroke="#A31F34" stroke-width="2"/>
+  <text class="m" x="690" y="138">app.js</text><text class="m" x="822" y="138" style="fill:#6b6a64">+10 −1</text>
+  <text class="m" x="690" y="160">index.html</text><text class="m" x="822" y="160" style="fill:#6b6a64">+2</text>
+  <circle cx="874" cy="88" r="11" fill="#A31F34"/><text class="num" x="874" y="92.5" text-anchor="middle">5</text>
+</svg>

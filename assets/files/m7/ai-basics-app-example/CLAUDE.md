@@ -12,4 +12,4 @@
 
 ## Never
 - Never put API keys, passwords or real company data in any file. This folder will be public on GitHub.
-- Never remove the "Example data · made up" label.
+- Keep the footer line that says the figures are made up.

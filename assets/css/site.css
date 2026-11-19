@@ -372,8 +372,8 @@ ol.steps ul.pts li::marker{color:var(--accent)}
 table.cmp.restable{min-width:0}
 table.cmp.restable td:first-child{font-weight:400}
 table.cmp.restable td:not(:first-child){color:var(--muted);font-size:14px;white-space:nowrap}
-table.cmp.restable tr.grp th{padding:16px 12px 6px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;border-bottom:1px solid var(--line)}
-table.cmp.restable tbody tr.grp:first-child th{padding-top:8px}
+table.cmp tr.grp th{padding:16px 12px 6px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;border-bottom:1px solid var(--line)}
+table.cmp tbody tr.grp:first-child th{padding-top:8px}
 @media (max-width:640px){table.cmp.restable td:not(:first-child){white-space:normal}}
 
 /* coming soon */

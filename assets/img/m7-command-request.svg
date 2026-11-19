@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 256" width="640" height="256" role="img" aria-label="Illustration of a command permission request in the Code tab. Claude wants to run a command: python3 -m http.server 8000, to preview the app in your browser. Buttons: Deny, Always allow, Allow once. Labels: 1, the command. 2, not sure? Ask what it does. 3, allow once while you're learning.">
+  <!-- A command permission request, drawn for AI Basics Lab. Not a screenshot; the real request may look different. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13.5px;fill:#2f2f2c}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;fill:#6b6a64}
+    .m{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:13px;fill:#1f2328}
+    .lab{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;font-weight:700;fill:#ffffff}
+    .btn{fill:#ffffff;stroke:#c9c9cc}
+    .r{fill:none;stroke:#A31F34;stroke-width:2.5}
+    .a{fill:none;stroke:#A31F34;stroke-width:2}
+  </style>
+  <rect width="640" height="256" fill="#ffffff"/>
+  <text class="s" x="16" y="28" style="font-weight:700">Claude</text>
+  <text class="t" x="16" y="50">I'll start a small local server so you can preview the app.</text>
+
+  <rect x="16" y="66" width="404" height="174" rx="12" fill="#faf9f5" stroke="#dcd9d0"/>
+  <text class="t" x="32" y="94" style="font-weight:700">Claude wants to run a command</text>
+  <rect x="32" y="106" width="372" height="32" rx="6" fill="#ffffff" stroke="#e3e1da"/>
+  <text class="m" x="44" y="127">python3 -m http.server 8000</text>
+  <rect class="r" x="26" y="100" width="384" height="44" rx="9"/>
+  <text class="s" x="32" y="166">Purpose: preview the app in your browser</text>
+  <rect x="32" y="190" width="70" height="30" rx="7" class="btn"/><text class="t" x="67" y="210" text-anchor="middle">Deny</text>
+  <rect x="110" y="190" width="110" height="30" rx="7" class="btn"/><text class="t" x="165" y="210" text-anchor="middle">Always allow</text>
+  <rect x="228" y="190" width="100" height="30" rx="7" fill="#1f2328"/><text class="t" x="278" y="210" text-anchor="middle" style="fill:#ffffff">Allow once</text>
+  <rect class="r" x="223" y="185" width="110" height="40" rx="10"/>
+
+  <path class="a" d="M412 122H436"/>
+  <rect x="436" y="110" width="188" height="24" rx="5" fill="#A31F34"/>
+  <text x="530" y="126.5" text-anchor="middle" class="lab">1 · The command</text>
+  <rect x="436" y="150" width="188" height="24" rx="5" fill="#A31F34"/>
+  <text x="530" y="166.5" text-anchor="middle" class="lab">2 · Not sure? Ask what it does</text>
+  <path class="a" d="M335 205H436"/>
+  <rect x="436" y="193" width="188" height="24" rx="5" fill="#A31F34"/>
+  <text x="530" y="209.5" text-anchor="middle" class="lab">3 · Allow once, for now</text>
+</svg>

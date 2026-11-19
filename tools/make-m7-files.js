@@ -51,6 +51,26 @@ const testsHtml = fs.readFileSync(path.join(APP, "tests.html"), "utf8");
 for (const [name, want] of checks) if (!testsHtml.includes(JSON.stringify(name)) || !testsHtml.includes(JSON.stringify(want))) fail("tests.html is missing the check '" + name + "'");
 console.log("  acceptance checks pass in Node (" + checks.length + "), and tests.html has the same " + checks.length);
 
+/* 2b. the page: the CLAUDE.md it shows matches the file, and the "Apps you could build" checks add up */
+{
+  const vm = require("vm");
+  const sandbox = { window: {} };
+  vm.runInNewContext(fs.readFileSync(path.resolve(__dirname, "..", "content", "modules", "m7.js"), "utf8"), sandbox);
+  const fw = sandbox.window.AIB_MODULES.m7.frameworks;
+  const ref = fw.find(f => f.reference).reference.text;
+  if (ref !== fs.readFileSync(path.join(APP, "CLAUDE.md"), "utf8").replace(/\r\n/g, "\n").trimEnd())
+    fail("the CLAUDE.md shown in m7.js (M7_CLAUDE_MD) doesn't match the example app's CLAUDE.md");
+  const pct = (a, b) => +(100 * a / b).toFixed(1);
+  const ideas = [
+    ["Break-even units", 500, 10000 / (50 - 30)], ["Break-even revenue", 25000, 10000 / (50 - 30) * 50],
+    ["Retention month 3", 60, pct(60, 100)], ["Timer: Analysis starts (min)", 7, 2 + 5],
+    ["Budget left", 1250, 2000 - 450 - 300], ["Budget spent %", 37.5, pct(450 + 300, 2000)],
+    ["Survey Yes %", 75, pct(15, 20)], ["OKR done %", 25, pct(10, 40)]
+  ];
+  for (const [name, shown, got] of ideas) if (shown !== got) fail("Apps you could build, " + name + ": page shows " + shown + ", math gives " + got);
+  console.log("  page ok: CLAUDE.md matches; " + ideas.length + " numbers in Apps you could build add up");
+}
+
 /* 3. zip, folders first and sorted so the bytes are stable */
 const walk = (dir, rel) => fs.readdirSync(dir, { withFileTypes: true })
   .sort((a, b) => (b.isDirectory() - a.isDirectory()) || a.name.localeCompare(b.name))

@@ -32,7 +32,7 @@
 **Constraints:**
 - Plain HTML, CSS and JavaScript, with no outside libraries.
 - One screen that works on a phone.
-- Example data pre-filled and labeled "Example data, made up".
+- Example data pre-filled, with a line saying the figures are made up.
 - No real company data, no passwords and no API keys anywhere in the files.
 
 **Files:** index.html (page), style.css (look), app.js (calculations), README.md (what it is and how to open it).
