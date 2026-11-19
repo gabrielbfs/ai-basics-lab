@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 206" width="790" height="206" role="img" aria-label="Diagram: the access ladder. Step 1, Read, marked start here: Claude looks and summarizes. Step 2, Draft: Claude writes, you send. Step 3, Act: Claude sends, changes or deletes, and you approve each one. Each step up means more access and more to check.">
+  <!-- Module 6 key-ideas drawing, made for AI Basics Lab. Same style as m2-analysis-flow.svg. -->
+  <style>
+    .b{fill:#ffffff;stroke:#d9d6cf;stroke-width:1.5}
+    .k{fill:#f8e9ec;stroke:#A31F34;stroke-width:1.5}
+    .n{font-family:"Jost",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;font-weight:700;fill:#A31F34}
+    .t{font-family:"Jost",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;font-weight:600;fill:#1f2328}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;fill:#5f6368}
+    .l{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:11px;font-weight:700;letter-spacing:.08em;fill:#A31F34}
+    .a{fill:none;stroke:#8a8f98;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  </style>
+  <text class="l" x="10" y="78">START HERE</text>
+  <rect class="k" x="10" y="86" width="240" height="76" rx="10"/>
+  <text class="n" x="24" y="108">1</text><text class="t" x="24" y="130">Read</text>
+  <text class="s" x="24" y="150">Claude looks and summarizes</text>
+
+  <rect class="b" x="270" y="54" width="240" height="76" rx="10"/>
+  <text class="n" x="284" y="76">2</text><text class="t" x="284" y="98">Draft</text>
+  <text class="s" x="284" y="118">Claude writes, you send</text>
+
+  <rect class="b" x="530" y="14" width="250" height="88" rx="10"/>
+  <text class="n" x="544" y="36">3</text><text class="t" x="544" y="58">Act</text>
+  <text class="s" x="544" y="78">Claude sends, changes or deletes:</text>
+  <text class="s" x="544" y="94">you approve each one</text>
+
+  <path class="a" d="M10 180H776M770 174l6 6-6 6"/>
+  <text class="s" x="776" y="200" text-anchor="end">Each step up: more access, more to check</text>
+</svg>

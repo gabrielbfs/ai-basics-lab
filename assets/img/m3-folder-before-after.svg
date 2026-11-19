@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 210" width="640" height="210" role="img" aria-label="The ai-basics folder before and after Exercise B. Before: project-idea, assumptions.xlsx, sample-data.xlsx. After: the same three files, unchanged, plus two new files, inputs.xlsx and brief.docx.">
+  <!-- Folder before/after for Module 3 Exercise B, drawn for AI Basics Lab. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13.5px;fill:#2f2f2c}
+    .m{fill:#7a7870}
+    .hd{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:11px;letter-spacing:.08em;font-weight:600;fill:#5f6368}
+    .tag{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:10.5px;font-weight:700}
+  </style>
+  <rect width="640" height="210" fill="#ffffff"/>
+  <!-- folder icon helper: drawn inline twice -->
+  <text x="16" y="24" class="hd">BEFORE</text>
+  <path d="M16 38h16l4 5h22v14H16z" fill="#f2c94c"/>
+  <text x="66" y="54" class="t" style="font-weight:700">ai-basics</text>
+  <g class="t"><text x="40" y="84">project-idea</text><text x="40" y="110">assumptions.xlsx</text><text x="40" y="136">sample-data.xlsx</text></g>
+
+  <path d="M266 100h40M300 94l6 6-6 6" fill="none" stroke="#8a8f98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="330" y="24" class="hd">AFTER EXERCISE B</text>
+  <path d="M330 38h16l4 5h22v14H330z" fill="#f2c94c"/>
+  <text x="380" y="54" class="t" style="font-weight:700">ai-basics</text>
+  <g class="t"><text x="354" y="84">project-idea</text><text x="354" y="110">assumptions.xlsx</text><text x="354" y="136">sample-data.xlsx</text></g>
+  <g class="tag" fill="#7a7870"><text x="520" y="110">unchanged</text><text x="520" y="136">unchanged</text></g>
+  <rect x="346" y="146" width="280" height="54" rx="7" fill="#e6f4ea"/>
+  <g class="t" style="font-weight:700"><text x="354" y="168">inputs.xlsx</text><text x="354" y="192">brief.docx</text></g>
+  <g class="tag" fill="#2E6B2A"><text x="520" y="168">NEW</text><text x="520" y="192">NEW</text></g>
+</svg>

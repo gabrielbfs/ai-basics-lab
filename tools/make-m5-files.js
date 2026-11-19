@@ -40,6 +40,21 @@ if (!/use when/i.test(description)) fail("description should say when to use the
 if (path.basename(SKILL_DIR) !== name) fail("folder name '" + path.basename(SKILL_DIR) + "' must match skill name '" + name + "'");
 console.log("  SKILL.md ok: name '" + name + "' (" + name.length + "/64), description " + description.length + "/200 characters");
 
+/* ---------- 1b. the page shows the same skill, and the gallery's descriptions follow the same rules ---------- */
+{
+  const vm = require("vm");
+  const sandbox = { window: {} };
+  vm.runInNewContext(fs.readFileSync(path.resolve(__dirname, "..", "content", "modules", "m5.js"), "utf8"), sandbox);
+  const fw = sandbox.window.AIB_MODULES.m5.frameworks;
+  if (fw.reference.text !== skill.replace(/\r\n/g, "\n").trimEnd()) fail("the SKILL.md shown in m5.js (M5_SKILL) doesn't match the file: copy the file's text into M5_SKILL");
+  fw.cards.forEach(c => {
+    const d = c.parts[0][1].replace(/^"|"$/g, "");
+    if (d.length > 200) fail("gallery skill '" + c.name + "': description is " + d.length + " characters (max 200)");
+    if (!/use when/i.test(d)) fail("gallery skill '" + c.name + "': description should say 'Use when ...'");
+  });
+  console.log("  page ok: reference SKILL.md matches; " + fw.cards.length + " gallery descriptions under 200 characters");
+}
+
 /* ---------- 2. the example spec matches the example prototype ---------- */
 const spec = fs.readFileSync(path.join(FILES, "m5", "spec-example-unit-economics.md"), "utf8");
 const proto = fs.readFileSync(path.join(FILES, "m5", "prototype-example-unit-economics.html"), "utf8");

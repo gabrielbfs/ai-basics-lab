@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 170" width="640" height="170" role="img" aria-label="Two result cards. Before, with a monthly saving of 0: Months to reach your goal shows Infinity. After one fix: the card says Add a monthly saving to see how long it takes.">
+  <!-- Break-it example for Module 4, drawn for AI Basics Lab. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13px;fill:#4a4a4d}
+    .hd{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:11px;letter-spacing:.08em;font-weight:700}
+  </style>
+  <rect width="640" height="170" fill="#ffffff"/>
+  <text x="16" y="22" class="hd" fill="#A31F34">BEFORE · MONTHLY SAVING = 0</text>
+  <rect x="16" y="34" width="280" height="118" rx="10" fill="#f4f5f7" stroke="#A31F34" stroke-width="2"/>
+  <text x="32" y="60" class="t">Months to reach your goal</text>
+  <text x="32" y="104" style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:30px;font-weight:700;fill:#1f2328">Infinity</text>
+  <text x="32" y="134" class="t">About Infinity years, with interest…</text>
+
+  <path d="M306 93h26M326 87l6 6-6 6" fill="none" stroke="#8a8f98" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="344" y="22" class="hd" fill="#2E6B2A">AFTER ONE FIX</text>
+  <rect x="344" y="34" width="280" height="118" rx="10" fill="#f4f5f7" stroke="#2E6B2A" stroke-width="2"/>
+  <text x="360" y="60" class="t">Months to reach your goal</text>
+  <text x="360" y="96" style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:700;fill:#1f2328">Add a monthly saving to see</text>
+  <text x="360" y="116" style="font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;font-size:15px;font-weight:700;fill:#1f2328">how long it takes.</text>
+</svg>

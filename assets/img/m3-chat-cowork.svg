@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 200" width="680" height="200" role="img" aria-label="Illustration of two versions of the Claude message box. Left, older version: a Chat and Cowork switch under the box; use Chat for Exercise A and Cowork for Exercise B. Right, newer version: one box with no switch; use it for both exercises.">
+  <!-- Two versions of the Claude message box during the Chat + Cowork merge, drawn for AI Basics Lab. Not a screenshot. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13.5px;fill:#2f2f2c}
+    .hd{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:11px;letter-spacing:.08em;font-weight:600;fill:#5f6368}
+    .ic{fill:none;stroke:#3d3d3a;stroke-width:1.6;stroke-linecap:round}
+  </style>
+  <rect width="680" height="200" fill="#faf9f5"/>
+
+  <!-- left: older version with the switch -->
+  <text x="16" y="24" class="hd">OLDER VERSION</text>
+  <rect x="16" y="36" width="310" height="80" rx="14" fill="#ffffff" stroke="#dcd9d0"/>
+  <text x="34" y="64" class="t" style="fill:#9a988f">How can I help you today?</text>
+  <g class="ic"><path d="M40 90v12M34 96h12"/></g>
+  <rect x="294" y="84" width="24" height="24" rx="7" fill="#d97757"/>
+  <!-- the switch -->
+  <rect x="104" y="124" width="134" height="30" rx="8" fill="#e9e7e0"/>
+  <rect x="107" y="127" width="62" height="24" rx="6" fill="#ffffff" stroke="#dcd9d0"/>
+  <text x="138" y="144" text-anchor="middle" class="t" style="font-weight:600">Chat</text>
+  <text x="203" y="144" text-anchor="middle" class="t">Cowork</text>
+  <rect x="99" y="119" width="144" height="40" rx="10" fill="none" stroke="#A31F34" stroke-width="3"/>
+  <text x="171" y="184" text-anchor="middle" class="t" style="font-weight:600;fill:#A31F34">A in Chat · B in Cowork</text>
+
+  <path d="M340 30v160" stroke="#e3e1da"/>
+
+  <!-- right: newer version, one box -->
+  <text x="356" y="24" class="hd">NEWER VERSION</text>
+  <rect x="356" y="36" width="310" height="80" rx="14" fill="#ffffff" stroke="#dcd9d0"/>
+  <text x="374" y="64" class="t" style="fill:#9a988f">How can I help you today?</text>
+  <g class="ic"><path d="M380 90v12M374 96h12"/></g>
+  <rect x="634" y="84" width="24" height="24" rx="7" fill="#d97757"/>
+  <text x="511" y="144" text-anchor="middle" class="t" style="fill:#5f6368">No switch</text>
+  <text x="511" y="184" text-anchor="middle" class="t" style="font-weight:600;fill:#2E6B2A">A and B in the same kind of chat</text>
+</svg>

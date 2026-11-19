@@ -110,7 +110,8 @@
     if (!s) return "";
     if (!s.image) return s.todo ? '<div class="shot-todo"><b>Screenshot to add:</b> ' + esc(s.todo) + "</div>" : "";
     if (!s.alt) console.warn("[AI Basics Lab] screenshot is missing alt text:", s.image);
-    return '<figure class="shot"><div class="shot-img"><img src="' + esc(s.image) + '" alt="' + esc(s.alt || "") + '" loading="lazy">' +
+    // wide: true lets a multi-panel illustration use the full column width
+    return '<figure class="shot' + (s.wide ? " wide" : "") + '"><div class="shot-img"><img src="' + esc(s.image) + '" alt="' + esc(s.alt || "") + '" loading="lazy">' +
       (s.highlight || []).map(h => '<span class="hl" aria-hidden="true" style="left:' + h.x + "%;top:" + h.y + "%;width:" + h.w + "%;height:" + h.h + '%">' +
         (h.label ? "<em>" + esc(h.label) + "</em>" : "") + "</span>").join("") + "</div>" +
       (s.caption ? "<figcaption>" + md(s.caption) + "</figcaption>" : "") + "</figure>";
@@ -169,7 +170,11 @@
           (it.files && it.files.length ? '<div class="files">' + it.files.map(f =>
             '<a class="btn file" href="' + esc(f.url) + '" download>' + esc(f.label) + "</a>").join("") + "</div>" : "") + "</li>";
       }).join("") + "</ul>" : "") +
-      (b.note ? '<p class="catch"><b>' + esc(b.note.title) + "</b> " + md(b.note.text) + "</p>" : "") +
+      // note: {title, text} as one paragraph, or add table ({head, rows}) and/or shot ({image, alt, caption}) for a boxed note
+      (b.note ? (b.note.table || b.note.shot
+        ? '<div class="catch note-box"><b>' + esc(b.note.title) + "</b><p>" + md(b.note.text) + "</p>" +
+          (b.note.table ? table(b.note.table) : "") + (b.note.shot ? shotHTML(b.note.shot) : "") + "</div>"
+        : '<p class="catch"><b>' + esc(b.note.title) + "</b> " + md(b.note.text) + "</p>") : "") +
       (b.catchUp ? '<p class="catch"><b>Missed a step?</b> ' + md(b.catchUp.text || "") +
         (b.catchUp.url ? ' <a href="' + esc(b.catchUp.url) + '"' + ext(b.catchUp.url) + ">" + esc(b.catchUp.label || "Get the catch-up kit") + "</a>" : "") + "</p>" : "") +
       "</div>";
@@ -187,15 +192,18 @@
     const cmp = bd.compare ? [].concat(bd.compare).map(table).join("") : "";
     // figure: {svg} (inline) or {image, alt} (file in assets/img), optional caption; top: true puts it under the key line
     const f = bd.figure;
-    const fig = f ? '<figure class="diagram">' + (f.image ? '<img src="' + esc(f.image) + '" alt="' + esc(f.alt || "") + '" loading="lazy">' : f.svg || "") +
+    const fig = f ? '<figure class="diagram' + (f.wide ? " wide" : "") + '">' + (f.image ? '<img src="' + esc(f.image) + '" alt="' + esc(f.alt || "") + '" loading="lazy">' : f.svg || "") +
       (f.caption ? "<figcaption>" + md(f.caption) + "</figcaption>" : "") + "</figure>" : "";
-    return (bd.key ? '<p class="keyidea">' + md(bd.key) + "</p>" : "") + (f && f.top ? fig : "") +
+    // defs: [{term, text}] short plain-language definitions, shown right under the key line
+    const defs = bd.defs && bd.defs.length ? '<div class="defs">' + bd.defs.map(d =>
+      '<div class="def"><b>' + esc(d.term) + "</b><p>" + md(d.text) + "</p></div>").join("") + "</div>" : "";
+    return (bd.key ? '<p class="keyidea">' + md(bd.key) + "</p>" : "") + defs + (f && f.top ? fig : "") + (bd.compareTop ? cmp : "") +   // compareTop: true puts the table under the key line
       '<div class="concepts">' + (bd.concepts || []).map(c =>
         // text can be one paragraph or a list of short bullets
         '<div class="concept"><b>' + esc(c.title) + "</b>" + (Array.isArray(c.text)
           ? '<ul class="pts">' + c.text.map(x => "<li>" + md(x) + "</li>").join("") + "</ul>"
           : "<p>" + md(c.text) + "</p>") + "</div>").join("") + "</div>" +
-      (f && !f.top ? fig : "") + cmp;
+      (f && !f.top ? fig : "") + (bd.compareTop ? "" : cmp);
   }
 
   // Small chart icons for framework cards: parts: [term, meaning, icon] with icon = bar | line | stacked | hist | scatter
@@ -211,15 +219,21 @@
   // frameworks: {intro, cards:[{name, goodFor, parts:[[term, meaning, icon?]]}], table, note, sample:{title, task, items:[{name, prompt}]}}
   function frameworksHTML(f) {
     const s = f.sample;
-    return (f.intro ? '<p class="para">' + md(f.intro) + "</p>" : "") +
+    // note: one sentence, or {label, points} for a highlighted tip box with bullets; noteTop: true puts it above the cards
+    const note = f.note ? (f.note.points
+      ? '<div class="tip fw-tip"><b>' + esc(f.note.label || "Tip") + '</b><ul class="pts">' + f.note.points.map(x => "<li>" + md(x) + "</li>").join("") + "</ul></div>"
+      : '<p class="para">' + md(f.note) + "</p>") : "";
+    return (f.intro ? '<p class="para">' + md(f.intro) + "</p>" : "") + (f.noteTop ? note : "") +
       (f.cards ? '<div class="fw-cards">' + f.cards.map(c => '<div class="fw-card"><b class="fw-name">' + esc(c.name) + "</b>" +
         "<ul>" + c.parts.map(p => "<li><b>" + icon(p[2]) + esc(p[0]) + "</b><span>" + md(p[1]) + "</span></li>").join("") + "</ul>" +
         (c.goodFor ? '<p class="fw-good"><span>Good for</span> ' + md(c.goodFor) + "</p>" : "") + "</div>").join("") + "</div>" : "") +
       (f.table ? table(f.table) : "") +
-      // note: one sentence, or {label, points} for a highlighted tip box with bullets
-      (f.note ? (f.note.points
-        ? '<div class="tip fw-tip"><b>' + esc(f.note.label || "Tip") + '</b><ul class="pts">' + f.note.points.map(x => "<li>" + md(x) + "</li>").join("") + "</ul></div>"
-        : '<p class="para">' + md(f.note) + "</p>") : "") +
+      (f.noteTop ? "" : note) +
+      // reference: {title, text, url, label} a whole file shown as text in a folded box, with a download link
+      (f.reference ? '<details class="reveal"><summary>' + esc(f.reference.title || "See the whole file") + "</summary>" +
+        '<pre class="filetext">' + esc(f.reference.text) + "</pre>" +
+        (f.reference.url ? '<p class="tryopen"><a href="' + esc(f.reference.url) + '" download>' + esc(f.reference.label || "Download it") + "</a></p>" : "") +
+        "</details>" : "") +
       // sample: the same task written in each framework, as cards with a Copy button (copies the text without ** marks)
       (s ? '<details class="reveal"><summary>' + esc(s.title || "See one task in each framework") + '</summary><div class="fw">' +
         (s.task ? '<p class="fw-task">' + md(s.task) + "</p>" : "") +
@@ -234,7 +248,7 @@
   // examples: [{title, idea?, weak, strong, gets?: {weak, strong}, tags?, why}]
   // In strong, mark parts as [[Tag::words]] to color those words and show a matching colored tag.
   // Without marks, tags (if any) show as plain grey-blue chips.
-  const HL = /\[\[([^:\]]+)::([\s\S]*?)\]\]/g;
+  const HL = /\[\[([^:\]]+)::((?:\[[^\]]*\]|[\s\S])*?)\]\]/g;   // a part may contain [placeholders], even at its end
   const plainStrong = s => s.replace(HL, "$2");
   // text with [[Tag::words]] marks -> {html with colored marks, matching tag chips}; also used for exercise prompts
   function hlHTML(text, plainTags) {
@@ -264,9 +278,11 @@
     return '<p class="intro">' + md(intro || 'Compare each weak and strong version. The strong one usually adds context, specifics, or what "done" looks like.') + "</p>" +
       list.map((e, k) => { const s = strongHTML(e); return '<div class="ex"><div class="exh">' + esc(e.title) +
           (e.idea ? '<span class="exidea">Key idea: ' + md(e.idea) + "</span>" : "") + '</div><div class="pair">' +
-        '<div><span class="lbl weak">Weak</span><span class="q">' + esc(e.weak) + "</span>" +
+        '<div><span class="lbl weak">' + esc((e.labels || [])[0] || "Weak") + '</span><span class="q">' + esc(e.weak) + "</span>" +
           (e.gets && e.gets.weak ? '<span class="gets"><b>You get:</b> ' + md(e.gets.weak) + "</span>" : "") + "</div>" +
-        '<div><span class="exrow"><span class="lbl strong">Strong</span><button type="button" class="btn copy" data-excopy="' + k + '">Copy</button></span>' +
+        '<div><span class="exrow"><span class="lbl strong">' + esc((e.labels || [])[1] || "Strong") + "</span>" +
+          // noCopy: true hides the Copy button when the strong version isn't something to paste
+          (e.noCopy ? "" : '<button type="button" class="btn copy" data-excopy="' + k + '">Copy</button>') + "</span>" +
           '<span class="q" id="exq-' + k + '">' + s.html + "</span>" + s.tags +
           (e.gets && e.gets.strong ? '<span class="gets"><b>You get:</b> ' + md(e.gets.strong) + "</span>" : "") +
         "</div></div>" +
@@ -291,6 +307,8 @@
     return '<ol class="steps">' + m.steps.map(x => x.group
       ? '<li class="grp">' + esc(x.group) + "</li>"
       : "<li><div><b>" + esc(x.title) + "</b><span>" + md(x.text) + "</span>" + (x.shot ? shotHTML(x.shot) : "") + "</div></li>").join("") + "</ol>" +   // shot: optional illustration under a step
+      // stepsDemo: a click-through conversation under the steps ({title, turns:[{who, text, note}]}), wired in mount()
+      (m.stepsDemo ? '<div class="demo"><div class="dh"><b>' + esc(m.stepsDemo.title || "Watch a build") + '</b><span class="chip">Click through</span></div><div id="steps-demo-mount"></div></div>' : "") +
       (m.tip ? '<div class="tip"><b>Tip</b><span>' + md(m.tip) + "</span></div>" : "") +
       // tipShot: an illustration under the tip, same format as setup shots ({image, alt, caption})
       (m.tipShot ? shotHTML(m.tipShot) : "") +
@@ -325,7 +343,8 @@
           (p => '<span class="ptext" id="ptext-' + k + '">' + p.html + "</span>" + p.tags)(hlHTML(x.prompt)) + "</div>" : "") +
         // numbered steps to do after sending the prompt
         (x.steps && x.steps.length ? (x.stepsLabel ? '<span class="sub">' + esc(x.stepsLabel) + "</span>" : "") +
-          '<ol class="xsteps">' + x.steps.map(t => "<li>" + md(t) + "</li>").join("") + "</ol>" : "") +
+          // each item is text, or {text, shot} to show an illustration under it
+          '<ol class="xsteps">' + x.steps.map(t => "<li>" + md(t.text || t) + (t.shot ? shotHTML(t.shot) : "") + "</li>").join("") + "</ol>" : "") +
         '<dl class="deliver">' +
           (x.deliverable ? "<dt>Deliverable</dt><dd>" + textBlock(x.deliverable, "span") + "</dd>" : "") +
           (x.stretch ? "<dt>Stretch</dt><dd>" + textBlock(x.stretch, "span") + "</dd>" : "") +
@@ -349,14 +368,16 @@
       (x.points && x.points.length ? '<ul class="pts">' + li(x.points) + "</ul>" : "") +     // points: a bulleted checklist
       // use / never: two columns (Use ✓ and Never paste ✗)
       (x.use || x.never ? '<div class="usenever">' +
-        (x.use ? '<div class="use"><span class="sub">✓ Use</span><ul class="pts">' + li(x.use) + "</ul></div>" : "") +
-        (x.never ? '<div class="never"><span class="sub">✗ Never paste</span><ul class="pts">' + li(x.never) + "</ul></div>" : "") + "</div>" : "") +
-      (x.after ? x.after.map(y => "<p>" + md(y) + "</p>").join("") : "") +
+        (x.use ? '<div class="use"><span class="sub">✓ ' + esc(x.useLabel || "Use") + '</span><ul class="pts">' + li(x.use) + "</ul></div>" : "") +
+        (x.never ? '<div class="never"><span class="sub">✗ ' + esc(x.neverLabel || "Never paste") + '</span><ul class="pts">' + li(x.never) + "</ul></div>" : "") + "</div>" : "") +
+      (x.after ? x.after.map(y => Array.isArray(y) ? '<ul class="pts">' + li(y) + "</ul>" : "<p>" + md(y) + "</p>").join("") : "") +   // after: lines, or an array for a bulleted list
+(x.shot ? shotHTML(x.shot) : "") +     // shot: an illustration inside the rule box ({image, alt, caption})
       (x.tip ? '<p class="resp-tip"><b>Tip</b> ' + md(x.tip) + "</p>" : "") +
       (x.note ? '<p class="resp-note">' + md(x.note) + "</p>" : "") + "</div>";
     // base: "only" = show the course rules as this module's own (Module 1); base: false = hide them
     if (r.base === "only") return C.rulesBase ? box(Object.assign({}, C.rulesBase, { title: r.title || C.rulesBase.title, text: r.text })) : "";
-    return box(r) + (r.base !== false && C.rulesBase ? box(C.rulesBase, "base") : "");
+    // wrapUp: an optional second box with the same fields (Module 6: the course wrap-up)
+    return box(r) + (r.wrapUp ? box(r.wrapUp, "wrap") : "") + (r.base !== false && C.rulesBase ? box(C.rulesBase, "base") : "");
   }
 
   function stuckHTML(list) {
@@ -399,6 +420,11 @@
     if (m.before) add("before", "Before you start", beforeHTML(m.before));
     if (m.breakdown) add("breakdown", "Key ideas", breakdownHTML(m.breakdown),
       b.read ? "Learn · ~" + b.read + " min" : "");
+    // tryIt: a working example embedded on the page, {title, text, url, label, height}
+    if (m.tryIt) add("tryit", m.tryIt.title || "Try it", (m.tryIt.text ? '<p class="para">' + md(m.tryIt.text) + "</p>" : "") +
+      '<div class="tryframe"><iframe src="' + esc(m.tryIt.url) + '" title="' + esc(m.tryIt.label || m.tryIt.title || "Example") +
+      '" loading="lazy" style="height:' + (m.tryIt.height || 560) + 'px"></iframe></div>' +
+      '<p class="tryopen"><a href="' + esc(m.tryIt.url) + '" target="_blank" rel="noopener">Open it in a new tab ↗<span class="vh"> (opens in a new tab)</span></a></p>');
     if (m.frameworks) add("frameworks", m.frameworks.title || "Prompt frameworks", frameworksHTML(m.frameworks));
     if (m.examples && m.examples.length) add("examples", "Examples", examplesHTML(m.examples, m.examplesIntro, m.examplesGuess));
     if (m.demo) add("demo", "Demo", demoHTML(m.demo), b.demo ? "Demo · ~" + b.demo + " min" : "");
@@ -472,6 +498,7 @@
       rail(m.id);
     };
     if (m.demo && m.demo.turns) W.demo(document.getElementById("demo-mount"), m.demo.turns);
+    if (m.stepsDemo && m.stepsDemo.turns) W.demo(document.getElementById("steps-demo-mount"), m.stepsDemo.turns);
     document.querySelectorAll("[data-copy]").forEach(btn => {
       const k = +btn.dataset.copy;
       W.copy(btn, plainStrong(m.exercises[k].prompt), document.getElementById("ptext-" + k));

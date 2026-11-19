@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 870 264" width="870" height="264" role="img" aria-label="Diagram. Left: a SKILL.md file with a name (build-spec-writer), a description (Turns a prototype into a one-page build spec. Use when asked for a build spec or spec.md.) and three steps. Right: 1, you ask for a build spec; 2, Claude checks only the names and descriptions of your skills; 3, when one matches, it opens SKILL.md and follows the steps.">
+  <!-- Module 5 key-ideas drawing, made for AI Basics Lab. Same style as m2-analysis-flow.svg. -->
+  <style>
+    .b{fill:#ffffff;stroke:#d9d6cf;stroke-width:1.5}
+    .k{fill:#f8e9ec;stroke:#A31F34;stroke-width:1.5}
+    .n{font-family:"Jost",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;font-weight:700;fill:#A31F34}
+    .t{font-family:"Jost",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:15px;font-weight:600;fill:#1f2328}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;fill:#5f6368}
+    .m{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:12.5px;fill:#1f2328}
+    .g{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:12.5px;fill:#9a9890}
+    .l{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:10.5px;font-weight:700;letter-spacing:.06em;fill:#A31F34}
+    .a{fill:none;stroke:#8a8f98;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    .d{fill:none;stroke:#A31F34;stroke-width:1.5;stroke-dasharray:4 4}
+  </style>
+
+  <!-- Left: the file -->
+  <rect class="b" x="10" y="12" width="430" height="240" rx="10"/>
+  <text class="m" x="24" y="34" style="font-weight:700">SKILL.md</text>
+  <path d="M10 44h430" stroke="#eceae3"/>
+
+  <text class="g" x="122" y="64">---</text>
+  <text class="l" x="24" y="84">NAME</text>
+  <text class="m" x="122" y="84">name: build-spec-writer</text>
+
+  <rect class="k" x="112" y="94" width="318" height="62" rx="7"/>
+  <text class="l" x="24" y="112">DESCRIPTION</text>
+  <text class="l" x="24" y="126">= TRIGGER</text>
+  <text class="m" x="122" y="112">description: Turns a prototype</text>
+  <text class="m" x="122" y="129">  into a one-page build spec. Use</text>
+  <text class="m" x="122" y="146">  when asked for a build spec.</text>
+  <text class="g" x="122" y="176">---</text>
+
+  <text class="l" x="24" y="198">STEPS</text>
+  <text class="m" x="122" y="198">1. Read the prototype.</text>
+  <text class="m" x="122" y="216">2. Ask at most 3 questions.</text>
+  <text class="m" x="122" y="234">3. Write the spec as spec.md.</text>
+
+  <!-- Right: how Claude uses it -->
+  <rect class="b" x="480" y="12" width="380" height="64" rx="10"/>
+  <text class="n" x="496" y="34">1</text><text class="t" x="512" y="35">You ask</text>
+  <text class="s" x="496" y="60">"Write a build spec for this prototype."</text>
+
+  <rect class="k" x="480" y="100" width="380" height="64" rx="10"/>
+  <text class="n" x="496" y="122">2</text><text class="t" x="512" y="123">Claude reads the descriptions</text>
+  <text class="s" x="496" y="148">Only names and descriptions, for every skill</text>
+
+  <rect class="b" x="480" y="188" width="380" height="64" rx="10"/>
+  <text class="n" x="496" y="210">3</text><text class="t" x="512" y="211">One matches: it follows the steps</text>
+  <text class="s" x="496" y="236">It opens that SKILL.md and does the task</text>
+
+  <path class="a" d="M670 80v14M664 88l6 6 6-6"/>
+  <path class="a" d="M670 168v14M664 176l6 6 6-6"/>
+  <path class="d" d="M432 125h44"/>
+</svg>

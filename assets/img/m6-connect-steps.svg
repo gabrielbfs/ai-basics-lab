@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 270" width="900" height="270" role="img" aria-label="Illustration in three panels. 1, Customize, Connectors: a list of apps, each with a Connect button; pick one app and click Connect. 2, sign in with your own account: the sign-in screen lists what Claude will be able to do, such as see your events and create, change or delete events; read it, then click Allow. 3, in a chat, the plus menu, Connectors: Google Calendar is switched on, Gmail and Slack are off; turn on only what this task needs.">
+  <!-- Connecting an app, drawn for AI Basics Lab. Not a screenshot; the real screens may look different. -->
+  <style>
+    .h{font-family:"Jost",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:14.5px;font-weight:700;fill:#A31F34}
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13px;fill:#2f2f2c}
+    .s{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;fill:#6b6a64}
+    .lab{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;font-weight:700;fill:#ffffff}
+    .p{fill:#faf9f5;stroke:#dcd9d0}
+    .c{fill:#ffffff;stroke:#dcd9d0}
+    .btn{fill:#ffffff;stroke:#c9c9cc}
+    .r{fill:none;stroke:#A31F34;stroke-width:2.5}
+    .ln{stroke:#eceae3}
+  </style>
+
+  <!-- 1 -->
+  <g>
+    <rect class="p" x="0.5" y="0.5" width="283" height="269" rx="12"/>
+    <text class="h" x="16" y="28">1 · Customize → Connectors</text>
+    <rect class="c" x="12" y="42" width="260" height="168" rx="10"/>
+    <text class="t" x="24" y="66" style="font-weight:700">Connectors</text>
+    <rect class="btn" x="236" y="50" width="26" height="22" rx="6"/><text class="t" x="249" y="66" text-anchor="middle">+</text>
+    <path class="ln" d="M12 80h260M12 122h260M12 164h260"/>
+    <text class="t" x="24" y="106">Google Calendar</text>
+    <rect class="btn" x="192" y="89" width="68" height="24" rx="6"/><text class="t" x="226" y="105.5" text-anchor="middle">Connect</text>
+    <rect class="r" x="186" y="84" width="80" height="34" rx="8"/>
+    <text class="t" x="24" y="148">Gmail</text>
+    <rect class="btn" x="192" y="131" width="68" height="24" rx="6"/><text class="t" x="226" y="147.5" text-anchor="middle">Connect</text>
+    <text class="t" x="24" y="190">Slack</text>
+    <rect class="btn" x="192" y="173" width="68" height="24" rx="6"/><text class="t" x="226" y="189.5" text-anchor="middle">Connect</text>
+    <rect x="12" y="226" width="260" height="28" rx="6" fill="#A31F34"/>
+    <text class="lab" x="142" y="244.5" text-anchor="middle">Pick one app → Connect</text>
+  </g>
+
+  <!-- 2 -->
+  <g transform="translate(308 0)">
+    <rect class="p" x="0.5" y="0.5" width="283" height="269" rx="12"/>
+    <text class="h" x="16" y="28">2 · Sign in with your own account</text>
+    <rect class="c" x="12" y="42" width="260" height="168" rx="10"/>
+    <text class="s" x="24" y="64">Sign in to connect to Claude</text>
+    <rect x="24" y="74" width="236" height="28" rx="14" fill="#f6f5f1" stroke="#e3e1da"/>
+    <circle cx="40" cy="88" r="8" fill="#d9d6cf"/>
+    <text class="t" x="54" y="92.5">your.name@example.com</text>
+    <text class="t" x="24" y="128" style="font-weight:700">Claude will be able to:</text>
+    <text class="t" x="24" y="149">• See your events and calendars</text>
+    <text class="t" x="24" y="168">• Create, change or delete events</text>
+    <rect class="r" x="17" y="112" width="250" height="66" rx="8"/>
+    <rect class="btn" x="150" y="182" width="52" height="22" rx="6"/><text class="t" x="176" y="197.5" text-anchor="middle">Cancel</text>
+    <rect x="208" y="182" width="52" height="22" rx="6" fill="#1f2328"/><text class="t" x="234" y="197.5" text-anchor="middle" style="fill:#ffffff">Allow</text>
+    <rect x="12" y="226" width="260" height="28" rx="6" fill="#A31F34"/>
+    <text class="lab" x="142" y="244.5" text-anchor="middle">Read what it can do, then Allow</text>
+  </g>
+
+  <!-- 3 -->
+  <g transform="translate(616 0)">
+    <rect class="p" x="0.5" y="0.5" width="283" height="269" rx="12"/>
+    <text class="h" x="16" y="28">3 · In a chat: + → Connectors</text>
+    <rect class="c" x="12" y="42" width="260" height="124" rx="10"/>
+    <text class="s" x="24" y="62">Connectors</text>
+    <text class="t" x="24" y="88">Google Calendar</text>
+    <rect x="224" y="76" width="30" height="16" rx="8" fill="#1f2328"/><circle cx="246" cy="84" r="6" fill="#ffffff"/>
+    <rect class="r" x="17" y="70" width="250" height="28" rx="7"/>
+    <text class="t" x="24" y="120">Gmail</text>
+    <rect x="224" y="108" width="30" height="16" rx="8" fill="#d9d6cf"/><circle cx="232" cy="116" r="6" fill="#ffffff"/>
+    <text class="t" x="24" y="150">Slack</text>
+    <rect x="224" y="138" width="30" height="16" rx="8" fill="#d9d6cf"/><circle cx="232" cy="146" r="6" fill="#ffffff"/>
+    <rect class="c" x="12" y="176" width="260" height="36" rx="12"/>
+    <text class="t" x="28" y="199" style="font-size:16px">+</text>
+    <text class="s" x="46" y="198">Ask Claude…</text>
+    <rect x="12" y="226" width="260" height="28" rx="6" fill="#A31F34"/>
+    <text class="lab" x="142" y="244.5" text-anchor="middle">On for this chat: only what it needs</text>
+  </g>
+</svg>

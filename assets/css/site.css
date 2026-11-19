@@ -169,6 +169,11 @@ table.cmp ul.todo{margin:0;padding-left:18px}table.cmp ul.todo li{margin:0 0 6px
 .before{border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:0 12px 12px 0;padding:16px 20px;display:flex;flex-direction:column;gap:10px}
 .before ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:15.5px}
 .before .catch{font-size:15px}
+.before .note-box{display:flex;flex-direction:column;gap:8px;margin-top:6px;padding:14px 16px;border-radius:10px;background:var(--surface)}
+.before .note-box > b{font-family:var(--ui);font-size:15.5px}
+.before .note-box p{margin:0}
+.before .note-box table.cmp{min-width:0;background:var(--bg)}
+.before .note-box .shot{max-width:680px;margin:4px 0 0}
 .before .ready{gap:0;padding-left:0}
 .before .ready label{padding:6px 8px}
 .ready .ifnot{display:block;font-size:13.5px;color:var(--accent);margin-top:2px}
@@ -183,6 +188,10 @@ ul.pts{list-style:disc;margin:0;padding-left:18px;display:flex;flex-direction:co
 ul.pts li::marker{color:var(--accent)}
 .concept ul.pts{font-size:15px}
 .keyidea{border-left:3px solid var(--accent);padding:4px 0 4px 16px;font-size:18px;max-width:64ch}
+.defs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin:14px 0 4px}
+.def{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:12px 16px;background:var(--bg)}
+.def > b{display:block;font-family:var(--ui);font-size:15px;color:var(--accent);margin-bottom:4px}
+.def p{margin:0;font-size:15px}
 
 .ex{border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .ex .exh{padding:10px 16px;font-family:var(--ui);font-weight:600;font-size:15px;background:var(--surface);border-bottom:1px solid var(--line)}
@@ -210,6 +219,12 @@ mark.hl{color:inherit;border-radius:3px;padding:0 2px;box-decoration-break:clone
 .hl-2{background:#FFEFC2} :is(.ex,.prompt) .tag.hl-2{color:#7A5A00;background:#FFEFC2}
 .hl-3{background:#F8DCE6} :is(.ex,.prompt) .tag.hl-3{color:#8C2347;background:#F8DCE6}
 .hl-4{background:#E9E1F7} :is(.ex,.prompt) .tag.hl-4{color:#5B3A8C;background:#E9E1F7}
+/* Try it: a working example embedded on the page */
+.tryframe{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg)}
+.tryframe iframe{display:block;width:100%;border:0}
+.tryopen{margin:6px 0 0;font-size:14.5px}
+.filetext{margin:0;padding:14px 16px;max-height:460px;overflow:auto;font-family:var(--mono);font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere;background:var(--surface);border-radius:0 0 10px 10px}
+.reveal > .tryopen{margin:0;padding:10px 16px 12px;border-top:1px dashed var(--navy)}
 .fw-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px}
 .fw-card{border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;background:var(--surface)}
 .fw-card .fw-name{font-family:var(--display);font-size:18px;color:var(--accent)}
@@ -412,6 +427,7 @@ table.cmp.restable tbody tr.grp:first-child th{padding-top:8px}
 .xsteps{margin:4px 0 4px;padding-left:22px;display:flex;flex-direction:column;gap:6px;max-width:72ch}
 .xsteps li::marker{color:var(--accent);font-family:var(--ui);font-weight:700}
 figure.diagram{margin:18px 0 6px;max-width:760px}
+figure.diagram.wide{max-width:none}
 figure.diagram svg,figure.diagram img{display:block;width:100%;height:auto}
 figure.diagram figcaption{font-size:14px;color:var(--muted);margin-top:6px}
 .dg-frame{fill:var(--surface);stroke:var(--line);stroke-width:1.5}
@@ -433,6 +449,7 @@ figure.diagram figcaption{font-size:14px;color:var(--muted);margin-top:6px}
 /* ---------- screenshots on the overview ---------- */
 /* Setup step screenshots: always visible, under the step */
 .shot{margin:10px 0 4px;max-width:520px}
+.shot.wide{max-width:none}
 .shot-img{position:relative;border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .shot-img img{display:block;width:100%;height:auto}
 .shot .hl{position:absolute;border:3px solid var(--accent);border-radius:6px;box-shadow:0 0 0 3px rgba(255,255,255,.7)}

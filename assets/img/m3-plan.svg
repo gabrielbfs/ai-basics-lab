@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" role="img" aria-label="Illustration of a plan from Claude: read assumptions.xlsx and sample-data.xlsx, create inputs.xlsx and brief.docx, change no files. Labels point to the files it will read and to Files I'll change: none.">
+  <!-- Sample plan, drawn for AI Basics Lab. Not a screenshot; Claude's wording will differ. -->
+  <style>
+    .t{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:13.5px;fill:#2f2f2c}
+    .b{font-weight:700}
+    .lab{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12.5px;font-weight:700;fill:#ffffff}
+  </style>
+  <rect width="640" height="300" fill="#faf9f5"/>
+  <circle cx="30" cy="30" r="9" fill="#d97757"/>
+  <rect x="48" y="14" width="400" height="272" rx="12" fill="#ffffff" stroke="#e3e1da"/>
+  <text x="66" y="40" class="t b">Here's my plan:</text>
+  <text x="66" y="64" class="t">1. Read assumptions.xlsx and sample-data.xlsx</text>
+  <text x="66" y="86" class="t">2. Create inputs.xlsx (one row per input)</text>
+  <text x="66" y="108" class="t">3. Create brief.docx (one page)</text>
+  <path d="M66 124h366" stroke="#eceae3"/>
+  <text x="66" y="148" class="t b">Files I'll read:</text>
+  <text x="196" y="148" class="t">assumptions.xlsx,</text>
+  <text x="196" y="168" class="t">sample-data.xlsx</text>
+  <text x="66" y="196" class="t b">Files I'll create:</text>
+  <text x="196" y="196" class="t">inputs.xlsx, brief.docx</text>
+  <text x="66" y="224" class="t b">Files I'll change:</text>
+  <text x="196" y="224" class="t">none</text>
+  <text x="66" y="262" class="t">Shall I go ahead?</text>
+  <!-- highlights -->
+  <rect x="58" y="132" width="290" height="44" rx="7" fill="none" stroke="#A31F34" stroke-width="2.5"/>
+  <rect x="58" y="208" width="200" height="24" rx="7" fill="none" stroke="#A31F34" stroke-width="2.5"/>
+  <path d="M352 154h106" stroke="#A31F34" stroke-width="2"/>
+  <rect x="460" y="140" width="166" height="28" rx="5" fill="#A31F34"/>
+  <text x="543" y="159" text-anchor="middle" class="lab">Only your files?</text>
+  <path d="M262 220h196" stroke="#A31F34" stroke-width="2"/>
+  <rect x="460" y="206" width="166" height="28" rx="5" fill="#A31F34"/>
+  <text x="543" y="225" text-anchor="middle" class="lab">Nothing overwritten?</text>
+</svg>
